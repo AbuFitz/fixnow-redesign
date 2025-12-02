@@ -4,7 +4,7 @@ import { LOCATIONS } from "@/lib/constants";
 
 const AreasSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-card relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-card relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(var(--primary)/0.08),_transparent_70%)]" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />

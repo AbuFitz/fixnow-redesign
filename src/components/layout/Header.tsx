@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { BUSINESS_INFO } from "@/lib/constants";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,18 +36,21 @@ const Header = () => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="group flex items-center gap-3">
-            <div className="relative">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center font-display font-bold text-primary-foreground text-lg transition-transform group-hover:scale-105">
-                F
-              </div>
-              <div className="absolute inset-0 rounded-xl bg-primary/50 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <span className="font-display font-bold text-xl tracking-tight hidden sm:block">
-              <span className="text-foreground">Fix</span>
-              <span className="text-primary">Now</span>
+          <Link to="/" className="group flex items-center gap-2">
+            <span className="font-display font-bold text-xl tracking-tight">
+              <span className="text-foreground">FixNow</span>
+              <span className="text-primary"> Mechanics</span>
             </span>
           </Link>
+
+          {/* Phone Number - Desktop */}
+          <a 
+            href={`tel:${BUSINESS_INFO.phone}`}
+            className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Phone className="w-4 h-4 text-primary" />
+            {BUSINESS_INFO.phone}
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center">
@@ -79,14 +83,11 @@ const Header = () => {
 
           {/* CTA */}
           <div className="hidden md:block">
-            <Button asChild className="rounded-full px-6 group relative overflow-hidden">
-              <Link to="/estimate">
-                <span className="relative z-10 flex items-center gap-2">
-                  Get Quote
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary via-yellow-400 to-primary bg-[length:200%_100%] animate-[gradient-shift_3s_ease-in-out_infinite] opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Link>
+            <Button asChild className="rounded-full px-6 group">
+              <a href={`tel:${BUSINESS_INFO.phone}`}>
+                <Phone className="w-4 h-4 mr-2" />
+                Call Now
+              </a>
             </Button>
           </div>
 
@@ -127,10 +128,10 @@ const Header = () => {
               ))}
               <div className="pt-4 mt-4 border-t border-border/50">
                 <Button asChild className="w-full rounded-full h-12">
-                  <Link to="/estimate" onClick={() => setIsOpen(false)}>
-                    Get Quote
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
+                  <a href={`tel:${BUSINESS_INFO.phone}`} onClick={() => setIsOpen(false)}>
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call Now
+                  </a>
                 </Button>
               </div>
             </nav>

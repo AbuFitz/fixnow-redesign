@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero-car.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <img src={heroImage} alt="Car" className="w-full h-full object-cover scale-105" />
@@ -28,7 +28,7 @@ const HeroSection = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            <span className="text-sm text-foreground/90 font-medium">Mobile Mechanic • South East London</span>
+            <span className="text-sm text-foreground/90 font-medium">Mobile Mechanic • Hertfordshire & Beyond</span>
           </div>
           
           {/* Main Headline */}
@@ -49,7 +49,7 @@ const HeroSection = () => {
           {/* Subheadline */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-xl leading-relaxed animate-slide-up" style={{ animationDelay: "0.1s" }}>
             Car trouble? We bring the garage to your driveway.{" "}
-            <span className="text-foreground font-medium">Same-day service.</span>
+            <span className="text-foreground font-medium">No trip needed.</span>
           </p>
           
           {/* CTAs */}
@@ -81,10 +81,10 @@ const HeroSection = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="mt-20 md:mt-32 grid grid-cols-3 gap-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        <div className="mt-16 md:mt-24 grid grid-cols-3 gap-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
           {[
-            { value: "Same Day", label: "Service Available" },
-            { value: "SE London", label: "Coverage Area" },
+            { value: "7 Days", label: "Open Weekly" },
+            { value: "45 Mile", label: "Coverage Radius" },
             { value: "Mobile", label: "We Come To You" },
           ].map((stat) => (
             <div key={stat.label} className="relative">
@@ -92,13 +92,6 @@ const HeroSection = () => {
               <div className="text-xs md:text-sm text-muted-foreground">{stat.label}</div>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-primary rounded-full animate-[scroll_1.5s_ease-in-out_infinite]" />
         </div>
       </div>
     </section>
