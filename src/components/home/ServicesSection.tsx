@@ -1,70 +1,132 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Monitor, CircleDot, Settings, Zap, ArrowUpDown, Wrench } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SERVICES } from "@/lib/constants";
 
-const iconMap: Record<string, React.ElementType> = {
-  Monitor,
-  CircleDot,
-  Settings,
-  Zap,
-  ArrowUpDown,
-  Wrench,
-};
+// Import service images
+import diagnosticsImg from "@/assets/service-diagnostics.jpg";
+import brakesImg from "@/assets/service-brakes.jpg";
+import servicingImg from "@/assets/service-servicing.jpg";
+import electricalImg from "@/assets/service-electrical.jpg";
+import suspensionImg from "@/assets/service-suspension.jpg";
+import generalImg from "@/assets/service-general.jpg";
+
+const services = [
+  {
+    id: "diagnostics",
+    name: "Diagnostics",
+    price: "From £45",
+    image: diagnosticsImg,
+    span: "col-span-2 row-span-2",
+  },
+  {
+    id: "brakes",
+    name: "Brakes",
+    price: "From £80",
+    image: brakesImg,
+    span: "col-span-1 row-span-1",
+  },
+  {
+    id: "servicing",
+    name: "Servicing",
+    price: "From £120",
+    image: servicingImg,
+    span: "col-span-1 row-span-1",
+  },
+  {
+    id: "electrical",
+    name: "Electrical",
+    price: "From £60",
+    image: electricalImg,
+    span: "col-span-1 row-span-2",
+  },
+  {
+    id: "suspension",
+    name: "Suspension",
+    price: "From £100",
+    image: suspensionImg,
+    span: "col-span-1 row-span-1",
+  },
+  {
+    id: "general",
+    name: "General Repairs",
+    price: "Call for quote",
+    image: generalImg,
+    span: "col-span-1 row-span-1",
+  },
+];
 
 const ServicesSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-6 md:px-12">
-        {/* Section Header */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-[1px] bg-primary" />
-            <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <div>
+            <span className="text-primary text-sm font-medium tracking-wider uppercase mb-3 block">
               Services
             </span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+              What we do
+            </h2>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            What we do
-          </h2>
-          <p className="text-muted-foreground max-w-lg">
-            From diagnostics to repairs, we handle it at your location. No need to visit a garage.
-          </p>
-        </div>
-        
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {SERVICES.map((service, index) => {
-            const Icon = iconMap[service.icon];
-            return (
-              <div
-                key={service.id}
-                className="group p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                  {service.name}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                  {service.description}
-                </p>
-                <p className="text-primary font-semibold">{service.price}</p>
-              </div>
-            );
-          })}
-        </div>
-        
-        {/* CTA */}
-        <div className="text-center">
-          <Button variant="outline" size="lg" asChild className="rounded-full">
+          <Button variant="outline" size="lg" asChild className="rounded-full w-fit">
             <Link to="/services">
-              View all services
+              All services
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
+        </div>
+
+        {/* Bento Grid - Desktop */}
+        <div className="hidden md:grid grid-cols-4 grid-rows-3 gap-4 h-[600px]">
+          {services.map((service) => (
+            <Link
+              key={service.id}
+              to="/services"
+              className={`group relative rounded-2xl overflow-hidden ${service.span}`}
+            >
+              <img
+                src={service.image}
+                alt={service.name}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-1">
+                  {service.name}
+                </h3>
+                <p className="text-primary font-medium">{service.price}</p>
+              </div>
+              {/* Hover border effect */}
+              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/30 transition-colors" />
+            </Link>
+          ))}
+        </div>
+
+        {/* Mobile Horizontal Scroll */}
+        <div className="md:hidden -mx-6 px-6">
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+            {services.map((service) => (
+              <Link
+                key={service.id}
+                to="/services"
+                className="group relative flex-shrink-0 w-64 h-80 rounded-2xl overflow-hidden snap-start"
+              >
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-1">
+                    {service.name}
+                  </h3>
+                  <p className="text-primary font-medium text-sm">{service.price}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>

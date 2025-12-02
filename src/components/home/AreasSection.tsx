@@ -1,50 +1,41 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { LOCATIONS, BUSINESS_INFO } from "@/lib/constants";
+import { LOCATIONS } from "@/lib/constants";
 
 const AreasSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-card">
+    <section className="py-16 md:py-20 bg-card border-y border-border/50">
       <div className="container mx-auto px-6 md:px-12">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-8 h-[1px] bg-primary" />
-            <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          {/* Left side */}
+          <div className="flex-shrink-0">
+            <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">
               Coverage
             </span>
-            <div className="w-8 h-[1px] bg-primary" />
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+              Areas we cover
+            </h2>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Areas we cover
-          </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Based in Hemel Hempstead, we serve a {BUSINESS_INFO.coverage}.
-          </p>
-        </div>
-        
-        {/* Location Grid */}
-        <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto mb-12">
-          {LOCATIONS.map((location) => (
+
+          {/* Location pills */}
+          <div className="flex flex-wrap gap-2 flex-1 md:justify-end">
+            {LOCATIONS.map((location) => (
+              <Link
+                key={location.slug}
+                to={`/locations/${location.slug}`}
+                className="px-4 py-2 rounded-full bg-secondary/50 border border-border/50 text-sm text-foreground hover:border-primary/30 hover:bg-primary/5 transition-all"
+              >
+                {location.name}
+              </Link>
+            ))}
             <Link
-              key={location.slug}
-              to={`/locations/${location.slug}`}
-              className="px-5 py-3 rounded-full bg-secondary/50 border border-border/50 hover:border-primary/50 hover:bg-secondary transition-all duration-300 text-foreground hover:text-primary text-sm font-medium"
+              to="/locations"
+              className="px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-sm text-primary hover:bg-primary/20 transition-all inline-flex items-center gap-1"
             >
-              {location.name}
+              All areas
+              <ArrowRight className="w-3 h-3" />
             </Link>
-          ))}
-        </div>
-        
-        {/* CTA */}
-        <div className="text-center">
-          <Button asChild variant="outline" size="lg" className="rounded-full">
-            <Link to="/locations">
-              View all areas
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-          </Button>
+          </div>
         </div>
       </div>
     </section>

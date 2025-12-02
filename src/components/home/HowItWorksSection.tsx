@@ -1,77 +1,77 @@
-import { MessageSquare, PhoneCall, CheckCircle } from "lucide-react";
+import { MessageSquare, Phone, Wrench } from "lucide-react";
 
 const steps = [
   {
     number: "01",
     icon: MessageSquare,
-    title: "Send an Enquiry",
-    description: "Tell us about your vehicle and what's happening. Submit your details through our form or give us a call.",
+    title: "Send Enquiry",
+    description: "Tell us what's wrong",
   },
   {
     number: "02",
-    icon: PhoneCall,
-    title: "We Call You Back",
-    description: "We'll get back to you to discuss the issue, give you a quote, and arrange a time that works for you.",
+    icon: Phone,
+    title: "We Call Back",
+    description: "Discuss & arrange time",
   },
   {
     number: "03",
-    icon: CheckCircle,
-    title: "We Come to You",
-    description: "We arrive at your location with everything needed to diagnose and fix your vehicle on the spot.",
+    icon: Wrench,
+    title: "We Fix It",
+    description: "At your location",
   },
 ];
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-card">
+    <section className="py-16 md:py-20 bg-card border-y border-border/50">
       <div className="container mx-auto px-6 md:px-12">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-8 h-[1px] bg-primary" />
-            <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
+        {/* Compact horizontal layout */}
+        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-0">
+          {/* Title */}
+          <div className="md:w-1/4 md:pr-8 md:border-r md:border-border/50">
+            <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">
               How it works
             </span>
-            <div className="w-8 h-[1px] bg-primary" />
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+              Simple process
+            </h2>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Simple process
-          </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Getting your car fixed shouldn't be complicated. Here's how we work.
-          </p>
-        </div>
-        
-        {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto">
-          {steps.map((step, index) => (
-            <div key={step.number} className="relative text-center md:text-left">
-              {/* Connector Line (desktop) */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-10 left-[60%] w-full h-[1px] bg-border" />
-              )}
-              
-              <div className="relative">
-                {/* Step Number */}
-                <span className="inline-block text-xs tracking-[0.2em] uppercase text-primary font-medium mb-4">
-                  Step {step.number}
-                </span>
-                
-                {/* Icon */}
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
-                  <step.icon className="w-7 h-7 text-primary" />
+
+          {/* Steps */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:pl-8">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.number}
+                  className="flex items-center gap-4 md:flex-col md:text-center md:px-6 relative"
+                >
+                  {/* Connector line - desktop */}
+                  {index < steps.length - 1 && (
+                    <div className="hidden md:block absolute top-6 left-[calc(50%+40px)] right-0 h-[1px] bg-gradient-to-r from-primary/50 to-transparent" />
+                  )}
+                  
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  
+                  {/* Content */}
+                  <div>
+                    <span className="text-xs text-primary font-medium mb-1 block md:mt-3">
+                      {step.number}
+                    </span>
+                    <h3 className="font-display text-lg font-semibold text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-                
-                {/* Content */}
-                <h3 className="font-display text-xl font-semibold text-foreground mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
