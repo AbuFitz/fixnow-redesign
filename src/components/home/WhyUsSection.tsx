@@ -2,10 +2,10 @@ import { Clock, MapPin, Shield, Banknote, Check } from "lucide-react";
 import trustImage from "@/assets/trust-mechanic.jpg";
 
 const features = [
-  { icon: MapPin, title: "We Come To You", description: "Home, work, or roadside" },
-  { icon: Clock, title: "Open 7 Days", description: "Available all week" },
-  { icon: Banknote, title: "Honest Pricing", description: "No hidden fees, ever" },
-  { icon: Shield, title: "Quality Parts", description: "OE spec or better" },
+  { icon: Clock, title: "Convenient Scheduling", description: "Early morning, evening, and weekend appointments available to fit your busy life." },
+  { icon: Banknote, title: "Transparent Pricing", description: "No hidden fees or surprises. Detailed quotes provided before any work begins." },
+  { icon: MapPin, title: "We Come To You", description: "Save time and hassle. We repair your vehicle at your home, office, or roadside." },
+  { icon: Shield, title: "Quality Parts", description: "We use OE specification parts or better for all repairs and services." },
 ];
 
 const WhyUsSection = () => {
@@ -36,32 +36,32 @@ const WhyUsSection = () => {
 
           {/* Content Side */}
           <div className="order-1 lg:order-2">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
-              Why Choose Us
+            <span className="text-xs font-medium text-primary uppercase tracking-wider mb-2 block">Why Choose Us</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2 leading-tight">
+              Quality Service,<br />
+              <span className="text-muted-foreground">Personal Touch</span>
             </h2>
-            
-            <p className="text-lg text-muted-foreground mb-10 max-w-md">
-              We bring everything needed to diagnose and fix your car right where it's parked. No towing, no waiting rooms.
-            </p>
 
-            {/* Features Grid */}
-            <div className="grid grid-cols-2 gap-3">
+            {/* Features List */}
+            <div className="space-y-4 mt-6">
               {features.map((feature) => {
                 const Icon = feature.icon;
                 return (
                   <div 
                     key={feature.title} 
-                    className="p-4 rounded-xl bg-card border border-border/50"
+                    className="flex items-start gap-4"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                      <Icon className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-4 h-4 text-primary" />
                     </div>
-                    <h3 className="font-display font-semibold text-foreground mb-0.5">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {feature.description}
-                    </p>
+                    <div>
+                      <h3 className="font-display font-semibold text-foreground mb-1">
+                        {feature.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
