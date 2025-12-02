@@ -5,8 +5,8 @@ import { LOCATIONS } from "@/lib/constants";
 const AreasSection = () => {
   return (
     <section className="py-10 md:py-14 bg-card relative overflow-hidden">
-      {/* Map Background - 70% visible */}
-      <div className="absolute inset-0 opacity-70">
+      {/* Map Background - 30% visible */}
+      <div className="absolute inset-0 opacity-30">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d200000!2d-0.4!3d51.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk&disableDefaultUI=1&zoomControl=0&mapTypeControl=0&streetViewControl=0&fullscreenControl=0"
           className="w-full h-full border-0 grayscale"

@@ -32,7 +32,7 @@ const HeroSection = () => {
           </div>
           
           {/* Main Headline */}
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] mb-8 animate-slide-up">
+          <h1 className="font-display text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] mb-8 animate-slide-up">
             We come
             <br />
             <span className="relative">
