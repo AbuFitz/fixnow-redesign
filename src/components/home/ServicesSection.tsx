@@ -22,10 +22,14 @@ const ServicesSection = () => {
     <section className="py-10 md:py-14 bg-background">
       <div className="container mx-auto px-6 md:px-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-            What we do
-          </h2>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <span className="text-xs font-medium text-primary uppercase tracking-wider mb-2 block">What we do</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Great Services,<br />
+              <span className="text-muted-foreground">At Your Location</span>
+            </h2>
+          </div>
           <Button variant="outline" size="lg" asChild className="rounded-full border-border/50 bg-card/30 hover:bg-card/50 w-fit group">
             <Link to="/services">
               All services

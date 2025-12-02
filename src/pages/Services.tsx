@@ -81,9 +81,9 @@ const Services = () => {
           <img 
             src={engineDetailImg} 
             alt="" 
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-card/70 via-card/80 to-card" />
+          <div className="absolute inset-0 bg-gradient-to-b from-card/40 via-card/60 to-card" />
         </div>
         
         <div className="container mx-auto px-6 md:px-12 relative z-10">
