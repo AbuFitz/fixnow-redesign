@@ -10,7 +10,7 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="py-16 md:py-20 bg-background">
+    <section className="py-10 md:py-14 bg-background">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image Side */}
@@ -36,10 +36,8 @@ const WhyUsSection = () => {
 
           {/* Content Side */}
           <div className="order-1 lg:order-2">
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
-              Garage service,
-              <br />
-              <span className="text-muted-foreground">at your door</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
+              Why Choose Us
             </h2>
             
             <p className="text-lg text-muted-foreground mb-10 max-w-md">

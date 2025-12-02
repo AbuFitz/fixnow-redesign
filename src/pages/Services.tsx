@@ -75,15 +75,15 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero with Image */}
-      <section className="relative py-20 md:py-28 bg-card overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-card overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <img 
             src={engineDetailImg} 
             alt="" 
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-card via-card/90 to-card" />
+          <div className="absolute inset-0 bg-gradient-to-b from-card/70 via-card/80 to-card" />
         </div>
         
         <div className="container mx-auto px-6 md:px-12 relative z-10">

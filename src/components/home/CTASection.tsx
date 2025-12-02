@@ -5,7 +5,7 @@ import { BUSINESS_INFO } from "@/lib/constants";
 
 const CTASection = () => {
   return (
-    <section className="py-16 md:py-20 bg-primary">
+    <section className="py-10 md:py-14 bg-primary">
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-3xl mx-auto text-center">
           {/* Badge */}
@@ -14,13 +14,13 @@ const CTASection = () => {
           </div>
           
           {/* Main heading */}
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-3">
             Need a Mechanic?
             <br />
             We'll Come to You
           </h2>
           
-          <p className="text-lg text-primary-foreground/80 mb-8 max-w-xl mx-auto">
+          <p className="text-lg text-primary-foreground/80 mb-6 max-w-xl mx-auto">
             Don't waste time at the garage. Get mobile mechanic services at your doorstep within hours.
           </p>
           

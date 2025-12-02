@@ -18,7 +18,6 @@ const Header = () => {
   const navLinks = [
     { name: "Services", href: "/services" },
     { name: "Service Areas", href: "/locations" },
-    { name: "Get Quote", href: "/estimate" },
   ];
 
   const isActive = (href: string) => {
