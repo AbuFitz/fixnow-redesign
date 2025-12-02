@@ -19,7 +19,7 @@ const serviceDetails: Record<string, { includes: string[]; duration: string }> =
       "Full engine diagnostic scan",
       "Fault code reading & clearing",
       "System health check",
-      "Detailed report of findings",
+      "Report of findings",
     ],
     duration: "30-60 mins",
   },
@@ -74,15 +74,21 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28 bg-card">
+        <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-8 h-[1px] bg-primary" />
+              <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
+                What we do
+              </span>
+              <div className="w-8 h-[1px] bg-primary" />
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
               Our Services
             </h1>
             <p className="text-lg text-muted-foreground">
-              Professional mobile mechanic services brought directly to your location. 
-              All work is carried out to the highest standards with transparent pricing.
+              Mobile mechanic services at your location. We come to you with the tools and parts to get the job done.
             </p>
           </div>
         </div>
@@ -90,8 +96,8 @@ const Services = () => {
 
       {/* Services Grid */}
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {SERVICES.map((service) => {
               const Icon = iconMap[service.icon];
               const details = serviceDetails[service.id];
@@ -101,25 +107,25 @@ const Services = () => {
                   className="bg-card rounded-2xl p-6 md:p-8 border border-border"
                 >
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-7 h-7 text-primary" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold text-foreground mb-1">{service.name}</h2>
-                      <p className="text-primary font-semibold text-lg">{service.price}</p>
+                      <h2 className="font-display text-xl font-semibold text-foreground mb-1">{service.name}</h2>
+                      <p className="text-primary font-semibold">{service.price}</p>
                     </div>
                   </div>
                   
-                  <p className="text-muted-foreground mb-6">{service.description}</p>
+                  <p className="text-muted-foreground mb-6 text-sm">{service.description}</p>
                   
                   <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
+                    <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">
                       What's Included
                     </h4>
                     <ul className="space-y-2">
                       {details.includes.map((item, index) => (
-                        <li key={index} className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        <li key={index} className="flex items-center gap-2 text-foreground text-sm">
+                          <div className="w-1 h-1 rounded-full bg-primary" />
                           {item}
                         </li>
                       ))}
@@ -128,9 +134,9 @@ const Services = () => {
                   
                   <div className="flex items-center justify-between pt-6 border-t border-border">
                     <span className="text-sm text-muted-foreground">
-                      Est. duration: <span className="text-foreground font-medium">{details.duration}</span>
+                      ~{details.duration}
                     </span>
-                    <Button asChild>
+                    <Button asChild className="rounded-full" size="sm">
                       <Link to="/estimate">
                         Get Quote
                         <ArrowRight className="w-4 h-4 ml-2" />
@@ -146,24 +152,24 @@ const Services = () => {
 
       {/* CTA */}
       <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Not Sure What You Need?
+        <div className="container mx-auto px-6 md:px-12 text-center">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Not sure what you need?
           </h2>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Give us a call and we'll help diagnose the issue and recommend the right service for your vehicle.
+          <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+            Give us a call or send an enquiry. We'll help figure out what's going on and what needs doing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
+            <Button size="lg" asChild className="rounded-full">
               <Link to="/estimate">
-                Get Free Quote
-                <ArrowRight className="w-5 h-5 ml-2" />
+                Get a Quote
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" asChild className="rounded-full">
               <a href={`tel:${BUSINESS_INFO.phone}`}>
-                <Phone className="w-5 h-5 mr-2" />
-                Call {BUSINESS_INFO.phone}
+                <Phone className="w-4 h-4 mr-2" />
+                {BUSINESS_INFO.phone}
               </a>
             </Button>
           </div>

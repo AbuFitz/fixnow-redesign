@@ -44,22 +44,29 @@ const Estimate = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Frontend only - no submission
-    alert("Thank you! Your quote request has been received. We'll be in touch shortly.");
+    alert("Thanks! We've received your enquiry and will call you back shortly to discuss.");
     console.log("Form data:", formData);
   };
 
   return (
     <Layout>
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-2xl mx-auto">
             {/* Header */}
-            <div className="text-center mb-10">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Get a Free Quote
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="w-8 h-[1px] bg-primary" />
+                <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
+                  Enquiry
+                </span>
+                <div className="w-8 h-[1px] bg-primary" />
+              </div>
+              <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+                Get a Quote
               </h1>
               <p className="text-muted-foreground">
-                Fill out the form below and we'll get back to you with a quote.
+                Send us your details and we'll call you back to discuss.
               </p>
             </div>
 
@@ -73,7 +80,7 @@ const Estimate = () => {
                   <div key={label} className="flex-1 flex items-center">
                     <div className="flex flex-col items-center flex-1">
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-colors ${
+                        className={`w-10 h-10 rounded-full flex items-center justify-center font-medium transition-colors ${
                           isComplete
                             ? "bg-primary text-primary-foreground"
                             : isActive
@@ -93,8 +100,8 @@ const Estimate = () => {
                     </div>
                     {index < 3 && (
                       <div
-                        className={`h-0.5 flex-1 mx-2 ${
-                          step > stepNum ? "bg-primary" : "bg-secondary"
+                        className={`h-[1px] flex-1 mx-2 ${
+                          step > stepNum ? "bg-primary" : "bg-border"
                         }`}
                       />
                     )}
@@ -109,8 +116,8 @@ const Estimate = () => {
                 {/* Step 1: Service */}
                 {step === 1 && (
                   <div>
-                    <h2 className="text-xl font-semibold text-foreground mb-6">
-                      What service do you need?
+                    <h2 className="font-display text-xl font-semibold text-foreground mb-6">
+                      What do you need help with?
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {SERVICES.map((service) => (
@@ -118,10 +125,10 @@ const Estimate = () => {
                           key={service.id}
                           type="button"
                           onClick={() => updateFormData("service", service.id)}
-                          className={`p-4 rounded-xl text-left transition-colors border ${
+                          className={`p-4 rounded-xl text-left transition-all border ${
                             formData.service === service.id
                               ? "bg-primary/10 border-primary text-foreground"
-                              : "bg-secondary/50 border-transparent hover:bg-secondary text-foreground"
+                              : "bg-secondary/30 border-border/50 hover:border-border text-foreground"
                           }`}
                         >
                           <span className="font-medium">{service.name}</span>
@@ -137,7 +144,7 @@ const Estimate = () => {
                 {/* Step 2: Location */}
                 {step === 2 && (
                   <div>
-                    <h2 className="text-xl font-semibold text-foreground mb-6">
+                    <h2 className="font-display text-xl font-semibold text-foreground mb-6">
                       Where are you located?
                     </h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -146,13 +153,13 @@ const Estimate = () => {
                           key={location.slug}
                           type="button"
                           onClick={() => updateFormData("location", location.slug)}
-                          className={`p-3 rounded-xl text-center transition-colors border ${
+                          className={`p-3 rounded-xl text-center transition-all border ${
                             formData.location === location.slug
                               ? "bg-primary/10 border-primary text-foreground"
-                              : "bg-secondary/50 border-transparent hover:bg-secondary text-foreground"
+                              : "bg-secondary/30 border-border/50 hover:border-border text-foreground"
                           }`}
                         >
-                          <span className="font-medium">{location.name}</span>
+                          <span className="font-medium text-sm">{location.name}</span>
                         </button>
                       ))}
                     </div>
@@ -162,7 +169,7 @@ const Estimate = () => {
                 {/* Step 3: Vehicle */}
                 {step === 3 && (
                   <div>
-                    <h2 className="text-xl font-semibold text-foreground mb-6">
+                    <h2 className="font-display text-xl font-semibold text-foreground mb-6">
                       Tell us about your vehicle
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -174,6 +181,7 @@ const Estimate = () => {
                           placeholder="e.g. Ford"
                           value={formData.vehicleMake}
                           onChange={(e) => updateFormData("vehicleMake", e.target.value)}
+                          className="rounded-xl"
                         />
                       </div>
                       <div>
@@ -184,6 +192,7 @@ const Estimate = () => {
                           placeholder="e.g. Focus"
                           value={formData.vehicleModel}
                           onChange={(e) => updateFormData("vehicleModel", e.target.value)}
+                          className="rounded-xl"
                         />
                       </div>
                       <div>
@@ -194,6 +203,7 @@ const Estimate = () => {
                           placeholder="e.g. 2019"
                           value={formData.vehicleYear}
                           onChange={(e) => updateFormData("vehicleYear", e.target.value)}
+                          className="rounded-xl"
                         />
                       </div>
                       <div>
@@ -204,6 +214,7 @@ const Estimate = () => {
                           placeholder="e.g. AB12 CDE"
                           value={formData.vehicleReg}
                           onChange={(e) => updateFormData("vehicleReg", e.target.value)}
+                          className="rounded-xl"
                         />
                       </div>
                     </div>
@@ -213,9 +224,12 @@ const Estimate = () => {
                 {/* Step 4: Contact */}
                 {step === 4 && (
                   <div>
-                    <h2 className="text-xl font-semibold text-foreground mb-6">
+                    <h2 className="font-display text-xl font-semibold text-foreground mb-2">
                       Your contact details
                     </h2>
+                    <p className="text-sm text-muted-foreground mb-6">
+                      We'll call you back to discuss your enquiry and arrange a time.
+                    </p>
                     <div className="space-y-4">
                       <div>
                         <label className="text-sm font-medium text-foreground mb-2 block">
@@ -226,6 +240,7 @@ const Estimate = () => {
                           value={formData.name}
                           onChange={(e) => updateFormData("name", e.target.value)}
                           required
+                          className="rounded-xl"
                         />
                       </div>
                       <div>
@@ -238,6 +253,7 @@ const Estimate = () => {
                           value={formData.email}
                           onChange={(e) => updateFormData("email", e.target.value)}
                           required
+                          className="rounded-xl"
                         />
                       </div>
                       <div>
@@ -250,17 +266,19 @@ const Estimate = () => {
                           value={formData.phone}
                           onChange={(e) => updateFormData("phone", e.target.value)}
                           required
+                          className="rounded-xl"
                         />
                       </div>
                       <div>
                         <label className="text-sm font-medium text-foreground mb-2 block">
-                          Additional details
+                          What's the issue?
                         </label>
                         <Textarea
-                          placeholder="Describe the issue or any additional information..."
+                          placeholder="Describe what's happening with your vehicle..."
                           value={formData.message}
                           onChange={(e) => updateFormData("message", e.target.value)}
                           rows={4}
+                          className="rounded-xl"
                         />
                       </div>
                     </div>
@@ -274,18 +292,19 @@ const Estimate = () => {
                     variant="ghost"
                     onClick={prevStep}
                     disabled={step === 1}
+                    className="rounded-full"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back
                   </Button>
                   {step < 4 ? (
-                    <Button type="button" onClick={nextStep}>
+                    <Button type="button" onClick={nextStep} className="rounded-full">
                       Next
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   ) : (
-                    <Button type="submit">
-                      Submit Request
+                    <Button type="submit" className="rounded-full">
+                      Send Enquiry
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   )}
@@ -294,12 +313,12 @@ const Estimate = () => {
             </form>
 
             {/* Quick Contact */}
-            <div className="mt-8 text-center">
-              <p className="text-muted-foreground mb-3">Need help urgently?</p>
-              <Button variant="outline" asChild>
+            <div className="mt-10 text-center">
+              <p className="text-muted-foreground text-sm mb-3">Prefer to call?</p>
+              <Button variant="outline" asChild className="rounded-full">
                 <a href={`tel:${BUSINESS_INFO.phone}`}>
                   <Phone className="w-4 h-4 mr-2" />
-                  Call {BUSINESS_INFO.phone}
+                  {BUSINESS_INFO.phone}
                 </a>
               </Button>
             </div>
