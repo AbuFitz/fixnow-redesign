@@ -9,12 +9,17 @@ const Locations = () => {
     <Layout>
       {/* Hero with Map Background */}
       <section className="relative py-20 md:py-28 bg-card overflow-hidden">
-        {/* Map background effect */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')]" />
+        {/* Map background */}
+        <div className="absolute inset-0">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d300000!2d-0.4!3d51.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk&disableDefaultUI=1&zoomControl=0&mapTypeControl=0&streetViewControl=0&fullscreenControl=0"
+            className="w-full h-full border-0 grayscale opacity-30"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Coverage area map"
+          />
         </div>
-        {/* Radial gradient overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_hsl(var(--primary)/0.15),_transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-card/60 via-card/80 to-card" />
         
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
@@ -23,7 +28,7 @@ const Locations = () => {
               <span className="text-xs font-medium text-primary uppercase tracking-wider">{BUSINESS_INFO.coverage} Coverage</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Areas We <span className="text-primary">Cover</span>
+              Areas We Cover
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto">
               Based in Hemel Hempstead, we cover Hertfordshire, Bedfordshire, Buckinghamshire, and North London.
@@ -33,46 +38,41 @@ const Locations = () => {
       </section>
 
       {/* Locations Grid */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-20">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {LOCATIONS.map((location) => (
               <Link
                 key={location.slug}
                 to={`/locations/${location.slug}`}
-                className="group relative bg-card rounded-2xl p-6 border border-border/50 hover:border-primary/50 transition-all overflow-hidden"
+                className="group relative bg-card rounded-xl p-5 border border-border/50 hover:border-primary/30 transition-all"
               >
-                {/* Hover glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <MapPin className="w-5 h-5 text-primary" />
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                <div className="flex items-start justify-between mb-3">
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-primary" />
                   </div>
-                  <h2 className="font-display text-xl font-semibold text-foreground mb-2">
-                    {location.name}
-                  </h2>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {location.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {location.postcodes.slice(0, 4).map((postcode) => (
-                      <span
-                        key={postcode}
-                        className="px-2 py-1 bg-background/50 rounded text-xs text-muted-foreground"
-                      >
-                        {postcode}
-                      </span>
-                    ))}
-                    {location.postcodes.length > 4 && (
-                      <span className="px-2 py-1 bg-background/50 rounded text-xs text-muted-foreground">
-                        +{location.postcodes.length - 4} more
-                      </span>
-                    )}
-                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                </div>
+                <h2 className="font-display text-lg font-semibold text-foreground mb-1">
+                  {location.name}
+                </h2>
+                <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+                  {location.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {location.postcodes.slice(0, 3).map((postcode) => (
+                    <span
+                      key={postcode}
+                      className="px-2 py-0.5 bg-background/50 rounded text-xs text-muted-foreground"
+                    >
+                      {postcode}
+                    </span>
+                  ))}
+                  {location.postcodes.length > 3 && (
+                    <span className="px-2 py-0.5 bg-background/50 rounded text-xs text-muted-foreground">
+                      +{location.postcodes.length - 3}
+                    </span>
+                  )}
                 </div>
               </Link>
             ))}
@@ -89,7 +89,7 @@ const Locations = () => {
           <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
             We cover a wide area. Give us a call to check if we can come to you.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button size="lg" asChild className="rounded-full">
               <a href={`tel:${BUSINESS_INFO.phone}`}>
                 <Phone className="w-4 h-4 mr-2" />
