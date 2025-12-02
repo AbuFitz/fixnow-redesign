@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { ArrowRight, ArrowLeft, Check, Phone } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Phone, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO, SERVICES, LOCATIONS } from "@/lib/constants";
+import engineImage from "@/assets/engine-detail.jpg";
 
 type FormData = {
   service: string;
@@ -43,64 +44,65 @@ const Estimate = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Frontend only - no submission
-    alert("Thanks! We've received your enquiry and will call you back shortly to discuss.");
+    alert("Thanks! We've received your enquiry and will call you back shortly.");
     console.log("Form data:", formData);
   };
 
+  const stepLabels = ["Service", "Location", "Vehicle", "Contact"];
+
   return (
     <Layout>
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-2xl mx-auto">
+      <section className="relative min-h-screen">
+        {/* Background */}
+        <div className="absolute inset-0 hidden lg:block">
+          <div className="absolute inset-y-0 right-0 w-1/2">
+            <img 
+              src={engineImage} 
+              alt="Engine detail" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+          </div>
+        </div>
+
+        <div className="container mx-auto px-6 md:px-12 py-20 md:py-28 relative z-10">
+          <div className="max-w-xl">
             {/* Header */}
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <div className="w-8 h-[1px] bg-primary" />
-                <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
-                  Enquiry
-                </span>
-                <div className="w-8 h-[1px] bg-primary" />
+            <div className="mb-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <Wrench className="w-4 h-4 text-primary" />
+                <span className="text-sm text-foreground/80">Free Quote</span>
               </div>
               <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
                 Get a Quote
               </h1>
               <p className="text-muted-foreground">
-                Send us your details and we'll call you back to discuss.
+                Tell us what you need and we'll call you back to discuss.
               </p>
             </div>
 
-            {/* Progress Steps */}
-            <div className="flex items-center justify-between mb-10">
-              {["Service", "Location", "Vehicle", "Contact"].map((label, index) => {
+            {/* Progress */}
+            <div className="flex items-center gap-2 mb-8">
+              {stepLabels.map((label, index) => {
                 const stepNum = index + 1;
                 const isActive = step === stepNum;
                 const isComplete = step > stepNum;
                 return (
-                  <div key={label} className="flex-1 flex items-center">
-                    <div className="flex flex-col items-center flex-1">
-                      <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center font-medium transition-colors ${
-                          isComplete
-                            ? "bg-primary text-primary-foreground"
-                            : isActive
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-secondary text-muted-foreground"
-                        }`}
-                      >
-                        {isComplete ? <Check className="w-5 h-5" /> : stepNum}
-                      </div>
-                      <span
-                        className={`text-xs mt-2 ${
-                          isActive || isComplete ? "text-foreground" : "text-muted-foreground"
-                        }`}
-                      >
-                        {label}
-                      </span>
+                  <div key={label} className="flex items-center gap-2">
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
+                        isComplete
+                          ? "bg-primary text-primary-foreground"
+                          : isActive
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-muted-foreground"
+                      }`}
+                    >
+                      {isComplete ? <Check className="w-4 h-4" /> : stepNum}
                     </div>
                     {index < 3 && (
                       <div
-                        className={`h-[1px] flex-1 mx-2 ${
+                        className={`w-8 h-[2px] ${
                           step > stepNum ? "bg-primary" : "bg-border"
                         }`}
                       />
@@ -112,14 +114,14 @@ const Estimate = () => {
 
             {/* Form */}
             <form onSubmit={handleSubmit}>
-              <div className="bg-card rounded-2xl p-6 md:p-8 border border-border">
+              <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-border/50">
                 {/* Step 1: Service */}
                 {step === 1 && (
-                  <div>
-                    <h2 className="font-display text-xl font-semibold text-foreground mb-6">
-                      What do you need help with?
+                  <div className="space-y-4">
+                    <h2 className="font-display text-xl font-semibold text-foreground mb-4">
+                      What do you need?
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-3">
                       {SERVICES.map((service) => (
                         <button
                           key={service.id}
@@ -127,14 +129,12 @@ const Estimate = () => {
                           onClick={() => updateFormData("service", service.id)}
                           className={`p-4 rounded-xl text-left transition-all border ${
                             formData.service === service.id
-                              ? "bg-primary/10 border-primary text-foreground"
-                              : "bg-secondary/30 border-border/50 hover:border-border text-foreground"
+                              ? "bg-primary/10 border-primary"
+                              : "bg-secondary/30 border-border/50 hover:border-border"
                           }`}
                         >
-                          <span className="font-medium">{service.name}</span>
-                          <span className="text-sm text-muted-foreground block mt-1">
-                            {service.price}
-                          </span>
+                          <span className="font-medium text-foreground block">{service.name}</span>
+                          <span className="text-xs text-muted-foreground">{service.price}</span>
                         </button>
                       ))}
                     </div>
@@ -143,23 +143,23 @@ const Estimate = () => {
 
                 {/* Step 2: Location */}
                 {step === 2 && (
-                  <div>
-                    <h2 className="font-display text-xl font-semibold text-foreground mb-6">
-                      Where are you located?
+                  <div className="space-y-4">
+                    <h2 className="font-display text-xl font-semibold text-foreground mb-4">
+                      Where are you?
                     </h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div className="flex flex-wrap gap-2">
                       {LOCATIONS.map((location) => (
                         <button
                           key={location.slug}
                           type="button"
                           onClick={() => updateFormData("location", location.slug)}
-                          className={`p-3 rounded-xl text-center transition-all border ${
+                          className={`px-4 py-2 rounded-full text-sm transition-all border ${
                             formData.location === location.slug
                               ? "bg-primary/10 border-primary text-foreground"
                               : "bg-secondary/30 border-border/50 hover:border-border text-foreground"
                           }`}
                         >
-                          <span className="font-medium text-sm">{location.name}</span>
+                          {location.name}
                         </button>
                       ))}
                     </div>
@@ -168,125 +168,87 @@ const Estimate = () => {
 
                 {/* Step 3: Vehicle */}
                 {step === 3 && (
-                  <div>
-                    <h2 className="font-display text-xl font-semibold text-foreground mb-6">
-                      Tell us about your vehicle
+                  <div className="space-y-4">
+                    <h2 className="font-display text-xl font-semibold text-foreground mb-4">
+                      Your vehicle
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">
-                          Make
-                        </label>
-                        <Input
-                          placeholder="e.g. Ford"
-                          value={formData.vehicleMake}
-                          onChange={(e) => updateFormData("vehicleMake", e.target.value)}
-                          className="rounded-xl"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">
-                          Model
-                        </label>
-                        <Input
-                          placeholder="e.g. Focus"
-                          value={formData.vehicleModel}
-                          onChange={(e) => updateFormData("vehicleModel", e.target.value)}
-                          className="rounded-xl"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">
-                          Year
-                        </label>
-                        <Input
-                          placeholder="e.g. 2019"
-                          value={formData.vehicleYear}
-                          onChange={(e) => updateFormData("vehicleYear", e.target.value)}
-                          className="rounded-xl"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">
-                          Registration
-                        </label>
-                        <Input
-                          placeholder="e.g. AB12 CDE"
-                          value={formData.vehicleReg}
-                          onChange={(e) => updateFormData("vehicleReg", e.target.value)}
-                          className="rounded-xl"
-                        />
-                      </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                        placeholder="Make (e.g. Ford)"
+                        value={formData.vehicleMake}
+                        onChange={(e) => updateFormData("vehicleMake", e.target.value)}
+                        className="rounded-xl bg-secondary/30 border-border/50"
+                      />
+                      <Input
+                        placeholder="Model (e.g. Focus)"
+                        value={formData.vehicleModel}
+                        onChange={(e) => updateFormData("vehicleModel", e.target.value)}
+                        className="rounded-xl bg-secondary/30 border-border/50"
+                      />
+                      <Input
+                        placeholder="Year (e.g. 2019)"
+                        value={formData.vehicleYear}
+                        onChange={(e) => updateFormData("vehicleYear", e.target.value)}
+                        className="rounded-xl bg-secondary/30 border-border/50"
+                      />
+                      <Input
+                        placeholder="Reg (e.g. AB12 CDE)"
+                        value={formData.vehicleReg}
+                        onChange={(e) => updateFormData("vehicleReg", e.target.value)}
+                        className="rounded-xl bg-secondary/30 border-border/50"
+                      />
                     </div>
                   </div>
                 )}
 
                 {/* Step 4: Contact */}
                 {step === 4 && (
-                  <div>
-                    <h2 className="font-display text-xl font-semibold text-foreground mb-2">
-                      Your contact details
-                    </h2>
-                    <p className="text-sm text-muted-foreground mb-6">
-                      We'll call you back to discuss your enquiry and arrange a time.
-                    </p>
-                    <div className="space-y-4">
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">
-                          Name *
-                        </label>
-                        <Input
-                          placeholder="Your name"
-                          value={formData.name}
-                          onChange={(e) => updateFormData("name", e.target.value)}
-                          required
-                          className="rounded-xl"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">
-                          Email *
-                        </label>
-                        <Input
-                          type="email"
-                          placeholder="your@email.com"
-                          value={formData.email}
-                          onChange={(e) => updateFormData("email", e.target.value)}
-                          required
-                          className="rounded-xl"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">
-                          Phone *
-                        </label>
-                        <Input
-                          type="tel"
-                          placeholder="07xxx xxx xxx"
-                          value={formData.phone}
-                          onChange={(e) => updateFormData("phone", e.target.value)}
-                          required
-                          className="rounded-xl"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-foreground mb-2 block">
-                          What's the issue?
-                        </label>
-                        <Textarea
-                          placeholder="Describe what's happening with your vehicle..."
-                          value={formData.message}
-                          onChange={(e) => updateFormData("message", e.target.value)}
-                          rows={4}
-                          className="rounded-xl"
-                        />
-                      </div>
+                  <div className="space-y-4">
+                    <div>
+                      <h2 className="font-display text-xl font-semibold text-foreground mb-1">
+                        Your details
+                      </h2>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        We'll call you to discuss.
+                      </p>
                     </div>
+                    <Input
+                      placeholder="Name *"
+                      value={formData.name}
+                      onChange={(e) => updateFormData("name", e.target.value)}
+                      required
+                      className="rounded-xl bg-secondary/30 border-border/50"
+                    />
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                        type="email"
+                        placeholder="Email *"
+                        value={formData.email}
+                        onChange={(e) => updateFormData("email", e.target.value)}
+                        required
+                        className="rounded-xl bg-secondary/30 border-border/50"
+                      />
+                      <Input
+                        type="tel"
+                        placeholder="Phone *"
+                        value={formData.phone}
+                        onChange={(e) => updateFormData("phone", e.target.value)}
+                        required
+                        className="rounded-xl bg-secondary/30 border-border/50"
+                      />
+                    </div>
+                    <Textarea
+                      placeholder="What's the issue? (optional)"
+                      value={formData.message}
+                      onChange={(e) => updateFormData("message", e.target.value)}
+                      rows={3}
+                      className="rounded-xl bg-secondary/30 border-border/50"
+                    />
                   </div>
                 )}
 
                 {/* Navigation */}
-                <div className="flex justify-between mt-8 pt-6 border-t border-border">
+                <div className="flex justify-between mt-8 pt-6 border-t border-border/50">
                   <Button
                     type="button"
                     variant="ghost"
@@ -303,7 +265,7 @@ const Estimate = () => {
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   ) : (
-                    <Button type="submit" className="rounded-full">
+                    <Button type="submit" className="rounded-full glow-hover">
                       Send Enquiry
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
@@ -313,9 +275,9 @@ const Estimate = () => {
             </form>
 
             {/* Quick Contact */}
-            <div className="mt-10 text-center">
-              <p className="text-muted-foreground text-sm mb-3">Prefer to call?</p>
-              <Button variant="outline" asChild className="rounded-full">
+            <div className="mt-8 flex items-center gap-4">
+              <span className="text-sm text-muted-foreground">Prefer to call?</span>
+              <Button variant="outline" size="sm" asChild className="rounded-full">
                 <a href={`tel:${BUSINESS_INFO.phone}`}>
                   <Phone className="w-4 h-4 mr-2" />
                   {BUSINESS_INFO.phone}
