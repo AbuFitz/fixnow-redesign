@@ -4,7 +4,7 @@ import { LOCATIONS } from "@/lib/constants";
 
 const AreasSection = () => {
   return (
-    <section className="py-16 md:py-20 bg-card relative overflow-hidden">
+    <section className="py-10 md:py-14 bg-card relative overflow-hidden">
       {/* Map Background */}
       <div className="absolute inset-0 opacity-20">
         <iframe
@@ -19,12 +19,12 @@ const AreasSection = () => {
       
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-3">
             <MapPin className="w-3.5 h-3.5 text-primary" />
             <span className="text-xs font-medium text-primary uppercase tracking-wider">Coverage</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-3">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
             Areas we cover
           </h2>
           <p className="text-muted-foreground text-lg max-w-md mx-auto">
@@ -33,7 +33,7 @@ const AreasSection = () => {
         </div>
 
         {/* Location Grid */}
-        <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-10">
+        <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-6">
           {LOCATIONS.map((location) => (
             <Link
               key={location.slug}

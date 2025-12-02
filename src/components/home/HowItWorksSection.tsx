@@ -25,11 +25,11 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-16 md:py-20 bg-card">
+    <section className="py-10 md:py-12 bg-card">
       <div className="container mx-auto px-6 md:px-12">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-3">
+        <div className="text-center mb-8">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
             How it works
           </h2>
           <p className="text-muted-foreground text-lg">
@@ -38,7 +38,7 @@ const HowItWorksSection = () => {
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-4xl mx-auto mb-8">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (

@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero-car.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <img src={heroImage} alt="Car" className="w-full h-full object-cover scale-105" />
@@ -20,7 +20,7 @@ const HeroSection = () => {
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[128px] animate-pulse" />
       <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px]" />
       
-      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-20">
+      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-16">
         <div className="max-w-3xl">
           {/* Badge */}
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-card/40 backdrop-blur-xl border border-primary/20 mb-8 animate-fade-in">
@@ -81,7 +81,7 @@ const HeroSection = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="mt-16 md:mt-24 grid grid-cols-3 gap-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        <div className="mt-10 md:mt-16 grid grid-cols-3 gap-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
           {[
             { value: "7 Days", label: "Open Weekly" },
             { value: "45 Mile", label: "Coverage Radius" },

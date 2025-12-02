@@ -8,8 +8,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-6 md:px-12 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container mx-auto px-6 md:px-12 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-block mb-4">
@@ -111,7 +111,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border">
+        <div className="mt-8 pt-6 border-t border-border">
           <p className="text-muted-foreground text-sm text-center">
             © {currentYear} {BUSINESS_INFO.name}. All rights reserved.
           </p>
