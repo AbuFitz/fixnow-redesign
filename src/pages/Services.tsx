@@ -3,6 +3,7 @@ import { ArrowRight, Monitor, CircleDot, Settings, Zap, ArrowUpDown, Wrench, Pho
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO, SERVICES } from "@/lib/constants";
+import engineDetailImg from "@/assets/engine-detail.jpg";
 
 const iconMap: Record<string, React.ElementType> = {
   Monitor,
@@ -73,21 +74,28 @@ const serviceDetails: Record<string, { includes: string[]; duration: string }> =
 const Services = () => {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-20 md:py-28 bg-card">
-        <div className="container mx-auto px-6 md:px-12">
+      {/* Hero with Image */}
+      <section className="relative py-20 md:py-28 bg-card overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img 
+            src={engineDetailImg} 
+            alt="" 
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-card via-card/90 to-card" />
+        </div>
+        
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-8 h-[1px] bg-primary" />
-              <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
-                What we do
-              </span>
-              <div className="w-8 h-[1px] bg-primary" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+              <Wrench className="w-3.5 h-3.5 text-primary" />
+              <span className="text-xs font-medium text-primary uppercase tracking-wider">What we do</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Our Services
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Our <span className="text-primary">Services</span>
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
               Mobile mechanic services at your location. We come to you with the tools and parts to get the job done.
             </p>
           </div>

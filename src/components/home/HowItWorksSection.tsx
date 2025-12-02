@@ -28,7 +28,7 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-card relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-card relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--primary)/0.05),_transparent_70%)]" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />

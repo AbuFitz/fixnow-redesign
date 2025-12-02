@@ -3,14 +3,14 @@ import trustImage from "@/assets/trust-mechanic.jpg";
 
 const features = [
   { icon: MapPin, title: "We Come To You", description: "Home, work, or roadside" },
-  { icon: Clock, title: "Same Day Service", description: "When you need it most" },
+  { icon: Clock, title: "Open 7 Days", description: "Available all week" },
   { icon: Banknote, title: "Honest Pricing", description: "No hidden fees, ever" },
   { icon: Shield, title: "Quality Parts", description: "OE spec or better" },
 ];
 
 const WhyUsSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-background relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
       
