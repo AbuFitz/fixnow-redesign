@@ -39,7 +39,7 @@ const Header = () => {
           <Link to="/" className="group flex items-center gap-2">
             <span className="font-display font-bold text-xl tracking-tight">
               <span className="text-foreground">FixNow</span>
-              <span className="text-primary">Mechanics</span>
+              <span className="text-primary"> Mechanics</span>
             </span>
           </Link>
 

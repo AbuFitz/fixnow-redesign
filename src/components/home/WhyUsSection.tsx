@@ -1,11 +1,12 @@
-import { Clock, MapPin, Shield, Banknote, Check } from "lucide-react";
+import { Clock, MapPin, Shield, Banknote, Check, Package } from "lucide-react";
 import trustImage from "@/assets/trust-mechanic.jpg";
 
 const features = [
-  { icon: Clock, title: "Convenient Scheduling", description: "Early morning, evening, and weekend appointments available to fit your busy life." },
-  { icon: Banknote, title: "Transparent Pricing", description: "No hidden fees or surprises. Detailed quotes provided before any work begins." },
-  { icon: MapPin, title: "We Come To You", description: "Save time and hassle. We repair your vehicle at your home, office, or roadside." },
-  { icon: Shield, title: "Quality Parts", description: "We use OE specification parts or better for all repairs and services." },
+  { icon: Clock, title: "Convenient Scheduling", description: "Early morning, evening, and weekend appointments available." },
+  { icon: Banknote, title: "Transparent Pricing", description: "No hidden fees. Detailed quotes provided before work begins." },
+  { icon: MapPin, title: "We Come To You", description: "We repair your vehicle at your home, office, or roadside." },
+  { icon: Shield, title: "Quality Parts", description: "We use OE specification parts or better for all repairs." },
+  { icon: Package, title: "BYO Parts Policy", description: "Bring your own parts — we'll fit them. Labour warranty only; parts at your risk." },
 ];
 
 const WhyUsSection = () => {
@@ -36,26 +37,26 @@ const WhyUsSection = () => {
 
           {/* Content Side */}
           <div className="order-1 lg:order-2">
-            <span className="text-xs font-medium text-primary uppercase tracking-wider mb-2 block">Why Choose Us</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2 leading-tight">
+            <span className="text-sm font-medium text-primary uppercase tracking-wider mb-2 block">Why Choose Us</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-2 leading-tight">
               Quality Service,<br />
               <span className="text-muted-foreground">Personal Touch</span>
             </h2>
 
             {/* Features List */}
-            <div className="space-y-4 mt-6">
+            <div className="space-y-3 md:space-y-4 mt-5">
               {features.map((feature) => {
                 const Icon = feature.icon;
                 return (
                   <div 
                     key={feature.title} 
-                    className="flex items-start gap-4"
+                    className="flex items-start gap-3"
                   >
-                    <div className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center flex-shrink-0">
+                    <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-primary/30 flex items-center justify-center flex-shrink-0">
                       <Icon className="w-4 h-4 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-display font-semibold text-foreground mb-1">
+                      <h3 className="font-display font-bold text-foreground text-base md:text-lg">
                         {feature.title}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
