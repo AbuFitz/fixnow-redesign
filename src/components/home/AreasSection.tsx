@@ -5,37 +5,42 @@ import { LOCATIONS } from "@/lib/constants";
 const AreasSection = () => {
   return (
     <section className="py-16 md:py-20 bg-card relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(var(--primary)/0.08),_transparent_70%)]" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      {/* Map Background */}
+      <div className="absolute inset-0 opacity-20">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d200000!2d-0.4!3d51.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk&disableDefaultUI=1&zoomControl=0&mapTypeControl=0&streetViewControl=0&fullscreenControl=0"
+          className="w-full h-full border-0 grayscale"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Coverage area map"
+        />
+      </div>
+      <div className="absolute inset-0 bg-card/80" />
       
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
             <MapPin className="w-3.5 h-3.5 text-primary" />
             <span className="text-xs font-medium text-primary uppercase tracking-wider">Coverage</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Areas we <span className="text-primary">cover</span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-3">
+            Areas we cover
           </h2>
           <p className="text-muted-foreground text-lg max-w-md mx-auto">
-            Mobile mechanic services across South East London
+            Mobile mechanic services across Hertfordshire & beyond
           </p>
         </div>
 
         {/* Location Grid */}
-        <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto mb-12">
-          {LOCATIONS.map((location, index) => (
+        <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-10">
+          {LOCATIONS.map((location) => (
             <Link
               key={location.slug}
               to={`/locations/${location.slug}`}
-              className="group relative px-5 py-3 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300"
-              style={{ animationDelay: `${index * 0.05}s` }}
+              className="px-4 py-2 rounded-full bg-background/60 border border-border/50 hover:border-primary/50 hover:bg-background transition-all duration-200"
             >
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity blur-sm" />
-              <span className="relative text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+              <span className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 {location.name}
               </span>
             </Link>
