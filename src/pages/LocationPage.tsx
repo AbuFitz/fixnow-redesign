@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { MapPin, ArrowRight, Phone, Clock, Shield, Wrench } from "lucide-react";
+import { MapPin, ArrowRight, Phone, Clock, CreditCard, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO, SERVICES, LOCATIONS } from "@/lib/constants";
@@ -15,32 +15,33 @@ const LocationPage = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28 bg-card">
+        <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary mb-6">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-muted-foreground">
-                Mobile Mechanic Services
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-8 h-[1px] bg-primary" />
+              <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
+                Mobile Mechanic
               </span>
+              <div className="w-8 h-[1px] bg-primary" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
               Mobile Mechanic in {location.name}
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              {location.description} Professional, reliable, and convenient — we come to your home or workplace.
+              {location.description} We come to your home or workplace.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
+              <Button size="lg" asChild className="rounded-full">
                 <Link to="/estimate">
-                  Get Free Quote
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  Get a Quote
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button size="lg" variant="outline" asChild className="rounded-full">
                 <a href={`tel:${BUSINESS_INFO.phone}`}>
-                  <Phone className="w-5 h-5 mr-2" />
-                  Call Now
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Us
                 </a>
               </Button>
             </div>
@@ -50,23 +51,23 @@ const LocationPage = () => {
 
       {/* Postcodes */}
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
-              Postcodes We Cover in {location.name}
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
+              Postcodes in {location.name}
             </h2>
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
               {location.postcodes.map((postcode) => (
                 <span
                   key={postcode}
-                  className="px-4 py-2 bg-secondary rounded-lg text-foreground font-medium"
+                  className="px-4 py-2 bg-card border border-border rounded-full text-foreground text-sm font-medium"
                 >
                   {postcode}
                 </span>
               ))}
             </div>
-            <p className="text-muted-foreground text-center">
-              Not sure if we cover your area? Give us a call on{" "}
+            <p className="text-muted-foreground text-center text-sm">
+              Not sure if we cover your area? Call us on{" "}
               <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline">
                 {BUSINESS_INFO.phone}
               </a>
@@ -77,26 +78,25 @@ const LocationPage = () => {
 
       {/* Services */}
       <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
-            Services Available in {location.name}
+        <div className="container mx-auto px-6 md:px-12">
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+            Services in {location.name}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {SERVICES.map((service) => (
               <div
                 key={service.id}
-                className="bg-secondary/50 rounded-xl p-6"
+                className="bg-secondary/30 rounded-xl p-5"
               >
-                <h3 className="text-lg font-semibold text-foreground mb-2">{service.name}</h3>
-                <p className="text-muted-foreground text-sm mb-3">{service.description}</p>
-                <p className="text-primary font-semibold">{service.price}</p>
+                <h3 className="font-display text-lg font-semibold text-foreground mb-1">{service.name}</h3>
+                <p className="text-primary font-medium text-sm">{service.price}</p>
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <Button asChild>
+          <div className="text-center mt-8">
+            <Button asChild variant="outline" className="rounded-full">
               <Link to="/services">
-                View All Services
+                View all services
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
@@ -106,34 +106,34 @@ const LocationPage = () => {
 
       {/* Why Choose Us */}
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-10 text-center">
-            Why Choose FixNow Mechanics in {location.name}?
+        <div className="container mx-auto px-6 md:px-12">
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-10 text-center">
+            Why use us in {location.name}?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
                 icon: Clock,
                 title: "Convenient",
-                description: "We come to your home or workplace at a time that suits you.",
+                description: "We come to you at a time that works for you. No need to visit a garage.",
               },
               {
-                icon: Shield,
-                title: "Transparent",
-                description: "Clear pricing with no hidden fees. You'll know the cost before we start.",
+                icon: CreditCard,
+                title: "Honest Pricing",
+                description: "We'll give you a clear quote upfront. No hidden fees or surprises.",
               },
               {
                 icon: Wrench,
-                title: "Professional",
-                description: "Fully qualified mechanics with experience on all makes and models.",
+                title: "Equipped",
+                description: "We bring everything needed to diagnose and fix your vehicle on the spot.",
               },
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
+                <h3 className="font-display text-lg font-semibold text-foreground mb-2">{item.title}</h3>
+                <p className="text-muted-foreground text-sm">{item.description}</p>
               </div>
             ))}
           </div>
@@ -142,25 +142,25 @@ const LocationPage = () => {
 
       {/* CTA */}
       <section className="py-16 md:py-24 bg-primary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-            Need a Mobile Mechanic in {location.name}?
+        <div className="container mx-auto px-6 md:px-12 text-center">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+            Need help in {location.name}?
           </h2>
-          <p className="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Get a free quote today and we'll come to you at a time that works for you.
+          <p className="text-primary-foreground/80 mb-8 max-w-lg mx-auto">
+            Send us an enquiry and we'll call you back to discuss.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" asChild className="text-lg px-8">
-              <Link to="/estimate">Get Free Quote</Link>
+            <Button size="lg" variant="secondary" asChild className="rounded-full">
+              <Link to="/estimate">Get a Quote</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
               asChild
-              className="text-lg px-8 bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="rounded-full bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
             >
               <a href={`tel:${BUSINESS_INFO.phone}`}>
-                <Phone className="w-5 h-5 mr-2" />
+                <Phone className="w-4 h-4 mr-2" />
                 {BUSINESS_INFO.phone}
               </a>
             </Button>
