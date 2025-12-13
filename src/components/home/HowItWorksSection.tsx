@@ -25,8 +25,10 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-8 md:py-12 bg-card">
-      <div className="container mx-auto px-6 md:px-12">
+    <section className="py-10 md:py-14 bg-gradient-to-b from-surface-elevated to-background relative overflow-hidden">
+      {/* Subtle radial accent */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(var(--primary)/0.04),_transparent_60%)]" />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
         <div className="text-center mb-4 md:mb-8">
           <h2 className="font-display text-2xl md:text-4xl font-bold text-foreground mb-1">

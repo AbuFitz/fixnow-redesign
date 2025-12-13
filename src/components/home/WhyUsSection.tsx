@@ -11,25 +11,27 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="py-10 md:py-14 bg-background">
-      <div className="container mx-auto px-6 md:px-12">
+    <section className="py-10 md:py-14 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
+      {/* Accent glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px]" />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image Side */}
           <div className="relative order-2 lg:order-1">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-              <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover" />
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl transform rotate-2">
+              <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
             </div>
             
             {/* Floating card */}
-            <div className="absolute -bottom-4 right-4 md:right-8 p-5 rounded-xl bg-card border border-border/50">
+            <div className="absolute -bottom-6 right-4 md:right-8 p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl transform -rotate-3">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Check className="w-4 h-4 text-primary" />
+                <div className="w-9 h-9 rounded-lg bg-black/10 flex items-center justify-center">
+                  <Check className="w-4 h-4 text-black" />
                 </div>
-                <span className="font-display font-bold text-foreground">Fully Equipped</span>
+                <span className="font-display font-bold text-black">Fully Equipped</span>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-black/80">
                 We bring everything needed
               </p>
             </div>

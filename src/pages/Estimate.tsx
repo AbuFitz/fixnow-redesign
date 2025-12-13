@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { ArrowRight, ArrowLeft, Check, Phone, Wrench } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Phone, Wrench, MapPin, AlertCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import Layout from "@/components/layout/Layout";
-import { BUSINESS_INFO, SERVICES, LOCATIONS } from "@/lib/constants";
-import engineImage from "@/assets/engine-detail.jpg";
+import { BUSINESS_INFO, SERVICES } from "@/lib/constants";
+import { isValidPostcodeFormat, isCoveredPostcode, getLocationForPostcode, formatPostcode } from "@/lib/postcodeUtils";
 
 type FormData = {
   service: string;
-  location: string;
+  postcode: string;
+  address: string;
   vehicleMake: string;
   vehicleModel: string;
   vehicleYear: string;
@@ -22,9 +24,12 @@ type FormData = {
 
 const Estimate = () => {
   const [step, setStep] = useState(1);
+  const [postcodeError, setPostcodeError] = useState("");
+  const [postcodeValid, setPostcodeValid] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     service: "",
-    location: "",
+    postcode: "",
+    address: "",
     vehicleMake: "",
     vehicleModel: "",
     vehicleYear: "",
@@ -37,33 +42,104 @@ const Estimate = () => {
 
   const updateFormData = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    
+    // Validate postcode on change
+    if (field === "postcode") {
+      const formatted = formatPostcode(value);
+      setFormData((prev) => ({ ...prev, postcode: formatted }));
+      
+      if (value.length > 0) {
+        if (!isValidPostcodeFormat(value)) {
+          setPostcodeError("Please enter a valid UK postcode");
+          setPostcodeValid(false);
+        } else if (!isCoveredPostcode(value)) {
+          setPostcodeError("Sorry, we don't currently cover this area");
+          setPostcodeValid(false);
+        } else {
+          const location = getLocationForPostcode(value);
+          setPostcodeError("");
+          setPostcodeValid(true);
+        }
+      } else {
+        setPostcodeError("");
+        setPostcodeValid(false);
+      }
+    }
   };
 
-  const nextStep = () => setStep((prev) => Math.min(prev + 1, 4));
+  const canProceedFromStep = (currentStep: number): boolean => {
+    switch (currentStep) {
+      case 1:
+        return formData.service !== "";
+      case 2:
+        return postcodeValid && formData.address.trim() !== "";
+      case 3:
+        return formData.vehicleMake !== "" && formData.vehicleModel !== "";
+      case 4:
+        return formData.name !== "" && formData.email !== "" && formData.phone !== "";
+      default:
+        return true;
+    }
+  };
+
+  const nextStep = () => {
+    if (canProceedFromStep(step)) {
+      setStep((prev) => Math.min(prev + 1, 4));
+    }
+  };
+  
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Format the data for submission
+    const submissionData = {
+      ...formData,
+      location: getLocationForPostcode(formData.postcode),
+    };
+    
+    console.log("Form submission:", submissionData);
     alert("Thanks! We've received your enquiry and will call you back shortly.");
-    console.log("Form data:", formData);
+    
+    // Reset form
+    setFormData({
+      service: "",
+      postcode: "",
+      address: "",
+      vehicleMake: "",
+      vehicleModel: "",
+      vehicleYear: "",
+      vehicleReg: "",
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+    setStep(1);
+    setPostcodeValid(false);
+    setPostcodeError("");
   };
 
   const stepLabels = ["Service", "Location", "Vehicle", "Contact"];
 
   return (
     <Layout>
-      <section className="relative min-h-screen">
+      <section className="relative min-h-screen bg-gradient-to-br from-background via-surface to-background">
         {/* Background */}
         <div className="absolute inset-0 hidden lg:block">
           <div className="absolute inset-y-0 right-0 w-1/2">
             <img 
-              src={engineImage} 
+              src="/quoteimage.JPG" 
               alt="Engine detail" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover brightness-[0.45] contrast-110 grayscale-[30%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
           </div>
         </div>
+        
+        {/* Subtle accent glow */}
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
 
         <div className="container mx-auto px-6 md:px-12 py-20 md:py-28 relative z-10">
           <div className="max-w-xl">
@@ -121,7 +197,7 @@ const Estimate = () => {
                     <h2 className="font-display text-xl font-semibold text-foreground mb-4">
                       What do you need?
                     </h2>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {SERVICES.map((service) => (
                         <button
                           key={service.id}
@@ -144,24 +220,70 @@ const Estimate = () => {
                 {/* Step 2: Location */}
                 {step === 2 && (
                   <div className="space-y-4">
-                    <h2 className="font-display text-xl font-semibold text-foreground mb-4">
+                    <h2 className="font-display text-xl font-semibold text-foreground mb-1">
                       Where are you?
                     </h2>
-                    <div className="flex flex-wrap gap-2">
-                      {LOCATIONS.map((location) => (
-                        <button
-                          key={location.slug}
-                          type="button"
-                          onClick={() => updateFormData("location", location.slug)}
-                          className={`px-4 py-2 rounded-full text-sm transition-all border ${
-                            formData.location === location.slug
-                              ? "bg-primary/10 border-primary text-foreground"
-                              : "bg-secondary/30 border-border/50 hover:border-border text-foreground"
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Let's check if we cover your area
+                    </p>
+                    
+                    <div className="space-y-4">
+                      {/* Postcode Input */}
+                      <div className="relative">
+                        <MapPin className="absolute left-3 top-3.5 w-4 h-4 text-muted-foreground" />
+                        <Input
+                          placeholder="Enter your postcode (e.g. HP2 7DE)"
+                          value={formData.postcode}
+                          onChange={(e) => updateFormData("postcode", e.target.value)}
+                          className={`rounded-xl bg-secondary/30 border-border/50 pl-10 ${
+                            postcodeError ? "border-destructive" : postcodeValid ? "border-green-500" : ""
                           }`}
-                        >
-                          {location.name}
-                        </button>
-                      ))}
+                          required
+                        />
+                        {postcodeValid && (
+                          <CheckCircle className="absolute right-3 top-3.5 w-4 h-4 text-green-500" />
+                        )}
+                      </div>
+                      
+                      {/* Error Message */}
+                      {postcodeError && (
+                        <Alert variant="destructive">
+                          <AlertCircle className="h-4 w-4" />
+                          <AlertDescription>{postcodeError}</AlertDescription>
+                        </Alert>
+                      )}
+                      
+                      {/* Success Message */}
+                      {postcodeValid && (
+                        <Alert className="border-green-500/50 bg-green-500/10">
+                          <CheckCircle className="h-4 w-4 text-green-500" />
+                          <AlertDescription className="text-green-700 dark:text-green-400">
+                            Perfect! We cover {getLocationForPostcode(formData.postcode)}
+                          </AlertDescription>
+                        </Alert>
+                      )}
+                      
+                      {/* Full Address - Only show when postcode is valid */}
+                      {postcodeValid && (
+                        <div className="space-y-3 animate-fade-in">
+                          <div className="border-t border-border/50 pt-4">
+                            <label className="text-sm font-medium text-foreground mb-2 block">
+                              Now, what's your full address?
+                            </label>
+                            <Textarea
+                              placeholder="Street address, house/flat number, etc."
+                              value={formData.address}
+                              onChange={(e) => updateFormData("address", e.target.value)}
+                              rows={3}
+                              className="rounded-xl bg-secondary/30 border-border/50"
+                              required
+                            />
+                            <p className="text-xs text-muted-foreground mt-2">
+                              This helps us find you quickly when we arrive
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
@@ -174,16 +296,18 @@ const Estimate = () => {
                     </h2>
                     <div className="grid grid-cols-2 gap-4">
                       <Input
-                        placeholder="Make (e.g. Ford)"
+                        placeholder="Make (e.g. Ford) *"
                         value={formData.vehicleMake}
                         onChange={(e) => updateFormData("vehicleMake", e.target.value)}
                         className="rounded-xl bg-secondary/30 border-border/50"
+                        required
                       />
                       <Input
-                        placeholder="Model (e.g. Focus)"
+                        placeholder="Model (e.g. Focus) *"
                         value={formData.vehicleModel}
                         onChange={(e) => updateFormData("vehicleModel", e.target.value)}
                         className="rounded-xl bg-secondary/30 border-border/50"
+                        required
                       />
                       <Input
                         placeholder="Year (e.g. 2019)"
@@ -194,7 +318,7 @@ const Estimate = () => {
                       <Input
                         placeholder="Reg (e.g. AB12 CDE)"
                         value={formData.vehicleReg}
-                        onChange={(e) => updateFormData("vehicleReg", e.target.value)}
+                        onChange={(e) => updateFormData("vehicleReg", e.target.value.toUpperCase())}
                         className="rounded-xl bg-secondary/30 border-border/50"
                       />
                     </div>
@@ -219,7 +343,7 @@ const Estimate = () => {
                       required
                       className="rounded-xl bg-secondary/30 border-border/50"
                     />
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <Input
                         type="email"
                         placeholder="Email *"
@@ -260,12 +384,21 @@ const Estimate = () => {
                     Back
                   </Button>
                   {step < 4 ? (
-                    <Button type="button" onClick={nextStep} className="rounded-full">
+                    <Button 
+                      type="button" 
+                      onClick={nextStep} 
+                      disabled={!canProceedFromStep(step)}
+                      className="rounded-full"
+                    >
                       Next
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   ) : (
-                    <Button type="submit" className="rounded-full glow-hover">
+                    <Button 
+                      type="submit" 
+                      disabled={!canProceedFromStep(step)}
+                      className="rounded-full glow-hover"
+                    >
                       Send Enquiry
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>

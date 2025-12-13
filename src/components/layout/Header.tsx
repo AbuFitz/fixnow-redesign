@@ -38,8 +38,9 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="group flex items-center gap-2">
             <span className="font-display font-bold text-xl tracking-tight">
-              <span className="text-foreground">FixNow</span>
-              <span className="text-primary"> Mechanics</span>
+              <span className="text-foreground">Fix</span>
+              <span className="text-primary">Now</span>
+              <span className="text-foreground"> Mechanics</span>
             </span>
           </Link>
 
@@ -100,12 +101,12 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 animate-fade-in">
+          <div className="md:hidden py-4 animate-fade-in bg-background/95 backdrop-blur-xl border-b border-border/50 rounded-b-2xl shadow-lg">
             <nav className="flex flex-col gap-1">
               <Link
                 to="/"
                 className={`px-4 py-2.5 rounded-lg text-base font-medium transition-all ${
-                  location.pathname === "/" ? "text-primary" : "text-muted-foreground"
+                  location.pathname === "/" ? "text-primary bg-primary/10" : "text-muted-foreground hover:bg-card"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -116,7 +117,7 @@ const Header = () => {
                   key={link.name}
                   to={link.href}
                   className={`px-4 py-2.5 rounded-lg text-base font-medium transition-all ${
-                    isActive(link.href) ? "text-primary" : "text-muted-foreground"
+                    isActive(link.href) ? "text-primary bg-primary/10" : "text-muted-foreground hover:bg-card"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >

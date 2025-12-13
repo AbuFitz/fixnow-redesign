@@ -29,18 +29,18 @@ const CTASection = () => {
             <Button 
               size="lg" 
               asChild 
-              className="rounded-full h-14 px-8 text-base bg-background text-foreground hover:bg-background/90"
+              className="group rounded-full h-14 px-8 text-base bg-background text-foreground hover:bg-background/90 shadow-lg hover:shadow-xl transition-all"
             >
               <Link to="/estimate">
                 Get Free Quote
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
               asChild 
-              className="rounded-full h-14 px-8 text-base border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10"
+              className="rounded-full h-14 px-8 text-base border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 hover:border-primary-foreground/50 transition-all"
             >
               <a href={`tel:${BUSINESS_INFO.phone}`}>
                 <Phone className="w-5 h-5 mr-2" />

@@ -75,7 +75,7 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero with Image */}
-      <section className="relative py-16 md:py-24 bg-card overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-gradient-to-b from-card via-surface to-card overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <img 
@@ -83,7 +83,8 @@ const Services = () => {
             alt="" 
             className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-card/40 via-card/60 to-card" />
+          <div className="absolute inset-0 bg-gradient-to-b from-card/50 via-card/70 to-card" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.08),_transparent_50%)]" />
         </div>
         
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -103,8 +104,13 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-background to-surface relative">
+        {/* Subtle pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--primary)) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {SERVICES.map((service) => {
               const Icon = iconMap[service.icon];
@@ -112,7 +118,7 @@ const Services = () => {
               return (
                 <div
                   key={service.id}
-                  className="bg-card rounded-2xl p-6 md:p-8 border border-border"
+                  className="bg-card rounded-2xl p-6 md:p-8 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg"
                 >
                   <div className="flex items-start gap-4 mb-6">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -144,10 +150,10 @@ const Services = () => {
                     <span className="text-sm text-muted-foreground">
                       ~{details.duration}
                     </span>
-                    <Button asChild className="rounded-full" size="sm">
+                    <Button asChild className="rounded-full group" size="sm">
                       <Link to="/estimate">
                         Get Quote
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                        <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </Button>
                   </div>

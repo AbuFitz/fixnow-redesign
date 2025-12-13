@@ -1,26 +1,27 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import diagnosticsImg from "@/assets/service-diagnostics.jpg";
-import brakesImg from "@/assets/service-brakes.jpg";
 import servicingImg from "@/assets/service-servicing.jpg";
 import electricalImg from "@/assets/service-electrical.jpg";
-import suspensionImg from "@/assets/service-suspension.jpg";
-import generalImg from "@/assets/service-general.jpg";
 
 const services = [
-  { id: "diagnostics", name: "Diagnostics", price: "From £45", image: diagnosticsImg },
-  { id: "brakes", name: "Brakes", price: "From £80", image: brakesImg },
+  { id: "diagnostics", name: "Diagnostics", price: "From £45", image: "/diagonstic.jpg" },
+  { id: "brakes", name: "Brakes", price: "From £80", image: "/brakes.jpg" },
   { id: "servicing", name: "Servicing", price: "From £120", image: servicingImg },
-  { id: "general", name: "General Repairs", price: "Call for quote", image: generalImg },
+  { id: "general", name: "General Repairs", price: "Call for quote", image: "/generalrepairs.JPG" },
   { id: "electrical", name: "Electrical", price: "From £60", image: electricalImg },
-  { id: "suspension", name: "Suspension", price: "From £100", image: suspensionImg },
+  { id: "suspension", name: "Suspension", price: "From £100", image: "/suspension.jpg" },
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="py-10 md:py-14 bg-background">
-      <div className="container mx-auto px-6 md:px-12">
+    <section className="py-10 md:py-4 bg-background relative overflow-hidden">
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.015]" style={{
+        backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+        backgroundSize: '50px 50px'
+      }} />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
           <div>
@@ -52,7 +53,9 @@ const ServicesSection = () => {
               <img
                 src={service.image}
                 alt={service.name}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 ${
+                  service.id === "brakes" ? "object-[center_125%] scale-125" : ""
+                }`}
               />
               
               {/* Gradient overlay */}

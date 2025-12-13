@@ -12,11 +12,31 @@ const LocationPage = () => {
     return <Navigate to="/locations" replace />;
   }
 
+  // Location-specific map coordinates
+  const mapCoords: Record<string, { lat: number; lng: number; zoom: number }> = {
+    "hemel-hempstead": { lat: 51.7533, lng: -0.4689, zoom: 12 },
+    "watford": { lat: 51.6565, lng: -0.3903, zoom: 12 },
+    "st-albans": { lat: 51.7520, lng: -0.3360, zoom: 12 },
+    "luton": { lat: 51.8787, lng: -0.4200, zoom: 12 },
+    "dunstable": { lat: 51.8860, lng: -0.5210, zoom: 13 },
+    "milton-keynes": { lat: 52.0406, lng: -0.7594, zoom: 11 },
+    "aylesbury": { lat: 51.8165, lng: -0.8139, zoom: 12 },
+    "stevenage": { lat: 51.9017, lng: -0.2020, zoom: 12 },
+    "hatfield": { lat: 51.7623, lng: -0.2287, zoom: 13 },
+    "north-london": { lat: 51.5833, lng: -0.1167, zoom: 11 },
+  };
+
+  const coords = mapCoords[slug || ""] || { lat: 51.75, lng: -0.4, zoom: 12 };
+  const mapUrl = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d40000!2d${coords.lng}!3d${coords.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f${coords.zoom}!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk`;
+
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-20 md:py-28 bg-card">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="py-20 md:py-28 bg-gradient-to-br from-card via-surface-elevated to-card relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/3 rounded-full blur-[100px]" />
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="w-8 h-[1px] bg-primary" />
@@ -49,29 +69,43 @@ const LocationPage = () => {
         </div>
       </section>
 
-      {/* Postcodes */}
+      {/* Postcodes & Map */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
-              Postcodes in {location.name}
-            </h2>
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {location.postcodes.map((postcode) => (
-                <span
-                  key={postcode}
-                  className="px-4 py-2 bg-card border border-border rounded-full text-foreground text-sm font-medium"
-                >
-                  {postcode}
-                </span>
-              ))}
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+            {/* Postcodes */}
+            <div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                Postcodes in {location.name}
+              </h2>
+              <div className="flex flex-wrap gap-3 mb-6">
+                {location.postcodes.map((postcode) => (
+                  <span
+                    key={postcode}
+                    className="px-4 py-2 bg-card border border-border rounded-full text-foreground text-sm font-medium"
+                  >
+                    {postcode}
+                  </span>
+                ))}
+              </div>
+              <p className="text-muted-foreground text-sm">
+                Not sure if we cover your area? Call us on{" "}
+                <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline">
+                  {BUSINESS_INFO.phone}
+                </a>
+              </p>
             </div>
-            <p className="text-muted-foreground text-center text-sm">
-              Not sure if we cover your area? Call us on{" "}
-              <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline">
-                {BUSINESS_INFO.phone}
-              </a>
-            </p>
+
+            {/* Map - 30% larger */}
+            <div className="h-[400px] md:h-[520px] rounded-2xl overflow-hidden border border-border/50 shadow-lg">
+              <iframe
+                src={mapUrl}
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`${location.name} coverage map`}
+              />
+            </div>
           </div>
         </div>
       </section>

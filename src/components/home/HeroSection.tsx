@@ -1,44 +1,44 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-car.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[70vh] md:min-h-[55vh] flex items-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        <img src={heroImage} alt="Car" className="w-full h-full object-cover scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
+        <img src="/CompanyVan.jpg" alt="FixNow Mechanics Van" className="w-full h-full object-cover object-[30%_35%] scale-100 brightness-125 md:w-full md:h-auto md:object-contain md:object-right md:scale-75 md:translate-x-[15%] md:-translate-y-[20%] md:brightness-[200%]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
         {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(var(--primary)/0.15),_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(var(--primary)/0.12),_transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(var(--primary)/0.08),_transparent_50%)]" />
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* Floating Elements */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[128px] animate-pulse" />
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/8 rounded-full blur-[128px] animate-pulse" />
       <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px]" />
       
-      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-16">
+      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-16 md:pt-12 pb-8 md:pb-12">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-card/40 backdrop-blur-xl border border-primary/20 mb-8 animate-fade-in">
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-card/40 backdrop-blur-xl border border-primary/20 mb-4 md:mb-5 animate-fade-in">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            <span className="text-sm text-foreground/90 font-medium">Mobile Mechanic • Hertfordshire & Beyond</span>
+            <span className="text-sm text-foreground/90 font-medium">Hertfordshire & Beyond</span>
           </div>
           
           {/* Main Headline */}
-          <h1 className="font-display text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] mb-8 animate-slide-up">
+          <h1 className="font-display text-8xl sm:text-8xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] mb-6 md:mb-8 animate-slide-up">
             We come
             <br />
             <span className="relative">
               to{" "}
-              <span className="relative inline-block">
-                <span className="text-primary italic font-light">you</span>
+              <span className="relative inline-block text-[1.3em]">
+                <span className="text-primary italic font-light">you!</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 12" preserveAspectRatio="none">
                   <path d="M0,8 Q50,0 100,8" stroke="hsl(var(--primary))" strokeWidth="3" fill="none" strokeLinecap="round" />
                 </svg>
@@ -47,7 +47,7 @@ const HeroSection = () => {
           </h1>
           
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-xl leading-relaxed animate-slide-up" style={{ animationDelay: "0.1s" }}>
+          <p className="text-xl md:text-xl text-muted-foreground mb-8 md:mb-10 max-w-xl leading-relaxed animate-slide-up" style={{ animationDelay: "0.1s" }}>
             Car trouble? We bring the garage to your driveway.{" "}
             <span className="text-foreground font-medium">No trip needed.</span>
           </p>
@@ -81,7 +81,7 @@ const HeroSection = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="mt-10 md:mt-16 grid grid-cols-3 gap-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        <div className="mt-8 md:mt-10 grid grid-cols-3 gap-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
           {[
             { value: "7 Days", label: "Open Weekly" },
             { value: "45 Mile", label: "Coverage Radius" },

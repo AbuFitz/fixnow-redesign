@@ -4,7 +4,7 @@ import { LOCATIONS } from "@/lib/constants";
 
 const AreasSection = () => {
   return (
-    <section className="py-10 md:py-14 bg-card relative overflow-hidden">
+    <section className="py-10 md:py-14 bg-gradient-to-b from-card to-surface-elevated relative overflow-hidden">
       {/* Map Background - 30% visible */}
       <div className="absolute inset-0 opacity-30">
         <iframe
