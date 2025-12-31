@@ -391,7 +391,6 @@ const Estimate = () => {
                       className="rounded-xl bg-secondary/30 border-border/50"
                     />
                   </div>
-                )}
 
                 {/* Submit */}
                 <div className="mt-8 pt-6 border-t border-border/50">
