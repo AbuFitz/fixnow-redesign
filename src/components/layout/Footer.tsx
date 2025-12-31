@@ -8,14 +8,14 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
       {/* Mobile: Compact but informative */}
-      <div className="md:hidden px-6 py-6">
+      <div className="md:hidden px-4 sm:px-6 py-6">
         <div className="flex items-center justify-between mb-4">
-          <Link to="/" className="font-display font-bold text-lg">
+          <Link to="/" className="font-display font-bold text-base sm:text-lg">
             <span className="text-foreground">Fix</span>
             <span className="text-primary">Now</span>
             <span className="text-foreground"> Mechanics</span>
           </Link>
-          <a href={`tel:${BUSINESS_INFO.phone}`} className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors">
+          <a href={`tel:${BUSINESS_INFO.phone}`} className="flex items-center gap-2 text-xs sm:text-sm text-foreground hover:text-primary transition-colors min-h-[44px]">
             <Phone className="w-4 h-4 text-primary" />
             {BUSINESS_INFO.phone}
           </a>
@@ -48,8 +48,8 @@ const Footer = () => {
 
       {/* Desktop: Full informative layout */}
       <div className="hidden md:block">
-        <div className="container mx-auto px-12 py-12">
-          <div className="grid grid-cols-4 gap-10 mb-8">
+        <div className="container mx-auto px-8 lg:px-12 py-10 lg:py-12">
+          <div className="grid grid-cols-4 gap-8 lg:gap-10 mb-6 lg:mb-8">
             {/* Brand & Info */}
             <div className="col-span-1">
               <Link to="/" className="inline-block mb-4">

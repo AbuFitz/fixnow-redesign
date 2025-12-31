@@ -11,11 +11,11 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
+    <section className="py-12 sm:py-14 md:py-16 lg:py-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
       {/* Accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px]" />
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
           {/* Image Side */}
           <div className="relative order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl transform rotate-2">
@@ -24,14 +24,14 @@ const WhyUsSection = () => {
             </div>
             
             {/* Floating card */}
-            <div className="absolute -bottom-6 right-4 md:right-8 p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl transform -rotate-3">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-9 h-9 rounded-lg bg-black/10 flex items-center justify-center">
-                  <Check className="w-4 h-4 text-black" />
+            <div className="absolute -bottom-4 sm:-bottom-6 right-3 sm:right-4 md:right-8 p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl transform -rotate-3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/10 flex items-center justify-center">
+                  <Check className="w-3 h-3 sm:w-4 sm:h-4 text-black" />
                 </div>
-                <span className="font-display font-bold text-black">Fully Equipped</span>
+                <span className="font-display font-bold text-black text-sm sm:text-base">Fully Equipped</span>
               </div>
-              <p className="text-sm text-black/80">
+              <p className="text-xs sm:text-sm text-black/80">
                 We bring everything needed
               </p>
             </div>
@@ -39,29 +39,29 @@ const WhyUsSection = () => {
 
           {/* Content Side */}
           <div className="order-1 lg:order-2">
-            <span className="text-sm font-semibold text-primary uppercase tracking-wider mb-3 block">Why Choose Us</span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3 leading-tight">
+            <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider mb-2 sm:mb-3 block">Why Choose Us</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2 sm:mb-3 leading-tight">
               Quality Service,<br />
               <span className="text-muted-foreground">Personal Touch</span>
             </h2>
 
             {/* Features List */}
-            <div className="space-y-4 md:space-y-5 mt-6 md:mt-8">
+            <div className="space-y-3 sm:space-y-4 md:space-y-5 mt-5 sm:mt-6 md:mt-8">
               {features.map((feature) => {
                 const Icon = feature.icon;
                 return (
                   <div 
                     key={feature.title} 
-                    className="flex items-start gap-3"
+                    className="flex items-start gap-2 sm:gap-3"
                   >
-                    <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-primary/30 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-4 h-4 text-primary" />
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full border border-primary/30 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-display font-bold text-foreground text-base md:text-lg">
+                      <h3 className="font-display font-bold text-foreground text-sm sm:text-base md:text-lg">
                         {feature.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                         {feature.description}
                       </p>
                     </div>

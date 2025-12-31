@@ -129,27 +129,27 @@ const Estimate = () => {
         {/* Subtle accent glow */}
         <div className="absolute top-20 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px]" />
 
-        <div className="container mx-auto px-6 md:px-12 py-16 md:py-20 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 relative z-10">
           <div className="max-w-4xl mx-auto">
             {/* HERO - Trust First */}
-            <div className="text-center mb-10 md:mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <Check className="w-4 h-4 text-primary" />
-                <span className="text-sm font-semibold text-primary">Mobile Mechanic — We Come To You</span>
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4">
+                <Check className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                <span className="text-xs sm:text-sm font-semibold text-primary">Mobile Mechanic — We Come To You</span>
               </div>
               
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">
                 Get a fast, honest quote
                 <br />
                 <span className="text-primary">in 60 seconds</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-5 sm:mb-6 max-w-2xl mx-auto">
                 Tell us what's wrong and we'll call you back to discuss.
               </p>
 
               {/* Trust Signals */}
-              <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8">
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
                 <div className="flex items-center gap-2 text-sm text-foreground/80">
                   <Check className="w-4 h-4 text-primary" />
                   <span className="font-medium">No call centre</span>
@@ -166,42 +166,42 @@ const Estimate = () => {
             </div>
 
             {/* Quick Stats Bar */}
-            <div className="grid grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
-              <div className="text-center p-4 rounded-xl bg-card/50 border border-border/50">
-                <Clock className="w-5 h-5 text-primary mx-auto mb-2" />
-                <div className="text-sm font-medium text-foreground">Same Day</div>
-                <div className="text-xs text-muted-foreground">If needed</div>
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 max-w-2xl mx-auto">
+              <div className="text-center p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card/50 border border-border/50">
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-primary mx-auto mb-1 sm:mb-2" />
+                <div className="text-xs sm:text-sm font-medium text-foreground">Same Day</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground">If needed</div>
               </div>
-              <div className="text-center p-4 rounded-xl bg-card/50 border border-border/50">
-                <Shield className="w-5 h-5 text-primary mx-auto mb-2" />
-                <div className="text-sm font-medium text-foreground">No Obligation</div>
-                <div className="text-xs text-muted-foreground">Free quote</div>
+              <div className="text-center p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card/50 border border-border/50">
+                <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-primary mx-auto mb-1 sm:mb-2" />
+                <div className="text-xs sm:text-sm font-medium text-foreground">No Obligation</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground">Free quote</div>
               </div>
-              <div className="text-center p-4 rounded-xl bg-card/50 border border-border/50">
-                <Users className="w-5 h-5 text-primary mx-auto mb-2" />
-                <div className="text-sm font-medium text-foreground">Trusted</div>
-                <div className="text-xs text-muted-foreground">Local service</div>
+              <div className="text-center p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card/50 border border-border/50">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-primary mx-auto mb-1 sm:mb-2" />
+                <div className="text-xs sm:text-sm font-medium text-foreground">Trusted</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground">Local service</div>
               </div>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit}>
-              <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 border border-border/50 max-w-3xl mx-auto">
-                <div className="space-y-8">
+              <div className="bg-card/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-10 border border-border/50 max-w-3xl mx-auto">
+                <div className="space-y-6 sm:space-y-8">
                   {/* Step 1: Problem/Service */}
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                        <span className="text-sm font-bold text-primary">1</span>
+                    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs sm:text-sm font-bold text-primary">1</span>
                       </div>
                       <div>
-                        <h2 className="font-display text-xl md:text-2xl font-bold text-foreground">
+                        <h2 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                           What's the issue?
                         </h2>
-                        <p className="text-sm text-muted-foreground">Pick what's closest to your problem</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Pick what's closest to your problem</p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
                       {SERVICES.map((service) => (
                         <button
                           key={service.id}
@@ -229,34 +229,34 @@ const Estimate = () => {
                   </div>
 
                   {/* Step 2: Location */}
-                  <div className="space-y-4 pt-8 border-t border-border/50">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                        <span className="text-sm font-bold text-primary">2</span>
+                  <div className="space-y-4 pt-6 sm:pt-8 border-t border-border/50">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <span className="text-xs sm:text-sm font-bold text-primary">2</span>
                       </div>
                       <div>
-                        <h2 className="font-display text-xl md:text-2xl font-bold text-foreground">
+                        <h2 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                           Where are you located?
                         </h2>
-                        <p className="text-sm text-muted-foreground">Just your postcode for now</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Just your postcode for now</p>
                       </div>
                     </div>
                     
                     <div className="space-y-4">
                       {/* Postcode Input */}
                       <div className="relative">
-                        <MapPin className="absolute left-3 top-3.5 w-4 h-4 text-muted-foreground" />
+                        <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
                         <Input
                           placeholder="Enter your postcode (e.g. HP2 7DE)"
                           value={formData.postcode}
                           onChange={(e) => updateFormData("postcode", e.target.value)}
-                          className={`rounded-xl bg-secondary/30 border-border/50 pl-10 ${
+                          className={`rounded-xl bg-secondary/30 border-border/50 pl-10 sm:pl-12 h-11 sm:h-12 text-sm sm:text-base ${
                             postcodeError ? "border-destructive" : postcodeValid ? "border-green-500" : ""
                           }`}
                           required
                         />
                         {postcodeValid && (
-                          <CheckCircle className="absolute right-3 top-3.5 w-4 h-4 text-green-500" />
+                          <CheckCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                         )}
                       </div>
                       
@@ -281,8 +281,8 @@ const Estimate = () => {
                       {/* Full Address - Only show when postcode is valid */}
                       {postcodeValid && (
                         <div className="space-y-3 animate-fade-in">
-                          <div className="border-t border-border/50 pt-4">
-                            <label className="text-sm font-medium text-foreground mb-2 block">
+                          <div className="border-t border-border/50 pt-3 sm:pt-4">
+                            <label className="text-xs sm:text-sm font-medium text-foreground mb-2 block">
                               Now, what's your full address?
                             </label>
                             <Textarea
@@ -290,7 +290,7 @@ const Estimate = () => {
                               value={formData.address}
                               onChange={(e) => updateFormData("address", e.target.value)}
                               rows={3}
-                              className="rounded-xl bg-secondary/30 border-border/50"
+                              className="rounded-xl bg-secondary/30 border-border/50 text-sm sm:text-base"
                               required
                             />
                             <p className="text-xs text-muted-foreground mt-2">
@@ -303,59 +303,59 @@ const Estimate = () => {
                   </div>
 
                   {/* Step 3: Vehicle */}
-                  <div className="space-y-4 pt-8 border-t border-border/50">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                        <span className="text-sm font-bold text-primary">3</span>
+                  <div className="space-y-4 pt-6 sm:pt-8 border-t border-border/50">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <span className="text-xs sm:text-sm font-bold text-primary">3</span>
                       </div>
                       <div>
-                        <h2 className="font-display text-xl md:text-2xl font-bold text-foreground">
+                        <h2 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                           Tell us about your car
                         </h2>
-                        <p className="text-sm text-muted-foreground">Make and model is enough</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Make and model is enough</p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                       <Input
                         placeholder="Make (e.g. Ford) *"
                         value={formData.vehicleMake}
                         onChange={(e) => updateFormData("vehicleMake", e.target.value)}
-                        className="rounded-xl bg-secondary/30 border-border/50"
+                        className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
                         required
                       />
                       <Input
                         placeholder="Model (e.g. Focus) *"
                         value={formData.vehicleModel}
                         onChange={(e) => updateFormData("vehicleModel", e.target.value)}
-                        className="rounded-xl bg-secondary/30 border-border/50"
+                        className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
                         required
                       />
                       <Input
                         placeholder="Year (e.g. 2019)"
                         value={formData.vehicleYear}
                         onChange={(e) => updateFormData("vehicleYear", e.target.value)}
-                        className="rounded-xl bg-secondary/30 border-border/50"
+                        className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
                       />
                       <Input
                         placeholder="Reg (e.g. AB12 CDE)"
                         value={formData.vehicleReg}
                         onChange={(e) => updateFormData("vehicleReg", e.target.value.toUpperCase())}
-                        className="rounded-xl bg-secondary/30 border-border/50"
+                        className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
                       />
                     </div>
                   </div>
 
                   {/* Step 4: Contact */}
-                  <div className="space-y-4 pt-8 border-t border-border/50">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                        <span className="text-sm font-bold text-primary">4</span>
+                  <div className="space-y-4 pt-6 sm:pt-8 border-t border-border/50">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <span className="text-xs sm:text-sm font-bold text-primary">3</span>
                       </div>
                       <div>
-                        <h2 className="font-display text-xl md:text-2xl font-bold text-foreground">
+                        <h2 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                           How can we reach you?
                         </h2>
-                        <p className="text-sm text-muted-foreground">We'll call within 1 hour (during business hours)</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">We'll call within 1 hour (during business hours)</p>
                       </div>
                     </div>
                     <Input
@@ -363,16 +363,16 @@ const Estimate = () => {
                       value={formData.name}
                       onChange={(e) => updateFormData("name", e.target.value)}
                       required
-                      className="rounded-xl bg-secondary/30 border-border/50"
+                      className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
                     />
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                       <Input
                         type="email"
                         placeholder="Email *"
                         value={formData.email}
                         onChange={(e) => updateFormData("email", e.target.value)}
                         required
-                        className="rounded-xl bg-secondary/30 border-border/50"
+                        className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
                       />
                       <Input
                         type="tel"
@@ -380,7 +380,7 @@ const Estimate = () => {
                         value={formData.phone}
                         onChange={(e) => updateFormData("phone", e.target.value)}
                         required
-                        className="rounded-xl bg-secondary/30 border-border/50"
+                        className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
                       />
                     </div>
                     <Textarea
@@ -388,24 +388,24 @@ const Estimate = () => {
                       value={formData.message}
                       onChange={(e) => updateFormData("message", e.target.value)}
                       rows={3}
-                      className="rounded-xl bg-secondary/30 border-border/50"
+                      className="rounded-xl bg-secondary/30 border-border/50 text-sm sm:text-base"
                     />
                   </div>
 
                 {/* Submit */}
-                <div className="mt-8 pt-6 border-t border-border/50">
+                <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-border/50">
                   <Button 
                     type="submit" 
                     size="lg"
-                    className="w-full rounded-full h-14 text-lg font-semibold shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/35 hover:scale-[1.02] transition-all"
+                    className="w-full rounded-full h-12 sm:h-14 text-base sm:text-lg font-semibold shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/35 hover:scale-[1.02] transition-all"
                   >
                     Send My Enquiry — We'll Call Back
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                   
-                  <div className="mt-4 p-4 rounded-lg bg-primary/5 border border-primary/10">
-                    <p className="text-sm text-center text-muted-foreground">
-                      <Check className="w-4 h-4 inline text-primary mr-1" />
+                  <div className="mt-3 sm:mt-4 p-3 sm:p-4 rounded-lg bg-primary/5 border border-primary/10">
+                    <p className="text-xs sm:text-sm text-center text-muted-foreground">
+                      <Check className="w-3 h-3 sm:w-4 sm:h-4 inline text-primary mr-1" />
                       <strong className="text-foreground">No obligation.</strong> We'll call to discuss your needs and provide a clear quote. No surprise fees.
                     </p>
                   </div>
@@ -415,11 +415,11 @@ const Estimate = () => {
             </form>
 
             {/* Quick Contact */}
-            <div className="mt-8 text-center">
-              <p className="text-sm text-muted-foreground mb-3">Prefer to speak now?</p>
-              <Button variant="outline" size="lg" asChild className="rounded-full">
+            <div className="mt-6 sm:mt-8 text-center">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">Prefer to speak now?</p>
+              <Button variant="outline" size="lg" asChild className="rounded-full h-11 sm:h-12 text-sm sm:text-base">
                 <a href={`tel:${BUSINESS_INFO.phone}`}>
-                  <Phone className="w-5 h-5 mr-2" />
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Call {BUSINESS_INFO.phone}
                 </a>
               </Button>

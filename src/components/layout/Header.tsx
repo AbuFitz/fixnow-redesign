@@ -42,14 +42,13 @@ const Header = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">{/*Logo */}
           <Link to="/" className="group flex items-center gap-2">
-            <span className="font-display font-bold text-xl tracking-tight">
+            <span className="font-display font-bold text-lg sm:text-xl tracking-tight">
               <span className="text-foreground">Fix</span>
               <span className="text-primary">Now</span>
-              <span className="text-foreground"> Mechanics</span>
+              <span className="text-foreground hidden sm:inline"> Mechanics</span>
             </span>
           </Link>
 
@@ -105,7 +104,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden w-10 h-10 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground"
+            className="md:hidden min-w-[44px] min-h-[44px] w-11 h-11 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -139,13 +138,13 @@ const Header = () => {
                 </Link>
               ))}
             </nav>
-            <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border/30 px-4">
-              <Button asChild size="sm" className="rounded-full flex-1">
+            <div className="flex items-center gap-2 sm:gap-3 mt-4 pt-4 border-t border-border/30 px-4">
+              <Button asChild size="sm" className="rounded-full flex-1 h-11 text-sm">
                 <Link to="/estimate" onClick={() => setIsOpen(false)}>
                   Get Quote
                 </Link>
               </Button>
-              <Button asChild size="sm" variant="outline" className="rounded-full">
+              <Button asChild size="sm" variant="outline" className="rounded-full min-w-[44px] h-11">
                 <a href={`tel:${BUSINESS_INFO.phone}`}>
                   <Phone className="w-4 h-4" />
                 </a>
