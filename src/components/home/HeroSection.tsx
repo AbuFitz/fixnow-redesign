@@ -7,7 +7,11 @@ const HeroSection = () => {
     <section className="relative min-h-[75vh] md:min-h-[65vh] lg:min-h-[70vh] flex items-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        <img src="/CompanyVan.jpg" alt="FixNow Mechanics Van" className="w-full h-full object-cover object-[30%_35%] brightness-[1.1] md:object-right md:scale-110 lg:scale-100 md:translate-x-[10%] lg:translate-x-[15%] md:-translate-y-[15%] lg:-translate-y-[20%] md:brightness-[180%] lg:brightness-[200%]" />
+        <img
+          src="/CompanyVan.jpg"
+          alt="FixNow Mechanics Van"
+          className="w-full h-full object-cover object-center md:object-[65%_center] lg:object-[70%_center] brightness-[0.6] md:brightness-[0.7] lg:brightness-[0.8]"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/98 to-background/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/70" />
         {/* Animated gradient overlay */}
@@ -85,7 +89,7 @@ const HeroSection = () => {
           {[
             { value: "7 Days", label: "Open Weekly" },
             { value: "45 Mile", label: "Coverage Area" },
-            { value: "Evenings", label: "After 6pm" },
+            { value: "Same Day", label: "If Available" },
           ].map((stat) => (
             <div key={stat.label} className="relative">
               <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary mb-0.5 sm:mb-1 drop-shadow-sm">{stat.value}</div>

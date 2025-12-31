@@ -12,7 +12,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -39,6 +39,9 @@ const Header = () => {
     return location.pathname.startsWith(href);
   };
 
+  // Determine if quote button should be visible
+  const showQuoteButton = !isHomePage || scrolled;
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -48,11 +51,11 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 lg:px-6">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+        <div className="flex items-center justify-between lg:justify-center lg:gap-12 h-16 lg:h-20">
+          {/* Logo - Left on mobile, part of center group on desktop */}
           <Link
             to="/"
-            className="flex items-center gap-1.5 group"
+            className="flex items-center gap-1.5 lg:mr-auto"
             onClick={() => setIsOpen(false)}
           >
             <span className="font-display font-bold text-xl lg:text-2xl">
@@ -62,7 +65,7 @@ const Header = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Centered */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
@@ -80,21 +83,29 @@ const Header = () => {
                 }`} />
               </Link>
             ))}
-
-            <div className="flex items-center gap-4 ml-2">
-              <a
-                href={`tel:${BUSINESS_INFO.phone}`}
-                className="hidden xl:flex items-center gap-2 px-4 py-2.5 rounded-full bg-primary/10 hover:bg-primary/20 transition-all text-foreground font-medium text-sm group"
-              >
-                <Phone className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
-                <span>{BUSINESS_INFO.phone}</span>
-              </a>
-
-              <Button asChild size="default" className="rounded-full font-semibold">
-                <Link to="/quote">Get Quote</Link>
-              </Button>
-            </div>
           </nav>
+
+          {/* Desktop Right Section - Phone + Quote Button */}
+          <div className="hidden lg:flex items-center gap-4 lg:ml-auto">
+            <a
+              href={`tel:${BUSINESS_INFO.phone}`}
+              className="hidden xl:flex items-center gap-2 px-4 py-2.5 rounded-full bg-primary/10 hover:bg-primary/20 transition-all text-foreground font-medium text-sm group"
+            >
+              <Phone className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
+              <span>{BUSINESS_INFO.phone}</span>
+            </a>
+
+            {/* Quote Button - Always takes space, but visibility controlled */}
+            <Button
+              asChild
+              size="default"
+              className={`rounded-full font-semibold transition-opacity duration-300 ${
+                showQuoteButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              }`}
+            >
+              <Link to="/quote">Get Quote</Link>
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -193,7 +204,7 @@ const Header = () => {
               </Link>
             </Button>
             <p className="text-center text-xs text-muted-foreground mt-3">
-              Fast response • No obligation • Free estimates
+              Same day slots • No obligation • Free estimates
             </p>
           </div>
         </nav>
