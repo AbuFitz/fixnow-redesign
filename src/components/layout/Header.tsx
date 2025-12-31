@@ -73,19 +73,16 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Phone + CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <a 
-              href={`tel:${BUSINESS_INFO.phone}`}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Phone className="w-4 h-4 text-primary" />
-              {BUSINESS_INFO.phone}
-            </a>
-            <Button asChild className="rounded-full px-6">
-              <Link to="/estimate">
-                Get Quote
-              </Link>
+          {/* Phone CTA */}
+          <div className="hidden md:flex items-center">
+            <Button asChild variant="outline" size="lg" className="rounded-full border-primary/30 hover:border-primary hover:bg-primary/10 group">
+              <a 
+                href={`tel:${BUSINESS_INFO.phone}`}
+                className="flex items-center gap-2.5"
+              >
+                <Phone className="w-4 h-4 text-primary group-hover:animate-pulse" />
+                <span className="font-semibold text-foreground">{BUSINESS_INFO.phone}</span>
+              </a>
             </Button>
           </div>
 

@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import servicingImg from "@/assets/service-servicing.jpg";
-import electricalImg from "@/assets/service-electrical.jpg";
 
 const services = [
   { id: "diagnostics", name: "Diagnostics", price: "From £45", image: "/diagonstic.jpg" },
   { id: "brakes", name: "Brakes", price: "From £80", image: "/brakes.jpg" },
   { id: "servicing", name: "Servicing", price: "From £120", image: servicingImg },
   { id: "general", name: "General Repairs", price: "Call for quote", image: "/generalrepairs.JPG" },
-  { id: "electrical", name: "Electrical", price: "From £60", image: electricalImg },
+  { id: "electrical", name: "Electrical", price: "From £60", image: "/electrical.jpg" },
   { id: "suspension", name: "Suspension", price: "From £100", image: "/suspension.jpg" },
 ];
 
