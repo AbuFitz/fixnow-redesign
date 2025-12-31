@@ -18,6 +18,12 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  // Handle body scroll lock
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -55,7 +61,7 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-1"
+            className="flex items-center gap-1 relative z-50"
             onClick={() => setIsOpen(false)}
           >
             <span className="font-display font-bold text-xl lg:text-2xl">
@@ -106,7 +112,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 hover:bg-primary/10 rounded-lg transition-colors"
+            className="lg:hidden p-2 hover:bg-primary/10 rounded-lg transition-colors relative z-50"
             aria-label="Toggle menu"
           >
             {isOpen ? (
@@ -121,61 +127,70 @@ const Header = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <>
+          {/* Backdrop */}
           <div
-            className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm"
+            className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             onClick={() => setIsOpen(false)}
+            aria-hidden="true"
           />
-          <div className="lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-background border-t border-border transform transition-transform duration-300 translate-x-0">
-            <nav className="h-full flex flex-col">
-              <div className="flex-1 overflow-y-auto px-6 py-8">
-                <div className="space-y-1 mb-8">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      to={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block py-3 px-4 rounded-lg text-base font-medium transition-all ${
-                        isActive(link.href)
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-foreground/80 hover:bg-primary/5'
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                </div>
 
-                <div className="space-y-3 py-6 border-t border-border/50">
-                  <a
-                    href={`tel:${BUSINESS_INFO.phone}`}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-all"
-                  >
-                    <div className="p-2 rounded-full bg-primary/10">
-                      <Phone className="w-4 h-4 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground">Call us</p>
-                      <p className="text-sm font-semibold">{BUSINESS_INFO.phone}</p>
-                    </div>
-                  </a>
+          {/* Menu Panel */}
+          <div className="lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-background z-40 overflow-hidden">
+            <div className="h-full flex flex-col overflow-hidden">
+              {/* Scrollable Navigation Links */}
+              <div className="flex-1 overflow-y-auto overscroll-contain">
+                <div className="px-4 py-6">
+                  <div className="space-y-2">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        to={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`block py-3 px-4 rounded-lg text-base font-medium transition-all ${
+                          isActive(link.href)
+                            ? 'bg-primary text-background'
+                            : 'text-foreground/80 hover:bg-primary/10 hover:text-foreground'
+                        }`}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 pt-6 border-t border-border/50">
+                    <a
+                      href={`tel:${BUSINESS_INFO.phone}`}
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-all"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <div className="p-2 rounded-full bg-primary/10">
+                        <Phone className="w-4 h-4 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">Call us now</p>
+                        <p className="text-sm font-semibold text-foreground">{BUSINESS_INFO.phone}</p>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              <div className="border-t border-border/50 p-6 bg-card/30">
+              {/* Fixed Bottom CTA */}
+              <div className="border-t border-border/50 p-4 bg-background">
                 <Button
                   asChild
                   size="lg"
-                  className="w-full rounded-full font-bold text-base h-14"
+                  className="w-full rounded-full font-bold text-base h-12"
                 >
                   <Link to="/quote" onClick={() => setIsOpen(false)}>
                     Get Free Quote
                   </Link>
                 </Button>
-                <p className="text-center text-xs text-muted-foreground mt-3">
+                <p className="text-center text-xs text-muted-foreground mt-2">
                   Same day slots • No obligation • Free estimates
                 </p>
               </div>
-            </nav>
+            </div>
           </div>
         </>
       )}
