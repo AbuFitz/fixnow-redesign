@@ -6,12 +6,13 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
-import Estimate from "./pages/Estimate";
+import Quote from "./pages/Quote";
 import Locations from "./pages/Locations";
 import LocationPage from "./pages/LocationPage";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
+import WhatsAppFAB from "@/components/common/WhatsAppFAB";
 
 const queryClient = new QueryClient();
 
@@ -35,13 +36,15 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/estimate" element={<Estimate />} />
+          <Route path="/quote" element={<Quote />} />
+          <Route path="/estimate" element={<Quote />} />
           <Route path="/locations" element={<Locations />} />
           <Route path="/locations/:slug" element={<LocationPage />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <WhatsAppFAB />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

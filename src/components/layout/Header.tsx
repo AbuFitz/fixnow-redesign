@@ -7,22 +7,16 @@ import { BUSINESS_INFO } from "@/lib/constants";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showQuoteBtn, setShowQuoteBtn] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setScrolled(scrollPosition > 20);
-      // Show quote button when scrolled past hero (roughly 600px on desktop)
-      if (isHomePage) {
-        setShowQuoteBtn(scrollPosition > 500);
-      }
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHomePage]);
+  }, []);
 
   const navLinks = [
     { name: "Services", href: "/services" },
@@ -83,9 +77,9 @@ const Header = () => {
 
           {/* Phone + Quote CTA */}
           <div className="hidden md:flex items-center gap-3">
-            {showQuoteBtn && isHomePage && (
-              <Button asChild size="lg" className="rounded-full px-6 shadow-lg shadow-primary/20 animate-slide-in-from-right-5">
-                <Link to="/estimate" className="flex items-center gap-2">
+            {!isHomePage && (
+              <Button asChild size="lg" className="rounded-full px-6">
+                <Link to="/quote" className="flex items-center gap-2">
                   Get Quote
                   <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -96,7 +90,7 @@ const Header = () => {
                 href={`tel:${BUSINESS_INFO.phone}`}
                 className="flex items-center gap-2.5"
               >
-                <Phone className="w-4 h-4 text-primary group-hover:animate-pulse" />
+                <Phone className="w-4 h-4 text-primary" />
                 <span className="font-semibold text-foreground">{BUSINESS_INFO.phone}</span>
               </a>
             </Button>
@@ -140,7 +134,7 @@ const Header = () => {
             </nav>
             <div className="flex items-center gap-2 sm:gap-3 mt-4 pt-4 border-t border-border/30 px-4">
               <Button asChild size="sm" className="rounded-full flex-1 h-11 text-sm">
-                <Link to="/estimate" onClick={() => setIsOpen(false)}>
+                <Link to="/quote" onClick={() => setIsOpen(false)}>
                   Get Quote
                 </Link>
               </Button>

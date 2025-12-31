@@ -19,7 +19,7 @@ const CTASection = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-background opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-background" />
             </span>
-            <span className="text-xs sm:text-sm font-semibold text-primary-foreground uppercase tracking-wider">Same Day Service Available</span>
+            <span className="text-xs sm:text-sm font-semibold text-primary-foreground uppercase tracking-wider">Evening Slots Available</span>
           </div>
           
           {/* Main heading */}
@@ -38,9 +38,9 @@ const CTASection = () => {
             <Button 
               size="lg" 
               asChild 
-              className="group rounded-full h-12 sm:h-14 md:h-16 px-6 sm:px-8 md:px-10 text-base sm:text-lg font-semibold bg-background text-foreground hover:bg-background/90 shadow-2xl hover:shadow-3xl hover:scale-[1.05] transition-all w-full sm:w-auto"
+              className="group rounded-full h-12 sm:h-14 md:h-16 px-6 sm:px-8 md:px-10 text-base sm:text-lg font-semibold bg-background text-foreground hover:bg-background/90 hover:scale-[1.05] transition-all w-full sm:w-auto"
             >
-              <Link to="/estimate">
+              <Link to="/quote">
                 Get Free Quote Now
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Link>

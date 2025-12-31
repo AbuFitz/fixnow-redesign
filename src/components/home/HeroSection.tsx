@@ -57,9 +57,9 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               asChild 
-              className="rounded-full h-12 sm:h-14 px-8 sm:px-10 text-sm sm:text-base font-semibold group relative overflow-hidden shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 hover:scale-[1.02] transition-all w-full sm:w-auto"
+              className="rounded-full h-12 sm:h-14 px-8 sm:px-10 text-sm sm:text-base font-semibold group relative overflow-hidden hover:scale-[1.02] transition-all w-full sm:w-auto"
             >
-              <Link to="/estimate">
+              <Link to="/quote">
                 <span className="relative z-10 flex items-center gap-2">
                   Get FREE Quote Now
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -84,8 +84,8 @@ const HeroSection = () => {
         <div className="mt-8 sm:mt-10 md:mt-12 grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
           {[
             { value: "7 Days", label: "Open Weekly" },
-            { value: "45 Mile", label: "Coverage Radius" },
-            { value: "Same Day", label: "If Needed" },
+            { value: "45 Mile", label: "Coverage Area" },
+            { value: "Evenings", label: "After 6pm" },
           ].map((stat) => (
             <div key={stat.label} className="relative">
               <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary mb-0.5 sm:mb-1 drop-shadow-sm">{stat.value}</div>
