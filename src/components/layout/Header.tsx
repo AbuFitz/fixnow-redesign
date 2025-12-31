@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BUSINESS_INFO } from "@/lib/constants";
 
@@ -12,11 +12,22 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const navLinks = [
     { name: "Services", href: "/services" },
@@ -30,88 +41,163 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
-        ${isHomePage && !scrolled
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isHomePage && !scrolled
           ? 'bg-transparent'
-          : 'bg-background/95 backdrop-blur-md border-b border-border'}
-      `}
+          : 'bg-background/98 backdrop-blur-lg border-b border-border/50 shadow-sm'
+      }`}
     >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-16 md:h-18">
+      <div className="container mx-auto px-4 lg:px-6">
+        <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-1 font-display font-bold text-xl md:text-2xl">
-            <span className="text-foreground">Fix</span>
-            <span className="text-primary">Now</span>
-            <span className="hidden sm:inline text-foreground ml-1">Mechanics</span>
+          <Link
+            to="/"
+            className="flex items-center gap-1.5 group"
+            onClick={() => setIsOpen(false)}
+          >
+            <span className="font-display font-bold text-xl lg:text-2xl">
+              <span className="text-foreground">Fix</span>
+              <span className="text-primary">Now</span>
+              <span className="hidden sm:inline text-foreground ml-1.5">Mechanics</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-sm font-medium transition-colors hover:text-primary
-                  ${isActive(link.href) ? 'text-primary' : 'text-foreground/80'}`}
+                className={`text-sm font-medium transition-all relative group ${
+                  isActive(link.href)
+                    ? 'text-primary'
+                    : 'text-foreground/70 hover:text-foreground'
+                }`}
               >
                 {link.name}
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all ${
+                  isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                }`} />
               </Link>
             ))}
-            <a
-              href={`tel:${BUSINESS_INFO.phone}`}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1.5"
-            >
-              <Phone className="w-4 h-4" />
-              {BUSINESS_INFO.phone}
-            </a>
-            <Button asChild size="sm" className="ml-2">
-              <Link to="/quote">Get Quote</Link>
-            </Button>
+
+            <div className="flex items-center gap-4 ml-2">
+              <a
+                href={`tel:${BUSINESS_INFO.phone}`}
+                className="hidden xl:flex items-center gap-2 px-4 py-2.5 rounded-full bg-primary/10 hover:bg-primary/20 transition-all text-foreground font-medium text-sm group"
+              >
+                <Phone className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
+                <span>{BUSINESS_INFO.phone}</span>
+              </a>
+
+              <Button asChild size="default" className="rounded-full font-semibold">
+                <Link to="/quote">Get Quote</Link>
+              </Button>
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 hover:bg-primary/10 rounded-md transition-colors"
+            className="lg:hidden p-2.5 hover:bg-primary/10 rounded-lg transition-colors"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? (
+              <X className="w-6 h-6 text-foreground" />
+            ) : (
+              <Menu className="w-6 h-6 text-foreground" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="md:hidden border-t border-border bg-background">
-          <nav className="container mx-auto px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Mobile Menu Panel */}
+      <div
+        className={`lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-background border-t border-border transform transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <nav className="h-full flex flex-col">
+          {/* Navigation Links */}
+          <div className="flex-1 overflow-y-auto px-6 py-8">
+            <div className="space-y-1 mb-8">
               <Link
-                key={link.href}
-                to={link.href}
+                to="/"
                 onClick={() => setIsOpen(false)}
-                className={`block py-2 text-base font-medium transition-colors
-                  ${isActive(link.href) ? 'text-primary' : 'text-foreground/80 hover:text-primary'}`}
+                className={`block py-3 px-4 rounded-lg text-base font-medium transition-all ${
+                  location.pathname === "/"
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-foreground/80 hover:bg-primary/5 hover:text-foreground'
+                }`}
               >
-                {link.name}
+                Home
               </Link>
-            ))}
-            <div className="pt-3 border-t border-border space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block py-3 px-4 rounded-lg text-base font-medium transition-all ${
+                    isActive(link.href)
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-foreground/80 hover:bg-primary/5 hover:text-foreground'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile Contact Info */}
+            <div className="space-y-3 py-6 border-t border-border/50">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-4">Contact</p>
               <a
                 href={`tel:${BUSINESS_INFO.phone}`}
-                className="flex items-center gap-2 py-3 px-4 bg-primary/10 rounded-lg text-primary font-medium"
+                className="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-all group"
               >
-                <Phone className="w-5 h-5" />
-                Call: {BUSINESS_INFO.phone}
+                <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                  <Phone className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">Call us now</p>
+                  <p className="text-sm font-semibold text-foreground">{BUSINESS_INFO.phone}</p>
+                </div>
               </a>
-              <Button asChild className="w-full" size="lg">
-                <Link to="/quote" onClick={() => setIsOpen(false)}>
-                  Get Free Quote
-                </Link>
-              </Button>
+              <div className="flex items-start gap-3 px-4 py-2">
+                <MapPin className="w-4 h-4 text-primary mt-1" />
+                <div>
+                  <p className="text-xs text-muted-foreground">Coverage</p>
+                  <p className="text-sm font-medium text-foreground">{BUSINESS_INFO.coverage} radius</p>
+                </div>
+              </div>
             </div>
-          </nav>
-        </div>
-      )}
+          </div>
+
+          {/* Mobile CTA Section */}
+          <div className="border-t border-border/50 p-6 bg-card/30">
+            <Button
+              asChild
+              size="lg"
+              className="w-full rounded-full font-bold text-base h-14"
+            >
+              <Link to="/quote" onClick={() => setIsOpen(false)}>
+                Get Free Quote
+              </Link>
+            </Button>
+            <p className="text-center text-xs text-muted-foreground mt-3">
+              Fast response • No obligation • Free estimates
+            </p>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 };
