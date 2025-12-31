@@ -30,7 +30,7 @@
 
     --border: 0 0% 16%;
     --input: 0 0% 16%;
-    --ring: 45 98% 48%;
+    @tailwind base;
 
     --radius: 0.75rem;
 

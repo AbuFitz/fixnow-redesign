@@ -17,12 +17,12 @@ type FormData = {
 };
 
 const services = [
-  { id: 'diagnostics', name: 'Diagnostics', price: 'From £45', icon: '🔍', desc: "Find out what's wrong" },
-  { id: 'brakes', name: 'Brakes', price: 'From £80', icon: '🛑', desc: 'Pads, discs & fluid' },
-  { id: 'servicing', name: 'Servicing', price: 'From £120', icon: '🛠️', desc: 'Full service package' },
-  { id: 'electrical', name: 'Electrical', price: 'From £40', icon: '⚡', desc: 'Battery & electrics' },
-  { id: 'suspension', name: 'Suspension', price: 'From £100', icon: '🚗', desc: 'Shocks & springs' },
-  { id: 'general', name: 'Other Repair', price: 'Quote needed', icon: '🔧', desc: 'General repairs' }
+  { id: 'diagnostics', name: 'Diagnostics', price: 'From £45', icon: '', desc: "Find out what's wrong" },
+  { id: 'brakes', name: 'Brakes', price: 'From £80', icon: '', desc: 'Pads, discs & fluid' },
+  { id: 'servicing', name: 'Servicing', price: 'From £120', icon: '', desc: 'Full service package' },
+  { id: 'electrical', name: 'Electrical', price: 'From £40', icon: '', desc: 'Battery & electrics' },
+  { id: 'suspension', name: 'Suspension', price: 'From £100', icon: '', desc: 'Shocks & springs' },
+  { id: 'general', name: 'Other Repair', price: 'Quote needed', icon: '', desc: 'General repairs' }
 ];
 
 const urgencyOptions = [
@@ -32,9 +32,9 @@ const urgencyOptions = [
 ];
 
 const contactMethods = [
-  { id: 'whatsapp', icon: '💬', label: 'WhatsApp' },
-  { id: 'call', icon: '📞', label: 'Phone call' },
-  { id: 'text', icon: '📱', label: 'Text' }
+  { id: 'whatsapp', icon: '', label: 'WhatsApp' },
+  { id: 'call', icon: '', label: 'Phone call' },
+  { id: 'text', icon: '', label: 'Text' }
 ];
 
 const Quote = () => {
@@ -147,7 +147,7 @@ Phone: ${formData.phone}`;
                         }`}
                       >
                         <div className="flex items-start gap-3">
-                          <span className="text-3xl" role="img" aria-label={service.name}>{service.icon}</span>
+                          {service.icon && <span className="text-3xl" role="img" aria-label={service.name}>{service.icon}</span>}
                           <div className="flex-1 min-w-0">
                             <div className="font-semibold text-foreground text-base">{service.name}</div>
                             <div className="text-sm text-muted-foreground">{service.desc}</div>
@@ -286,7 +286,7 @@ Phone: ${formData.phone}`;
                               : 'bg-secondary border-border hover:border-primary/50'
                           }`}
                         >
-                          <span className="text-2xl" role="img" aria-label={method.label}>{method.icon}</span>
+                          {method.icon && <span className="text-2xl" role="img" aria-label={method.label}>{method.icon}</span>}
                           <span className="text-xs font-medium text-foreground">{method.label}</span>
                         </button>
                       ))}

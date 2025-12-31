@@ -14,6 +14,8 @@ const WhatsAppFAB = ({ message = "Hi, I'd like to enquire about your mobile mech
       </svg>
     </a>
   );
+// (Restored previous code or remove if not used globally)
+// You may want to remove this file if WhatsApp FAB is not needed globally.
 };
 
 export default WhatsAppFAB;
