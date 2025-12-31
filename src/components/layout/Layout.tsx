@@ -13,7 +13,6 @@ const Layout = ({ children }: LayoutProps) => {
       <Header />
       <main className="flex-1 pt-16 md:pt-20">{children}</main>
       <Footer />
-      <WhatsAppWidget />
     </div>
   );
 };

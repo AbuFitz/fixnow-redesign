@@ -93,10 +93,10 @@ Phone: ${formData.phone}`;
 
   return (
     <Layout>
-      <section className="min-h-screen py-24 px-4">
-        <div className="container mx-auto max-w-2xl">
+      <section className="min-h-screen py-8 md:py-20 px-0 md:px-4 flex flex-col items-center justify-center bg-background">
+        <div className="w-full max-w-full md:max-w-2xl mx-auto px-0 md:px-0">
           {/* Progress Bar */}
-          <div className="mb-8">
+          <div className="mb-8 px-4 md:px-0">
             <div className="flex items-center justify-between mb-3">
               {[1, 2, 3, 4].map((s) => (
                 <div key={s} className="flex items-center flex-1">
@@ -121,7 +121,7 @@ Phone: ${formData.phone}`;
           </div>
 
           {/* Form Card */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+          <div className="bg-card border border-border rounded-2xl p-4 md:p-8 shadow-lg mx-0 md:mx-auto">
             <form onSubmit={handleSubmit} className="space-y-6">
               
               {/* Step 1: Service Selection */}
@@ -341,11 +341,14 @@ Phone: ${formData.phone}`;
               </div>
             </form>
             
-            {/* WhatsApp Alternative */}
-            <div className="mt-6 pt-6 border-t border-border text-center">
-              <p className="text-sm text-muted-foreground mb-3">
-                Or message us directly on WhatsApp
-              </p>
+            {/* Trust Badges & WhatsApp Alternative */}
+            <div className="mt-6 pt-6 border-t border-border text-center flex flex-col gap-4">
+              <div className="flex flex-wrap justify-center gap-2 mb-2">
+                <span className="inline-block px-3 py-1 rounded-full bg-secondary text-xs font-semibold text-muted-foreground border border-border">No Obligation</span>
+                <span className="inline-block px-3 py-1 rounded-full bg-secondary text-xs font-semibold text-muted-foreground border border-border">Free Quote</span>
+                <span className="inline-block px-3 py-1 rounded-full bg-secondary text-xs font-semibold text-muted-foreground border border-border">Trusted Local</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-1">Or message us directly on WhatsApp</p>
               <Button variant="outline" size="sm" asChild>
                 <a
                   href="https://wa.me/447354915941?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20my%20car."
@@ -405,6 +408,15 @@ Phone: ${formData.phone}`;
 
         .reg-input::placeholder {
           color: rgba(10, 10, 10, 0.4);
+        }
+
+        @media (max-width: 767px) {
+          .bg-card {
+            background: #181818 !important;
+          }
+          .border-border {
+            border-color: #232323 !important;
+          }
         }
 
         @keyframes fade-in {
