@@ -25,22 +25,22 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-10 md:py-14 bg-gradient-to-b from-surface-elevated to-background relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-gradient-to-b from-surface-elevated to-background relative overflow-hidden">
       {/* Subtle radial accent */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(var(--primary)/0.04),_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(var(--primary)/0.06),_transparent_60%)]" />
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
-        <div className="text-center mb-4 md:mb-8">
-          <h2 className="font-display text-2xl md:text-4xl font-bold text-foreground mb-1">
+        <div className="text-center mb-8 md:mb-10">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-2">
             How it works
           </h2>
-          <p className="text-muted-foreground text-sm md:text-lg">
+          <p className="text-muted-foreground text-base md:text-xl font-medium">
             Simple, straightforward, no hassle
           </p>
         </div>
 
         {/* Steps - Compact on mobile */}
-        <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-4xl mx-auto mb-4 md:mb-8">
+        <div className="grid grid-cols-3 gap-3 md:gap-6 max-w-5xl mx-auto mb-8 md:mb-10">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
@@ -50,21 +50,21 @@ const HowItWorksSection = () => {
                   <div className="hidden md:block absolute top-12 left-[60%] w-full h-[2px] bg-border/50" />
                 )}
                 
-                <div className="relative p-3 md:p-6 rounded-xl md:rounded-2xl bg-background/50 border border-border/50 transition-all duration-300 hover:border-border text-center md:text-left">
+                <div className="relative p-4 md:p-8 rounded-xl md:rounded-2xl bg-background/80 backdrop-blur-sm border border-border/50 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 text-center md:text-left">
                   {/* Icon - centered on mobile */}
-                  <div className="flex justify-center md:justify-start md:items-center md:gap-4 mb-2 md:mb-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-card border border-border/50 flex items-center justify-center">
-                      <Icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                  <div className="flex justify-center md:justify-start md:items-center md:gap-4 mb-3 md:mb-5">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                      <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                     </div>
                     <span className="hidden md:block text-4xl font-display font-bold text-border/70">
                       {step.number}
                     </span>
                   </div>
                   
-                  <h3 className="font-display text-xs md:text-xl font-bold text-foreground mb-0.5 md:mb-1">
+                  <h3 className="font-display text-sm md:text-2xl font-bold text-foreground mb-1 md:mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground text-[10px] md:text-sm hidden md:block">
+                  <p className="text-muted-foreground text-[11px] md:text-base md:block">
                     {step.description}
                   </p>
                 </div>
@@ -75,10 +75,10 @@ const HowItWorksSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button size="lg" asChild className="rounded-full h-12 px-8 group">
+          <Button size="lg" asChild className="rounded-full h-14 px-10 text-base font-semibold shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/35 hover:scale-[1.02] transition-all group">
             <Link to="/estimate">
               Start Your Enquiry
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>

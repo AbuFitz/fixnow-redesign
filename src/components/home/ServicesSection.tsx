@@ -14,7 +14,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-10 md:py-4 bg-background relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-background relative overflow-hidden">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-[0.015]" style={{
         backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
@@ -22,10 +22,10 @@ const ServicesSection = () => {
       }} />
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 md:mb-10">
           <div>
-            <span className="text-sm font-medium text-primary uppercase tracking-wider mb-2 block">What we do</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+            <span className="text-sm font-semibold text-primary uppercase tracking-wider mb-3 block">What we do</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
               Great Services,<br />
               <span className="text-muted-foreground">At Your Location</span>
             </h2>

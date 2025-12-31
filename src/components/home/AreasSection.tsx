@@ -4,7 +4,7 @@ import { LOCATIONS } from "@/lib/constants";
 
 const AreasSection = () => {
   return (
-    <section className="py-10 md:py-14 bg-gradient-to-b from-card to-surface-elevated relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-gradient-to-b from-card to-surface-elevated relative overflow-hidden">
       {/* Map Background - 30% visible */}
       <div className="absolute inset-0 opacity-30">
         <iframe
@@ -19,15 +19,15 @@ const AreasSection = () => {
       
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-3">
-            <MapPin className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-medium text-primary uppercase tracking-wider">Coverage</span>
+        <div className="text-center mb-8 md:mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+            <MapPin className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary uppercase tracking-wider">Coverage</span>
           </div>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3">
             Areas we cover
           </h2>
-          <p className="text-muted-foreground text-lg max-w-md mx-auto">
+          <p className="text-muted-foreground text-base md:text-xl max-w-xl mx-auto">
             Mobile mechanic services across Hertfordshire & beyond
           </p>
         </div>

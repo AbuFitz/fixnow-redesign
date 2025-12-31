@@ -11,7 +11,7 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="py-10 md:py-14 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
       {/* Accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px]" />
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -39,14 +39,14 @@ const WhyUsSection = () => {
 
           {/* Content Side */}
           <div className="order-1 lg:order-2">
-            <span className="text-sm font-medium text-primary uppercase tracking-wider mb-2 block">Why Choose Us</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-2 leading-tight">
+            <span className="text-sm font-semibold text-primary uppercase tracking-wider mb-3 block">Why Choose Us</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3 leading-tight">
               Quality Service,<br />
               <span className="text-muted-foreground">Personal Touch</span>
             </h2>
 
             {/* Features List */}
-            <div className="space-y-3 md:space-y-4 mt-5">
+            <div className="space-y-4 md:space-y-5 mt-6 md:mt-8">
               {features.map((feature) => {
                 const Icon = feature.icon;
                 return (
