@@ -1,19 +1,28 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BUSINESS_INFO } from "@/lib/constants";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showQuoteBtn, setShowQuoteBtn] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setScrolled(scrollPosition > 20);
+      // Show quote button when scrolled past hero (roughly 600px on desktop)
+      if (isHomePage) {
+        setShowQuoteBtn(scrollPosition > 500);
+      }
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   const navLinks = [
     { name: "Services", href: "/services" },
@@ -73,8 +82,16 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Phone CTA */}
-          <div className="hidden md:flex items-center">
+          {/* Phone + Quote CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            {showQuoteBtn && isHomePage && (
+              <Button asChild size="lg" className="rounded-full px-6 shadow-lg shadow-primary/20 animate-slide-in-from-right-5">
+                <Link to="/estimate" className="flex items-center gap-2">
+                  Get Quote
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            )}
             <Button asChild variant="outline" size="lg" className="rounded-full border-primary/30 hover:border-primary hover:bg-primary/10 group">
               <a 
                 href={`tel:${BUSINESS_INFO.phone}`}

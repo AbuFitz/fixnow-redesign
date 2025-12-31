@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, ArrowLeft, Check, Phone, Wrench, MapPin, AlertCircle, CheckCircle } from "lucide-react";
+import { ArrowRight, Check, Phone, MapPin, AlertCircle, CheckCircle, Clock, Shield, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -125,79 +125,83 @@ const Estimate = () => {
 
   return (
     <Layout>
-      <section className="relative min-h-screen bg-gradient-to-br from-background via-surface to-background">
-        {/* Background */}
-        <div className="absolute inset-0 hidden lg:block">
-          <div className="absolute inset-y-0 right-0 w-1/2">
-            <img 
-              src="/quoteimage.JPG" 
-              alt="Engine detail" 
-              className="w-full h-full object-cover brightness-[0.45] contrast-110 grayscale-[30%]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
-          </div>
-        </div>
-        
+      <section className="relative min-h-screen bg-gradient-to-br from-background via-surface/30 to-background">
         {/* Subtle accent glow */}
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute top-20 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px]" />
 
-        <div className="container mx-auto px-6 md:px-12 py-20 md:py-28 relative z-10">
-          <div className="max-w-xl">
-            {/* Header */}
-            <div className="mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                <Wrench className="w-4 h-4 text-primary" />
-                <span className="text-sm text-foreground/80">Free Quote</span>
+        <div className="container mx-auto px-6 md:px-12 py-16 md:py-20 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            {/* HERO - Trust First */}
+            <div className="text-center mb-10 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+                <Check className="w-4 h-4 text-primary" />
+                <span className="text-sm font-semibold text-primary">Mobile Mechanic — We Come To You</span>
               </div>
-              <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Get a Quote
+              
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
+                Get a fast, honest quote
+                <br />
+                <span className="text-primary">in 60 seconds</span>
               </h1>
-              <p className="text-muted-foreground">
-                Tell us what you need and we'll call you back to discuss.
+              
+              <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Tell us what's wrong and we'll call you back to discuss.
               </p>
+
+              {/* Trust Signals */}
+              <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8">
+                <div className="flex items-center gap-2 text-sm text-foreground/80">
+                  <Check className="w-4 h-4 text-primary" />
+                  <span className="font-medium">No call centre</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-foreground/80">
+                  <Check className="w-4 h-4 text-primary" />
+                  <span className="font-medium">No inflated prices</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-foreground/80">
+                  <Check className="w-4 h-4 text-primary" />
+                  <span className="font-medium">Pay after the job</span>
+                </div>
+              </div>
             </div>
 
-            {/* Progress */}
-            <div className="flex items-center gap-2 mb-8">
-              {stepLabels.map((label, index) => {
-                const stepNum = index + 1;
-                const isActive = step === stepNum;
-                const isComplete = step > stepNum;
-                return (
-                  <div key={label} className="flex items-center gap-2">
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
-                        isComplete
-                          ? "bg-primary text-primary-foreground"
-                          : isActive
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-secondary text-muted-foreground"
-                      }`}
-                    >
-                      {isComplete ? <Check className="w-4 h-4" /> : stepNum}
-                    </div>
-                    {index < 3 && (
-                      <div
-                        className={`w-8 h-[2px] ${
-                          step > stepNum ? "bg-primary" : "bg-border"
-                        }`}
-                      />
-                    )}
-                  </div>
-                );
-              })}
+            {/* Quick Stats Bar */}
+            <div className="grid grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
+              <div className="text-center p-4 rounded-xl bg-card/50 border border-border/50">
+                <Clock className="w-5 h-5 text-primary mx-auto mb-2" />
+                <div className="text-sm font-medium text-foreground">Same Day</div>
+                <div className="text-xs text-muted-foreground">If needed</div>
+              </div>
+              <div className="text-center p-4 rounded-xl bg-card/50 border border-border/50">
+                <Shield className="w-5 h-5 text-primary mx-auto mb-2" />
+                <div className="text-sm font-medium text-foreground">No Obligation</div>
+                <div className="text-xs text-muted-foreground">Free quote</div>
+              </div>
+              <div className="text-center p-4 rounded-xl bg-card/50 border border-border/50">
+                <Users className="w-5 h-5 text-primary mx-auto mb-2" />
+                <div className="text-sm font-medium text-foreground">Trusted</div>
+                <div className="text-xs text-muted-foreground">Local service</div>
+              </div>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit}>
-              <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-border/50">
-                {/* Step 1: Service */}
-                {step === 1 && (
+              <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 border border-border/50 max-w-3xl mx-auto">
+                <div className="space-y-8">
+                  {/* Step 1: Problem/Service */}
                   <div className="space-y-4">
-                    <h2 className="font-display text-xl font-semibold text-foreground mb-4">
-                      What do you need?
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <span className="text-sm font-bold text-primary">1</span>
+                      </div>
+                      <div>
+                        <h2 className="font-display text-xl md:text-2xl font-bold text-foreground">
+                          What's the issue?
+                        </h2>
+                        <p className="text-sm text-muted-foreground">Pick what's closest to your problem</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {SERVICES.map((service) => (
                         <button
                           key={service.id}
@@ -205,27 +209,38 @@ const Estimate = () => {
                           onClick={() => updateFormData("service", service.id)}
                           className={`p-4 rounded-xl text-left transition-all border ${
                             formData.service === service.id
-                              ? "bg-primary/10 border-primary"
-                              : "bg-secondary/30 border-border/50 hover:border-border"
+                              ? "bg-primary/10 border-primary shadow-sm"
+                              : "bg-secondary/30 border-border/50 hover:border-primary/30"
                           }`}
                         >
-                          <span className="font-medium text-foreground block">{service.name}</span>
+                          <span className="font-medium text-foreground block text-sm md:text-base">{service.name}</span>
                           <span className="text-xs text-muted-foreground">{service.price}</span>
                         </button>
                       ))}
                     </div>
+                    {formData.service && (
+                      <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20 animate-fade-in">
+                        <p className="text-sm text-green-700 dark:text-green-400 flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4" />
+                          Great! We'll discuss this when we call you back.
+                        </p>
+                      </div>
+                    )}
                   </div>
-                )}
 
-                {/* Step 2: Location */}
-                {step === 2 && (
-                  <div className="space-y-4">
-                    <h2 className="font-display text-xl font-semibold text-foreground mb-1">
-                      Where are you?
-                    </h2>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Let's check if we cover your area
-                    </p>
+                  {/* Step 2: Location */}
+                  <div className="space-y-4 pt-8 border-t border-border/50">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <span className="text-sm font-bold text-primary">2</span>
+                      </div>
+                      <div>
+                        <h2 className="font-display text-xl md:text-2xl font-bold text-foreground">
+                          Where are you located?
+                        </h2>
+                        <p className="text-sm text-muted-foreground">Just your postcode for now</p>
+                      </div>
+                    </div>
                     
                     <div className="space-y-4">
                       {/* Postcode Input */}
@@ -286,15 +301,21 @@ const Estimate = () => {
                       )}
                     </div>
                   </div>
-                )}
 
-                {/* Step 3: Vehicle */}
-                {step === 3 && (
-                  <div className="space-y-4">
-                    <h2 className="font-display text-xl font-semibold text-foreground mb-4">
-                      Your vehicle
-                    </h2>
-                    <div className="grid grid-cols-2 gap-4">
+                  {/* Step 3: Vehicle */}
+                  <div className="space-y-4 pt-8 border-t border-border/50">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <span className="text-sm font-bold text-primary">3</span>
+                      </div>
+                      <div>
+                        <h2 className="font-display text-xl md:text-2xl font-bold text-foreground">
+                          Tell us about your car
+                        </h2>
+                        <p className="text-sm text-muted-foreground">Make and model is enough</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Input
                         placeholder="Make (e.g. Ford) *"
                         value={formData.vehicleMake}
@@ -323,27 +344,28 @@ const Estimate = () => {
                       />
                     </div>
                   </div>
-                )}
 
-                {/* Step 4: Contact */}
-                {step === 4 && (
-                  <div className="space-y-4">
-                    <div>
-                      <h2 className="font-display text-xl font-semibold text-foreground mb-1">
-                        Your details
-                      </h2>
-                      <p className="text-sm text-muted-foreground mb-4">
-                        We'll call you to discuss.
-                      </p>
+                  {/* Step 4: Contact */}
+                  <div className="space-y-4 pt-8 border-t border-border/50">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <span className="text-sm font-bold text-primary">4</span>
+                      </div>
+                      <div>
+                        <h2 className="font-display text-xl md:text-2xl font-bold text-foreground">
+                          How can we reach you?
+                        </h2>
+                        <p className="text-sm text-muted-foreground">We'll call within 1 hour (during business hours)</p>
+                      </div>
                     </div>
                     <Input
-                      placeholder="Name *"
+                      placeholder="Your name *"
                       value={formData.name}
                       onChange={(e) => updateFormData("name", e.target.value)}
                       required
                       className="rounded-xl bg-secondary/30 border-border/50"
                     />
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Input
                         type="email"
                         placeholder="Email *"
@@ -371,49 +393,35 @@ const Estimate = () => {
                   </div>
                 )}
 
-                {/* Navigation */}
-                <div className="flex justify-between mt-8 pt-6 border-t border-border/50">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    onClick={prevStep}
-                    disabled={step === 1}
-                    className="rounded-full"
+                {/* Submit */}
+                <div className="mt-8 pt-6 border-t border-border/50">
+                  <Button 
+                    type="submit" 
+                    size="lg"
+                    className="w-full rounded-full h-14 text-lg font-semibold shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/35 hover:scale-[1.02] transition-all"
                   >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Back
+                    Send My Enquiry — We'll Call Back
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
-                  {step < 4 ? (
-                    <Button 
-                      type="button" 
-                      onClick={nextStep} 
-                      disabled={!canProceedFromStep(step)}
-                      className="rounded-full"
-                    >
-                      Next
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  ) : (
-                    <Button 
-                      type="submit" 
-                      disabled={!canProceedFromStep(step)}
-                      className="rounded-full glow-hover"
-                    >
-                      Send Enquiry
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  )}
+                  
+                  <div className="mt-4 p-4 rounded-lg bg-primary/5 border border-primary/10">
+                    <p className="text-sm text-center text-muted-foreground">
+                      <Check className="w-4 h-4 inline text-primary mr-1" />
+                      <strong className="text-foreground">No obligation.</strong> We'll call to discuss your needs and provide a clear quote. No surprise fees.
+                    </p>
+                  </div>
                 </div>
+              </div>
               </div>
             </form>
 
             {/* Quick Contact */}
-            <div className="mt-8 flex items-center gap-4">
-              <span className="text-sm text-muted-foreground">Prefer to call?</span>
-              <Button variant="outline" size="sm" asChild className="rounded-full">
+            <div className="mt-8 text-center">
+              <p className="text-sm text-muted-foreground mb-3">Prefer to speak now?</p>
+              <Button variant="outline" size="lg" asChild className="rounded-full">
                 <a href={`tel:${BUSINESS_INFO.phone}`}>
-                  <Phone className="w-4 h-4 mr-2" />
-                  {BUSINESS_INFO.phone}
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call {BUSINESS_INFO.phone}
                 </a>
               </Button>
             </div>

@@ -9,8 +9,7 @@ import CTASection from "@/components/home/CTASection";
 
 const Index = () => {
   useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    window.scrollTo(0, isMobile ? 52 : 54);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
