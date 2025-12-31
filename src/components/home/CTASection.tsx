@@ -23,7 +23,7 @@ const CTASection = () => {
           </div>
           
           {/* Main heading */}
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-3 sm:mb-4 leading-tight drop-shadow-lg px-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-3 sm:mb-4 leading-tight px-4">
             Need a Mechanic?
             <br />
             We'll Come to You

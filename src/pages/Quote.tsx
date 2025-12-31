@@ -121,7 +121,7 @@ Phone: ${formData.phone}`;
           </div>
 
           {/* Form Card */}
-          <div className="bg-card border border-border rounded-2xl p-4 md:p-8 shadow-lg mx-0 md:mx-auto">
+          <div className="bg-card border border-border rounded-2xl p-4 md:p-8 mx-0 md:mx-auto">
             <form onSubmit={handleSubmit} className="space-y-6">
               
               {/* Step 1: Service Selection */}

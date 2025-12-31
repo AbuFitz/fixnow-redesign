@@ -36,13 +36,13 @@ const HeroSection = () => {
           </div>
           
           {/* Main Headline */}
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] mb-4 sm:mb-5 md:mb-6 animate-slide-up drop-shadow-lg">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[0.9] mb-4 sm:mb-5 md:mb-6 animate-slide-up">
             We come
             <br />
             <span className="relative">
               to{" "}
               <span className="relative inline-block text-[1.3em]">
-                <span className="text-primary italic font-light drop-shadow-[0_0_30px_hsl(var(--primary)/0.5)]">you!</span>
+                <span className="text-primary italic font-light">you!</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 12" preserveAspectRatio="none">
                   <path d="M0,8 Q50,0 100,8" stroke="hsl(var(--primary))" strokeWidth="3" fill="none" strokeLinecap="round" />
                 </svg>
@@ -92,7 +92,7 @@ const HeroSection = () => {
             { value: "Same Day", label: "If Available" },
           ].map((stat) => (
             <div key={stat.label} className="relative">
-              <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary mb-0.5 sm:mb-1 drop-shadow-sm">{stat.value}</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary mb-0.5 sm:mb-1">{stat.value}</div>
               <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground/80">{stat.label}</div>
             </div>
           ))}
