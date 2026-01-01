@@ -16,7 +16,7 @@ const AreasSection = () => {
         />
       </div>
       <div className="absolute inset-0 bg-card/40" />
-
+      
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8 md:mb-10">
