@@ -25,10 +25,9 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-12 md:py-16 bg-secondary/80 relative overflow-hidden">
-      {/* Subtle top/bottom borders for separation */}
-      <div className="absolute inset-x-0 top-0 h-px bg-border/50" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-border/50" />
+    <section className="py-12 md:py-16 bg-gradient-to-b from-surface-elevated to-background relative overflow-hidden">
+      {/* Subtle radial accent */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(var(--primary)/0.06),_transparent_60%)]" />
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         {/* Header */}
         <div className="text-center mb-8 md:mb-10">
