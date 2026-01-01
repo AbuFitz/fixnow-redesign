@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, ArrowLeft, Check, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, MessageCircle, Phone, Car, Wrench, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,24 +17,24 @@ type FormData = {
 };
 
 const services = [
-  { id: 'diagnostics', name: 'Diagnostics', price: 'From £45', icon: '', desc: "Find out what's wrong" },
-  { id: 'brakes', name: 'Brakes', price: 'From £80', icon: '', desc: 'Pads, discs & fluid' },
-  { id: 'servicing', name: 'Servicing', price: 'From £120', icon: '', desc: 'Full service package' },
-  { id: 'electrical', name: 'Electrical', price: 'From £40', icon: '', desc: 'Battery & electrics' },
-  { id: 'suspension', name: 'Suspension', price: 'From £100', icon: '', desc: 'Shocks & springs' },
-  { id: 'general', name: 'Other Repair', price: 'Quote needed', icon: '', desc: 'General repairs' }
+  { id: 'diagnostics', name: 'Diagnostics', price: 'From £45', icon: Wrench, desc: "Find what's wrong" },
+  { id: 'brakes', name: 'Brakes', price: 'From £80', icon: Car, desc: 'Pads, discs & fluid' },
+  { id: 'servicing', name: 'Servicing', price: 'From £120', icon: Wrench, desc: 'Full service' },
+  { id: 'electrical', name: 'Electrical', price: 'From £40', icon: Wrench, desc: 'Battery & electrics' },
+  { id: 'suspension', name: 'Suspension', price: 'From £100', icon: Car, desc: 'Shocks & springs' },
+  { id: 'general', name: 'Other', price: 'Quote needed', icon: Wrench, desc: 'General repairs' }
 ];
 
 const urgencyOptions = [
-  { id: 'flexible', label: "I'm flexible", sublabel: 'Book me in when convenient' },
-  { id: 'this-week', label: 'This week', sublabel: 'Prefer within 7 days' },
-  { id: 'urgent', label: 'ASAP', sublabel: 'Need it sorted quickly' }
+  { id: 'flexible', label: "I'm flexible", sublabel: 'When convenient' },
+  { id: 'this-week', label: 'This week', sublabel: 'Within 7 days' },
+  { id: 'urgent', label: 'ASAP', sublabel: 'Need it quick' }
 ];
 
 const contactMethods = [
-  { id: 'whatsapp', icon: '', label: 'WhatsApp' },
-  { id: 'call', icon: '', label: 'Phone call' },
-  { id: 'text', icon: '', label: 'Text' }
+  { id: 'whatsapp', label: 'WhatsApp', icon: MessageCircle },
+  { id: 'call', label: 'Call', icon: Phone },
+  { id: 'text', label: 'Text', icon: MessageCircle }
 ];
 
 const Quote = () => {
@@ -55,16 +55,14 @@ const Quote = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submission:', formData);
     
-    // Create WhatsApp message
-    const message = `Hi, I'd like a quote for my car.
+    const message = `Hi, I'd like a quote.
 
 Vehicle: ${formData.registration}
 Service: ${services.find(s => s.id === formData.service)?.name}
 Issue: ${formData.description}
 Urgency: ${urgencyOptions.find(u => u.id === formData.urgency)?.label}
-Preferred contact: ${contactMethods.find(c => c.id === formData.contactMethod)?.label}
+Contact: ${contactMethods.find(c => c.id === formData.contactMethod)?.label}
 
 Name: ${formData.name}
 Phone: ${formData.phone}`;
@@ -84,236 +82,239 @@ Phone: ${formData.phone}`;
   };
 
   const nextStep = () => {
-    if (canProceed()) {
-      setStep(prev => prev + 1);
-    }
+    if (canProceed()) setStep(prev => prev + 1);
   };
 
   const prevStep = () => setStep(prev => prev - 1);
 
+  const stepIcons = [Wrench, Car, Clock, User];
+  const stepTitles = ['Service', 'Vehicle', 'Details', 'Contact'];
+
   return (
     <Layout>
-      <section className="min-h-screen py-8 md:py-20 px-0 md:px-4 flex flex-col items-center justify-center bg-background">
-        <div className="w-full max-w-full md:max-w-2xl mx-auto px-0 md:px-0">
-          {/* Progress Bar */}
-          <div className="mb-8 px-4 md:px-0">
-            <div className="flex items-center justify-between mb-3">
-              {[1, 2, 3, 4].map((s) => (
+      <section className="min-h-screen pt-20 pb-10 px-4 flex flex-col items-center bg-background">
+        <div className="w-full max-w-lg mx-auto">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-1">
+              Get Your Free Quote
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Quick and easy - takes less than 2 minutes
+            </p>
+          </div>
+
+          {/* Progress Steps */}
+          <div className="flex items-center justify-between mb-8 px-2">
+            {[1, 2, 3, 4].map((s, i) => {
+              const Icon = stepIcons[i];
+              return (
                 <div key={s} className="flex items-center flex-1">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
-                    s < step ? 'bg-primary text-background' :
-                    s === step ? 'bg-primary text-background ring-4 ring-primary/20' :
-                    'bg-card border-2 border-border text-muted-foreground'
-                  }`}>
-                    {s < step ? <Check className="w-5 h-5" /> : s}
+                  <div className="flex flex-col items-center">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                      s < step ? 'bg-primary text-primary-foreground' :
+                      s === step ? 'bg-primary text-primary-foreground ring-4 ring-primary/20' :
+                      'bg-secondary border border-border text-muted-foreground'
+                    }`}>
+                      {s < step ? <Check className="w-4 h-4" /> : <Icon className="w-4 h-4" />}
+                    </div>
+                    <span className={`text-[10px] mt-1 font-medium ${s <= step ? 'text-foreground' : 'text-muted-foreground'}`}>
+                      {stepTitles[i]}
+                    </span>
                   </div>
                   {s < 4 && (
-                    <div className={`flex-1 h-1 mx-2 rounded-full transition-all ${
+                    <div className={`flex-1 h-0.5 mx-1 mt-[-12px] transition-all ${
                       s < step ? 'bg-primary' : 'bg-border'
                     }`} />
                   )}
                 </div>
-              ))}
-            </div>
-            <p className="text-sm text-muted-foreground text-center">
-              Step {step} of 4
-            </p>
+              );
+            })}
           </div>
 
           {/* Form Card */}
-          <div className="bg-card border border-border rounded-2xl p-4 md:p-8 mx-0 md:mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              
-              {/* Step 1: Service Selection */}
-              {step === 1 && (
-                <div className="space-y-6 animate-fade-in">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                      What do you need help with?
-                    </h2>
-                    <p className="text-muted-foreground">Choose the service closest to what you need</p>
+          <div className="bg-card border border-border rounded-2xl overflow-hidden">
+            <form onSubmit={handleSubmit}>
+              <div className="p-5 md:p-6">
+                {/* Step 1: Service Selection */}
+                {step === 1 && (
+                  <div className="space-y-4 animate-fade-in">
+                    <div>
+                      <h2 className="text-lg font-bold text-foreground mb-1">
+                        What do you need?
+                      </h2>
+                      <p className="text-sm text-muted-foreground">Select the service closest to your needs</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      {services.map((service) => {
+                        const Icon = service.icon;
+                        return (
+                          <button
+                            key={service.id}
+                            type="button"
+                            onClick={() => updateFormData('service', service.id)}
+                            className={`p-3 rounded-xl text-left transition-all border-2 ${
+                              formData.service === service.id
+                                ? 'bg-primary/10 border-primary'
+                                : 'bg-secondary/50 border-transparent hover:border-border'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2 mb-1">
+                              <Icon className={`w-4 h-4 ${formData.service === service.id ? 'text-primary' : 'text-muted-foreground'}`} />
+                              <span className="font-semibold text-sm text-foreground">{service.name}</span>
+                            </div>
+                            <p className="text-xs text-muted-foreground">{service.desc}</p>
+                            <p className="text-xs text-primary font-medium mt-1">{service.price}</p>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {services.map((service) => (
-                      <button
-                        key={service.id}
-                        type="button"
-                        onClick={() => updateFormData('service', service.id)}
-                        className={`min-h-[80px] p-4 rounded-xl text-left transition-all border-2 ${
-                          formData.service === service.id
-                            ? 'bg-primary/10 border-primary'
-                            : 'bg-secondary border-border hover:border-primary/50'
-                        }`}
-                      >
-                        <div className="flex items-start gap-3">
-                          {service.icon && <span className="text-3xl" role="img" aria-label={service.name}>{service.icon}</span>}
-                          <div className="flex-1 min-w-0">
-                            <div className="font-semibold text-foreground text-base">{service.name}</div>
-                            <div className="text-sm text-muted-foreground">{service.desc}</div>
-                            <div className="text-xs text-primary font-medium mt-1">{service.price}</div>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+                )}
 
-              {/* Step 2: Vehicle Registration */}
-              {step === 2 && (
-                <div className="space-y-6 animate-fade-in">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                      What's your vehicle?
-                    </h2>
-                    <p className="text-muted-foreground">Enter your UK registration plate</p>
-                  </div>
-                  
-                  <div className="flex justify-center">
-                    <div className="uk-reg-plate">
-                      <div className="reg-blue-strip">
-                        <div className="flex flex-col items-center leading-none">
-                          <span className="text-[10px]">GB</span>
-                          <span className="text-[6px] mt-0.5">🇬🇧</span>
+                {/* Step 2: Vehicle Registration */}
+                {step === 2 && (
+                  <div className="space-y-4 animate-fade-in">
+                    <div>
+                      <h2 className="text-lg font-bold text-foreground mb-1">
+                        Your Vehicle
+                      </h2>
+                      <p className="text-sm text-muted-foreground">Enter your registration plate</p>
+                    </div>
+                    
+                    <div className="flex justify-center py-4">
+                      <div className="flex bg-white rounded-lg overflow-hidden shadow-lg max-w-[260px]">
+                        <div className="bg-[#003399] text-white px-3 py-4 flex flex-col items-center justify-center">
+                          <span className="text-[10px] font-bold">GB</span>
+                          <span className="text-[8px]">🇬🇧</span>
                         </div>
+                        <Input
+                          type="text"
+                          value={formData.registration}
+                          onChange={(e) => updateFormData('registration', e.target.value.toUpperCase())}
+                          placeholder="AB12 CDE"
+                          maxLength={8}
+                          className="flex-1 border-0 bg-[#F7DC6F] text-black font-bold text-xl text-center tracking-widest h-full rounded-none focus-visible:ring-0"
+                          required
+                        />
                       </div>
-                      <Input
-                        type="text"
-                        value={formData.registration}
-                        onChange={(e) => updateFormData('registration', e.target.value.toUpperCase())}
-                        placeholder="AB12 CDE"
-                        maxLength={8}
-                        className="reg-input"
-                        required
-                      />
                     </div>
+                    
+                    <p className="text-xs text-muted-foreground text-center">
+                      Helps us prepare the right parts
+                    </p>
                   </div>
-                  
-                  <p className="text-xs text-muted-foreground text-center">
-                    This helps us prepare the right parts and equipment
-                  </p>
-                </div>
-              )}
+                )}
 
-              {/* Step 3: Description & Urgency */}
-              {step === 3 && (
-                <div className="space-y-6 animate-fade-in">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                      Tell us what's happening
-                    </h2>
-                    <p className="text-muted-foreground">Any details help us give an accurate quote</p>
-                  </div>
-                  
-                  <Textarea
-                    value={formData.description}
-                    onChange={(e) => updateFormData('description', e.target.value)}
-                    placeholder="e.g. 'Dashboard warning light appeared' or 'Hearing squeaking when braking'"
-                    rows={4}
-                    className="resize-none bg-secondary border-border text-foreground"
-                    required
-                  />
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-3">
-                      How urgent is this?
-                    </label>
-                    <div className="space-y-2">
-                      {urgencyOptions.map((option) => (
-                        <button
-                          key={option.id}
-                          type="button"
-                          onClick={() => updateFormData('urgency', option.id)}
-                          className={`w-full min-h-[56px] p-4 rounded-xl text-left transition-all border-2 ${
-                            formData.urgency === option.id
-                              ? 'bg-primary/10 border-primary'
-                              : 'bg-secondary border-border hover:border-primary/50'
-                          }`}
-                        >
-                          <div className="font-semibold text-foreground">{option.label}</div>
-                          <div className="text-sm text-muted-foreground">{option.sublabel}</div>
-                        </button>
-                      ))}
+                {/* Step 3: Description & Urgency */}
+                {step === 3 && (
+                  <div className="space-y-4 animate-fade-in">
+                    <div>
+                      <h2 className="text-lg font-bold text-foreground mb-1">
+                        Tell us more
+                      </h2>
+                      <p className="text-sm text-muted-foreground">What's happening with your vehicle?</p>
                     </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 4: Contact Details */}
-              {step === 4 && (
-                <div className="space-y-6 animate-fade-in">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                      How should we reach you?
-                    </h2>
-                    <p className="text-muted-foreground">We'll get back to you within an hour</p>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <Input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => updateFormData('name', e.target.value)}
-                      placeholder="Your name"
-                      className="h-12 bg-secondary border-border text-foreground"
+                    
+                    <Textarea
+                      value={formData.description}
+                      onChange={(e) => updateFormData('description', e.target.value)}
+                      placeholder="e.g. 'Warning light on dashboard' or 'Squeaking when braking'"
+                      rows={3}
+                      className="resize-none bg-secondary border-border"
                       required
                     />
                     
-                    <Input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => updateFormData('phone', e.target.value)}
-                      placeholder="Phone number"
-                      className="h-12 bg-secondary border-border text-foreground"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-3">
-                      Preferred contact method
-                    </label>
-                    <div className="grid grid-cols-3 gap-3">
-                      {contactMethods.map((method) => (
-                        <button
-                          key={method.id}
-                          type="button"
-                          onClick={() => updateFormData('contactMethod', method.id)}
-                          className={`min-h-[72px] p-3 rounded-xl transition-all border-2 flex flex-col items-center justify-center gap-2 ${
-                            formData.contactMethod === method.id
-                              ? 'bg-primary/10 border-primary'
-                              : 'bg-secondary border-border hover:border-primary/50'
-                          }`}
-                        >
-                          {method.icon && <span className="text-2xl" role="img" aria-label={method.label}>{method.icon}</span>}
-                          <span className="text-xs font-medium text-foreground">{method.label}</span>
-                        </button>
-                      ))}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        How urgent?
+                      </label>
+                      <div className="grid grid-cols-3 gap-2">
+                        {urgencyOptions.map((option) => (
+                          <button
+                            key={option.id}
+                            type="button"
+                            onClick={() => updateFormData('urgency', option.id)}
+                            className={`p-3 rounded-xl text-center transition-all border-2 ${
+                              formData.urgency === option.id
+                                ? 'bg-primary/10 border-primary'
+                                : 'bg-secondary/50 border-transparent hover:border-border'
+                            }`}
+                          >
+                            <div className="font-semibold text-sm text-foreground">{option.label}</div>
+                            <div className="text-[10px] text-muted-foreground">{option.sublabel}</div>
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  
-                  {formData.contactMethod === 'whatsapp' && (
-                    <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
-                      <p className="text-sm text-green-700 dark:text-green-400 flex items-center gap-2">
-                        <MessageCircle className="w-4 h-4" />
-                        We'll send your quote via WhatsApp - quick and easy!
-                      </p>
-                    </div>
-                  )}
-                </div>
-              )}
+                )}
 
-              {/* Navigation Buttons */}
-              <div className="flex items-center gap-3 pt-6 border-t border-border">
+                {/* Step 4: Contact Details */}
+                {step === 4 && (
+                  <div className="space-y-4 animate-fade-in">
+                    <div>
+                      <h2 className="text-lg font-bold text-foreground mb-1">
+                        Your Details
+                      </h2>
+                      <p className="text-sm text-muted-foreground">We'll get back within an hour</p>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <Input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => updateFormData('name', e.target.value)}
+                        placeholder="Your name"
+                        className="h-11 bg-secondary border-border"
+                        required
+                      />
+                      
+                      <Input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => updateFormData('phone', e.target.value)}
+                        placeholder="Phone number"
+                        className="h-11 bg-secondary border-border"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Contact preference
+                      </label>
+                      <div className="grid grid-cols-3 gap-2">
+                        {contactMethods.map((method) => {
+                          const Icon = method.icon;
+                          return (
+                            <button
+                              key={method.id}
+                              type="button"
+                              onClick={() => updateFormData('contactMethod', method.id)}
+                              className={`p-3 rounded-xl flex flex-col items-center gap-1 transition-all border-2 ${
+                                formData.contactMethod === method.id
+                                  ? 'bg-primary/10 border-primary'
+                                  : 'bg-secondary/50 border-transparent hover:border-border'
+                              }`}
+                            >
+                              <Icon className={`w-5 h-5 ${formData.contactMethod === method.id ? 'text-primary' : 'text-muted-foreground'}`} />
+                              <span className="text-xs font-medium text-foreground">{method.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Navigation */}
+              <div className="border-t border-border p-4 flex gap-2 bg-secondary/30">
                 {step > 1 && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={prevStep}
-                    className="flex-1"
-                  >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
+                  <Button type="button" variant="outline" onClick={prevStep} className="flex-1">
+                    <ArrowLeft className="w-4 h-4 mr-1" />
                     Back
                   </Button>
                 )}
@@ -323,117 +324,41 @@ Phone: ${formData.phone}`;
                     type="button"
                     onClick={nextStep}
                     disabled={!canProceed()}
-                    className={`${step === 1 ? 'w-full' : 'flex-1'}`}
+                    className={step === 1 ? 'w-full' : 'flex-1'}
                   >
                     Continue
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
                 ) : (
-                  <Button
-                    type="submit"
-                    disabled={!canProceed()}
-                    className="flex-1"
-                  >
-                    Send Quote Request
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                  <Button type="submit" disabled={!canProceed()} className="flex-1">
+                    Send Request
+                    <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
                 )}
               </div>
             </form>
-            
-            {/* Trust Badges & WhatsApp Alternative */}
-            <div className="mt-6 pt-6 border-t border-border text-center flex flex-col gap-4">
-              <div className="flex flex-wrap justify-center gap-2 mb-2">
-                <span className="inline-block px-3 py-1 rounded-full bg-secondary text-xs font-semibold text-muted-foreground border border-border">No Obligation</span>
-                <span className="inline-block px-3 py-1 rounded-full bg-secondary text-xs font-semibold text-muted-foreground border border-border">Free Quote</span>
-                <span className="inline-block px-3 py-1 rounded-full bg-secondary text-xs font-semibold text-muted-foreground border border-border">Trusted Local</span>
-              </div>
-              <p className="text-sm text-muted-foreground mb-1">Or message us directly on WhatsApp</p>
-              <Button variant="outline" size="sm" asChild>
-                <a
-                  href="https://wa.me/447354915941?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20my%20car."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Chat on WhatsApp
-                </a>
-              </Button>
+          </div>
+
+          {/* Trust & Alternative */}
+          <div className="mt-6 text-center">
+            <div className="flex justify-center gap-3 mb-3">
+              <span className="px-3 py-1 rounded-full bg-secondary text-xs font-medium text-muted-foreground">No Obligation</span>
+              <span className="px-3 py-1 rounded-full bg-secondary text-xs font-medium text-muted-foreground">Free Quote</span>
             </div>
+            <p className="text-sm text-muted-foreground mb-2">Or message us directly</p>
+            <Button variant="outline" size="sm" asChild className="rounded-full">
+              <a
+                href="https://wa.me/447354915941?text=Hi%2C%20I%27d%20like%20a%20quote."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Chat on WhatsApp
+              </a>
+            </Button>
           </div>
         </div>
       </section>
-      
-      <style>{`
-        .uk-reg-plate {
-          display: flex;
-          background: #FFFFFF;
-          border-radius: 8px;
-          overflow: hidden;
-          max-width: 280px;
-          margin: 0 auto;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .reg-blue-strip {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 12px 10px;
-          background: #003399;
-          color: white;
-          font-size: 0.75rem;
-          font-weight: 700;
-        }
-
-        .reg-input {
-          flex: 1;
-          padding: 16px 12px;
-          border: none;
-          background: #F7DC6F;
-          font-size: 1.5rem;
-          font-weight: 700;
-          text-align: center;
-          letter-spacing: 2px;
-          color: #0A0A0A;
-          text-transform: uppercase;
-          border-radius: 0;
-          height: auto;
-        }
-
-        .reg-input:focus {
-          outline: none;
-          box-shadow: none;
-        }
-
-        .reg-input::placeholder {
-          color: rgba(10, 10, 10, 0.4);
-        }
-
-        @media (max-width: 767px) {
-          .bg-card {
-            background: #181818 !important;
-          }
-          .border-border {
-            border-color: #232323 !important;
-          }
-        }
-
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
-        }
-      `}</style>
     </Layout>
   );
 };
