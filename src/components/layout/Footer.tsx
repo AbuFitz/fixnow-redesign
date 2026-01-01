@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, Clock } from "lucide-react";
 import { BUSINESS_INFO, LOCATIONS } from "@/lib/constants";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-4 md:px-6 py-10 md:py-14">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         {/* Desktop Layout */}
-        <div className="hidden md:grid md:grid-cols-4 gap-8 mb-10">
+        <div className="hidden md:grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
             <Link to="/" className="inline-block mb-3">
@@ -112,41 +110,27 @@ const Footer = () => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden space-y-6 mb-8">
-          {/* Brand */}
-          <div>
-            <Link to="/" className="inline-block mb-2">
-              <span className="font-display font-bold text-lg">
+        <div className="md:hidden space-y-4 mb-6">
+          {/* Brand + Contact Row */}
+          <div className="flex items-start justify-between gap-4">
+            <Link to="/" className="shrink-0">
+              <span className="font-display font-bold text-base">
                 <span className="text-foreground">Fix</span>
                 <span className="text-primary">Now</span>
                 <span className="text-foreground"> Mechanics</span>
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground">
-              Mobile mechanic services at your location.
-            </p>
-          </div>
-
-          {/* Contact */}
-          <div className="space-y-2">
             <a
               href={`tel:${BUSINESS_INFO.phone}`}
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              className="flex items-center gap-1.5 text-foreground text-sm font-medium"
             >
-              <Phone className="w-4 h-4" />
-              <span className="font-medium">{BUSINESS_INFO.phone}</span>
-            </a>
-            <a
-              href={`mailto:${BUSINESS_INFO.email}`}
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              <span className="text-sm">{BUSINESS_INFO.email}</span>
+              <Phone className="w-3.5 h-3.5 text-primary" />
+              {BUSINESS_INFO.phone}
             </a>
           </div>
 
-          {/* Links */}
-          <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          {/* Links Row */}
+          <nav className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm">
             <Link to="/services" className="text-muted-foreground hover:text-primary">Services</Link>
             <Link to="/locations" className="text-muted-foreground hover:text-primary">Areas</Link>
             <Link to="/quote" className="text-muted-foreground hover:text-primary">Quote</Link>
@@ -156,11 +140,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-border">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-muted-foreground">
-            <p>© {currentYear} {BUSINESS_INFO.name}. All rights reserved.</p>
-            <p className="flex items-center gap-1 text-xs">
-              <MapPin className="w-3 h-3" />
+        <div className="pt-4 lg:pt-6 border-t border-border">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+            <p>© 2025 {BUSINESS_INFO.name}. All rights reserved.</p>
+            <p className="text-xs">
               Serving {BUSINESS_INFO.coverage} of Hemel Hempstead
             </p>
           </div>

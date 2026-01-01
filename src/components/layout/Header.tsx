@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, MapPin } from "lucide-react";
+import { Menu, X, Phone, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BUSINESS_INFO } from "@/lib/constants";
 
@@ -39,7 +39,6 @@ const Header = () => {
     return location.pathname.startsWith(href);
   };
 
-  // Determine if quote button should be visible
   const showQuoteButton = !isHomePage || scrolled;
 
   return (
@@ -47,164 +46,146 @@ const Header = () => {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isHomePage && !scrolled
           ? 'bg-transparent'
-          : 'bg-background/98 backdrop-blur-lg border-b border-border/50 shadow-sm'
+          : 'bg-background/95 backdrop-blur-xl border-b border-border/40 shadow-lg shadow-black/5'
       }`}
     >
-      <div className="container mx-auto px-4 lg:px-6">
-        <div className="flex items-center justify-between lg:justify-center lg:gap-12 h-16 lg:h-20">
-          {/* Logo - Left on mobile, part of center group on desktop */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-18">
+          {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-1.5 lg:mr-auto"
+            className="flex items-center shrink-0"
             onClick={() => setIsOpen(false)}
           >
-            <span className="font-display font-bold text-xl lg:text-2xl">
+            <span className="font-display font-bold text-lg sm:text-xl lg:text-2xl tracking-tight">
               <span className="text-foreground">Fix</span>
               <span className="text-primary">Now</span>
-              <span className="hidden sm:inline text-foreground ml-1.5">Mechanics</span>
+              <span className="text-foreground ml-1 sm:ml-1.5">Mechanics</span>
             </span>
           </Link>
 
-          {/* Desktop Navigation - Centered */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-sm font-medium transition-all relative group ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   isActive(link.href)
-                    ? 'text-primary'
-                    : 'text-foreground/70 hover:text-foreground'
+                    ? 'text-primary bg-primary/10'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-muted/50'
                 }`}
               >
                 {link.name}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all ${
-                  isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
               </Link>
             ))}
           </nav>
 
-          {/* Desktop Right Section - Phone + Quote Button */}
-          <div className="hidden lg:flex items-center gap-4 lg:ml-auto">
+          {/* Desktop Right Section */}
+          <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${BUSINESS_INFO.phone}`}
-              className="hidden xl:flex items-center gap-2 px-4 py-2.5 rounded-full bg-primary/10 hover:bg-primary/20 transition-all text-foreground font-medium text-sm group"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-muted/50 transition-all text-foreground/80 hover:text-foreground"
             >
-              <Phone className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
-              <span>{BUSINESS_INFO.phone}</span>
+              <Phone className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium">{BUSINESS_INFO.phone}</span>
             </a>
 
-            {/* Quote Button - Always takes space, but visibility controlled */}
             <Button
               asChild
-              size="default"
-              className={`rounded-full font-semibold transition-opacity duration-300 ${
-                showQuoteButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              size="sm"
+              className={`rounded-lg font-semibold px-5 transition-all duration-300 ${
+                showQuoteButton ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
               }`}
             >
               <Link to="/quote">Get Quote</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2.5 hover:bg-primary/10 rounded-lg transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <X className="w-6 h-6 text-foreground" />
-            ) : (
-              <Menu className="w-6 h-6 text-foreground" />
-            )}
-          </button>
+          {/* Mobile Right Section */}
+          <div className="flex lg:hidden items-center gap-2">
+            <a
+              href={`tel:${BUSINESS_INFO.phone}`}
+              className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+              aria-label="Call us"
+            >
+              <Phone className="w-5 h-5 text-primary" />
+            </a>
+            
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg hover:bg-muted/50 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? (
+                <X className="w-6 h-6 text-foreground" />
+              ) : (
+                <Menu className="w-6 h-6 text-foreground" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <div
-          className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      <div
+        className={`lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setIsOpen(false)}
+      />
 
       {/* Mobile Menu Panel */}
       <div
-        className={`lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-background border-t border-border transform transition-transform duration-300 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`lg:hidden fixed top-14 sm:top-16 left-0 right-0 bg-background border-t border-border/50 shadow-2xl transform transition-all duration-300 ${
+          isOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
         }`}
       >
-        <nav className="h-full flex flex-col">
+        <nav className="container mx-auto px-4 py-4">
           {/* Navigation Links */}
-          <div className="flex-1 overflow-y-auto px-6 py-8">
-            <div className="space-y-1 mb-8">
+          <div className="space-y-1 mb-4">
+            <Link
+              to="/"
+              onClick={() => setIsOpen(false)}
+              className={`flex items-center justify-between py-3 px-4 rounded-xl text-base font-medium transition-all ${
+                location.pathname === "/"
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-foreground hover:bg-muted/50'
+              }`}
+            >
+              <span>Home</span>
+              <ChevronRight className="w-4 h-4 opacity-40" />
+            </Link>
+            {navLinks.map((link) => (
               <Link
-                to="/"
+                key={link.href}
+                to={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block py-3 px-4 rounded-lg text-base font-medium transition-all ${
-                  location.pathname === "/"
+                className={`flex items-center justify-between py-3 px-4 rounded-xl text-base font-medium transition-all ${
+                  isActive(link.href)
                     ? 'bg-primary/10 text-primary'
-                    : 'text-foreground/80 hover:bg-primary/5 hover:text-foreground'
+                    : 'text-foreground hover:bg-muted/50'
                 }`}
               >
-                Home
+                <span>{link.name}</span>
+                <ChevronRight className="w-4 h-4 opacity-40" />
               </Link>
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`block py-3 px-4 rounded-lg text-base font-medium transition-all ${
-                    isActive(link.href)
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-foreground/80 hover:bg-primary/5 hover:text-foreground'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-
-            {/* Mobile Contact Info */}
-            <div className="space-y-3 py-6 border-t border-border/50">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-4">Contact</p>
-              <a
-                href={`tel:${BUSINESS_INFO.phone}`}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-all group"
-              >
-                <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                  <Phone className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Call us now</p>
-                  <p className="text-sm font-semibold text-foreground">{BUSINESS_INFO.phone}</p>
-                </div>
-              </a>
-              <div className="flex items-start gap-3 px-4 py-2">
-                <MapPin className="w-4 h-4 text-primary mt-1" />
-                <div>
-                  <p className="text-xs text-muted-foreground">Coverage</p>
-                  <p className="text-sm font-medium text-foreground">{BUSINESS_INFO.coverage} radius</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* Mobile CTA Section */}
-          <div className="border-t border-border/50 p-6 bg-card/30">
+          {/* CTA Button */}
+          <div className="pt-4 border-t border-border/50">
             <Button
               asChild
               size="lg"
-              className="w-full rounded-full font-bold text-base h-14"
+              className="w-full rounded-xl font-bold text-base h-12"
             >
               <Link to="/quote" onClick={() => setIsOpen(false)}>
                 Get Free Quote
               </Link>
             </Button>
-            <p className="text-center text-xs text-muted-foreground mt-3">
-              Same day slots • No obligation • Free estimates
+            <p className="text-center text-xs text-muted-foreground mt-2">
+              Free estimates • No obligation
             </p>
           </div>
         </nav>
