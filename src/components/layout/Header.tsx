@@ -63,6 +63,7 @@ const Header = () => {
               <span className="font-display font-bold text-xl lg:text-2xl tracking-tight">
                 <span className="text-foreground">Fix</span>
                 <span className="text-primary">Now</span>
+                <span className="text-foreground"> Mechanics</span>
               </span>
             </Link>
 
@@ -72,25 +73,13 @@ const Header = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`relative px-6 py-2 rounded-full text-[15px] font-medium transition-all duration-300 ${
+                  className={`px-6 py-2 rounded-full text-[15px] font-medium transition-all duration-300 ${
                     isActive(link.href)
-                      ? 'text-foreground'
-                      : 'text-foreground/60 hover:text-foreground/90'
+                      ? 'bg-primary text-background'
+                      : 'text-foreground/60 hover:text-foreground/90 hover:bg-card/30'
                   }`}
                 >
-                  <span className="relative z-10">{link.name}</span>
-                  {isActive(link.href) && (
-                    <div className="absolute inset-0 bg-primary rounded-full" 
-                         style={{ 
-                           animation: 'fadeIn 0.3s ease-in-out'
-                         }} 
-                    />
-                  )}
-                  {isActive(link.href) && (
-                    <span className="absolute inset-0 flex items-center justify-center z-10 text-background font-semibold">
-                      {link.name}
-                    </span>
-                  )}
+                  {link.name}
                 </Link>
               ))}
             </nav>
@@ -129,18 +118,18 @@ const Header = () => {
               
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2.5 rounded-full border border-border/40 bg-card/30 active:scale-95 transition-all duration-200"
-                aria-label="Toggle menu"
+                className="p-2.5 rounded-full border border-3">
+              <a
+                href={`tel:${BUSINESS_INFO.phone}`}
+                className="flex items-center justify-center active:scale-95 transition-all duration-200"
+                aria-label="Call us"
               >
-                <div className="relative w-6 h-6">
-                  <Menu 
-                    className={`absolute inset-0 w-6 h-6 text-foreground transition-all duration-300 ${
-                      isOpen ? 'rotate-90 opacity-0 scale-0' : 'rotate-0 opacity-100 scale-100'
-                    }`} 
-                  />
-                  <X 
-                    className={`absolute inset-0 w-6 h-6 text-foreground transition-all duration-300 ${
-                      isOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-0'
+                <Phone className="w-5 h-5 text-primary" />
+              </a>
+              
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2acity-0 scale-0'
                     }`} 
                   />
                 </div>
@@ -161,81 +150,41 @@ const Header = () => {
       {/* Mobile Menu Panel */}
       <div
         className={`lg:hidden fixed inset-x-0 top-16 bottom-0 bg-background/95 backdrop-blur-2xl transition-all duration-400 z-40 overflow-y-auto ${
-          isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
+          isOpen ? 'tr*/}
+      <div
+        className={`lg:hidden fixed inset-x-0 top-16 bg-background/80 backdrop-blur-xl border-b border-border/40 transition-all duration-300 z-40 ${
+          isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <nav className="h-full flex flex-col px-6 py-8">
-          
-          {/* Menu Header */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-1">Menu</h2>
-            <div className="h-1 w-12 bg-primary rounded-full" />
-          </div>
-
+        <nav className="px-4 py-6">
           {/* Navigation Links */}
-          <div className="flex-1 space-y-3">
-            {navLinks.map((link, index) => (
+          <div className="space-y-2 mb-6">
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`group flex items-center justify-between py-4 px-6 rounded-2xl font-medium text-lg transition-all duration-300 ${
+                className={`block py-3 px-4 rounded-lg font-medium text-base transition-all duration-200 ${
                   isActive(link.href)
                     ? 'bg-primary text-background'
-                    : 'bg-card/40 text-foreground/80 active:bg-card/60 border border-border/40'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-card/50'
                 }`}
-                style={{
-                  animation: isOpen ? `slideInRight 0.4s ease-out ${index * 0.1}s both` : 'none'
-                }}
               >
-                <span className="flex items-center gap-4">
-                  <span className={`text-2xl font-bold ${
-                    isActive(link.href) ? 'text-background/60' : 'text-primary'
-                  }`}>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  {link.name}
-                </span>
-                <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  isActive(link.href) 
-                    ? 'bg-background scale-100' 
-                    : 'bg-primary/30 scale-0 group-active:scale-100'
-                }`} />
+                {link.name}
               </Link>
             ))}
           </div>
 
-          {/* CTA Section */}
-          <div 
-            className="mt-auto pt-8 border-t border-border/40"
-            style={{
-              animation: isOpen ? 'slideInUp 0.4s ease-out 0.3s both' : 'none'
-            }}
+          {/* CTA Button */}
+          <Button
+            asChild
+            size="lg"
+            className="w-full rounded-lg font-semibold"
           >
-            <Button
-              asChild
-              size="lg"
-              className="w-full rounded-2xl font-bold text-base h-14 mb-4"
-            >
-              <Link to="/quote" onClick={() => setIsOpen(false)}>
-                Get Free Quote
-              </Link>
-            </Button>
-            <p className="text-center text-sm text-muted-foreground">
-              Free estimates • No obligation
-            </p>
-          </div>
-        </nav>
-      </div>
-
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
+            <Link to="/quote" onClick={() => setIsOpen(false)}>
+              Get Free Quote
+            </Link>
+          </Buttoncity: 1;
             transform: scale(1);
           }
         }
