@@ -1,353 +1,330 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Monitor, Settings, CircleDot, Zap, Wrench, Phone, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Phone, CheckCircle2, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO } from "@/lib/constants";
-import engineDetailImg from "@/assets/engine-detail.jpg";
-import { useState } from "react";
-
-const serviceCategories = [
-  {
-    id: "diagnostics",
-    name: "Diagnostic Services",
-    icon: Monitor,
-    description: "Find out what's wrong with your vehicle",
-    color: "from-blue-500/10 to-cyan-500/10",
-    borderColor: "border-blue-500/20",
-    iconColor: "text-blue-500",
-    services: [
-      {
-        name: "Mobile Diagnostic",
-        price: "From £45",
-        description: "Full OBD diagnostic scan, visual inspection, and written report.",
-        includes: [
-          "Full OBD diagnostic scan",
-          "Visual inspection",
-          "Written report explaining findings",
-          "Identify the problem clearly",
-        ],
-      },
-      {
-        name: "Pre-Purchase Inspection",
-        price: "From £85",
-        description: "Comprehensive 40-point inspection before you buy a used car.",
-        includes: [
-          "Comprehensive 40-point inspection",
-          "Diagnostic scan",
-          "Test drive where possible",
-          "Detailed report with photos",
-        ],
-      },
-      {
-        name: "Basic Health Check",
-        price: "From £35",
-        description: "Quick inspection ideal before a long journey.",
-        includes: [
-          "Fluid level checks",
-          "Tyre inspection",
-          "Lights check",
-          "Battery test",
-        ],
-      },
-    ],
-  },
-  {
-    id: "servicing",
-    name: "Servicing",
-    icon: Settings,
-    description: "Keep your vehicle running smoothly",
-    color: "from-green-500/10 to-emerald-500/10",
-    borderColor: "border-green-500/20",
-    iconColor: "text-green-500",
-    services: [
-      {
-        name: "Interim Service",
-        price: "From £110",
-        description: "Recommended every 6 months or 6,000 miles.",
-        includes: [
-          "Engine oil and filter replacement",
-          "Fluid checks and top-ups",
-          "Tyre inspection",
-          "Brake check",
-          "30-point safety inspection",
-        ],
-      },
-      {
-        name: "Full Service",
-        price: "From £150",
-        description: "Annual service with comprehensive inspection.",
-        note: "Petrol from £150 / Diesel from £180. Diesel includes fuel filter.",
-        includes: [
-          "Everything in interim service",
-          "Air filter replacement",
-          "Cabin filter replacement",
-          "50-point comprehensive inspection",
-          "Service book stamped",
-        ],
-      },
-    ],
-  },
-  {
-    id: "brakes",
-    name: "Brake Services",
-    icon: CircleDot,
-    description: "Keep you safe on the road",
-    color: "from-red-500/10 to-orange-500/10",
-    borderColor: "border-red-500/20",
-    iconColor: "text-red-500",
-    services: [
-      {
-        name: "Brake Pad Replacement",
-        price: "From £90",
-        description: "Quality brake pad fitting with inspection.",
-        note: "Front from £100, Rear from £90",
-        includes: [
-          "Remove wheels",
-          "Inspect discs and callipers",
-          "Fit quality brake pads",
-          "Brake test",
-        ],
-      },
-      {
-        name: "Brake Pads and Discs",
-        price: "From £160",
-        description: "Complete brake refresh including pads and discs.",
-        note: "Front from £180, Rear from £160. Recommended when discs are worn or scored.",
-        includes: [
-          "New brake pads",
-          "New brake discs",
-          "Complete installation",
-          "Brake test",
-        ],
-      },
-      {
-        name: "Brake Fluid Change",
-        price: "£55",
-        description: "Full brake fluid flush and replacement.",
-        includes: [
-          "Full brake fluid flush",
-          "Fresh brake fluid",
-          "System bleed",
-          "Brake test",
-        ],
-      },
-    ],
-  },
-  {
-    id: "electrical",
-    name: "Electrical & Battery",
-    icon: Zap,
-    description: "Battery and electrical solutions",
-    color: "from-yellow-500/10 to-amber-500/10",
-    borderColor: "border-yellow-500/20",
-    iconColor: "text-yellow-500",
-    services: [
-      {
-        name: "Battery Replacement",
-        price: "From £100",
-        description: "Battery test and replacement service.",
-        note: "Standard from £100, Stop-Start from £150",
-        includes: [
-          "Battery test",
-          "Fitting new battery",
-          "Terminal cleaning",
-          "Proper disposal of old battery",
-        ],
-      },
-    ],
-  },
-  {
-    id: "general",
-    name: "General Repairs",
-    icon: Wrench,
-    description: "All types of mechanical work",
-    color: "from-purple-500/10 to-pink-500/10",
-    borderColor: "border-purple-500/20",
-    iconColor: "text-purple-500",
-    services: [
-      {
-        name: "General Repairs",
-        price: "Quote",
-        description: "We handle all types of mechanical work.",
-        note: "Labour rate: £45 per hour",
-        includes: [
-          "Oil changes",
-          "Filter replacements",
-          "Belt replacements",
-          "Various mechanical repairs",
-        ],
-      },
-    ],
-  },
-];
-
-const ServiceDialog = ({ category }: { category: typeof serviceCategories[0] }) => {
-  const Icon = category.icon;
-  
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button className="group text-left w-full bg-gradient-to-br from-card via-card to-card/80 rounded-3xl p-8 border border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 relative overflow-hidden">
-          {/* Decorative gradient overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-          
-          {/* Content */}
-          <div className="relative z-10">
-            <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${category.color} border-2 ${category.borderColor} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
-              <Icon className={`w-10 h-10 ${category.iconColor}`} />
-            </div>
-            
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-              {category.name}
-            </h3>
-            <p className="text-muted-foreground text-base mb-6">{category.description}</p>
-            
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-primary">
-                {category.services.length} {category.services.length === 1 ? 'Service' : 'Services'}
-              </span>
-              <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all">
-                <span className="text-sm">View Details</span>
-                <ArrowRight className="w-5 h-5" />
-              </div>
-            </div>
-          </div>
-        </button>
-      </DialogTrigger>
-      
-      <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0">
-        {/* Header with gradient */}
-        <div className={`bg-gradient-to-br ${category.color} border-b ${category.borderColor} px-6 py-8`}>
-          <div className="flex items-center gap-4">
-            <div className={`w-16 h-16 rounded-xl bg-background/10 backdrop-blur-sm border ${category.borderColor} flex items-center justify-center`}>
-              <Icon className={`w-8 h-8 ${category.iconColor}`} />
-            </div>
-            <div>
-              <h2 className="font-display text-3xl font-bold text-foreground">{category.name}</h2>
-              <p className="text-muted-foreground mt-1">{category.description}</p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Scrollable content */}
-        <div className="overflow-y-auto max-h-[calc(85vh-180px)] px-6 py-6">
-          <div className="space-y-4">
-            {category.services.map((service, index) => (
-              <div key={index} className="group bg-gradient-to-br from-card to-card/50 rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-                  <div className="flex-1">
-                    <h4 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {service.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">{service.description}</p>
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <div className="text-2xl font-bold text-primary">{service.price}</div>
-                  </div>
-                </div>
-                
-                {service.note && (
-                  <div className="mb-4 p-3 bg-primary/5 rounded-xl border border-primary/10">
-                    <p className="text-xs text-muted-foreground flex items-start gap-2">
-                      <span className="text-primary">ℹ</span>
-                      {service.note}
-                    </p>
-                  </div>
-                )}
-                
-                <div className="border-t border-border/50 pt-4">
-                  <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider flex items-center gap-2">
-                    <CheckCircle2 className="w-3 h-3 text-primary" />
-                    What's Included
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
-                    {service.includes.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2 text-sm text-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* Footer with actions */}
-        <div className="border-t border-border px-6 py-4 bg-card/50">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild className="flex-1 rounded-full h-12 font-semibold">
-              <Link to="/estimate">
-                <span>Get a Quote</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
-            <Button variant="outline" asChild className="flex-1 rounded-full h-12 font-semibold">
-              <a href={`tel:${BUSINESS_INFO.phone}`}>
-                <Phone className="w-4 h-4 mr-2" />
-                <span>Call {BUSINESS_INFO.phone}</span>
-              </a>
-            </Button>
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-};
 
 const Services = () => {
+  // Placeholder image - you can replace these with actual service images
+  const placeholderImage = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop";
+  const interimServiceImage = "https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=800&auto=format&fit=crop";
+  const fullServiceImage = "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&auto=format&fit=crop";
+
   return (
     <Layout>
       {/* Hero with Image */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-b from-card via-surface to-card overflow-hidden">
-        {/* Background image */}
+      <section className="relative py-12 md:py-18 bg-gradient-to-b from-card via-surface-elevated to-card overflow-hidden">
+        {/* Map/Background */}
         <div className="absolute inset-0">
           <img 
-            src={engineDetailImg} 
+            src={placeholderImage} 
             alt="" 
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover grayscale opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-card/80 via-card/90 to-card" />
         </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-card/20 via-card/40 to-card" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--primary)/0.06),_transparent_70%)]" />
         
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 mb-6">
-              <Wrench className="w-4 h-4 text-primary" />
-              <span className="text-xs font-semibold text-primary uppercase tracking-wider">Professional Mobile Services</span>
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+              <Wrench className="w-3.5 h-3.5 text-primary" />
+              <span className="text-xs font-medium text-primary uppercase tracking-wider">Mobile Services</span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
               Our <span className="text-primary">Services</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Choose a category below to explore our services. Each card opens a detailed view with pricing and what's included.
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+              Professional mobile mechanic services at your location. From diagnostics to full servicing.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Service Categories Grid */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-background via-surface to-background relative">
-        {/* Decorative elements */}
+      {/* Featured Services - Servicing */}
+      <section className="pt-16 pb-8 md:pt-20 md:pb-12">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
+              <span className="text-primary">Servicing</span>
+            </h2>
+            <p className="text-muted-foreground">Keep your vehicle running smoothly with our service packages</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Interim Service */}
+            <div className="group bg-gradient-to-br from-card via-card to-card/80 rounded-3xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 hover:shadow-2xl">
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src={interimServiceImage}
+                  alt="Interim Service"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-lg">
+                  From £110
+                </div>
+              </div>
+              
+              <div className="p-8">
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3">
+                  Interim Service
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Recommended every 6 months or 6,000 miles. Essential maintenance to keep your vehicle running safely.
+                </p>
+                
+                <div className="space-y-3 mb-6">
+                  {[
+                    "Engine oil and filter replacement",
+                    "Fluid checks and top-ups",
+                    "Tyre inspection",
+                    "Brake check",
+                    "30-point safety inspection",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-foreground">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <Button asChild className="w-full rounded-full h-12 font-semibold">
+                  <Link to="/estimate">
+                    Get a Quote
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Full Service */}
+            <div className="group bg-gradient-to-br from-card via-card to-card/80 rounded-3xl overflow-hidden border-2 border-primary/40 hover:border-primary transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20">
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src={fullServiceImage}
+                  alt="Full Service"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-lg">
+                  From £150
+                </div>
+                <div className="absolute top-4 left-4 bg-foreground text-background px-3 py-1 rounded-full font-semibold text-sm uppercase tracking-wider">
+                  Most Popular
+                </div>
+              </div>
+              
+              <div className="p-8">
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3">
+                  Full Service
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Recommended annually or every 12,000 miles. Comprehensive service with complete inspection.
+                </p>
+                <p className="text-xs text-muted-foreground mb-6 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                  Petrol from £150 / Diesel from £180. Diesel includes fuel filter replacement.
+                </p>
+                
+                <div className="space-y-3 mb-6">
+                  {[
+                    "Everything in interim service",
+                    "Air filter replacement",
+                    "Cabin filter replacement",
+                    "50-point comprehensive inspection",
+                    "Service book stamped",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-foreground">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <Button asChild className="w-full rounded-full h-12 font-semibold">
+                  <Link to="/estimate">
+                    Get a Quote
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Other Services Grid */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-surface-elevated to-background">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
+              Other Services
+            </h2>
+            <p className="text-muted-foreground">Diagnostics, brakes, electrical, and more</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {/* Diagnostics */}
+            <div className="bg-card rounded-2xl p-6 border border-border hover:border-blue-500/40 transition-all duration-300 hover:shadow-lg group">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="text-3xl">🔍</div>
+              </div>
+              <h3 className="font-display text-xl font-bold text-foreground mb-2">Diagnostics</h3>
+              <p className="text-sm text-muted-foreground mb-4">Full OBD scans, pre-purchase inspections, and health checks</p>
+              <div className="text-primary font-bold mb-4">From £35</div>
+              <Button asChild variant="outline" className="w-full rounded-full">
+                <Link to="/estimate">View Options</Link>
+              </Button>
+            </div>
+
+            {/* Brakes */}
+            <div className="bg-card rounded-2xl p-6 border border-border hover:border-red-500/40 transition-all duration-300 hover:shadow-lg group">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500/10 to-orange-500/10 border border-red-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="text-3xl">🛞</div>
+              </div>
+              <h3 className="font-display text-xl font-bold text-foreground mb-2">Brake Services</h3>
+              <p className="text-sm text-muted-foreground mb-4">Pads, discs, fluid changes, and complete brake work</p>
+              <div className="text-primary font-bold mb-4">From £55</div>
+              <Button asChild variant="outline" className="w-full rounded-full">
+                <Link to="/estimate">View Options</Link>
+              </Button>
+            </div>
+
+            {/* Battery & Electrical */}
+            <div className="bg-card rounded-2xl p-6 border border-border hover:border-yellow-500/40 transition-all duration-300 hover:shadow-lg group">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border border-yellow-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="text-3xl">🔋</div>
+              </div>
+              <h3 className="font-display text-xl font-bold text-foreground mb-2">Battery & Electrical</h3>
+              <p className="text-sm text-muted-foreground mb-4">Battery replacement, alternator, and electrical repairs</p>
+              <div className="text-primary font-bold mb-4">From £100</div>
+              <Button asChild variant="outline" className="w-full rounded-full">
+                <Link to="/estimate">View Options</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Summary Table */}
+      <section className="py-16 md:py-20">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
+                Service <span className="text-primary">Pricing</span>
+              </h2>
+              <p className="text-muted-foreground">Transparent pricing with no hidden fees</p>
+            </div>
+
+            <div className="bg-card rounded-3xl border border-border overflow-hidden">
+              {/* Table Header */}
+              <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 px-6 py-4 border-b border-border">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="font-bold text-foreground">Service</div>
+                  <div className="font-bold text-foreground text-right">Price</div>
+                </div>
+              </div>
+              
+              {/* Table Body */}
+              <div className="divide-y divide-border">
+                {[
+                  { name: "Basic Health Check", price: "£35" },
+                  { name: "Mobile Diagnostic", price: "£45" },
+                  { name: "Brake Fluid Change", price: "£55" },
+                  { name: "Pre-Purchase Inspection", price: "£85" },
+                  { name: "Brake Pad Replacement", price: "From £90" },
+                  { name: "Battery Replacement", price: "From £100" },
+                  { name: "Interim Service", price: "From £110" },
+                  { name: "Full Service (Petrol)", price: "From £150" },
+                  { name: "Brake Pads & Discs", price: "From £160" },
+                  { name: "Full Service (Diesel)", price: "From £180" },
+                ].map((item, i) => (
+                  <div key={i} className="px-6 py-4 hover:bg-primary/5 transition-colors">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="text-foreground">{item.name}</div>
+                      <div className="text-primary font-bold text-right">{item.price}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Table Footer */}
+              <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 px-6 py-6 border-t border-border">
+                <p className="text-sm text-muted-foreground text-center mb-4">
+                  All prices include VAT. Additional parts charged separately.
+                </p>
+                <div className="flex justify-center">
+                  <Button asChild size="lg" className="rounded-full font-semibold">
+                    <Link to="/estimate">
+                      Get Your Custom Quote
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust & CTA */}
+      <section className="py-16 md:py-20 bg-gradient-to-b from-primary/5 via-background to-background relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         </div>
         
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
-            {serviceCategories.map((category) => (
-              <ServiceDialog key={category.id} category={category} />
-            ))}
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+                Why Choose <span className="text-primary">FixNow</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-card rounded-2xl p-6 text-center border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div className="text-4xl mb-4">✓</div>
+                <h3 className="font-bold text-foreground mb-2">Fully Qualified</h3>
+                <p className="text-sm text-muted-foreground">City & Guilds certified mechanics</p>
+              </div>
+              
+              <div className="bg-card rounded-2xl p-6 text-center border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div className="text-4xl mb-4">🛡️</div>
+                <h3 className="font-bold text-foreground mb-2">12-Month Guarantee</h3>
+                <p className="text-sm text-muted-foreground">On all parts and labour</p>
+              </div>
+              
+              <div className="bg-card rounded-2xl p-6 text-center border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div className="text-4xl mb-4">📍</div>
+                <h3 className="font-bold text-foreground mb-2">Mobile Service</h3>
+                <p className="text-sm text-muted-foreground">We come to you, anywhere</p>
+              </div>
+            </div>
+
+            <div className="text-center bg-card rounded-3xl p-8 md:p-12 border border-border">
+              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Ready to Get Started?
+              </h3>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Get an instant quote or call us for same-day service availability
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg" className="rounded-full font-semibold">
+                  <Link to="/estimate">
+                    Get Quote Now
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="rounded-full font-semibold">
+                  <a href={`tel:${BUSINESS_INFO.phone}`}>
+                    <Phone className="w-4 h-4 mr-2" />
+                    {BUSINESS_INFO.phone}
+                  </a>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
