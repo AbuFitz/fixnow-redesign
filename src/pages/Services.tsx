@@ -75,7 +75,7 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero with Image */}
-      <section className="relative py-14 md:py-20 bg-gradient-to-b from-card via-surface to-card overflow-hidden">
+      <section className="relative py-12 md:py-18 bg-gradient-to-b from-card via-surface to-card overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <img 
@@ -104,7 +104,7 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-background to-surface relative">
+      <section className="pt-16 pb-16 md:pt-20 md:pb-24 bg-gradient-to-b from-background to-surface relative">
         {/* Subtle pattern */}
         <div className="absolute inset-0 opacity-[0.02]" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--primary)) 1px, transparent 0)`,
@@ -165,22 +165,27 @@ const Services = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-6 md:px-12 text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+      <section className="py-16 md:py-24 bg-primary relative overflow-hidden">
+        {/* Accent patterns */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-background rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-background rounded-full blur-3xl" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 text-center relative z-10">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
             Not sure what you need?
           </h2>
-          <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+          <p className="text-primary-foreground/90 mb-8 max-w-lg mx-auto">
             Give us a call or send an enquiry. We'll help figure out what's going on and what needs doing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild className="rounded-full">
+            <Button size="lg" asChild className="rounded-full bg-background text-foreground hover:bg-background/90">
               <Link to="/estimate">
                 Get a Quote
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="rounded-full">
+            <Button size="lg" variant="outline" asChild className="rounded-full border-2 border-primary-foreground/40 text-primary-foreground bg-transparent hover:bg-primary-foreground/15 hover:border-primary-foreground/70">
               <a href={`tel:${BUSINESS_INFO.phone}`}>
                 <Phone className="w-4 h-4 mr-2" />
                 {BUSINESS_INFO.phone}

@@ -8,7 +8,7 @@ const Locations = () => {
   return (
     <Layout>
       {/* Hero with Map Background */}
-      <section className="relative py-17 md:py-24 bg-gradient-to-b from-card via-surface-elevated to-card overflow-hidden">
+      <section className="relative py-15 md:py-22 bg-gradient-to-b from-card via-surface-elevated to-card overflow-hidden">
         {/* Map background */}
         <div className="absolute inset-0">
           <iframe
@@ -39,7 +39,7 @@ const Locations = () => {
       </section>
 
       {/* Locations Grid */}
-      <section className="py-16 md:py-20">
+      <section className="pt-16 pb-16 md:pt-20 md:pb-20">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {LOCATIONS.map((location) => (
@@ -82,22 +82,27 @@ const Locations = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 bg-card">
-        <div className="container mx-auto px-6 md:px-12 text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+      <section className="py-16 md:py-20 bg-primary relative overflow-hidden">
+        {/* Accent patterns */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-background rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-background rounded-full blur-3xl" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 text-center relative z-10">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
             Don't see your area?
           </h2>
-          <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+          <p className="text-primary-foreground/90 mb-8 max-w-lg mx-auto">
             We cover a wide area. Give us a call to check if we can come to you.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button size="lg" asChild className="rounded-full">
+            <Button size="lg" asChild className="rounded-full bg-background text-foreground hover:bg-background/90">
               <a href={`tel:${BUSINESS_INFO.phone}`}>
                 <Phone className="w-4 h-4 mr-2" />
                 {BUSINESS_INFO.phone}
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild className="rounded-full">
+            <Button size="lg" variant="outline" asChild className="rounded-full border-2 border-primary-foreground/40 text-primary-foreground bg-transparent hover:bg-primary-foreground/15 hover:border-primary-foreground/70">
               <Link to="/estimate">Get a Quote</Link>
             </Button>
           </div>
