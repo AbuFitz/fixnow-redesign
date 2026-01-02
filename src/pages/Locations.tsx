@@ -89,20 +89,20 @@ const Locations = () => {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-background rounded-full blur-3xl" />
         </div>
         <div className="container mx-auto px-6 md:px-12 text-center relative z-10">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-3 sm:mb-4 leading-tight drop-shadow-lg px-4">
             Don't see your area?
           </h2>
-          <p className="text-primary-foreground/90 mb-8 max-w-lg mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-primary-foreground/90 mb-6 sm:mb-8 max-w-2xl mx-auto font-medium px-4">
             We cover a wide area. Give us a call to check if we can come to you.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button size="lg" asChild className="rounded-full bg-background text-foreground hover:bg-background/90">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <Button size="lg" asChild className="group rounded-full h-12 sm:h-14 md:h-16 px-6 sm:px-8 md:px-10 text-base sm:text-lg font-semibold bg-background text-foreground hover:bg-background/90 hover:scale-[1.05] transition-all w-full sm:w-auto">
               <a href={`tel:${BUSINESS_INFO.phone}`}>
-                <Phone className="w-4 h-4 mr-2" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 {BUSINESS_INFO.phone}
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild className="rounded-full border-2 border-primary-foreground/40 text-primary-foreground bg-transparent hover:bg-primary-foreground/15 hover:border-primary-foreground/70">
+            <Button size="lg" variant="outline" asChild className="rounded-full h-12 sm:h-14 md:h-16 px-6 sm:px-8 md:px-10 text-base sm:text-lg font-semibold border-2 border-primary-foreground/40 text-primary-foreground bg-transparent hover:bg-primary-foreground/15 hover:border-primary-foreground/70 hover:scale-[1.05] transition-all w-full sm:w-auto">
               <Link to="/estimate">Get a Quote</Link>
             </Button>
           </div>
