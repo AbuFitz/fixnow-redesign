@@ -195,73 +195,106 @@ const ServiceDialog = ({ category }: { category: typeof serviceCategories[0] }) 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="group cursor-pointer bg-gradient-to-br from-card to-card/50 rounded-2xl p-6 md:p-8 border-2 border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
-          <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${category.color} border ${category.borderColor} flex items-center justify-center mb-6`}>
-            <Icon className={`w-8 h-8 ${category.iconColor}`} />
+        <button className="group text-left w-full bg-gradient-to-br from-card via-card to-card/80 rounded-3xl p-8 border border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 relative overflow-hidden">
+          {/* Decorative gradient overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+          
+          {/* Content */}
+          <div className="relative z-10">
+            <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${category.color} border-2 ${category.borderColor} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
+              <Icon className={`w-10 h-10 ${category.iconColor}`} />
+            </div>
+            
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+              {category.name}
+            </h3>
+            <p className="text-muted-foreground text-base mb-6">{category.description}</p>
+            
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-primary">
+                {category.services.length} {category.services.length === 1 ? 'Service' : 'Services'}
+              </span>
+              <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all">
+                <span className="text-sm">View Details</span>
+                <ArrowRight className="w-5 h-5" />
+              </div>
+            </div>
           </div>
-          <h3 className="font-display text-2xl font-bold text-foreground mb-2">{category.name}</h3>
-          <p className="text-muted-foreground mb-4">{category.description}</p>
-          <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
-            <span>View Services</span>
-            <ArrowRight className="w-4 h-4" />
-          </div>
-        </div>
+        </button>
       </DialogTrigger>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <div className="flex items-center gap-4 mb-4">
-            <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${category.color} border ${category.borderColor} flex items-center justify-center`}>
-              <Icon className={`w-7 h-7 ${category.iconColor}`} />
+      
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0">
+        {/* Header with gradient */}
+        <div className={`bg-gradient-to-br ${category.color} border-b ${category.borderColor} px-6 py-8`}>
+          <div className="flex items-center gap-4">
+            <div className={`w-16 h-16 rounded-xl bg-background/10 backdrop-blur-sm border ${category.borderColor} flex items-center justify-center`}>
+              <Icon className={`w-8 h-8 ${category.iconColor}`} />
             </div>
             <div>
-              <DialogTitle className="text-2xl">{category.name}</DialogTitle>
-              <DialogDescription>{category.description}</DialogDescription>
+              <h2 className="font-display text-3xl font-bold text-foreground">{category.name}</h2>
+              <p className="text-muted-foreground mt-1">{category.description}</p>
             </div>
           </div>
-        </DialogHeader>
+        </div>
         
-        <div className="space-y-6 mt-6">
-          {category.services.map((service, index) => (
-            <div key={index} className="bg-card/50 rounded-xl p-6 border border-border">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h4 className="font-display text-xl font-semibold text-foreground">{service.name}</h4>
-                  <p className="text-sm text-muted-foreground mt-1">{service.description}</p>
+        {/* Scrollable content */}
+        <div className="overflow-y-auto max-h-[calc(85vh-180px)] px-6 py-6">
+          <div className="space-y-4">
+            {category.services.map((service, index) => (
+              <div key={index} className="group bg-gradient-to-br from-card to-card/50 rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                  <div className="flex-1">
+                    <h4 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {service.name}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">{service.description}</p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <div className="text-2xl font-bold text-primary">{service.price}</div>
+                  </div>
                 </div>
-                <div className="text-primary font-bold text-lg whitespace-nowrap ml-4">{service.price}</div>
-              </div>
-              
-              {service.note && (
-                <div className="mb-4 p-3 bg-primary/5 rounded-lg border border-primary/10">
-                  <p className="text-xs text-muted-foreground">{service.note}</p>
+                
+                {service.note && (
+                  <div className="mb-4 p-3 bg-primary/5 rounded-xl border border-primary/10">
+                    <p className="text-xs text-muted-foreground flex items-start gap-2">
+                      <span className="text-primary">ℹ</span>
+                      {service.note}
+                    </p>
+                  </div>
+                )}
+                
+                <div className="border-t border-border/50 pt-4">
+                  <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider flex items-center gap-2">
+                    <CheckCircle2 className="w-3 h-3 text-primary" />
+                    What's Included
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                    {service.includes.map((item, i) => (
+                      <div key={i} className="flex items-start gap-2 text-sm text-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              )}
-              
-              <div>
-                <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">What's Included</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {service.includes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </div>
-          ))}
-          
-          <div className="flex gap-3 pt-4">
-            <Button asChild className="flex-1 rounded-full">
+            ))}
+          </div>
+        </div>
+        
+        {/* Footer with actions */}
+        <div className="border-t border-border px-6 py-4 bg-card/50">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button asChild className="flex-1 rounded-full h-12 font-semibold">
               <Link to="/estimate">
-                Get a Quote
+                <span>Get a Quote</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <Button variant="outline" asChild className="flex-1 rounded-full">
+            <Button variant="outline" asChild className="flex-1 rounded-full h-12 font-semibold">
               <a href={`tel:${BUSINESS_INFO.phone}`}>
                 <Phone className="w-4 h-4 mr-2" />
-                Call Us
+                <span>Call {BUSINESS_INFO.phone}</span>
               </a>
             </Button>
           </div>
@@ -275,53 +308,43 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero with Image */}
-      <section className="relative py-12 md:py-18 bg-gradient-to-b from-card via-surface to-card overflow-hidden">
+      <section className="relative py-16 md:py-20 bg-gradient-to-b from-card via-surface to-card overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <img 
             src={engineDetailImg} 
             alt="" 
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-card/50 via-card/70 to-card" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--primary)/0.08),_transparent_50%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-card/80 via-card/90 to-card" />
         </div>
         
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <Wrench className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-medium text-primary uppercase tracking-wider">What we do</span>
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 mb-6">
+              <Wrench className="w-4 h-4 text-primary" />
+              <span className="text-xs font-semibold text-primary uppercase tracking-wider">Professional Mobile Services</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
               Our <span className="text-primary">Services</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-              Professional mobile mechanic services organized by category. Click any service to see full details and pricing.
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Choose a category below to explore our services. Each card opens a detailed view with pricing and what's included.
             </p>
           </div>
         </div>
       </section>
 
       {/* Service Categories Grid */}
-      <section className="pt-16 pb-16 md:pt-20 md:pb-24 bg-gradient-to-b from-background to-surface relative">
-        {/* Subtle pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--primary)) 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-background via-surface to-background relative">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 -left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        </div>
         
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3">
-              Service Categories
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Browse our services by category. Click to view detailed information, pricing, and what's included.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto">
             {serviceCategories.map((category) => (
               <ServiceDialog key={category.id} category={category} />
             ))}
@@ -330,37 +353,48 @@ const Services = () => {
       </section>
 
       {/* Trust Badges */}
-      <section className="py-12 bg-card border-y border-border">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                <CheckCircle2 className="w-6 h-6 text-primary" />
+      <section className="py-16 md:py-20 bg-gradient-to-br from-card via-surface-elevated to-card border-y border-border relative overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
+              Why Choose <span className="text-primary">FixNow</span>
+            </h2>
+            <p className="text-muted-foreground">The mobile mechanic you can trust</p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {[
+              {
+                title: "Transparent Pricing",
+                description: "Exact cost confirmed before we start",
+              },
+              {
+                title: "Quality Parts",
+                description: "Meet or exceed manufacturer standards",
+              },
+              {
+                title: "30-Day Guarantee",
+                description: "On all workmanship",
+              },
+              {
+                title: "We Come to You",
+                description: "At your home or workplace",
+              },
+            ].map((item, index) => (
+              <div key={index} className="group bg-gradient-to-br from-background to-background/50 rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <CheckCircle2 className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="font-display text-lg font-bold text-foreground mb-2">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
               </div>
-              <h3 className="font-semibold text-foreground mb-1">Transparent Pricing</h3>
-              <p className="text-sm text-muted-foreground">Exact cost confirmed before we start</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                <CheckCircle2 className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-1">Quality Parts</h3>
-              <p className="text-sm text-muted-foreground">Meet or exceed manufacturer standards</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                <CheckCircle2 className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-1">30-Day Guarantee</h3>
-              <p className="text-sm text-muted-foreground">On all workmanship</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                <CheckCircle2 className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-1">We Come to You</h3>
-              <p className="text-sm text-muted-foreground">At your home or workplace</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
