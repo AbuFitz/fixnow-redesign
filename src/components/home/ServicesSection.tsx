@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import servicingImg from "@/assets/service-servicing.jpg";
 
 const services = [
-  { id: "diagnostics", name: "Diagnostics", price: "From £35", image: "/diagonstic.jpg" },
+  { id: "diagnostics", name: "Mobile Diagnostic", price: "£45", image: "/diagonstic.jpg" },
   { id: "brakes", name: "Brakes", price: "From £55", image: "/brakes.jpg" },
   { id: "servicing", name: "Servicing", price: "From £110", image: servicingImg },
-  { id: "general", name: "General Repairs", price: "£45/hour", image: "/generalrepairs.JPG" },
-  { id: "electrical", name: "Battery", price: "From £100", image: "/electrical.jpg" },
-  { id: "suspension", name: "Pre-Purchase", price: "£85", image: "/suspension.jpg" },
+  { id: "general", name: "General Repairs", price: "Request Quote", image: "/generalrepairs.JPG" },
+  { id: "electrical", name: "Electrical", price: "From £100", image: "/electrical.jpg" },
+  { id: "suspension", name: "Suspension", price: "Request Quote", image: "/suspension.jpg" },
 ];
 
 const ServicesSection = () => {
@@ -43,7 +43,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Link
               key={service.id}
-              to="/services"
+              to="/estimate"
               className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-transform duration-300 hover:scale-[1.02] ${
                 index === 0 ? "col-span-2 row-span-2 aspect-square" : "col-span-1 aspect-square"
               }`}

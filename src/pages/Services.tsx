@@ -57,6 +57,12 @@ const Services = () => {
       includes: ["Battery test", "Fitting new battery", "Terminal cleaning", "Proper disposal of old battery"],
     },
     {
+      name: "Suspension Work",
+      price: "Request Quote",
+      description: "Suspension repairs and replacements. Tell us exactly what needs doing - coilovers, tie rods, control arms, bushings, or complete diagnosis.",
+      includes: ["Suspension component replacement", "Coilover installation", "Tie rod replacement", "Control arm fitting", "Bush replacement", "Wheel alignment check"],
+    },
+    {
       name: "Brake Pads & Discs",
       price: "From £160",
       note: "Front from £180, Rear from £160",
