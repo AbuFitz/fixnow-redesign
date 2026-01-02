@@ -13,6 +13,8 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
+import InterimService from "./pages/estimate/InterimService";
+import FullService from "./pages/estimate/FullService";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +40,8 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/quote" element={<Quote />} />
           <Route path="/estimate" element={<Quote />} />
+          <Route path="/estimate/interim-service" element={<InterimService />} />
+          <Route path="/estimate/full-service" element={<FullService />} />
           <Route path="/locations" element={<Locations />} />
           <Route path="/locations/:slug" element={<LocationPage />} />
           <Route path="/privacy" element={<Privacy />} />
