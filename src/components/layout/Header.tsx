@@ -40,6 +40,14 @@ const Header = () => {
     return location.pathname.startsWith(href);
   };
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    setIsOpen(false);
+    if (isHomePage) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   const showQuoteButton = !isHomePage || scrolled;
 
   return (
@@ -58,7 +66,7 @@ const Header = () => {
             <Link
               to="/"
               className="flex items-center shrink-0 group"
-              onClick={() => setIsOpen(false)}
+              onClick={handleLogoClick}
             >
               <span className="font-display font-bold text-xl lg:text-2xl tracking-tight">
                 <span className="text-foreground">Fix</span>
@@ -110,7 +118,7 @@ const Header = () => {
             <div className="flex lg:hidden items-center gap-2">
               <a
                 href={`tel:${BUSINESS_INFO.phone}`}
-                className="active:scale-95 transition-all duration-200"
+                className="p-2.5 flex items-center justify-center active:scale-95 transition-all duration-200"
                 aria-label="Call us"
               >
                 <Phone className="w-[18px] h-[18px] text-primary" />
