@@ -75,7 +75,7 @@ const HowItWorksSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button size="lg" asChild className="rounded-full h-14 px-10 text-base font-semibold shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/35 hover:scale-[1.02] transition-all group">
+          <Button size="lg" asChild className="rounded-full h-14 px-10 text-base font-semibold hover:scale-[1.02] transition-all group">
             <Link to="/estimate">
               Start Your Enquiry
               <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />

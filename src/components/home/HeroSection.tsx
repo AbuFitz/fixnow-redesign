@@ -65,7 +65,7 @@ const HeroSection = () => {
             >
               <Link to="/quote">
                 <span className="relative z-10 flex items-center gap-2">
-                  Get FREE Quote Now
+                  Get Quote Now
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
