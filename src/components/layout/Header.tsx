@@ -73,7 +73,7 @@ const Header = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`px-6 py-2 rounded-full text-[15px] font-medium transition-all duration-300 ${
+                  className={`px-6 py-2 rounded-full text-[15px] font-medium text-center transition-all duration-300 ${
                     isActive(link.href)
                       ? 'bg-primary text-background'
                       : 'text-foreground/60 hover:text-foreground/90 hover:bg-card/30'
@@ -110,7 +110,7 @@ const Header = () => {
             <div className="flex lg:hidden items-center gap-2">
               <a
                 href={`tel:${BUSINESS_INFO.phone}`}
-                className="p-2.5 rounded-full bg-primary/10 border border-primary/20 active:scale-95 transition-all duration-200"
+                className="active:scale-95 transition-all duration-200"
                 aria-label="Call us"
               >
                 <Phone className="w-[18px] h-[18px] text-primary" />
