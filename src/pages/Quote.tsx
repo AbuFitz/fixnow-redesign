@@ -59,36 +59,38 @@ const Quote = () => {
     <Layout>
       <section className="py-6 md:py-8 bg-background min-h-screen">
         <div className="container mx-auto px-4 max-w-xl">
-          {/* Progress */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-2">
-              {[1, 2, 3, 4].map((s) => (
-                <div key={s} className="flex items-center flex-1">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                    s < step ? 'bg-primary text-primary-foreground' :
-                    s === step ? 'bg-primary text-primary-foreground' :
-                    'bg-muted text-muted-foreground'
-                  }`}>
-                    {s < step ? <Check className="w-4 h-4" /> : s}
-                  </div>
-                  {s < 4 && (
-                    <div className={`flex-1 h-0.5 mx-2 ${s < step ? 'bg-primary' : 'bg-muted'}`} />
-                  )}
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-center text-muted-foreground">
-              Step {step} of 4
-            </p>
-          </div>
-
           {/* Header */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-4">
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-1">
               Request a Quote
             </h1>
             <p className="text-sm text-muted-foreground">
               Tell us what you need and we'll provide a free quote
+            </p>
+          </div>
+
+          {/* Progress */}
+          <div className="mb-6 max-w-md mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              {[1, 2, 3, 4].map((s) => (
+                <div key={s} className="flex items-center">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all border-2 ${
+                    s < step ? 'bg-primary text-primary-foreground border-primary' :
+                    s === step ? 'bg-foreground text-background border-foreground' :
+                    'bg-background text-muted-foreground border-border'
+                  }`}>
+                    {s < step ? <Check className="w-5 h-5" /> : s}
+                  </div>
+                  {s < 4 && (
+                    <div className={`w-12 h-1 mx-1 rounded-full transition-all ${
+                      s < step ? 'bg-primary' : 'bg-border'
+                    }`} />
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-center text-muted-foreground font-medium">
+              Step {step} of 4
             </p>
           </div>
 
