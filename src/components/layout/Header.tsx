@@ -54,9 +54,9 @@ const Header = () => {
     <>
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          isHomePage && !scrolled
-            ? 'bg-background/98 backdrop-blur-2xl border-b border-border/40'
-            : 'bg-background'
+          !scrolled
+            ? 'bg-background/70 backdrop-blur-2xl'
+            : 'bg-background border-b border-border/40'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
