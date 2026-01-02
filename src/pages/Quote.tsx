@@ -1,76 +1,16 @@
 import { useState } from "react";
-import { ArrowRight, ChevronDown, ChevronUp, Car, User, Calendar, Info } from "lucide-react";
+import { ArrowRight, ArrowLeft, Car, User, Calendar, Check, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO } from "@/lib/constants";
 
-type Category = {
-  id: string;
-  name: string;
-  services: Service[];
-};
-
-type Service = {
-  id: string;
-  name: string;
-  price: string;
-  description: string;
-};
-
-const categories: Category[] = [
-  {
-    id: "diagnostics",
-    name: "Diagnostics & Inspections",
-    services: [
-      { id: "health-check", name: "Basic Health Check", price: "£35", description: "Quick inspection before a journey" },
-      { id: "diagnostic", name: "Mobile Diagnostic", price: "£45", description: "Full OBD scan and report" },
-      { id: "pre-purchase", name: "Pre-Purchase Inspection", price: "£85", description: "40-point inspection for used cars" },
-    ],
-  },
-  {
-    id: "servicing",
-    name: "Servicing",
-    services: [
-      { id: "interim", name: "Interim Service", price: "£110", description: "6 months / 6,000 miles service" },
-      { id: "full-petrol", name: "Full Service (Petrol)", price: "£150", description: "Annual comprehensive service" },
-      { id: "full-diesel", name: "Full Service (Diesel)", price: "£180", description: "Annual service with fuel filter" },
-    ],
-  },
-  {
-    id: "brakes",
-    name: "Brake Services",
-    services: [
-      { id: "brake-fluid", name: "Brake Fluid Change", price: "£55", description: "Full fluid flush and replacement" },
-      { id: "brake-pads", name: "Brake Pad Replacement", price: "From £90", description: "Front or rear pads" },
-      { id: "pads-discs", name: "Brake Pads & Discs", price: "From £160", description: "Complete brake refresh" },
-    ],
-  },
-  {
-    id: "electrical",
-    name: "Electrical & Battery",
-    services: [
-      { id: "battery-standard", name: "Battery Replacement (Standard)", price: "£100", description: "Standard battery fitting" },
-      { id: "battery-stopstart", name: "Battery Replacement (Stop-Start)", price: "£150", description: "Stop-start battery fitting" },
-    ],
-  },
-  {
-    id: "general",
-    name: "General Repairs",
-    services: [
-      { id: "general-repair", name: "General Repairs", price: "£45/hour", description: "Labour rate for various repairs" },
-      { id: "other", name: "Something Else", price: "Quote", description: "Describe your specific need" },
-    ],
-  },
-];
-
 const Quote = () => {
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-  const [selectedService, setSelectedService] = useState<string | null>(null);
-  const [showForm, setShowForm] = useState(false);
-  
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
+    // Service
+    serviceType: "",
     // Vehicle
     make: "",
     model: "",
@@ -86,239 +26,361 @@ const Quote = () => {
     message: "",
   });
 
-  const toggleCategory = (categoryId: string) => {
-    setExpandedCategory(expandedCategory === categoryId ? null : categoryId);
-  };
-
-  const selectService = (serviceId: string) => {
-    setSelectedService(serviceId);
-    setShowForm(true);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Handle form submission with web3forms
-    const selectedCat = categories.flatMap(c => c.services).find(s => s.id === selectedService);
-    console.log("Form submitted:", {
-      service: selectedCat,
-      ...formData
-    });
+    console.log("Form submitted:", formData);
   };
 
-  const selectedServiceData = categories.flatMap(c => c.services).find(s => s.id === selectedService);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  if (showForm && selectedService) {
-    return (
-      <Layout>
-        <section className="py-8 md:py-12 bg-gradient-to-b from-background via-surface-elevated to-background min-h-screen">
-          <div className="container mx-auto px-4 md:px-6 max-w-2xl">
-            {/* Header */}
-            <div className="text-center mb-6 md:mb-8">
-              <button
-                onClick={() => setShowForm(false)}
-                className="text-sm text-primary hover:underline mb-4 inline-flex items-center gap-1"
-              >
-                ← Change Service
-              </button>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-3">
-                <Info className="w-3.5 h-3.5 text-primary" />
-                <span className="text-xs font-medium text-primary uppercase tracking-wider">Get Quote</span>
-              </div>
-              <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
-                {selectedServiceData?.name}
-              </h1>
-              <p className="text-sm md:text-base text-muted-foreground">
-                {selectedServiceData?.price} • {selectedServiceData?.description}
-              </p>
-            </div>
+  const canProceed = () => {
+    switch (step) {
+      case 1:
+        return formData.serviceType;
+      case 2:
+        return formData.make && formData.model && formData.year && formData.reg;
+      case 3:
+        return formData.name && formData.email && formData.phone && formData.postcode;
+      default:
+        return true;
+    }
+  };
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-              {/* Vehicle Info */}
-              <div className="bg-card rounded-xl p-4 md:p-5 border border-border">
-                <h2 className="font-display text-base md:text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                  <Car className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-                  Vehicle Details
-                </h2>
-                
-                <div className="space-y-3">
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <Label htmlFor="make" className="text-xs">Make</Label>
-                      <Input id="make" name="make" placeholder="Ford" value={formData.make} onChange={handleInputChange} required className="h-9 md:h-10 text-sm" />
-                    </div>
-                    <div>
-                      <Label htmlFor="model" className="text-xs">Model</Label>
-                      <Input id="model" name="model" placeholder="Focus" value={formData.model} onChange={handleInputChange} required className="h-9 md:h-10 text-sm" />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <Label htmlFor="year" className="text-xs">Year</Label>
-                      <Input id="year" name="year" placeholder="2018" value={formData.year} onChange={handleInputChange} required className="h-9 md:h-10 text-sm" />
-                    </div>
-                    <div>
-                      <Label htmlFor="reg" className="text-xs">Registration</Label>
-                      <Input id="reg" name="reg" placeholder="AB12 CDE" value={formData.reg} onChange={handleInputChange} required className="h-9 md:h-10 text-sm" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+  const nextStep = () => {
+    if (canProceed()) setStep(step + 1);
+  };
 
-              {/* Contact Info */}
-              <div className="bg-card rounded-xl p-4 md:p-5 border border-border">
-                <h2 className="font-display text-base md:text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                  <User className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-                  Contact Details
-                </h2>
-                
-                <div className="space-y-3">
-                  <div>
-                    <Label htmlFor="name" className="text-xs">Full Name</Label>
-                    <Input id="name" name="name" placeholder="Your name" value={formData.name} onChange={handleInputChange} required className="h-9 md:h-10 text-sm" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <Label htmlFor="email" className="text-xs">Email</Label>
-                      <Input id="email" name="email" type="email" placeholder="your@email.com" value={formData.email} onChange={handleInputChange} required className="h-9 md:h-10 text-sm" />
-                    </div>
-                    <div>
-                      <Label htmlFor="phone" className="text-xs">Phone</Label>
-                      <Input id="phone" name="phone" type="tel" placeholder="07XXX XXXXXX" value={formData.phone} onChange={handleInputChange} required className="h-9 md:h-10 text-sm" />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="postcode" className="text-xs">Postcode</Label>
-                    <Input id="postcode" name="postcode" placeholder="HP2 7DE" value={formData.postcode} onChange={handleInputChange} required className="h-9 md:h-10 text-sm" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Additional Info */}
-              <div className="bg-card rounded-xl p-4 md:p-5 border border-border">
-                <h2 className="font-display text-base md:text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                  <Calendar className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-                  Booking Details
-                </h2>
-                
-                <div className="space-y-3">
-                  <div>
-                    <Label htmlFor="preferredDate" className="text-xs">Preferred Date</Label>
-                    <Input id="preferredDate" name="preferredDate" type="date" value={formData.preferredDate} onChange={handleInputChange} className="h-9 md:h-10 text-sm" />
-                  </div>
-                  <div>
-                    <Label htmlFor="message" className="text-xs">Additional Notes (Optional)</Label>
-                    <textarea 
-                      id="message" 
-                      name="message" 
-                      placeholder="Any additional information..."
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      rows={3}
-                      className="w-full px-3 py-2 text-sm border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Submit */}
-              <div className="space-y-3">
-                <Button type="submit" className="w-full rounded-full h-10 md:h-11 font-semibold text-sm">
-                  Request Quote
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-                <p className="text-xs text-center text-muted-foreground">
-                  We'll respond within 24 hours or call{" "}
-                  <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline">
-                    {BUSINESS_INFO.phone}
-                  </a>
-                </p>
-              </div>
-            </form>
-          </div>
-        </section>
-      </Layout>
-    );
-  }
+  const prevStep = () => setStep(step - 1);
 
   return (
     <Layout>
-      <section className="py-8 md:py-12 bg-gradient-to-b from-background via-surface-elevated to-background min-h-screen">
-        <div className="container mx-auto px-4 md:px-6 max-w-2xl">
-          {/* Header */}
-          <div className="text-center mb-6 md:mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-3">
-              <Info className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-medium text-primary uppercase tracking-wider">Get a Quote</span>
-            </div>
-            <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-              What Do You Need?
-            </h1>
-            <p className="text-sm md:text-base text-muted-foreground">
-              Select a service category to see options
-            </p>
-          </div>
-
-          {/* Categories */}
-          <div className="space-y-2 md:space-y-3">
-            {categories.map((category) => (
-              <div key={category.id} className="bg-card rounded-xl border border-border overflow-hidden">
-                {/* Category Header */}
-                <button
-                  onClick={() => toggleCategory(category.id)}
-                  className="w-full px-4 md:px-5 py-3 md:py-4 flex items-center justify-between hover:bg-primary/5 transition-colors"
-                >
-                  <span className="font-semibold text-sm md:text-base text-foreground text-left">{category.name}</span>
-                  {expandedCategory === category.id ? (
-                    <ChevronUp className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground flex-shrink-0" />
-                  )}
-                </button>
-
-                {/* Services List */}
-                {expandedCategory === category.id && (
-                  <div className="border-t border-border divide-y divide-border">
-                    {category.services.map((service) => (
-                      <button
-                        key={service.id}
-                        onClick={() => selectService(service.id)}
-                        className="w-full px-4 md:px-5 py-3 hover:bg-primary/5 transition-colors text-left"
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1 min-w-0">
-                            <div className="text-sm md:text-base font-medium text-foreground mb-0.5">{service.name}</div>
-                            <div className="text-xs md:text-sm text-muted-foreground">{service.description}</div>
-                          </div>
-                          <div className="text-sm md:text-base font-bold text-primary whitespace-nowrap flex-shrink-0">
-                            {service.price}
-                          </div>
-                        </div>
-                      </button>
-                    ))}
+      <section className="py-6 md:py-8 bg-background min-h-screen">
+        <div className="container mx-auto px-4 max-w-xl">
+          {/* Progress */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              {[1, 2, 3, 4].map((s) => (
+                <div key={s} className="flex items-center flex-1">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                    s < step ? 'bg-primary text-primary-foreground' :
+                    s === step ? 'bg-primary text-primary-foreground' :
+                    'bg-muted text-muted-foreground'
+                  }`}>
+                    {s < step ? <Check className="w-4 h-4" /> : s}
                   </div>
-                )}
-              </div>
-            ))}
+                  {s < 4 && (
+                    <div className={`flex-1 h-0.5 mx-2 ${s < step ? 'bg-primary' : 'bg-muted'}`} />
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-center text-muted-foreground">
+              Step {step} of 4
+            </p>
           </div>
 
-          {/* Footer Help */}
-          <div className="mt-8 text-center">
-            <p className="text-sm text-muted-foreground mb-3">
-              Not sure what you need?
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h1 className="text-xl md:text-2xl font-bold text-foreground mb-1">
+              Request a Quote
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Tell us what you need and we'll provide a free quote
             </p>
-            <Button variant="outline" size="sm" asChild className="rounded-full">
-              <a href={`tel:${BUSINESS_INFO.phone}`}>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Step 1: Service */}
+            {step === 1 && (
+              <div className="space-y-4 animate-fade-in">
+                <div className="bg-card rounded-xl p-4 border border-border">
+                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-primary" />
+                    What Do You Need?
+                  </h2>
+                  
+                  <div className="space-y-3">
+                    <select
+                      id="serviceType"
+                      name="serviceType"
+                      value={formData.serviceType}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full h-10 px-3 py-2 border border-input bg-background rounded-md text-sm"
+                    >
+                      <option value="">Select a service...</option>
+                      <optgroup label="Diagnostics & Inspections">
+                        <option value="health-check">Basic Health Check - £35</option>
+                        <option value="diagnostic">Mobile Diagnostic - £45</option>
+                        <option value="pre-purchase">Pre-Purchase Inspection - £85</option>
+                      </optgroup>
+                      <optgroup label="Servicing">
+                        <option value="interim">Interim Service - £110</option>
+                        <option value="full-petrol">Full Service (Petrol) - £150</option>
+                        <option value="full-diesel">Full Service (Diesel) - £180</option>
+                      </optgroup>
+                      <optgroup label="Brake Services">
+                        <option value="brake-fluid">Brake Fluid Change - £55</option>
+                        <option value="brake-pads">Brake Pad Replacement - From £90</option>
+                        <option value="pads-discs">Brake Pads & Discs - From £160</option>
+                      </optgroup>
+                      <optgroup label="Electrical & Battery">
+                        <option value="battery-standard">Battery Replacement (Standard) - £100</option>
+                        <option value="battery-stopstart">Battery Replacement (Stop-Start) - £150</option>
+                      </optgroup>
+                      <optgroup label="General Repairs">
+                        <option value="general-repair">General Repairs - £45/hour</option>
+                        <option value="other">Something Else</option>
+                      </optgroup>
+                    </select>
+                    
+                    {formData.serviceType && (
+                      <div className="bg-muted/50 rounded-lg p-3 border border-border">
+                        <p className="text-xs text-muted-foreground">
+                          We'll provide a detailed quote based on your vehicle and requirements
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Step 2: Vehicle */}
+            {step === 2 && (
+              <div className="space-y-4 animate-fade-in">
+                <div className="bg-card rounded-xl p-4 border border-border">
+                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <Car className="w-4 h-4 text-primary" />
+                    Vehicle Details
+                  </h2>
+                  
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <Label htmlFor="make" className="text-xs">Make</Label>
+                        <Input 
+                          id="make" 
+                          name="make" 
+                          placeholder="Ford" 
+                          value={formData.make}
+                          onChange={handleInputChange}
+                          required 
+                          className="h-9 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="model" className="text-xs">Model</Label>
+                        <Input 
+                          id="model" 
+                          name="model" 
+                          placeholder="Focus" 
+                          value={formData.model}
+                          onChange={handleInputChange}
+                          required 
+                          className="h-9 text-sm"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <Label htmlFor="year" className="text-xs">Year</Label>
+                        <Input 
+                          id="year" 
+                          name="year" 
+                          placeholder="2018" 
+                          value={formData.year}
+                          onChange={handleInputChange}
+                          required 
+                          className="h-9 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="reg" className="text-xs">Registration</Label>
+                        <Input 
+                          id="reg" 
+                          name="reg" 
+                          placeholder="AB12CDE" 
+                          value={formData.reg}
+                          onChange={handleInputChange}
+                          required 
+                          className="h-9 text-sm"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Step 3: Contact */}
+            {step === 3 && (
+              <div className="space-y-4 animate-fade-in">
+                <div className="bg-card rounded-xl p-4 border border-border">
+                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <User className="w-4 h-4 text-primary" />
+                    Your Details
+                  </h2>
+                  
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="name" className="text-xs">Full Name</Label>
+                      <Input 
+                        id="name" 
+                        name="name" 
+                        placeholder="Your name" 
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required 
+                        className="h-9 text-sm"
+                      />
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <Label htmlFor="email" className="text-xs">Email</Label>
+                        <Input 
+                          id="email" 
+                          name="email" 
+                          type="email" 
+                          placeholder="you@email.com" 
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required 
+                          className="h-9 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="phone" className="text-xs">Phone</Label>
+                        <Input 
+                          id="phone" 
+                          name="phone" 
+                          type="tel" 
+                          placeholder="07XXX XXXXXX" 
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required 
+                          className="h-9 text-sm"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="postcode" className="text-xs">Postcode</Label>
+                      <Input 
+                        id="postcode" 
+                        name="postcode" 
+                        placeholder="HP2 7DE" 
+                        value={formData.postcode}
+                        onChange={handleInputChange}
+                        required 
+                        className="h-9 text-sm"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Step 4: Details */}
+            {step === 4 && (
+              <div className="space-y-4 animate-fade-in">
+                <div className="bg-card rounded-xl p-4 border border-border">
+                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-primary" />
+                    Additional Information
+                  </h2>
+                  
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="preferredDate" className="text-xs">Preferred Date (Optional)</Label>
+                      <Input 
+                        id="preferredDate" 
+                        name="preferredDate" 
+                        type="date" 
+                        value={formData.preferredDate}
+                        onChange={handleInputChange}
+                        className="h-9 text-sm"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="message" className="text-xs">Describe the Issue (Optional)</Label>
+                      <textarea 
+                        id="message" 
+                        name="message" 
+                        placeholder="Any symptoms, noises, or additional details..."
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={4}
+                        className="w-full px-3 py-2 text-sm border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Navigation */}
+            <div className="flex gap-3 pt-2">
+              {step > 1 && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={prevStep}
+                  className="flex-1 h-10 rounded-full text-sm"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back
+                </Button>
+              )}
+              
+              {step < 4 ? (
+                <Button
+                  type="button"
+                  onClick={nextStep}
+                  disabled={!canProceed()}
+                  className={`${step === 1 ? 'w-full' : 'flex-1'} h-10 rounded-full text-sm`}
+                >
+                  Continue
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="flex-1 h-10 rounded-full text-sm"
+                >
+                  Request Quote
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              )}
+            </div>
+
+            {/* Help */}
+            <p className="text-xs text-center text-muted-foreground pt-2">
+              Need help?{" "}
+              <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline">
                 Call {BUSINESS_INFO.phone}
               </a>
-            </Button>
-          </div>
+            </p>
+          </form>
         </div>
       </section>
+      
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+      `}</style>
     </Layout>
   );
 };
