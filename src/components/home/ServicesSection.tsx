@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import servicingImg from "@/assets/service-servicing.jpg";
 
 const services = [
-  { id: "diagnostics", name: "Diagnostics", price: "From £45", image: "/diagonstic.jpg" },
-  { id: "brakes", name: "Brakes", price: "From £80", image: "/brakes.jpg" },
-  { id: "servicing", name: "Servicing", price: "From £120", image: servicingImg },
-  { id: "general", name: "General Repairs", price: "Call for quote", image: "/generalrepairs.JPG" },
-  { id: "electrical", name: "Electrical", price: "From £60", image: "/electrical.jpg" },
-  { id: "suspension", name: "Suspension", price: "From £100", image: "/suspension.jpg" },
+  { id: "diagnostics", name: "Diagnostics", price: "From £35", image: "/diagonstic.jpg" },
+  { id: "brakes", name: "Brakes", price: "From £55", image: "/brakes.jpg" },
+  { id: "servicing", name: "Servicing", price: "From £110", image: servicingImg },
+  { id: "general", name: "General Repairs", price: "£45/hour", image: "/generalrepairs.JPG" },
+  { id: "electrical", name: "Battery", price: "From £100", image: "/electrical.jpg" },
+  { id: "suspension", name: "Pre-Purchase", price: "£85", image: "/suspension.jpg" },
 ];
 
 const ServicesSection = () => {

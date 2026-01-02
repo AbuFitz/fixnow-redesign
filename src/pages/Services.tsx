@@ -57,29 +57,11 @@ const Services = () => {
       includes: ["Battery test", "Fitting new battery", "Terminal cleaning", "Proper disposal of old battery"],
     },
     {
-      name: "Interim Service",
-      price: "From £110",
-      description: "Recommended every 6 months or 6,000 miles.",
-      includes: ["Engine oil and filter replacement", "Fluid checks and top-ups", "Tyre inspection", "Brake check", "30-point safety inspection"],
-    },
-    {
-      name: "Full Service (Petrol)",
-      price: "From £150",
-      description: "Annual service with comprehensive inspection.",
-      includes: ["Everything in interim service", "Air filter replacement", "Cabin filter replacement", "50-point comprehensive inspection", "Service book stamped"],
-    },
-    {
       name: "Brake Pads & Discs",
       price: "From £160",
       note: "Front from £180, Rear from £160",
       description: "Complete brake refresh including pads and discs.",
       includes: ["New brake pads", "New brake discs", "Complete installation", "Brake test"],
-    },
-    {
-      name: "Full Service (Diesel)",
-      price: "From £180",
-      description: "Diesel includes fuel filter replacement.",
-      includes: ["Everything in interim service", "Air filter replacement", "Cabin filter replacement", "Fuel filter replacement", "50-point comprehensive inspection", "Service book stamped"],
     },
   ];
 
@@ -117,6 +99,58 @@ const Services = () => {
       <section className="pt-16 pb-12 md:pt-20 md:pb-16">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {/* Full Service */}
+            <div className="group bg-gradient-to-br from-card via-card to-card/80 rounded-3xl overflow-hidden border-2 border-primary/40 hover:border-primary transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20">
+              <div className="relative h-48 md:h-64 overflow-hidden">
+                <img 
+                  src={fullServiceImage}
+                  alt="Full Service"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-base md:text-lg">
+                  From £150
+                </div>
+                <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full font-semibold text-xs md:text-sm uppercase tracking-wider shadow-lg">
+                  Most Popular
+                </div>
+              </div>
+              
+              <div className="p-6 md:p-8">
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3">
+                  Full Service
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">
+                  Recommended annually or every 12,000 miles. Comprehensive service with complete inspection.
+                </p>
+                <p className="text-xs text-muted-foreground mb-6 p-2 md:p-3 bg-primary/5 rounded-lg border border-primary/10">
+                  Petrol from £150 / Diesel from £180. Diesel includes fuel filter replacement.
+                </p>
+                
+                <div className="space-y-2 md:space-y-3 mb-6">
+                  {[
+                    "Everything in interim service",
+                    "Air filter replacement",
+                    "Cabin filter replacement",
+                    "50-point comprehensive inspection",
+                    "Service book stamped",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-2 md:gap-3">
+                      <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-sm md:text-base text-foreground">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <Button asChild className="w-full rounded-full h-11 md:h-12 font-semibold text-sm md:text-base">
+                  <Link to="/estimate/full-service">
+                    Book Full Service
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
             {/* Interim Service */}
             <div className="group bg-gradient-to-br from-card via-card to-card/80 rounded-3xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 hover:shadow-2xl">
               <div className="relative h-48 md:h-64 overflow-hidden">
@@ -162,58 +196,6 @@ const Services = () => {
                 </Button>
               </div>
             </div>
-
-            {/* Full Service */}
-            <div className="group bg-gradient-to-br from-card via-card to-card/80 rounded-3xl overflow-hidden border-2 border-primary/40 hover:border-primary transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20">
-              <div className="relative h-48 md:h-64 overflow-hidden">
-                <img 
-                  src={fullServiceImage}
-                  alt="Full Service"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-base md:text-lg">
-                  From £150
-                </div>
-                <div className="absolute top-4 left-4 bg-foreground text-background px-2 md:px-3 py-1 rounded-full font-semibold text-xs md:text-sm uppercase tracking-wider">
-                  Most Popular
-                </div>
-              </div>
-              
-              <div className="p-6 md:p-8">
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3">
-                  Full Service
-                </h3>
-                <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">
-                  Recommended annually or every 12,000 miles. Comprehensive service with complete inspection.
-                </p>
-                <p className="text-xs text-muted-foreground mb-6 p-2 md:p-3 bg-primary/5 rounded-lg border border-primary/10">
-                  Petrol from £150 / Diesel from £180. Diesel includes fuel filter replacement.
-                </p>
-                
-                <div className="space-y-2 md:space-y-3 mb-6">
-                  {[
-                    "Everything in interim service",
-                    "Air filter replacement",
-                    "Cabin filter replacement",
-                    "50-point comprehensive inspection",
-                    "Service book stamped",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-2 md:gap-3">
-                      <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-sm md:text-base text-foreground">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <Button asChild className="w-full rounded-full h-11 md:h-12 font-semibold text-sm md:text-base">
-                  <Link to="/estimate/full-service">
-                    Book Full Service
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -249,30 +231,30 @@ const Services = () => {
                     
                     <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl">
                       <div className="p-6 md:p-8">
-                        <DialogHeader className="mb-6">
+                        <DialogHeader className="mb-6 text-center">
                           <DialogTitle className="text-2xl md:text-3xl font-bold text-foreground mb-2">{service.name}</DialogTitle>
                           <div className="text-3xl md:text-4xl font-bold text-primary">{service.price}</div>
                         </DialogHeader>
                         
                         <div className="space-y-6">
-                          <p className="text-base text-muted-foreground leading-relaxed">{service.description}</p>
+                          <p className="text-base text-muted-foreground leading-relaxed text-center">{service.description}</p>
                           
                           {service.note && (
-                            <div className="p-4 bg-muted/50 rounded-2xl border border-border">
+                            <div className="p-4 bg-muted/50 rounded-2xl border border-border text-center">
                               <p className="text-sm text-foreground font-medium">{service.note}</p>
                             </div>
                           )}
                           
                           <div>
-                            <p className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+                            <p className="text-sm font-semibold text-foreground mb-4 flex items-center justify-center gap-2">
                               <CheckCircle2 className="w-4 h-4 text-primary" />
                               What's Included
                             </p>
-                            <div className="space-y-3 pl-6">
+                            <div className="space-y-3">
                               {service.includes.map((item, idx) => (
                                 <div key={idx} className="flex items-start gap-3 text-base text-foreground">
                                   <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
-                                  <span className="leading-relaxed">{item}</span>
+                                  <span className="leading-relaxed text-left">{item}</span>
                                 </div>
                               ))}
                             </div>
