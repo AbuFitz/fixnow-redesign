@@ -118,21 +118,14 @@ const Header = () => {
               
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2.5 rounded-full border border-3">
-              <a
-                href={`tel:${BUSINESS_INFO.phone}`}
-                className="flex items-center justify-center active:scale-95 transition-all duration-200"
-                aria-label="Call us"
+                className="p-2.5 rounded-full border border-border/40 bg-card/30 hover:bg-card/60 active:scale-95 transition-all duration-200"
+                aria-label="Toggle menu"
               >
-                <Phone className="w-5 h-5 text-primary" />
-              </a>
-              
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2acity-0 scale-0'
-                    }`} 
-                  />
-                </div>
+                {isOpen ? (
+                  <X className="w-5 h-5 text-foreground" />
+                ) : (
+                  <Menu className="w-5 h-5 text-foreground" />
+                )}
               </button>
             </div>
           </div>
@@ -148,9 +141,6 @@ const Header = () => {
       />
 
       {/* Mobile Menu Panel */}
-      <div
-        className={`lg:hidden fixed inset-x-0 top-16 bottom-0 bg-background/95 backdrop-blur-2xl transition-all duration-400 z-40 overflow-y-auto ${
-          isOpen ? 'tr*/}
       <div
         className={`lg:hidden fixed inset-x-0 top-16 bg-background/80 backdrop-blur-xl border-b border-border/40 transition-all duration-300 z-40 ${
           isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
@@ -184,33 +174,9 @@ const Header = () => {
             <Link to="/quote" onClick={() => setIsOpen(false)}>
               Get Free Quote
             </Link>
-          </Buttoncity: 1;
-            transform: scale(1);
-          }
-        }
-
-        @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+          </Button>
+        </nav>
+      </div>
     </>
   );
 };
