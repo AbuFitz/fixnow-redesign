@@ -8,7 +8,7 @@ const Locations = () => {
   return (
     <Layout>
       {/* Hero with Map Background */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-b from-card via-surface-elevated to-card overflow-hidden">
+      <section className="relative py-17 md:py-24 bg-gradient-to-b from-card via-surface-elevated to-card overflow-hidden">
         {/* Map background */}
         <div className="absolute inset-0">
           <iframe

@@ -7,12 +7,14 @@ import { BUSINESS_INFO } from "@/lib/constants";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      setPastHero(window.scrollY > window.innerHeight);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -48,7 +50,7 @@ const Header = () => {
     }
   };
 
-  const showQuoteButton = !isHomePage || scrolled;
+  const showQuoteButton = !isHomePage || pastHero;
 
   return (
     <>

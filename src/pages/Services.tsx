@@ -75,7 +75,7 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero with Image */}
-      <section className="relative py-16 md:py-24 bg-gradient-to-b from-card via-surface to-card overflow-hidden">
+      <section className="relative py-14 md:py-20 bg-gradient-to-b from-card via-surface to-card overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <img 
