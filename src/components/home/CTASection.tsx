@@ -40,7 +40,7 @@ const CTASection = () => {
               asChild 
               className="group rounded-full h-12 sm:h-14 md:h-16 px-6 sm:px-8 md:px-10 text-base sm:text-lg font-semibold bg-background text-foreground hover:bg-background/90 hover:scale-[1.05] transition-all w-full sm:w-auto"
             >
-              <Link to="/quote">
+              <Link to="/estimate">
                 Get Quote Now
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Link>

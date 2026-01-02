@@ -11,6 +11,7 @@ import Locations from "./pages/Locations";
 import LocationPage from "./pages/LocationPage";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/locations/:slug" element={<LocationPage />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

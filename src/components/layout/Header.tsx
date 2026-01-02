@@ -112,7 +112,7 @@ const Header = () => {
                   showQuoteButton ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
                 }`}
               >
-                <Link to="/quote">Get Quote</Link>
+                <Link to="/estimate">Get Quote</Link>
               </Button>
             </div>
 
@@ -181,7 +181,7 @@ const Header = () => {
             size="lg"
             className="w-full rounded-lg font-semibold"
           >
-            <Link to="/quote" onClick={() => setIsOpen(false)}>
+            <Link to="/estimate" onClick={() => setIsOpen(false)}>
               Get Free Quote
             </Link>
           </Button>

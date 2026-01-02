@@ -14,60 +14,94 @@ const iconMap: Record<string, React.ElementType> = {
   Wrench,
 };
 
-const serviceDetails: Record<string, { includes: string[]; duration: string }> = {
-  diagnostics: {
+const serviceDetails: Record<string, { includes: string[]; note?: string }> = {
+  "mobile-diagnostic": {
     includes: [
-      "Full engine diagnostic scan",
-      "Fault code reading & clearing",
-      "System health check",
-      "Report of findings",
+      "Full OBD diagnostic scan",
+      "Visual inspection",
+      "Written report explaining findings",
+      "Identify the problem clearly",
     ],
-    duration: "30-60 mins",
   },
-  brakes: {
+  "pre-purchase": {
     includes: [
-      "Brake pad replacement",
-      "Brake disc replacement",
-      "Brake fluid check/top-up",
-      "Brake system inspection",
+      "Comprehensive 40-point inspection",
+      "Diagnostic scan",
+      "Test drive where possible",
+      "Detailed report with photos",
     ],
-    duration: "1-2 hours",
   },
-  servicing: {
+  "health-check": {
     includes: [
-      "Oil & filter change",
+      "Fluid level checks",
+      "Tyre inspection",
+      "Lights check",
+      "Battery test",
+    ],
+  },
+  "interim-service": {
+    includes: [
+      "Engine oil and filter replacement",
+      "Fluid checks and top-ups",
+      "Tyre inspection",
+      "Brake check",
+      "30-point safety inspection",
+    ],
+    note: "Recommended every 6 months or 6,000 miles",
+  },
+  "full-service": {
+    includes: [
+      "Everything in interim service",
       "Air filter replacement",
-      "Fluid top-ups",
-      "Multi-point inspection",
+      "Cabin filter replacement",
+      "50-point comprehensive inspection",
+      "Service book stamped",
     ],
-    duration: "1-2 hours",
+    note: "From £150 (petrol) / From £180 (diesel). Diesel includes fuel filter.",
   },
-  electrical: {
+  "brake-pads": {
     includes: [
-      "Battery testing & replacement",
-      "Alternator repairs",
-      "Starter motor repairs",
-      "Electrical fault finding",
+      "Remove wheels",
+      "Inspect discs and callipers",
+      "Fit quality brake pads",
+      "Brake test",
     ],
-    duration: "1-3 hours",
+    note: "Front from £100, Rear from £90",
   },
-  suspension: {
+  "brake-pads-discs": {
     includes: [
-      "Shock absorber replacement",
-      "Spring replacement",
-      "Suspension bush replacement",
-      "Steering components",
+      "New brake pads",
+      "New brake discs",
+      "Complete installation",
+      "Brake test",
     ],
-    duration: "2-4 hours",
+    note: "Front from £180, Rear from £160. Recommended when discs are worn or scored.",
   },
-  general: {
+  "brake-fluid": {
+    includes: [
+      "Full brake fluid flush",
+      "Fresh brake fluid",
+      "System bleed",
+      "Brake test",
+    ],
+  },
+  "battery": {
+    includes: [
+      "Battery test",
+      "Fitting new battery",
+      "Terminal cleaning",
+      "Proper disposal of old battery",
+    ],
+    note: "Standard from £100, Stop-Start from £150",
+  },
+  "general": {
     includes: [
       "Oil changes",
       "Filter replacements",
       "Belt replacements",
-      "General mechanical repairs",
+      "Various mechanical repairs",
     ],
-    duration: "Varies",
+    note: "Labour rate: £45 per hour",
   },
 };
 
@@ -132,23 +166,33 @@ const Services = () => {
                   
                   <p className="text-muted-foreground mb-6 text-sm">{service.description}</p>
                   
-                  <div className="mb-6">
-                    <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">
-                      What's Included
-                    </h4>
-                    <ul className="space-y-2">
-                      {details.includes.map((item, index) => (
-                        <li key={index} className="flex items-center gap-2 text-foreground text-sm">
-                          <div className="w-1 h-1 rounded-full bg-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {details && (
+                    <>
+                      <div className="mb-6">
+                        <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">
+                          What's Included
+                        </h4>
+                        <ul className="space-y-2">
+                          {details.includes.map((item, index) => (
+                            <li key={index} className="flex items-center gap-2 text-foreground text-sm">
+                              <div className="w-1 h-1 rounded-full bg-primary" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      
+                      {details.note && (
+                        <div className="mb-4 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                          <p className="text-xs text-muted-foreground">{details.note}</p>
+                        </div>
+                      )}
+                    </>
+                  )}
                   
                   <div className="flex items-center justify-between pt-6 border-t border-border">
                     <span className="text-sm text-muted-foreground">
-                      ~{details.duration}
+                      {service.category}
                     </span>
                     <Button asChild className="rounded-full group" size="sm">
                       <Link to="/estimate">
@@ -192,6 +236,15 @@ const Services = () => {
               </a>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Disclaimer */}
+      <section className="py-8 bg-card border-t border-border">
+        <div className="container mx-auto px-6 md:px-12">
+          <p className="text-xs text-muted-foreground text-center max-w-4xl mx-auto">
+            All prices shown are guides for standard vehicles. Final price depends on your specific vehicle and will be confirmed before booking. Prices include labour and parts unless otherwise stated.
+          </p>
         </div>
       </section>
     </Layout>

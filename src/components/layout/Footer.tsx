@@ -37,8 +37,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/quote" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/estimate" className="text-muted-foreground hover:text-primary transition-colors">
                   Get a Quote
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">
+                  FAQ
                 </Link>
               </li>
               <li>
@@ -150,7 +155,8 @@ const Footer = () => {
             <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
               <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link>
               <Link to="/locations" className="text-muted-foreground hover:text-primary transition-colors">Areas</Link>
-              <Link to="/quote" className="text-muted-foreground hover:text-primary transition-colors">Quote</Link>
+              <Link to="/estimate" className="text-muted-foreground hover:text-primary transition-colors">Quote</Link>
+              <Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link>
               <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy</Link>
               <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">Terms</Link>
             </nav>

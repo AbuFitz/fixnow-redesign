@@ -63,7 +63,7 @@ const HeroSection = () => {
               asChild 
               className="rounded-full h-12 sm:h-14 px-8 sm:px-10 text-sm sm:text-base font-semibold group relative overflow-hidden hover:scale-[1.02] transition-all w-full sm:w-auto"
             >
-              <Link to="/quote">
+              <Link to="/estimate">
                 <span className="relative z-10 flex items-center gap-2">
                   Get Quote Now
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
