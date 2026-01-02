@@ -110,33 +110,51 @@ const Footer = () => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden space-y-4 mb-6">
-          {/* Brand + Contact Row */}
-          <div className="flex items-start justify-between gap-4">
-            <Link to="/" className="shrink-0">
-              <span className="font-display font-bold text-base">
+        <div className="md:hidden space-y-6 mb-8">
+          {/* Brand */}
+          <div>
+            <Link to="/" className="inline-block mb-3">
+              <span className="font-display font-bold text-lg">
                 <span className="text-foreground">Fix</span>
                 <span className="text-primary">Now</span>
                 <span className="text-foreground"> Mechanics</span>
               </span>
             </Link>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Professional mobile mechanic services at your location.
+            </p>
+          </div>
+
+          {/* Contact */}
+          <div className="space-y-3">
+            <h4 className="font-semibold text-foreground text-sm mb-2">Contact</h4>
             <a
               href={`tel:${BUSINESS_INFO.phone}`}
-              className="flex items-center gap-1.5 text-foreground text-sm font-medium"
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
             >
-              <Phone className="w-3.5 h-3.5 text-primary" />
-              {BUSINESS_INFO.phone}
+              <Phone className="w-4 h-4 text-primary" />
+              <span>{BUSINESS_INFO.phone}</span>
+            </a>
+            <a
+              href={`mailto:${BUSINESS_INFO.email}`}
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
+            >
+              <Mail className="w-4 h-4 text-primary" />
+              <span>{BUSINESS_INFO.email}</span>
             </a>
           </div>
 
-          {/* Links Row */}
-          <nav className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm">
-            <Link to="/services" className="text-muted-foreground hover:text-primary">Services</Link>
-            <Link to="/locations" className="text-muted-foreground hover:text-primary">Areas</Link>
-            <Link to="/quote" className="text-muted-foreground hover:text-primary">Quote</Link>
-            <Link to="/privacy" className="text-muted-foreground hover:text-primary">Privacy</Link>
-            <Link to="/terms" className="text-muted-foreground hover:text-primary">Terms</Link>
-          </nav>
+          {/* Links */}
+          <div>
+            <h4 className="font-semibold text-foreground text-sm mb-3">Quick Links</h4>
+            <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link>
+              <Link to="/locations" className="text-muted-foreground hover:text-primary transition-colors">Areas</Link>
+              <Link to="/quote" className="text-muted-foreground hover:text-primary transition-colors">Quote</Link>
+              <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy</Link>
+              <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">Terms</Link>
+            </nav>
+          </div>
         </div>
 
         {/* Bottom Bar */}

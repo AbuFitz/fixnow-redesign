@@ -89,7 +89,7 @@ const HeroSection = () => {
           {[
             { value: "7 Days", label: "Open Weekly" },
             { value: "45 Mile", label: "Coverage Area" },
-            { value: "Same Day", label: "If Available" },
+            { value: "Same Day", label: "Call-outs Available" },
           ].map((stat) => (
             <div key={stat.label} className="relative">
               <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary mb-0.5 sm:mb-1 drop-shadow-sm">{stat.value}</div>

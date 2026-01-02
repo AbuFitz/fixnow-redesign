@@ -19,7 +19,7 @@ const CTASection = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-background opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-background" />
             </span>
-            <span className="text-xs sm:text-sm font-semibold text-primary-foreground uppercase tracking-wider">Evening Slots Available</span>
+            <span className="text-xs sm:text-sm font-semibold text-primary-foreground uppercase tracking-wider">Now Taking Call-outs</span>
           </div>
           
           {/* Main heading */}
