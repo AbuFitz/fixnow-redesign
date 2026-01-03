@@ -11,20 +11,20 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-x-hidden">
+    <section className="py-12 sm:py-14 md:py-16 lg:py-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
       {/* Accent glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px] pointer-events-none" />
-      <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 relative z-10 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-14 lg:gap-20 items-center pb-8 sm:pb-12">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px]" />
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
           {/* Image Side */}
-          <div className="relative order-2 lg:order-1 max-w-sm mx-auto w-full pb-20 sm:pb-24 md:pb-28">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl">
+          <div className="relative order-2 lg:order-1">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl transform rotate-2">
               <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
             </div>
             
             {/* Floating card */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[85%] max-w-xs p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl">
+            <div className="absolute -bottom-4 sm:-bottom-6 right-3 sm:right-4 md:right-8 p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl transform -rotate-3">
               <div className="flex items-center gap-2 sm:gap-3 mb-2">
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/10 flex items-center justify-center">
                   <Check className="w-3 h-3 sm:w-4 sm:h-4 text-black" />
