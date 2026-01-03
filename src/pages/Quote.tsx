@@ -170,7 +170,8 @@ const Quote = () => {
                           value={formData.make}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-sm"
+                          className="h-9 text-base"
+                          style={{ fontSize: '16px' }}
                         />
                       </div>
                       <div>
@@ -182,7 +183,8 @@ const Quote = () => {
                           value={formData.model}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-sm"
+                          className="h-9 text-base"
+                          style={{ fontSize: '16px' }}
                         />
                       </div>
                     </div>
@@ -200,8 +202,8 @@ const Quote = () => {
                           value={formData.reg}
                           onChange={handleInputChange}
                           maxLength={8}
-                          className="h-9 pl-9 pr-3 text-sm font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
-                          style={{ paddingLeft: '2.25rem', textAlign: 'left' }}
+                          className="h-9 pl-9 pr-3 text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                          style={{ paddingLeft: '2.25rem', textAlign: 'left', fontSize: '16px' }}
                         />
                       </div>
                     </div>
@@ -213,8 +215,9 @@ const Quote = () => {
                         name="fuelType"
                         value={formData.fuelType}
                         onChange={handleInputChange}
-                        className="w-full h-9 px-3 py-2 border border-input bg-background rounded-md text-sm appearance-none cursor-pointer"
+                        className="w-full h-9 px-3 py-2 border border-input bg-background rounded-md text-base appearance-none cursor-pointer"
                         style={{
+                          fontSize: '16px',
                           backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23666\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")',
                           backgroundRepeat: 'no-repeat',
                           backgroundPosition: 'right 0.75rem center',
@@ -224,9 +227,6 @@ const Quote = () => {
                         <option value="">Select fuel type...</option>
                         <option value="petrol">Petrol</option>
                         <option value="diesel">Diesel</option>
-                        <option value="hybrid">Hybrid</option>
-                        <option value="electric">Electric</option>
-                        <option value="other">Other</option>
                       </select>
                     </div>
                   </div>
@@ -253,7 +253,8 @@ const Quote = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required 
-                        className="h-9 text-sm"
+                        className="h-9 text-base"
+                        style={{ fontSize: '16px' }}
                       />
                     </div>
                     
@@ -268,7 +269,8 @@ const Quote = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-sm"
+                          className="h-9 text-base"
+                          style={{ fontSize: '16px' }}
                         />
                       </div>
                       <div>
@@ -281,7 +283,8 @@ const Quote = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-sm"
+                          className="h-9 text-base"
+                          style={{ fontSize: '16px' }}
                         />
                       </div>
                     </div>
@@ -295,7 +298,8 @@ const Quote = () => {
                         value={formData.postcode}
                         onChange={handleInputChange}
                         required 
-                        className="h-9 text-sm"
+                        className="h-9 text-base"
+                        style={{ fontSize: '16px' }}
                       />
                     </div>
                   </div>
@@ -321,7 +325,8 @@ const Quote = () => {
                         type="date" 
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-9 text-sm"
+                        className="h-9 text-base"
+                        style={{ fontSize: '16px' }}
                       />
                     </div>
                     
@@ -334,7 +339,8 @@ const Quote = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={4}
-                        className="w-full px-3 py-2 text-sm border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                        className="w-full px-3 py-2 text-base border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                        style={{ fontSize: '16px' }}
                       />
                     </div>
                   </div>
