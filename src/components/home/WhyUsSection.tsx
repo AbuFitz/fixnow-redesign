@@ -11,22 +11,15 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <>
-      <section className="py-12 sm:py-14 md:py-16 lg:py-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
-        {/* Accent glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px]" />
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
-            {/* Image Side */}
-            <div className="relative order-2 lg:order-1">
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl transform rotate-2">
-                <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-              </div>
-            </div>
-
-            {/* Content Side */}
-            <div className="order-1 lg:order-2">
+    <section className="py-12 sm:py-14 md:py-16 lg:py-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-x-hidden">
+      {/* Accent glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px]" />
+      
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
+          
+          {/* Content Side - First on mobile, second on desktop */}
+          <div className="lg:order-2">
             <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider mb-2 sm:mb-3 block">Why Choose Us</span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2 sm:mb-3 leading-tight">
               Quality Service,<br />
@@ -58,32 +51,36 @@ const WhyUsSection = () => {
               })}
             </div>
           </div>
+
+          {/* Image Side with Banner - Second on mobile, first on desktop */}
+          <div className="relative lg:order-1 mt-8 lg:mt-0">
+            {/* Main Image Container */}
+            <div className="relative rounded-2xl overflow-visible aspect-[4/5] lg:rotate-2">
+              <div className="rounded-2xl overflow-hidden shadow-2xl w-full h-full">
+                <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+              </div>
+
+              {/* Floating Banner - Positioned relative to image */}
+              <div className="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-4 lg:-bottom-6 lg:-right-6 z-20 lg:-rotate-3">
+                <div className="p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/10 flex items-center justify-center">
+                      <Check className="w-3 h-3 sm:w-4 sm:h-4 text-black" />
+                    </div>
+                    <span className="font-display font-bold text-black text-sm sm:text-base">Fully Equipped</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-black/80">
+                    We bring everything needed
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
-
-    {/* Floating card - Detached to layer above sections */}
-      <div className="relative pointer-events-none" style={{ zIndex: 100 }}>
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16">
-            <div className="relative order-2 lg:order-1">
-              <div className="absolute -bottom-4 sm:-bottom-6 lg:-bottom-4 right-3 sm:right-4 md:right-8 p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl transform -rotate-3 pointer-events-auto" style={{ zIndex: 100 }}>
-                <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/10 flex items-center justify-center">
-                    <Check className="w-3 h-3 sm:w-4 sm:h-4 text-black" />
-                  </div>
-                  <span className="font-display font-bold text-black text-sm sm:text-base">Fully Equipped</span>
-                </div>
-                <p className="text-xs sm:text-sm text-black/80">
-                  We bring everything needed
-                </p>
-              </div>
-            </div>
-            <div className="order-1 lg:order-2" />
-          </div>
-        </div>
-      </div>
-    </>
   );
 };
 
