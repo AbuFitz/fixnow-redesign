@@ -11,7 +11,7 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-12 sm:pb-16 md:pb-20 lg:pb-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
+    <section className="pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-12 sm:pb-16 md:pb-20 lg:pb-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-visible">
       {/* Accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-primary/8 rounded-full blur-[150px] pointer-events-none" />
       
@@ -62,7 +62,7 @@ const WhyUsSection = () => {
               </div>
 
               {/* Floating Banner - Positioned relative to image, overflows into next section */}
-              <div className="absolute -bottom-12 sm:-bottom-14 md:-bottom-16 lg:-bottom-6 right-4 sm:right-6 lg:right-8 z-50 -rotate-6">
+              <div className="absolute -bottom-12 sm:-bottom-14 md:-bottom-16 lg:-bottom-6 right-4 sm:right-6 lg:right-8 z-[100] -rotate-6">
                 <div className="p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl">
                   <div className="flex items-center gap-2 sm:gap-3 mb-2">
                     <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/10 flex items-center justify-center">
