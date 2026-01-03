@@ -182,7 +182,7 @@ const Header = () => {
             className="w-full rounded-lg font-semibold"
           >
             <Link to="/estimate" onClick={() => setIsOpen(false)}>
-              Get Free Quote
+              Get Quote
             </Link>
           </Button>
         </nav>

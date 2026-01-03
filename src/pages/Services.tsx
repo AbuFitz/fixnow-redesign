@@ -269,7 +269,7 @@ const Services = () => {
                           <div className="pt-4 md:pt-6">
                             <Button asChild className="w-full rounded-full h-11 md:h-12 font-semibold text-sm md:text-base">
                               <Link to="/estimate">
-                                Get Quote for {service.name}
+                                Get Quote
                                 <ArrowRight className="w-4 h-4 ml-2" />
                               </Link>
                             </Button>
