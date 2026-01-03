@@ -235,19 +235,19 @@ const Services = () => {
                       </button>
                     </DialogTrigger>
                     
-                    <DialogContent className="max-w-[min(90vw,600px)] md:max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl md:rounded-3xl">
-                      <div className="p-4 md:p-6 lg:p-8">
+                    <DialogContent className="w-[calc(100vw-2rem)] max-w-[600px] md:max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-2xl md:rounded-3xl mx-4">
+                      <div className="p-4 md:p-6 lg:p-8 overflow-x-hidden">
                         <DialogHeader className="mb-4 md:mb-6 text-center">
-                          <DialogTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-2">{service.name}</DialogTitle>
-                          <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary">{service.price}</div>
+                          <DialogTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-2 break-words">{service.name}</DialogTitle>
+                          <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary break-words">{service.price}</div>
                         </DialogHeader>
                         
-                        <div className="space-y-4 md:space-y-6">
-                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-center">{service.description}</p>
+                        <div className="space-y-4 md:space-y-6 overflow-x-hidden">
+                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-center break-words">{service.description}</p>
                           
                           {service.note && (
                             <div className="p-3 md:p-4 bg-muted/50 rounded-xl md:rounded-2xl border border-border text-center">
-                              <p className="text-xs md:text-sm text-foreground font-medium">{service.note}</p>
+                              <p className="text-xs md:text-sm text-foreground font-medium break-words">{service.note}</p>
                             </div>
                           )}
                           
@@ -260,7 +260,7 @@ const Services = () => {
                               {service.includes.map((item, idx) => (
                                 <div key={idx} className="flex items-start gap-2 md:gap-3 text-sm md:text-base text-foreground">
                                   <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 md:mt-2.5 flex-shrink-0" />
-                                  <span className="leading-relaxed text-left">{item}</span>
+                                  <span className="leading-relaxed text-left break-words flex-1">{item}</span>
                                 </div>
                               ))}
                             </div>
