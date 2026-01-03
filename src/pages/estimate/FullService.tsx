@@ -53,8 +53,8 @@ const FullService = () => {
 
   return (
     <Layout>
-      <section className="py-6 md:py-8 bg-background min-h-screen">
-        <div className="container mx-auto px-4 max-w-xl">
+      <section className="py-6 md:py-8 bg-background min-h-screen overflow-x-hidden">
+        <div className="container mx-auto px-4 max-w-xl w-full">
           {/* Header */}
           <div className="text-center mb-4">
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-1">
@@ -91,7 +91,7 @@ const FullService = () => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-full overflow-x-hidden">
             {/* Step 1: Vehicle */}
             {step === 1 && (
               <div className="space-y-4 animate-fade-in">

@@ -125,12 +125,12 @@ const Estimate = () => {
 
   return (
     <Layout>
-      <section className="relative min-h-screen bg-gradient-to-br from-background via-surface/30 to-background">
+      <section className="relative min-h-screen bg-gradient-to-br from-background via-surface/30 to-background overflow-x-hidden">
         {/* Subtle accent glow */}
         <div className="absolute top-20 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px]" />
 
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 relative z-10">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 relative z-10 max-w-full">
+          <div className="max-w-4xl mx-auto w-full">
             {/* HERO - Trust First */}
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4">
@@ -185,8 +185,8 @@ const Estimate = () => {
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit}>
-              <div className="bg-card/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-10 border border-border/50 max-w-3xl mx-auto">
+            <form onSubmit={handleSubmit} className="w-full max-w-full overflow-x-hidden">
+              <div className="bg-card/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-10 border border-border/50 max-w-3xl mx-auto w-full">
                 <div className="space-y-6 sm:space-y-8">
                   {/* Step 1: Problem/Service */}
                   <div className="space-y-4">
