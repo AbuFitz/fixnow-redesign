@@ -18,7 +18,6 @@ const WhyUsSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center min-h-[600px] lg:min-h-[700px]">
           {/* Image Side */}
           <div className="relative order-2 lg:order-1 max-w-md mx-auto w-full">
-          <div className="relative order-2 lg:order-1 max-w-md mx-auto w-full">
             <div className="relative rounded-2xl overflow-visible aspect-[4/5] shadow-2xl">
               <div className="absolute inset-0 rounded-2xl overflow-hidden">
                 <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
