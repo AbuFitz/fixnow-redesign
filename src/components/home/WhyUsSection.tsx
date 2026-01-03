@@ -55,14 +55,14 @@ const WhyUsSection = () => {
           {/* Image Side with Banner - Second on mobile, first on desktop */}
           <div className="relative lg:order-1 mt-8 lg:mt-0">
             {/* Main Image Container */}
-            <div className="relative rounded-2xl aspect-[4/3] lg:rotate-2">
+            <div className="relative rounded-2xl aspect-[4/3]">
               <div className="rounded-2xl overflow-hidden shadow-2xl w-full h-full">
                 <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </div>
 
               {/* Floating Banner - Positioned relative to image, overflows into next section */}
-              <div className="absolute -bottom-12 sm:-bottom-14 md:-bottom-16 lg:-bottom-6 right-2 sm:right-4 lg:-right-6 z-50 -rotate-6 lg:-rotate-6">
+              <div className="absolute -bottom-12 sm:-bottom-14 md:-bottom-16 lg:-bottom-6 right-4 sm:right-6 lg:right-8 z-50 -rotate-6">
                 <div className="p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl">
                   <div className="flex items-center gap-2 sm:gap-3 mb-2">
                     <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/10 flex items-center justify-center">
