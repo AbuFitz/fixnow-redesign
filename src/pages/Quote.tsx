@@ -16,6 +16,7 @@ const Quote = () => {
     model: "",
     year: "",
     reg: "",
+    fuelType: "",
     // Contact
     name: "",
     email: "",
@@ -189,7 +190,7 @@ const Quote = () => {
                     <div>
                       <Label htmlFor="reg" className="text-xs">Registration Plate</Label>
                       <div className="relative">
-                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#0C4DA2] rounded-l-md flex items-center justify-center">
+                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#0C4DA2] rounded-l-md flex items-center justify-center z-10">
                           <div className="text-[#FFD500] font-bold text-[10px]">GB</div>
                         </div>
                         <Input 
@@ -198,9 +199,35 @@ const Quote = () => {
                           placeholder="AB12CDE" 
                           value={formData.reg}
                           onChange={handleInputChange}
-                          className="h-9 pl-10 text-center text-sm font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                          maxLength={8}
+                          className="h-9 pl-9 pr-3 text-sm font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                          style={{ paddingLeft: '2.25rem', textAlign: 'left' }}
                         />
                       </div>
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="fuelType" className="text-xs">Fuel Type</Label>
+                      <select
+                        id="fuelType"
+                        name="fuelType"
+                        value={formData.fuelType}
+                        onChange={handleInputChange}
+                        className="w-full h-9 px-3 py-2 border border-input bg-background rounded-md text-sm appearance-none cursor-pointer"
+                        style={{
+                          backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23666\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'right 0.75rem center',
+                          backgroundSize: '12px',
+                        }}
+                      >
+                        <option value="">Select fuel type...</option>
+                        <option value="petrol">Petrol</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="hybrid">Hybrid</option>
+                        <option value="electric">Electric</option>
+                        <option value="other">Other</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -294,7 +321,7 @@ const Quote = () => {
                         type="date" 
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-9 text-sm w-full"
+                        className="h-9 text-sm"
                       />
                     </div>
                     
@@ -368,13 +395,6 @@ const Quote = () => {
         }
         .animate-fade-in {
           animation: fade-in 0.3s ease-out;
-        }
-        
-        /* Prevent viewport adjustment on mobile when keyboard opens */
-        @media (max-width: 768px) {
-          input, textarea, select {
-            font-size: 16px !important;
-          }
         }
       `}</style>
     </Layout>
