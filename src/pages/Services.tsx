@@ -235,39 +235,39 @@ const Services = () => {
                       </button>
                     </DialogTrigger>
                     
-                    <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl">
-                      <div className="p-6 md:p-8">
-                        <DialogHeader className="mb-6 text-center">
-                          <DialogTitle className="text-2xl md:text-3xl font-bold text-foreground mb-2">{service.name}</DialogTitle>
-                          <div className="text-3xl md:text-4xl font-bold text-primary">{service.price}</div>
+                    <DialogContent className="max-w-[min(90vw,600px)] md:max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl md:rounded-3xl">
+                      <div className="p-4 md:p-6 lg:p-8">
+                        <DialogHeader className="mb-4 md:mb-6 text-center">
+                          <DialogTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-2">{service.name}</DialogTitle>
+                          <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary">{service.price}</div>
                         </DialogHeader>
                         
-                        <div className="space-y-6">
-                          <p className="text-base text-muted-foreground leading-relaxed text-center">{service.description}</p>
+                        <div className="space-y-4 md:space-y-6">
+                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-center">{service.description}</p>
                           
                           {service.note && (
-                            <div className="p-4 bg-muted/50 rounded-2xl border border-border text-center">
-                              <p className="text-sm text-foreground font-medium">{service.note}</p>
+                            <div className="p-3 md:p-4 bg-muted/50 rounded-xl md:rounded-2xl border border-border text-center">
+                              <p className="text-xs md:text-sm text-foreground font-medium">{service.note}</p>
                             </div>
                           )}
                           
                           <div>
-                            <p className="text-sm font-semibold text-foreground mb-4 flex items-center justify-center gap-2">
+                            <p className="text-xs md:text-sm font-semibold text-foreground mb-3 md:mb-4 flex items-center justify-center gap-2">
                               <CheckCircle2 className="w-4 h-4 text-primary" />
                               What's Included
                             </p>
-                            <div className="space-y-3">
+                            <div className="space-y-2 md:space-y-3">
                               {service.includes.map((item, idx) => (
-                                <div key={idx} className="flex items-start gap-3 text-base text-foreground">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                                <div key={idx} className="flex items-start gap-2 md:gap-3 text-sm md:text-base text-foreground">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 md:mt-2.5 flex-shrink-0" />
                                   <span className="leading-relaxed text-left">{item}</span>
                                 </div>
                               ))}
                             </div>
                           </div>
                           
-                          <div className="pt-6">
-                            <Button asChild className="w-full rounded-full h-12 font-semibold text-base">
+                          <div className="pt-4 md:pt-6">
+                            <Button asChild className="w-full rounded-full h-11 md:h-12 font-semibold text-sm md:text-base">
                               <Link to="/estimate">
                                 Get Quote for {service.name}
                                 <ArrowRight className="w-4 h-4 ml-2" />

@@ -17,8 +17,8 @@ const Index = () => {
       <HeroSection />
       <ServicesSection />
       <HowItWorksSection />
-      <AreasSection />
       <WhyUsSection />
+      <AreasSection />
       <CTASection />
     </Layout>
   );
