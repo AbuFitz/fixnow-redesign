@@ -74,16 +74,16 @@ const Quote = () => {
             <div className="flex items-center justify-center gap-2 mb-2">
               {[1, 2, 3, 4].map((s) => (
                 <div key={s} className="flex items-center">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all border-2 ${
-                    s < step ? 'bg-primary text-primary-foreground border-primary' :
-                    s === step ? 'bg-foreground text-background border-foreground' :
-                    'bg-background text-muted-foreground border-border'
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
+                    s < step ? 'bg-muted text-muted-foreground' :
+                    s === step ? 'bg-card text-foreground border border-border' :
+                    'bg-background text-muted-foreground/40 border border-border/40'
                   }`}>
-                    {s < step ? <Check className="w-5 h-5" /> : s}
+                    {s < step ? <Check className="w-4 h-4" /> : s}
                   </div>
                   {s < 4 && (
-                    <div className={`w-12 h-1 mx-1 rounded-full transition-all ${
-                      s < step ? 'bg-primary' : 'bg-border'
+                    <div className={`w-8 h-[1px] mx-1 transition-all ${
+                      s < step ? 'bg-border' : 'bg-border/30'
                     }`} />
                   )}
                 </div>
