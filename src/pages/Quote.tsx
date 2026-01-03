@@ -41,7 +41,7 @@ const Quote = () => {
       case 1:
         return formData.serviceType;
       case 2:
-        return formData.make && formData.model && formData.year && formData.reg;
+        return formData.make && formData.model;
       case 3:
         return formData.name && formData.email && formData.phone && formData.postcode;
       default:
@@ -89,9 +89,6 @@ const Quote = () => {
                 </div>
               ))}
             </div>
-            <p className="text-xs text-center text-muted-foreground font-medium">
-              Step {step} of 4
-            </p>
           </div>
 
           {/* Form */}
@@ -198,20 +195,18 @@ const Quote = () => {
                           placeholder="2018" 
                           value={formData.year}
                           onChange={handleInputChange}
-                          required 
                           className="h-9 text-sm"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="reg" className="text-xs">Registration</Label>
+                        <Label htmlFor="reg" className="text-xs">Registration Plate</Label>
                         <Input 
                           id="reg" 
                           name="reg" 
                           placeholder="AB12CDE" 
                           value={formData.reg}
                           onChange={handleInputChange}
-                          required 
-                          className="h-9 text-sm"
+                          className="h-12 text-center text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
                         />
                       </div>
                     </div>

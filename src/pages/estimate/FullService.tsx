@@ -35,7 +35,7 @@ const FullService = () => {
   const canProceed = () => {
     switch (step) {
       case 1:
-        return formData.make && formData.model && formData.year && formData.reg && formData.fuelType;
+        return formData.make && formData.model && formData.reg && formData.fuelType;
       case 2:
         return formData.name && formData.email && formData.phone && formData.postcode;
       default:
@@ -85,9 +85,6 @@ const FullService = () => {
                 </div>
               ))}
             </div>
-            <p className="text-xs text-center text-muted-foreground font-medium">
-              Step {step} of 3
-            </p>
           </div>
 
           {/* Form */}
@@ -129,31 +126,17 @@ const FullService = () => {
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-2">
-                      <div>
-                        <Label htmlFor="year" className="text-xs">Year</Label>
-                        <Input 
-                          id="year" 
-                          name="year" 
-                          placeholder="2018" 
-                          value={formData.year}
-                          onChange={handleInputChange}
-                          required 
-                          className="h-9 text-sm"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="reg" className="text-xs">Registration</Label>
-                        <Input 
-                          id="reg" 
-                          name="reg" 
-                          placeholder="AB12CDE" 
-                          value={formData.reg}
-                          onChange={handleInputChange}
-                          required 
-                          className="h-9 text-sm"
-                        />
-                      </div>
+                    <div>
+                      <Label htmlFor="reg" className="text-xs">Registration Plate</Label>
+                      <Input 
+                        id="reg" 
+                        name="reg" 
+                        placeholder="AB12CDE" 
+                        value={formData.reg}
+                        onChange={handleInputChange}
+                        required 
+                        className="h-12 text-center text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                      />
                     </div>
                     
                     <div>

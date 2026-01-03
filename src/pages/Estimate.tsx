@@ -127,7 +127,7 @@ const Estimate = () => {
     <Layout>
       <section className="relative min-h-screen bg-gradient-to-br from-background via-surface/30 to-background overflow-x-hidden">
         {/* Subtle accent glow */}
-        <div className="absolute top-20 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px]" />
+        <div className="absolute top-20 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 relative z-10 max-w-full">
           <div className="max-w-4xl mx-auto w-full">
@@ -330,14 +330,15 @@ const Estimate = () => {
                         className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
                         required
                       />
+                    </div>
+                    <div>
+                      <label className="text-xs sm:text-sm font-medium text-foreground mb-2 block">Registration Plate</label>
                       <Input
-                        placeholder="Year (e.g. 2019)"
-                        value={formData.vehicleYear}
-                        onChange={(e) => updateFormData("vehicleYear", e.target.value)}
-                        className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
+                        placeholder="AB12 CDE"
+                        value={formData.vehicleReg}
+                        onChange={(e) => updateFormData("vehicleReg", e.target.value.toUpperCase())}
+                        className="rounded-xl h-14 sm:h-16 text-center text-lg sm:text-xl font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
                       />
-                      <Input
-                        placeholder="Reg (e.g. AB12 CDE)"
                         value={formData.vehicleReg}
                         onChange={(e) => updateFormData("vehicleReg", e.target.value.toUpperCase())}
                         className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
