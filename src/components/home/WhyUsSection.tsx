@@ -13,7 +13,7 @@ const WhyUsSection = () => {
   return (
     <section className="pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24 lg:pb-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
       {/* Accent glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-primary/8 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
