@@ -130,8 +130,6 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Space Grotesk', sans-serif;
     line-height: 1.6;
-    overscroll-behavior-x: none;
-    touch-action: pan-y pinch-zoom;
   }
   
   /* Prevent horizontal scrolling on all containers */
@@ -180,14 +178,6 @@
     
     /* Prevent content shift when keyboard opens */
     .container {
-      max-width: 100vw;
-      overflow-x: hidden;
-    }
-    
-    /* Keep sections from shifting when keyboard opens */
-    section {
-      position: relative;
-      overflow-x: hidden;
       max-width: 100vw;
     }
     
