@@ -11,11 +11,11 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-x-hidden overflow-y-visible">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-x-hidden">
       {/* Accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px] pointer-events-none" />
-      <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 relative z-10 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-14 lg:gap-20 items-center min-h-[650px] lg:min-h-[750px]">
+      <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 relative max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-14 lg:gap-20 items-center">
           {/* Image Side */}
           <div className="relative order-2 lg:order-1 max-w-sm mx-auto w-full pb-12 sm:pb-16">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl">
