@@ -139,6 +139,13 @@
     overflow-x: hidden;
     max-width: 100vw;
     width: 100%;
+    position: relative;
+  }
+  
+  /* Prevent any transforms from causing overflow */
+  * {
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -200,8 +207,17 @@
   input[placeholder*=\"AB12\"],
   input[placeholder*=\"CDE\"] {
     max-width: 100%;
+  }  
+  /* Date input specific styling */
+  input[type="date"] {
+    width: 100%;
+    max-width: 100%;
   }
-}
+  
+  /* Ensure all inputs stay within bounds */
+  input, textarea, select {
+    box-sizing: border-box;
+  }}
 
 @layer utilities {
   .text-gradient {
@@ -250,18 +266,17 @@
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.3s ease-out;
+  animation: fade-in 0.2s ease-out;
   max-width: 100%;
   overflow-x: hidden;
+  will-change: opacity;
 }
 
 @keyframes scale-in {

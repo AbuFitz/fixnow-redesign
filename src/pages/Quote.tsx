@@ -95,7 +95,7 @@ const Quote = () => {
           <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-full overflow-x-hidden">
             {/* Step 1: Service */}
             {step === 1 && (
-              <div className="space-y-4 animate-fade-in">
+              <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
                 <div className="bg-card rounded-xl p-4 border border-border">
                   <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <FileText className="w-4 h-4 text-primary" />
@@ -294,7 +294,7 @@ const Quote = () => {
                         type="date" 
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-9 text-sm"
+                        className="h-9 text-sm w-full"
                       />
                     </div>
                     

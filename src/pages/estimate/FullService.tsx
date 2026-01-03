@@ -250,7 +250,7 @@ const FullService = () => {
                         type="date" 
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-9 text-sm"
+                        className="h-9 text-sm w-full"
                       />
                     </div>
                     
