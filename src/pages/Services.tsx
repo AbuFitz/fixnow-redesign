@@ -235,8 +235,8 @@ const Services = () => {
                       </button>
                     </DialogTrigger>
                     
-                    <DialogContent className="w-[calc(100vw-2rem)] max-w-[600px] md:max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-2xl md:rounded-3xl mx-4">
-                      <div className="p-4 md:p-6 lg:p-8 overflow-x-hidden">
+                    <DialogContent className="w-[90vw] sm:w-full max-w-[600px] md:max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-2xl md:rounded-3xl p-0">
+                      <div className="p-4 md:p-6 lg:p-8 overflow-x-hidden w-full">
                         <DialogHeader className="mb-4 md:mb-6 text-center">
                           <DialogTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-2 break-words">{service.name}</DialogTitle>
                           <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary break-words">{service.price}</div>
