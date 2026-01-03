@@ -63,11 +63,11 @@ const WhyUsSection = () => {
     </section>
 
     {/* Floating card - Detached to layer above sections */}
-      <div className="relative z-30 pointer-events-none">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16">
+      <div className="fixed z-50 inset-0 pointer-events-none">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 h-full">
             <div className="relative order-2 lg:order-1">
-              <div className="absolute -top-20 right-3 sm:right-4 md:right-8 p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl transform -rotate-3 pointer-events-auto z-40">
+              <div className="absolute top-[calc(100vh-32rem)] lg:top-auto lg:-bottom-6 right-3 sm:right-4 md:right-8 p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl transform -rotate-3 pointer-events-auto">
                 <div className="flex items-center gap-2 sm:gap-3 mb-2">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/10 flex items-center justify-center">
                     <Check className="w-3 h-3 sm:w-4 sm:h-4 text-black" />
