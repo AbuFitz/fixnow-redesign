@@ -11,11 +11,11 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="py-12 sm:py-14 md:py-16 lg:py-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-x-hidden">
+    <section className="pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-20 sm:pb-24 md:pb-28 lg:pb-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-visible">
       {/* Accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-[150px]" />
       
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+      <div className="container mx-auto px-3 sm:px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
           
           {/* Content Side - First on mobile, second on desktop */}
@@ -53,16 +53,16 @@ const WhyUsSection = () => {
           </div>
 
           {/* Image Side with Banner - Second on mobile, first on desktop */}
-          <div className="relative lg:order-1 mt-8 lg:mt-0">
+          <div className="relative lg:order-1 mt-8 lg:mt-0 max-w-full">
             {/* Main Image Container */}
-            <div className="relative rounded-2xl overflow-visible aspect-[4/5] lg:rotate-2">
+            <div className="relative rounded-2xl overflow-visible aspect-[4/5] lg:rotate-2 max-w-full">
               <div className="rounded-2xl overflow-hidden shadow-2xl w-full h-full">
                 <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </div>
 
-              {/* Floating Banner - Positioned relative to image */}
-              <div className="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-4 lg:-bottom-6 lg:-right-6 z-20 lg:-rotate-3">
+              {/* Floating Banner - Positioned relative to image, overflows into next section */}
+              <div className="absolute -bottom-12 sm:-bottom-14 md:-bottom-16 lg:-bottom-6 right-0 sm:right-2 lg:-right-6 z-50 lg:-rotate-3">
                 <div className="p-4 sm:p-5 rounded-xl bg-primary border-2 border-primary shadow-2xl">
                   <div className="flex items-center gap-2 sm:gap-3 mb-2">
                     <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-black/10 flex items-center justify-center">
