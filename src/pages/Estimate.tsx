@@ -333,16 +333,17 @@ const Estimate = () => {
                     </div>
                     <div>
                       <label className="text-xs sm:text-sm font-medium text-foreground mb-2 block">Registration Plate</label>
-                      <Input
-                        placeholder="AB12 CDE"
-                        value={formData.vehicleReg}
-                        onChange={(e) => updateFormData("vehicleReg", e.target.value.toUpperCase())}
-                        className="rounded-xl h-14 sm:h-16 text-center text-lg sm:text-xl font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
-                      />
-                        value={formData.vehicleReg}
-                        onChange={(e) => updateFormData("vehicleReg", e.target.value.toUpperCase())}
-                        className="rounded-xl bg-secondary/30 border-border/50 h-11 sm:h-12 text-sm sm:text-base"
-                      />
+                      <div className="relative">
+                        <div className="absolute left-0 top-0 bottom-0 w-10 bg-[#0C4DA2] rounded-l-lg flex items-center justify-center">
+                          <div className="text-[#FFD500] font-bold text-xs">GB</div>
+                        </div>
+                        <Input
+                          placeholder="AB12 CDE"
+                          value={formData.vehicleReg}
+                          onChange={(e) => updateFormData("vehicleReg", e.target.value.toUpperCase())}
+                          className="rounded-lg h-11 sm:h-12 pl-12 text-center text-base sm:text-lg font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                        />
+                      </div>
                     </div>
                   </div>
 

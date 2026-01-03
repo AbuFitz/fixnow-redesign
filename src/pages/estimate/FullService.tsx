@@ -91,7 +91,7 @@ const FullService = () => {
           <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-full overflow-x-hidden">
             {/* Step 1: Vehicle */}
             {step === 1 && (
-              <div className="space-y-4 animate-fade-in">
+              <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
                 <div className="bg-card rounded-xl p-4 border border-border">
                   <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <Car className="w-4 h-4 text-primary" />
@@ -128,15 +128,20 @@ const FullService = () => {
                     
                     <div>
                       <Label htmlFor="reg" className="text-xs">Registration Plate</Label>
-                      <Input 
-                        id="reg" 
-                        name="reg" 
-                        placeholder="AB12CDE" 
-                        value={formData.reg}
-                        onChange={handleInputChange}
-                        required 
-                        className="h-12 text-center text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
-                      />
+                      <div className="relative">
+                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#0C4DA2] rounded-l-md flex items-center justify-center">
+                          <div className="text-[#FFD500] font-bold text-[10px]">GB</div>
+                        </div>
+                        <Input 
+                          id="reg" 
+                          name="reg" 
+                          placeholder="AB12CDE" 
+                          value={formData.reg}
+                          onChange={handleInputChange}
+                          required 
+                          className="h-9 pl-10 text-center text-sm font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                        />
+                      </div>
                     </div>
                     
                     <div>
@@ -160,7 +165,7 @@ const FullService = () => {
 
             {/* Step 2: Contact */}
             {step === 2 && (
-              <div className="space-y-4 animate-fade-in">
+              <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
                 <div className="bg-card rounded-xl p-4 border border-border">
                   <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <User className="w-4 h-4 text-primary" />
@@ -229,7 +234,7 @@ const FullService = () => {
 
             {/* Step 3: Booking */}
             {step === 3 && (
-              <div className="space-y-4 animate-fade-in">
+              <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
                 <div className="bg-card rounded-xl p-4 border border-border">
                   <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-primary" />
