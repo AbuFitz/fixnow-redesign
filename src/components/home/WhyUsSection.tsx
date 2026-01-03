@@ -55,7 +55,7 @@ const WhyUsSection = () => {
           {/* Image Side with Banner - Second on mobile, first on desktop */}
           <div className="relative lg:order-1 mt-8 lg:mt-0">
             {/* Main Image Container */}
-            <div className="relative rounded-2xl aspect-[4/3]">
+            <div className="relative rounded-2xl aspect-[4/5]">
               <div className="rounded-2xl overflow-hidden shadow-2xl w-full h-full">
                 <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
