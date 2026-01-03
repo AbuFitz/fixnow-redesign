@@ -369,6 +369,13 @@ const Quote = () => {
         .animate-fade-in {
           animation: fade-in 0.3s ease-out;
         }
+        
+        /* Prevent viewport adjustment on mobile when keyboard opens */
+        @media (max-width: 768px) {
+          input, textarea, select {
+            font-size: 16px !important;
+          }
+        }
       `}</style>
     </Layout>
   );

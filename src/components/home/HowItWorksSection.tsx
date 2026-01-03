@@ -50,7 +50,7 @@ const HowItWorksSection = () => {
                   <div className="hidden sm:block absolute top-12 left-[60%] w-full h-[2px] bg-border/50" />
                 )}
                 
-                <div className="relative p-4 sm:p-4 md:p-8 rounded-xl md:rounded-2xl bg-background/80 backdrop-blur-sm border border-border/50 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 text-center sm:text-left">
+                <div className="relative p-4 sm:p-4 md:p-8 rounded-xl md:rounded-2xl bg-background/80 backdrop-blur-sm border border-primary/30 md:border-border/50 shadow-lg shadow-primary/10 md:shadow-none transition-all duration-300 md:hover:border-primary/30 md:hover:shadow-lg md:hover:shadow-primary/10 text-center sm:text-left">
                   {/* Icon - centered on mobile */}
                   <div className="flex justify-center sm:justify-start md:items-center md:gap-4 mb-3 md:mb-5">
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
