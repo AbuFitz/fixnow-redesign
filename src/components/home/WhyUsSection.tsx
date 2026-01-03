@@ -11,7 +11,7 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section className="pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24 lg:pb-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
+    <section className="pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-12 sm:pb-16 md:pb-20 lg:pb-20 bg-gradient-to-br from-background via-surface/50 to-card relative overflow-hidden">
       {/* Accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-primary/8 rounded-full blur-[150px] pointer-events-none" />
       
