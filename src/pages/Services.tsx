@@ -11,10 +11,11 @@ import {
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO } from "@/lib/constants";
 import { useState } from "react";
+import servicingImg from "@/assets/service-servicing.jpg";
 
 const Services = () => {
   const placeholderImage = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop";
-  const interimServiceImage = "https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=800&auto=format&fit=crop";
+  const interimServiceImage = servicingImg;
   const fullServiceImage = "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&auto=format&fit=crop";
 
   const allServices = [

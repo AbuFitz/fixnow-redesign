@@ -128,7 +128,7 @@ const Header = () => {
               
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2.5 rounded-full border border-border/40 bg-card/30 hover:bg-card/60 active:scale-95 transition-all duration-200"
+                className="p-2.5 rounded-full border border-border/40 bg-card/30 hover:bg-card/60 active:scale-95 transition-all duration-200 flex items-center justify-center"
                 aria-label="Toggle menu"
               >
                 {isOpen ? (
