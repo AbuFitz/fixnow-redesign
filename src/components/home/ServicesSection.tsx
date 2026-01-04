@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import servicingImg from "@/assets/service-servicing.jpg";
 
 const services = [
   { id: "diagnostics", name: "Mobile Diagnostic", price: "£45", image: "/diagonstic.jpg" },
   { id: "brakes", name: "Brakes", price: "From £55", image: "/brakes.jpg" },
-  { id: "servicing", name: "Servicing", price: "From £110", image: servicingImg },
+  { id: "servicing", name: "Servicing", price: "From £110", image: "/servicing.jpeg" },
   { id: "general", name: "General Repairs", price: "Request Quote", image: "/generalrepairs.JPG" },
   { id: "electrical", name: "Electrical", price: "From £100", image: "/electrical.jpg" },
   { id: "suspension", name: "Suspension", price: "Request Quote", image: "/suspension.jpg" },
@@ -52,6 +51,7 @@ const ServicesSection = () => {
               <img
                 src={service.image}
                 alt={service.name}
+                loading="lazy"
                 className={`absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 ${
                   service.id === "brakes" ? "object-[center_125%] scale-125" : ""
                 }`}

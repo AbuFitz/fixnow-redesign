@@ -57,7 +57,7 @@ const WhyUsSection = () => {
             {/* Main Image Container */}
             <div className="relative rounded-2xl aspect-[4/5]">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl w-full h-full">
-                <img src={trustImage} alt="Mechanic working" className="w-full h-full object-cover brightness-75" />
+                <img src={trustImage} alt="Mechanic working" loading="lazy" className="w-full h-full object-cover brightness-75" />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-background/80 via-background/20 to-transparent pointer-events-none" />
               </div>
 

@@ -79,6 +79,7 @@ const Services = () => {
           <img 
             src={placeholderImage} 
             alt="" 
+            loading="lazy"
             className="w-full h-full object-cover grayscale opacity-50"
           />
         </div>
@@ -111,6 +112,7 @@ const Services = () => {
                 <img 
                   src={fullServiceImage}
                   alt="Full Service"
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
@@ -163,7 +165,8 @@ const Services = () => {
                 <img 
                   src={interimServiceImage}
                   alt="Interim Service"
-                  className="w-full h-full object-cover object-[center_35%] group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  className="w-full h-full object-cover object-[center_25%] group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                 <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-base md:text-lg">
