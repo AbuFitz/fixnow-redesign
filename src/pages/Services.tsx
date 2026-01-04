@@ -11,11 +11,10 @@ import {
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO } from "@/lib/constants";
 import { useState } from "react";
-import servicingImg from "@/assets/service-servicing.jpg";
 
 const Services = () => {
   const placeholderImage = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop";
-  const interimServiceImage = servicingImg;
+  const interimServiceImage = "/generalrepairs.JPG";
   const fullServiceImage = "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&auto=format&fit=crop";
 
   const allServices = [
@@ -160,11 +159,11 @@ const Services = () => {
 
             {/* Interim Service */}
             <div className="group bg-gradient-to-br from-card via-card to-card/80 rounded-3xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 hover:shadow-2xl">
-              <div className="relative h-48 md:h-64 overflow-hidden bg-muted/20">
+              <div className="relative h-48 md:h-64 overflow-hidden">
                 <img 
                   src={interimServiceImage}
                   alt="Interim Service"
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                 <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-base md:text-lg">

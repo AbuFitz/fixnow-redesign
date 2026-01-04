@@ -104,10 +104,10 @@ const InterimService = () => {
                     Vehicle Details
                   </h2>
                   
-                  <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-2">
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <Label htmlFor="make" className="text-xs">Make</Label>
+                        <Label htmlFor="make" className="text-sm mb-1.5">Make</Label>
                         <Input 
                           id="make" 
                           name="make" 
@@ -115,11 +115,11 @@ const InterimService = () => {
                           value={formData.make}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-sm"
+                          className="h-11 text-base"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="model" className="text-xs">Model</Label>
+                        <Label htmlFor="model" className="text-sm mb-1.5">Model</Label>
                         <Input 
                           id="model" 
                           name="model" 
@@ -127,16 +127,16 @@ const InterimService = () => {
                           value={formData.model}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-sm"
+                          className="h-11 text-base"
                         />
                       </div>
                     </div>
                     
                     <div>
-                      <Label htmlFor="reg" className="text-xs">Registration Plate</Label>
+                      <Label htmlFor="reg" className="text-sm mb-1.5">Registration Plate</Label>
                       <div className="relative">
-                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#0C4DA2] rounded-l-md flex items-center justify-center">
-                          <div className="text-[#FFD500] font-bold text-[10px]">GB</div>
+                        <div className="absolute left-0 top-0 bottom-0 w-10 bg-[#0C4DA2] rounded-l-md flex items-center justify-center">
+                          <div className="text-[#FFD500] font-bold text-xs">GB</div>
                         </div>
                         <Input 
                           id="reg" 
@@ -145,7 +145,7 @@ const InterimService = () => {
                           value={formData.reg}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 pl-10 text-center text-sm font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                          className="h-11 pl-12 text-center text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
                         />
                       </div>
                     </div>
@@ -163,9 +163,9 @@ const InterimService = () => {
                     Your Details
                   </h2>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <div>
-                      <Label htmlFor="name" className="text-xs">Full Name</Label>
+                      <Label htmlFor="name" className="text-sm mb-1.5">Full Name</Label>
                       <Input 
                         id="name" 
                         name="name" 
@@ -173,34 +173,35 @@ const InterimService = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required 
-                        className="h-9 text-sm"
+                        className="h-11 text-base"
                       />
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <Label htmlFor="email" className="text-sm mb-1.5">Email</Label>
+                      <Input 
+                        id="email" 
+                        name="email" 
+                        type="email" 
+                        placeholder="you@email.com" 
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required 
+                        className={`h-11 text-base transition-colors ${
+                          attemptedNext && (!formData.email || !isValidEmail(formData.email)) ? 'border-red-500 border-2' : ''
+                        }`}
+                      />
+                      {attemptedNext && !formData.email && (
+                        <p className="text-xs text-red-500 mt-1">Required</p>
+                      )}
+                      {attemptedNext && formData.email && !isValidEmail(formData.email) && (
+                        <p className="text-xs text-red-500 mt-1">Invalid email</p>
+                      )}
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <Label htmlFor="email" className="text-xs">Email</Label>
-                        <Input 
-                          id="email" 
-                          name="email" 
-                          type="email" 
-                          placeholder="you@email.com" 
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required 
-                          className={`h-9 text-sm transition-colors ${
-                            attemptedNext && (!formData.email || !isValidEmail(formData.email)) ? 'border-red-500 border-2' : ''
-                          }`}
-                        />
-                        {attemptedNext && !formData.email && (
-                          <p className="text-xs text-red-500 mt-1">Required</p>
-                        )}
-                        {attemptedNext && formData.email && !isValidEmail(formData.email) && (
-                          <p className="text-xs text-red-500 mt-1">Invalid email</p>
-                        )}
-                      </div>
-                      <div>
-                        <Label htmlFor="phone" className="text-xs">Phone</Label>
+                        <Label htmlFor="phone" className="text-sm mb-1.5">Phone</Label>
                         <Input 
                           id="phone" 
                           name="phone" 
@@ -209,7 +210,7 @@ const InterimService = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           required 
-                          className={`h-9 text-sm transition-colors ${
+                          className={`h-11 text-base transition-colors ${
                             attemptedNext && !formData.phone ? 'border-red-500 border-2' : ''
                           }`}
                         />
@@ -217,19 +218,18 @@ const InterimService = () => {
                           <p className="text-xs text-red-500 mt-1">Required</p>
                         )}
                       </div>
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="postcode" className="text-xs">Postcode</Label>
-                      <Input 
-                        id="postcode" 
-                        name="postcode" 
-                        placeholder="HP2 7DE" 
-                        value={formData.postcode}
-                        onChange={handleInputChange}
-                        required 
-                        className="h-9 text-sm"
-                      />
+                      <div>
+                        <Label htmlFor="postcode" className="text-sm mb-1.5">Postcode</Label>
+                        <Input 
+                          id="postcode" 
+                          name="postcode" 
+                          placeholder="HP2 7DE" 
+                          value={formData.postcode}
+                          onChange={handleInputChange}
+                          required 
+                          className="h-11 text-base"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -245,21 +245,21 @@ const InterimService = () => {
                     When Would You Like Us?
                   </h2>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <div>
-                      <Label htmlFor="preferredDate" className="text-xs">Preferred Date</Label>
+                      <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date</Label>
                       <Input 
                         id="preferredDate" 
                         name="preferredDate" 
                         type="date" 
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-9 text-sm w-full"
+                        className="h-11 text-base w-full"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="message" className="text-xs">Additional Notes (Optional)</Label>
+                      <Label htmlFor="message" className="text-sm mb-1.5">Additional Notes (Optional)</Label>
                       <textarea 
                         id="message" 
                         name="message" 
@@ -267,7 +267,7 @@ const InterimService = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={3}
-                        className="w-full px-3 py-2 text-sm border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                        className="w-full px-3 py-3 text-base border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
                       />
                     </div>
                   </div>
