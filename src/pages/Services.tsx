@@ -118,7 +118,7 @@ const Services = () => {
                 <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-base md:text-lg">
                   From £150
                 </div>
-                <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full font-semibold text-xs md:text-sm uppercase tracking-wider shadow-lg">
+                <div className="absolute top-4 left-4 bg-black text-[#FFD500] px-3 py-1.5 rounded-full font-semibold text-xs md:text-sm uppercase tracking-wider shadow-lg border-2 border-[#FFD500]">
                   Most Popular
                 </div>
               </div>
@@ -160,11 +160,11 @@ const Services = () => {
 
             {/* Interim Service */}
             <div className="group bg-gradient-to-br from-card via-card to-card/80 rounded-3xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 hover:shadow-2xl">
-              <div className="relative h-48 md:h-64 overflow-hidden">
+              <div className="relative h-48 md:h-64 overflow-hidden bg-muted/20">
                 <img 
                   src={interimServiceImage}
                   alt="Interim Service"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                 <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-base md:text-lg">

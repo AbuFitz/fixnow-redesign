@@ -8,12 +8,13 @@ import { BUSINESS_INFO } from "@/lib/constants";
 
 const FullService = () => {
   const [step, setStep] = useState(1);
+  const [attemptedNext, setAttemptedNext] = useState(false);
   const [formData, setFormData] = useState({
     make: "",
     model: "",
     year: "",
     reg: "",
-    fuelType: "petrol",
+    fuelType: "",
     name: "",
     email: "",
     phone: "",
@@ -32,24 +33,37 @@ const FullService = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const canProceed = () => {
     switch (step) {
       case 1:
         return formData.make && formData.model && formData.reg && formData.fuelType;
       case 2:
-        return formData.name && formData.email && formData.phone && formData.postcode;
+        return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
       default:
         return true;
     }
   };
 
   const nextStep = () => {
-    if (canProceed()) setStep(step + 1);
+    setAttemptedNext(true);
+    if (canProceed()) {
+      setStep(step + 1);
+      setAttemptedNext(false);
+    }
   };
 
   const prevStep = () => setStep(step - 1);
 
-  const price = formData.fuelType === "diesel" ? "£180" : "£150";
+  const getPrice = () => {
+    if (!formData.fuelType) return "From £150";
+    return formData.fuelType === "diesel" ? "£180" : "£150";
+  };
+
+  const price = getPrice();
 
   return (
     <Layout>
@@ -152,11 +166,23 @@ const FullService = () => {
                         value={formData.fuelType}
                         onChange={handleInputChange}
                         required
-                        className="w-full h-9 px-3 py-2 border border-input bg-background rounded-md text-sm"
+                        className={`w-full h-9 px-3 py-2 border bg-background rounded-md text-sm appearance-none cursor-pointer transition-colors ${
+                          attemptedNext && !formData.fuelType ? 'border-red-500 border-2' : 'border-input'
+                        }`}
+                        style={{
+                          backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23666\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'right 0.75rem center',
+                          backgroundSize: '12px',
+                        }}
                       >
-                        <option value="petrol">Petrol</option>
-                        <option value="diesel">Diesel</option>
+                        <option value="">--</option>
+                        <option value="petrol">Petrol (£150)</option>
+                        <option value="diesel">Diesel (£180)</option>
                       </select>
+                      {attemptedNext && !formData.fuelType && (
+                        <p className="text-xs text-red-500 mt-1">Please select a fuel type</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -197,8 +223,16 @@ const FullService = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-sm"
+                          className={`h-9 text-sm transition-colors ${
+                            attemptedNext && (!formData.email || !isValidEmail(formData.email)) ? 'border-red-500 border-2' : ''
+                          }`}
                         />
+                        {attemptedNext && !formData.email && (
+                          <p className="text-xs text-red-500 mt-1">Required</p>
+                        )}
+                        {attemptedNext && formData.email && !isValidEmail(formData.email) && (
+                          <p className="text-xs text-red-500 mt-1">Invalid email</p>
+                        )}
                       </div>
                       <div>
                         <Label htmlFor="phone" className="text-xs">Phone</Label>
@@ -210,8 +244,13 @@ const FullService = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-sm"
+                          className={`h-9 text-sm transition-colors ${
+                            attemptedNext && !formData.phone ? 'border-red-500 border-2' : ''
+                          }`}
                         />
+                        {attemptedNext && !formData.phone && (
+                          <p className="text-xs text-red-500 mt-1">Required</p>
+                        )}
                       </div>
                     </div>
                     
@@ -290,7 +329,9 @@ const FullService = () => {
                   type="button"
                   onClick={nextStep}
                   disabled={!canProceed()}
-                  className={`${step === 1 ? 'w-full' : 'flex-1'} h-10 rounded-full text-sm`}
+                  className={`${step === 1 ? 'w-full' : 'flex-1'} h-10 rounded-full text-sm transition-all ${
+                    !canProceed() ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
                 >
                   Continue
                   <ArrowRight className="w-4 h-4 ml-2" />

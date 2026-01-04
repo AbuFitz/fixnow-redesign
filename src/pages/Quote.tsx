@@ -8,6 +8,7 @@ import { BUSINESS_INFO } from "@/lib/constants";
 
 const Quote = () => {
   const [step, setStep] = useState(1);
+  const [attemptedNext, setAttemptedNext] = useState(false);
   const [formData, setFormData] = useState({
     // Service
     serviceType: "",
@@ -37,21 +38,29 @@ const Quote = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const canProceed = () => {
     switch (step) {
       case 1:
         return formData.serviceType;
       case 2:
-        return formData.make && formData.model;
+        return formData.make && formData.model && formData.fuelType;
       case 3:
-        return formData.name && formData.email && formData.phone && formData.postcode;
+        return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
       default:
         return true;
     }
   };
 
   const nextStep = () => {
-    if (canProceed()) setStep(step + 1);
+    setAttemptedNext(true);
+    if (canProceed()) {
+      setStep(step + 1);
+      setAttemptedNext(false);
+    }
   };
 
   const prevStep = () => setStep(step - 1);
@@ -119,9 +128,8 @@ const Quote = () => {
                         <option value="pre-purchase">Pre-Purchase Inspection - £85</option>
                       </optgroup>
                       <optgroup label="Servicing">
-                        <option value="interim">Interim Service - £110</option>
-                        <option value="full-petrol">Full Service (Petrol) - £150</option>
-                        <option value="full-diesel">Full Service (Diesel) - £180</option>
+                        <option value="interim">Interim Service - From £110</option>
+                        <option value="full">Full Service - From £150</option>
                       </optgroup>
                       <optgroup label="Brake Services">
                         <option value="brake-fluid">Brake Fluid Change - £55</option>
@@ -215,7 +223,9 @@ const Quote = () => {
                         name="fuelType"
                         value={formData.fuelType}
                         onChange={handleInputChange}
-                        className="w-full h-9 px-3 py-2 border border-input bg-background rounded-md text-base appearance-none cursor-pointer"
+                        className={`w-full h-9 px-3 py-2 border bg-background rounded-md text-base appearance-none cursor-pointer transition-colors ${
+                          attemptedNext && !formData.fuelType ? 'border-red-500 border-2' : 'border-input'
+                        }`}
                         style={{
                           fontSize: '16px',
                           backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23666\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")',
@@ -224,10 +234,13 @@ const Quote = () => {
                           backgroundSize: '12px',
                         }}
                       >
-                        <option value="">Select fuel type...</option>
+                        <option value="">--</option>
                         <option value="petrol">Petrol</option>
                         <option value="diesel">Diesel</option>
                       </select>
+                      {attemptedNext && !formData.fuelType && (
+                        <p className="text-xs text-red-500 mt-1">Please select a fuel type</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -269,9 +282,17 @@ const Quote = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           required 
-                          className="h-9 text-base"
+                          className={`h-9 text-base transition-colors ${
+                            attemptedNext && (!formData.email || !isValidEmail(formData.email)) ? 'border-red-500 border-2' : ''
+                          }`}
                           style={{ fontSize: '16px' }}
                         />
+                        {attemptedNext && !formData.email && (
+                          <p className="text-xs text-red-500 mt-1">Email is required</p>
+                        )}
+                        {attemptedNext && formData.email && !isValidEmail(formData.email) && (
+                          <p className="text-xs text-red-500 mt-1">Please enter a valid email</p>
+                        )}
                       </div>
                       <div>
                         <Label htmlFor="phone" className="text-xs">Phone</Label>
@@ -367,7 +388,9 @@ const Quote = () => {
                   type="button"
                   onClick={nextStep}
                   disabled={!canProceed()}
-                  className={`${step === 1 ? 'w-full' : 'flex-1'} h-10 rounded-full text-sm`}
+                  className={`${step === 1 ? 'w-full' : 'flex-1'} h-10 rounded-full text-sm transition-all ${
+                    !canProceed() ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
                 >
                   Continue
                   <ArrowRight className="w-4 h-4 ml-2" />
