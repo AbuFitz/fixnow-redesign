@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import WhatsAppWidget from "./WhatsAppWidget";
+import CookieConsent from "../common/CookieConsent";
 
 interface LayoutProps {
   children: ReactNode;
@@ -13,6 +14,7 @@ const Layout = ({ children }: LayoutProps) => {
       <Header />
       <main className="flex-1 pt-16 md:pt-20 overflow-x-hidden max-w-full">{children}</main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 };
