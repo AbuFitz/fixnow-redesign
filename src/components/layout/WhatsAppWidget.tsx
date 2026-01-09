@@ -40,26 +40,26 @@ const WhatsAppWidget = () => {
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
         {/* Quick Message Options - Desktop */}
         {isOpen && (
-          <div className="hidden lg:block absolute bottom-20 right-0 w-80 bg-card/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden mb-2 animate-slide-up">
+          <div className="hidden lg:block absolute bottom-20 right-0 min-w-[360px] max-w-[360px] bg-card/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden mb-2 animate-slide-up">
             <div className="bg-[#25D366] p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shrink-0">
                   <MessageCircle className="w-6 h-6 text-[#25D366]" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-bold text-white text-sm">Chat with us</h3>
                   <p className="text-xs text-white/90">Typically replies instantly</p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1 hover:bg-white/20 rounded-full transition-colors"
+                className="p-1 hover:bg-white/20 rounded-full transition-colors shrink-0"
               >
                 <X className="w-5 h-5 text-white" />
               </button>
             </div>
             
-            <div className="p-4 space-y-2 max-h-[400px] overflow-y-auto">
+            <div className="p-4 space-y-2 max-h-[500px] overflow-y-auto">
               <p className="text-xs text-muted-foreground mb-3">Select a quick message or start a chat:</p>
               {quickMessages.map((msg, index) => (
                 <button
@@ -67,11 +67,11 @@ const WhatsAppWidget = () => {
                   onClick={() => handleMessageClick(msg.message)}
                   className="w-full text-left p-3 rounded-xl bg-muted/50 hover:bg-muted border border-border hover:border-primary/50 transition-all group"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-foreground">{msg.title}</span>
-                    <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-sm font-medium text-foreground flex-1">{msg.title}</span>
+                    <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-0.5" />
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">{msg.message}</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{msg.message}</p>
                 </button>
               ))}
               
