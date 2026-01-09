@@ -100,10 +100,9 @@ const Quote = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    // Only prevent Enter on input fields in steps 1-3
+    // Only allow Enter to submit on step 4, and only if not in textarea
     if (e.key === 'Enter' && step < 4) {
       const target = e.target as HTMLElement;
-      // Don't prevent Enter in textareas
       if (target.tagName !== 'TEXTAREA') {
         e.preventDefault();
         nextStep();

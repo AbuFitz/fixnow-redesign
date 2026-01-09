@@ -94,6 +94,17 @@ const FullService = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Only allow Enter to submit on step 3, and only if not in textarea
+    if (e.key === 'Enter' && step < 3) {
+      const target = e.target as HTMLElement;
+      if (target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        nextStep();
+      }
+    }
+  };
+
   const isValidEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
@@ -197,7 +208,7 @@ const FullService = () => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-full overflow-x-hidden">
+          <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="space-y-4 w-full max-w-full overflow-x-hidden">
             {/* Step 1: Vehicle */}
             {step === 1 && (
               <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
