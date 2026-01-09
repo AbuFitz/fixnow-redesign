@@ -1,21 +1,75 @@
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { X, Cookie, Settings, Shield, BarChart } from "lucide-react";
 import { Link } from "react-router-dom";
+
+interface CookiePreferences {
+  necessary: boolean;
+  analytics: boolean;
+  marketing: boolean;
+}
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [preferences, setPreferences] = useState<CookiePreferences>({
+    necessary: true, // Always true, cannot be disabled
+    analytics: false,
+    marketing: false,
+  });
 
   useEffect(() => {
     const consent = localStorage.getItem("fixnow_cookie_consent");
     if (!consent) {
-      // Show after 3 seconds for better UX
-      setTimeout(() => setIsVisible(true), 3000);
+      // Show after 2 seconds for better UX
+      setTimeout(() => setIsVisible(true), 2000);
+    } else {
+      // Load saved preferences
+      try {
+        const saved = JSON.parse(localStorage.getItem("fixnow_cookie_preferences") || "{}");
+        setPreferences(prev => ({ ...prev, ...saved }));
+      } catch (e) {
+        console.error("Failed to parse cookie preferences");
+      }
     }
   }, []);
 
-  const acceptCookies = () => {
+  const saveCookiePreferences = (prefs: CookiePreferences) => {
     localStorage.setItem("fixnow_cookie_consent", "accepted");
+    localStorage.setItem("fixnow_cookie_preferences", JSON.stringify(prefs));
     localStorage.setItem("fixnow_consent_date", new Date().toISOString());
+    
+    // Apply preferences (in a real app, you'd enable/disable analytics/marketing scripts)
+    if (prefs.analytics) {
+      // Enable analytics
+      console.log("Analytics enabled");
+    }
+    if (prefs.marketing) {
+      // Enable marketing
+      console.log("Marketing enabled");
+    }
+  };
+
+  const acceptAll = () => {
+    const allPrefs = {
+      necessary: true,
+      analytics: true,
+      marketing: true,
+    };
+    saveCookiePreferences(allPrefs);
+    setIsVisible(false);
+  };
+
+  const acceptNecessary = () => {
+    saveCookiePreferences({
+      necessary: true,
+      analytics: false,
+      marketing: false,
+    });
+    setIsVisible(false);
+  };
+
+  const saveCustomPreferences = () => {
+    saveCookiePreferences(preferences);
     setIsVisible(false);
   };
 
@@ -26,62 +80,282 @@ const CookieConsent = () => {
 
   if (!isVisible) return null;
 
-  return (
-    <div className="fixed bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 z-50 animate-slide-up">
-      <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
-        <div className="flex items-start gap-3 p-3 md:p-4">
-          <div className="text-2xl flex-shrink-0">🍪</div>
-          
-          <div className="flex-1 min-w-0">
-            <p className="text-xs md:text-sm text-foreground mb-2 leading-relaxed">
-              We use essential cookies for site functionality.{" "}
-              <Link to="/privacy" className="text-primary hover:underline font-medium">
-                Learn more
-              </Link>
-            </p>
-            
-            <div className="flex gap-2">
-              <button
-                onClick={acceptCookies}
-                className="px-3 py-1.5 bg-primary text-primary-foreground rounded-md text-xs font-medium hover:bg-primary/90 transition-colors"
-              >
-                Accept
-              </button>
-              <button
-                onClick={declineCookies}
-                className="px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Decline
-              </button>
+  // Mobile Design
+  const MobileView = () => (
+    <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 animate-slide-up-mobile">
+      <div className="bg-gradient-to-t from-card via-card to-card/95 backdrop-blur-xl border-t-2 border-primary/30 shadow-2xl">
+        <div className="px-4 py-5">
+          {/* Close button - properly centered */}
+          <button
+            onClick={declineCookies}
+            className="absolute top-3 right-3 p-2 rounded-full hover:bg-muted/50 transition-all active:scale-95"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5 text-muted-foreground" />
+          </button>
+
+          <div className="flex items-start gap-3 mb-4">
+            <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
+              <Cookie className="w-6 h-6 text-primary" />
+            </div>
+            <div className="flex-1 pr-8">
+              <h3 className="font-bold text-foreground text-base mb-1">Cookie Settings</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                We use cookies to enhance your experience.{" "}
+                <Link to="/privacy" className="text-primary hover:underline font-medium">
+                  Learn more
+                </Link>
+              </p>
             </div>
           </div>
 
-          <button
-            onClick={declineCookies}
-            className="flex-shrink-0 p-1 rounded hover:bg-muted transition-colors"
-            aria-label="Close"
-          >
-            <X className="w-3.5 h-3.5 text-muted-foreground" />
-          </button>
+          {!showSettings ? (
+            <div className="space-y-2">
+              <button
+                onClick={acceptAll}
+                className="w-full px-4 py-3 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all active:scale-[0.98] shadow-lg shadow-primary/25"
+              >
+                Accept All
+              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={acceptNecessary}
+                  className="flex-1 px-4 py-2.5 border-2 border-border rounded-xl text-xs font-medium text-foreground hover:bg-muted/50 transition-all active:scale-[0.98]"
+                >
+                  Necessary Only
+                </button>
+                <button
+                  onClick={() => setShowSettings(true)}
+                  className="flex-1 px-4 py-2.5 border-2 border-border rounded-xl text-xs font-medium text-foreground hover:bg-muted/50 transition-all active:scale-[0.98] flex items-center justify-center gap-1.5"
+                >
+                  <Settings className="w-3.5 h-3.5" />
+                  Customize
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg border border-border">
+                  <div className="flex items-center gap-2">
+                    <Shield className="w-4 h-4 text-primary" />
+                    <span className="text-xs font-medium">Necessary</span>
+                  </div>
+                  <div className="text-[10px] text-muted-foreground bg-muted px-2 py-1 rounded">Always On</div>
+                </div>
+                
+                <label className="flex items-center justify-between p-3 bg-card rounded-lg border border-border cursor-pointer hover:bg-muted/30 transition-colors">
+                  <div className="flex items-center gap-2">
+                    <BarChart className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-xs font-medium">Analytics</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={preferences.analytics}
+                    onChange={(e) => setPreferences(prev => ({ ...prev, analytics: e.target.checked }))}
+                    className="w-4 h-4 rounded accent-primary"
+                  />
+                </label>
+
+                <label className="flex items-center justify-between p-3 bg-card rounded-lg border border-border cursor-pointer hover:bg-muted/30 transition-colors">
+                  <div className="flex items-center gap-2">
+                    <Cookie className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-xs font-medium">Marketing</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={preferences.marketing}
+                    onChange={(e) => setPreferences(prev => ({ ...prev, marketing: e.target.checked }))}
+                    className="w-4 h-4 rounded accent-primary"
+                  />
+                </label>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowSettings(false)}
+                  className="flex-1 px-4 py-2.5 border-2 border-border rounded-xl text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
+                >
+                  Back
+                </button>
+                <button
+                  onClick={saveCustomPreferences}
+                  className="flex-1 px-4 py-3 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all active:scale-[0.98]"
+                >
+                  Save Preferences
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
+    </div>
+  );
+
+  // Desktop Design - Left Side
+  const DesktopView = () => (
+    <div className="hidden lg:block fixed bottom-6 left-6 z-50 animate-slide-in-left">
+      <div className="bg-gradient-to-br from-card via-card to-card/95 backdrop-blur-xl border-2 border-primary/30 rounded-2xl shadow-2xl shadow-black/20 w-[420px]">
+        <div className="p-6">
+          {/* Close button - properly centered */}
+          <button
+            onClick={declineCookies}
+            className="absolute top-4 right-4 p-1.5 rounded-lg hover:bg-muted/80 transition-all hover:scale-110"
+            aria-label="Close"
+          >
+            <X className="w-4 h-4 text-muted-foreground" />
+          </button>
+
+          <div className="flex items-start gap-4 mb-5">
+            <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 shadow-sm">
+              <Cookie className="w-7 h-7 text-primary" />
+            </div>
+            <div className="flex-1 pr-6">
+              <h3 className="font-bold text-foreground text-xl mb-2">Cookie Preferences</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                We use cookies to improve your browsing experience and provide personalized content. You can customize your preferences below.
+              </p>
+            </div>
+          </div>
+
+          {!showSettings ? (
+            <div className="space-y-3">
+              <button
+                onClick={acceptAll}
+                className="w-full px-5 py-3.5 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/25"
+              >
+                Accept All Cookies
+              </button>
+              <div className="flex gap-3">
+                <button
+                  onClick={acceptNecessary}
+                  className="flex-1 px-4 py-2.5 border-2 border-border rounded-xl text-sm font-medium text-foreground hover:bg-muted/50 transition-all hover:scale-[1.02]"
+                >
+                  Necessary Only
+                </button>
+                <button
+                  onClick={() => setShowSettings(true)}
+                  className="flex-1 px-4 py-2.5 border-2 border-border rounded-xl text-sm font-medium text-foreground hover:bg-muted/50 transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
+                >
+                  <Settings className="w-4 h-4" />
+                  Customize
+                </button>
+              </div>
+              <Link 
+                to="/privacy" 
+                className="block text-center text-xs text-muted-foreground hover:text-primary transition-colors underline"
+              >
+                Privacy Policy
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="space-y-3">
+                <div className="p-4 bg-muted/30 rounded-xl border border-border">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      <Shield className="w-5 h-5 text-primary" />
+                      <span className="text-sm font-semibold">Necessary Cookies</span>
+                    </div>
+                    <div className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-md font-medium">Always Active</div>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Required for basic site functionality and security.
+                  </p>
+                </div>
+                
+                <label className="block p-4 bg-card rounded-xl border border-border cursor-pointer hover:bg-muted/30 hover:border-primary/30 transition-all">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      <BarChart className="w-5 h-5 text-muted-foreground" />
+                      <span className="text-sm font-semibold">Analytics Cookies</span>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={preferences.analytics}
+                      onChange={(e) => setPreferences(prev => ({ ...prev, analytics: e.target.checked }))}
+                      className="w-5 h-5 rounded accent-primary cursor-pointer"
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Help us understand how visitors interact with our website.
+                  </p>
+                </label>
+
+                <label className="block p-4 bg-card rounded-xl border border-border cursor-pointer hover:bg-muted/30 hover:border-primary/30 transition-all">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      <Cookie className="w-5 h-5 text-muted-foreground" />
+                      <span className="text-sm font-semibold">Marketing Cookies</span>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={preferences.marketing}
+                      onChange={(e) => setPreferences(prev => ({ ...prev, marketing: e.target.checked }))}
+                      className="w-5 h-5 rounded accent-primary cursor-pointer"
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Used to deliver personalized content and advertisements.
+                  </p>
+                </label>
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <button
+                  onClick={() => setShowSettings(false)}
+                  className="flex-1 px-4 py-2.5 border-2 border-border rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
+                >
+                  Back
+                </button>
+                <button
+                  onClick={saveCustomPreferences}
+                  className="flex-1 px-5 py-3 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all hover:scale-[1.02]"
+                >
+                  Save Preferences
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      <MobileView />
+      <DesktopView />
 
       <style>{`
-        @keyframes slide-up {
+        @keyframes slide-up-mobile {
           from { 
             opacity: 0;
-            transform: translateY(1rem);
+            transform: translateY(100%);
           }
           to { 
             opacity: 1;
             transform: translateY(0);
           }
         }
-        .animate-slide-up {
-          animation: slide-up 0.3s ease-out;
+        @keyframes slide-in-left {
+          from { 
+            opacity: 0;
+            transform: translateX(-2rem);
+          }
+          to { 
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .animate-slide-up-mobile {
+          animation: slide-up-mobile 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .animate-slide-in-left {
+          animation: slide-in-left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
       `}</style>
-    </div>
+    </>
   );
 };
 
