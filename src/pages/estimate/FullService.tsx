@@ -153,7 +153,8 @@ const FullService = () => {
                           value={formData.reg}
                           onChange={handleInputChange}
                           required 
-                          className="h-11 pl-12 text-center text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                          className="h-11 pl-12 pr-3 text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
+                          style={{ paddingLeft: '3rem', textAlign: 'left' }}
                         />
                       </div>
                     </div>
