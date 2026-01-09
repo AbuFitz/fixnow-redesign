@@ -64,7 +64,7 @@ function formatDate(dateString: string): string {
 }
 
 // Helper to conditionally render table row
-function renderTableRow(label: string, value: string | undefined, skipValues: string[] = ['Not provided', 'None', '', undefined]): string {
+function renderTableRow(label: string, value: string | undefined, skipValues: (string | undefined)[] = ['Not provided', 'None', '']): string {
   if (!value || skipValues.includes(value)) return '';
   return `<tr style="${emailStyles.tableRow}"><td style="${emailStyles.tableLabel}">${label}</td><td style="${emailStyles.tableValue}">${value}</td></tr>`;
 }
