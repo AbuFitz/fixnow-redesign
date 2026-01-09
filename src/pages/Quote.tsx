@@ -480,18 +480,20 @@ const Quote = () => {
                   </h2>
                   
                   <div className="space-y-4">
-                    <div className="w-full">
+                    <div>
                       <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
-                      <Input 
-                        id="preferredDate" 
-                        name="preferredDate" 
-                        type="date" 
-                        value={formData.preferredDate}
-                        onChange={handleInputChange}
-                        min={new Date().toISOString().split('T')[0]}
-                        className="h-12 text-base w-full max-w-full"
-                        style={{ fontSize: '16px' }}
-                      />
+                      <div className="max-w-full overflow-hidden">
+                        <Input 
+                          id="preferredDate" 
+                          name="preferredDate" 
+                          type="date" 
+                          value={formData.preferredDate}
+                          onChange={handleInputChange}
+                          min={new Date().toISOString().split('T')[0]}
+                          className="h-12 text-base w-full"
+                          style={{ fontSize: '16px', maxWidth: '100%' }}
+                        />
+                      </div>
                     </div>
                     
                     <div>
