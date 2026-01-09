@@ -29,6 +29,7 @@ const Estimate = () => {
   const [postcodeError, setPostcodeError] = useState("");
   const [postcodeValid, setPostcodeValid] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     service: "",
     postcode: "",
@@ -92,7 +93,8 @@ const Estimate = () => {
   };
   
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
-async (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -115,6 +117,7 @@ async (e: React.FormEvent) => {
       );
       
       if (result.success) {
+        setShowSuccess(true);
         toast.success("Request Received!", {
           description: "We'll call you back shortly to discuss your quote.",
           duration: 5000,
@@ -164,6 +167,71 @@ async (e: React.FormEvent) => {
 
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 relative z-10 max-w-full">
           <div className="max-w-4xl mx-auto w-full">
+            
+            {/* Success Screen */}
+            {showSuccess ? (
+              <div className="text-center py-12 sm:py-16 md:py-20 animate-fade-in">
+                <div className="max-w-2xl mx-auto">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-scale-in">
+                    <Check className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  
+                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+                    Request Received!
+                  </h1>
+                  
+                  <p className="text-lg sm:text-xl text-muted-foreground mb-8">
+                    Thank you for contacting FixNow Mechanics. We've received your enquiry and will call you back shortly to discuss your quote.
+                  </p>
+                  
+                  <div className="bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/50 mb-8">
+                    <h2 className="font-semibold text-foreground mb-4">What happens next?</h2>
+                    <div className="space-y-3 text-left">
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="text-xs font-bold text-primary">1</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">We'll call you within 1 hour (during business hours) to discuss your needs</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="text-xs font-bold text-primary">2</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">We'll provide a clear, honest quote with no hidden fees</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="text-xs font-bold text-primary">3</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">You'll also receive a confirmation email at the address you provided</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button
+                      onClick={() => setShowSuccess(false)}
+                      variant="outline"
+                      size="lg"
+                      className="rounded-full"
+                    >
+                      Submit Another Request
+                    </Button>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="rounded-full"
+                    >
+                      <a href={`tel:${BUSINESS_INFO.phone}`}>
+                        <Phone className="w-4 h-4 mr-2" />
+                        Call Us Now
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
             {/* HERO - Trust First */}
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4">
@@ -470,9 +538,28 @@ async (e: React.FormEvent) => {
                 </a>
               </Button>
             </div>
+            </>
+            )}
           </div>
         </div>
       </section>
+      
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+        @keyframes scale-in {
+          from { transform: scale(0); }
+          to { transform: scale(1); }
+        }
+        .animate-scale-in {
+          animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+      `}</style>
     </Layout>
   );
 };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, ArrowLeft, Car, User, Calendar, Check } from "lucide-react";
+import { ArrowRight, ArrowLeft, Car, User, Calendar, Check, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +12,7 @@ const FullService = () => {
   const [step, setStep] = useState(1);
   const [attemptedNext, setAttemptedNext] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     make: "",
     model: "",
@@ -49,6 +50,7 @@ const FullService = () => {
       );
       
       if (result.success) {
+        setShowSuccess(true);
         toast.success("Booking Received!", {
           description: "We'll confirm your full service appointment shortly.",
           duration: 5000,
@@ -127,6 +129,61 @@ const FullService = () => {
     <Layout>
       <section className="py-6 md:py-8 bg-background min-h-screen overflow-x-hidden">
         <div className="container mx-auto px-4 max-w-xl w-full">
+          
+          {/* Success Screen */}
+          {showSuccess ? (
+            <div className="text-center py-12 animate-fade-in">
+              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-scale-in">
+                <Check className="w-8 h-8 text-white" />
+              </div>
+              
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                Booking Received!
+              </h1>
+              
+              <p className="text-base text-muted-foreground mb-6">
+                We've received your full service booking request and will confirm your appointment shortly.
+              </p>
+              
+              <div className="bg-card rounded-xl p-6 border border-border mb-6 text-left">
+                <h2 className="font-semibold text-foreground mb-3 text-sm">What happens next?</h2>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <p className="text-muted-foreground">We'll call you within 1 hour to confirm your appointment</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <p className="text-muted-foreground">You'll receive a confirmation email with all the details</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <p className="text-muted-foreground">We'll come to you at your preferred date and location</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex flex-col gap-3">
+                <Button
+                  onClick={() => setShowSuccess(false)}
+                  variant="outline"
+                  className="rounded-full"
+                >
+                  Book Another Service
+                </Button>
+                <Button
+                  asChild
+                  className="rounded-full"
+                >
+                  <a href={`tel:${BUSINESS_INFO.phone}`}>
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call Us Now
+                  </a>
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <>
           {/* Header */}
           <div className="text-center mb-4">
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-1">
@@ -424,6 +481,8 @@ const FullService = () => {
               </a>
             </p>
           </form>
+          </>
+          )}
         </div>
       </section>
       
@@ -434,6 +493,13 @@ const FullService = () => {
         }
         .animate-fade-in {
           animation: fade-in 0.3s ease-out;
+        }
+        @keyframes scale-in {
+          from { transform: scale(0); }
+          to { transform: scale(1); }
+        }
+        .animate-scale-in {
+          animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
       `}</style>
     </Layout>

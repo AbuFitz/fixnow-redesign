@@ -1,16 +1,27 @@
 import { generateBusinessNotification, generateCustomerAutoResponder } from './emailTemplates';
 
 interface FormData {
-  serviceType?: string;
-  make: string;
-  model: string;
-  year?: string;
-  reg: string;
-  fuelType?: string;
+  // Customer details
   name: string;
   email: string;
   phone: string;
   postcode: string;
+  
+  // Vehicle details
+  vehicleMake?: string;
+  vehicleModel?: string;
+  vehicleYear?: string;
+  vehicleReg?: string;
+  
+  // Legacy field names for backward compatibility
+  make?: string;
+  model?: string;
+  year?: string;
+  reg?: string;
+  fuelType?: string;
+  
+  // Service details
+  serviceType?: string;
   preferredDate?: string;
   message?: string;
 }
