@@ -7,6 +7,7 @@ import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO } from "@/lib/constants";
 import { submitForm } from "@/lib/formService";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 const Estimate = () => {
   const [step, setStep] = useState(1);
@@ -112,6 +113,9 @@ const Estimate = () => {
         return formData.make && formData.model && formData.fuelType;
       case 3:
         return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
+      case 4:
+        // Step 4 fields are optional, so always allow proceeding to submit
+        return true;
       default:
         return true;
     }
@@ -152,11 +156,11 @@ const Estimate = () => {
                 <div className="space-y-2 text-sm">
                   <div className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">We'll call you within 1 hour (during business hours) to discuss your needs</p>
+                    <p className="text-muted-foreground">We'll review your request and contact you within 1 business day</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">You'll receive a confirmation email with all the details</p>
+                    <p className="text-muted-foreground">You'll receive a confirmation email shortly</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
@@ -167,11 +171,11 @@ const Estimate = () => {
               
               <div className="flex flex-col gap-3">
                 <Button
-                  onClick={() => setShowSuccess(false)}
+                  asChild
                   variant="outline"
                   className="rounded-full"
                 >
-                  Submit Another Request
+                  <Link to="/services">View Our Services</Link>
                 </Button>
                 <Button
                   asChild

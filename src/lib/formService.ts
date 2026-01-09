@@ -49,7 +49,7 @@ export const submitForm = async (
       throw new Error('Form configuration error. Please contact support.');
     }
 
-    // Prepare the submission data
+    // Prepare the submission data - send ALL fields to Web3Forms
     const submissionData = {
       access_key: accessKey,
       
@@ -59,43 +59,32 @@ export const submitForm = async (
       phone: formData.phone,
       postcode: formData.postcode,
       
-      // Vehicle details
-      vehicle_make: formData.make,
-      vehicle_model: formData.model,
-      ...(formData.year && { vehicle_year: formData.year }),
-      vehicle_registration: formData.reg,
-      ...(formData.fuelType && { fuel_type: formData.fuelType }),
+      // Vehicle details (use whichever field names are provided)
+      vehicle_make: formData.vehicleMake || formData.make || 'Not provided',
+      vehicle_model: formData.vehicleModel || formData.model || 'Not provided',
+      vehicle_year: formData.vehicleYear || formData.year || 'Not provided',
+      vehicle_registration: formData.vehicleReg || formData.reg || 'Not provided',
+      fuel_type: formData.fuelType || 'Not provided',
       
       // Service details
-      ...(formData.serviceType && { service_type: formData.serviceType }),
-      ...(formData.preferredDate && { preferred_date: formData.preferredDate }),
-      ...(formData.message && { message: formData.message }),
+      service_type: formData.serviceType || 'Not specified',
+      preferred_date: formData.preferredDate || 'No preference',
+      additional_message: formData.message || 'None',
       
       // Metadata
-      form_type: formType,
-      submission_date: new Date().toISOString(),
+      form_type: `${formType.charAt(0).toUpperCase() + formType.slice(1)} Form`,
+      submission_date: new Date().toLocaleString('en-GB', { 
+        dateStyle: 'full', 
+        timeStyle: 'short',
+        timeZone: 'Europe/London'
+      }),
       
-      // Custom email templates (Web3Forms will use these)
-      subject: `New ${formType.charAt(0).toUpperCase() + formType.slice(1)} Request - ${formData.name}`,
-      
-      // Business notification email (HTML)
+      // Email configuration for Web3Forms
+      subject: `🚗 New ${formType.charAt(0).toUpperCase() + formType.slice(1)} Request from ${formData.name}`,
       from_name: 'FixNow Mechanics Website',
       replyto: formData.email,
       
-      // This tells Web3Forms to send the formatted email
-      '_template': {
-        business: generateBusinessNotification(formData, formType),
-        customer: generateCustomerAutoResponder(formData, formType)
-      },
-      
-      // Auto-responder configuration
-      autoresponse: {
-        enabled: true,
-        subject: 'Thank you for contacting FixNow Mechanics!',
-        message: generateCustomerAutoResponder(formData, formType)
-      },
-      
-      // Redirect after success (optional)
+      // Redirect after success (disable to handle in app)
       redirect: false,
       
       // Honeypot for spam protection

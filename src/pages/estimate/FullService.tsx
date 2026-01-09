@@ -7,6 +7,7 @@ import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO } from "@/lib/constants";
 import { submitForm } from "@/lib/formService";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 const FullService = () => {
   const [step, setStep] = useState(1);
@@ -150,26 +151,26 @@ const FullService = () => {
                 <div className="space-y-2 text-sm">
                   <div className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">We'll call you within 1 hour to confirm your appointment</p>
+                    <p className="text-muted-foreground">We'll review your booking and contact you within 1 business day</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">You'll receive a confirmation email with all the details</p>
+                    <p className="text-muted-foreground">You'll receive a confirmation email shortly</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">We'll come to you at your preferred date and location</p>
+                    <p className="text-muted-foreground">Your preferred date helps us schedule, but we'll confirm the final time with you</p>
                   </div>
                 </div>
               </div>
               
               <div className="flex flex-col gap-3">
                 <Button
-                  onClick={() => setShowSuccess(false)}
+                  asChild
                   variant="outline"
                   className="rounded-full"
                 >
-                  Book Another Service
+                  <Link to="/services">View Our Services</Link>
                 </Button>
                 <Button
                   asChild

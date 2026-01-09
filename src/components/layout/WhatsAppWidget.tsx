@@ -41,22 +41,14 @@ const WhatsAppWidget = () => {
         {/* Quick Message Options - Desktop */}
         {isOpen && (
           <div className="hidden lg:block absolute bottom-20 right-0 min-w-[360px] max-w-[360px] bg-card/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden mb-2 animate-slide-up">
-            <div className="bg-[#25D366] p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-6 h-6 text-[#25D366]" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-bold text-white text-sm">Chat with us</h3>
-                  <p className="text-xs text-white/90">Typically replies instantly</p>
-                </div>
+            <div className="bg-[#25D366] p-4 flex items-center gap-3">
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shrink-0">
+                <MessageCircle className="w-6 h-6 text-[#25D366]" />
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-1 hover:bg-white/20 rounded-full transition-colors shrink-0"
-              >
-                <X className="w-5 h-5 text-white" />
-              </button>
+              <div className="min-w-0">
+                <h3 className="font-bold text-white text-sm">Chat with us</h3>
+                <p className="text-xs text-white/90">Typically replies instantly</p>
+              </div>
             </div>
             
             <div className="p-4 space-y-2 max-h-[500px] overflow-y-auto">
@@ -89,22 +81,14 @@ const WhatsAppWidget = () => {
         {/* Quick Message Options - Mobile */}
         {isOpen && (
           <div className="lg:hidden fixed inset-x-0 bottom-0 bg-card/98 backdrop-blur-xl rounded-t-3xl shadow-2xl border-t-2 border-border max-h-[80vh] overflow-hidden animate-slide-up-mobile">
-            <div className="bg-[#25D366] p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <MessageCircle className="w-6 h-6 text-[#25D366]" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-white">Chat with FixNow</h3>
-                  <p className="text-xs text-white/90">Typically replies instantly</p>
-                </div>
+            <div className="bg-[#25D366] p-4 flex items-center gap-3">
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                <MessageCircle className="w-6 h-6 text-[#25D366]" />
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 hover:bg-white/20 rounded-full transition-colors"
-              >
-                <X className="w-5 h-5 text-white" />
-              </button>
+              <div>
+                <h3 className="font-bold text-white">Chat with FixNow</h3>
+                <p className="text-xs text-white/90">Typically replies instantly</p>
+              </div>
             </div>
             
             <div className="p-4 space-y-2.5 max-h-[60vh] overflow-y-auto">
