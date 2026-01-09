@@ -1,7 +1,7 @@
 export const BUSINESS_INFO = {
   name: "FixNow Mechanics",
   phone: "07354 915941",
-  email: "fixnowmechanics@outlook.com",
+  email: "support@fixnowmechanics.co.uk",
   address: "Hemel Hempstead, HP2 7DE",
   hours: {
     weekday: "Mon-Fri: 7am - 10pm",

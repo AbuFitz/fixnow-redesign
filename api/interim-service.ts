@@ -37,7 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     await resend.emails.send({
       from: 'FixNow Mechanics <noreply@fixnowmechanics.co.uk>',
-      to: process.env.BUSINESS_EMAIL || 'fixnowmechanics@outlook.com',
+      to: process.env.BUSINESS_EMAIL || 'support@fixnowmechanics.co.uk',
       subject: `🚗 New Interim Service Booking from ${name}`,
       html: getBusinessHTML(formData),
     });

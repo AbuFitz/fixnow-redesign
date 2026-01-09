@@ -5,10 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO } from "@/lib/constants";
+import { submitForm } from "@/lib/formService";
+import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 const Quote = () => {
   const [step, setStep] = useState(1);
   const [attemptedNext, setAttemptedNext] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     // Service
     serviceType: "",
@@ -30,12 +35,75 @@ const Quote = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Handle form submission with web3forms
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    
+    try {
+      const result = await submitForm(
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          postcode: formData.postcode,
+          make: formData.make,
+          model: formData.model,
+          year: formData.year,
+          reg: formData.reg,
+          fuelType: formData.fuelType,
+          serviceType: formData.serviceType,
+          preferredDate: formData.preferredDate,
+          message: formData.message,
+        },
+        'estimate'
+      );
+      
+      if (result.success) {
+        setShowSuccess(true);
+        toast.success("Request Received!", {
+          description: "We'll contact you within 1 business day.",
+          duration: 5000,
+        });
+        
+        // Reset form
+        setFormData({
+          serviceType: "",
+          make: "",
+          model: "",
+          year: "",
+          reg: "",
+          fuelType: "",
+          name: "",
+          email: "",
+          phone: "",
+          postcode: "",
+          preferredDate: "",
+          message: "",
+        });
+        setStep(1);
+      } else {
+        toast.error("Submission Failed", {
+          description: result.message || "Please call us at 07354 915941",
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      toast.error("Something went wrong", {
+        description: "Please call us at 07354 915941",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && step < 4) {
+      e.preventDefault();
+      nextStep();
+    }
   };
 
   const isValidEmail = (email: string) => {
@@ -64,6 +132,46 @@ const Quote = () => {
   };
 
   const prevStep = () => setStep(step - 1);
+
+  // Success screen
+  if (showSuccess) {
+    return (
+      <Layout>
+        <section className="py-12 md:py-16 bg-background min-h-screen flex items-center justify-center">
+          <div className="container mx-auto px-4 max-w-2xl text-center">
+            <div className="bg-card rounded-2xl p-8 md:p-12 border border-border shadow-lg">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Check className="w-8 h-8 text-primary" />
+              </div>
+              
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Quote Request Received!
+              </h1>
+              
+              <p className="text-base md:text-lg text-muted-foreground mb-8">
+                Thank you for your request. We'll review your details and get back to you within 1 business day with a personalized quote.
+              </p>
+              
+              <div className="space-y-4">
+                <Link to="/services">
+                  <Button className="w-full sm:w-auto">
+                    View Our Services
+                  </Button>
+                </Link>
+                
+                <p className="text-sm text-muted-foreground">
+                  Need immediate assistance?{" "}
+                  <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline font-medium">
+                    Call {BUSINESS_INFO.phone}
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -102,7 +210,7 @@ const Quote = () => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-full overflow-x-hidden">
+          <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="space-y-4 w-full max-w-full overflow-x-hidden">
             {/* Step 1: Service */}
             {step === 1 && (
               <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
@@ -346,8 +454,9 @@ const Quote = () => {
                         type="date" 
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-12 text-base"
-                        style={{ fontSize: '16px' }}
+                        min={new Date().toISOString().split('T')[0]}
+                        className="h-12 text-base w-full max-w-full [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:p-2"
+                        style={{ fontSize: '16px', width: '100%', maxWidth: '100%', colorScheme: 'dark' }}
                       />
                     </div>
                     
@@ -398,9 +507,10 @@ const Quote = () => {
               ) : (
                 <Button
                   type="submit"
+                  disabled={isSubmitting}
                   className="flex-1 h-10 rounded-full text-sm"
                 >
-                  Request Quote
+                  {isSubmitting ? "Submitting..." : "Request Quote"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               )}

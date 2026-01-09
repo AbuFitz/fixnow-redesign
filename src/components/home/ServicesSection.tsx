@@ -43,7 +43,7 @@ const ServicesSection = () => {
             <Link
               key={service.id}
               to="/services"
-              className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-all duration-700 ease-out hover:scale-[1.08] hover:shadow-2xl hover:shadow-primary/25 hover:z-10 ${
+              className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/15 hover:z-10 ${
                 index === 0 ? "col-span-2 row-span-2 aspect-square" : "col-span-1 aspect-square"
               }`}
               style={{
@@ -58,7 +58,7 @@ const ServicesSection = () => {
                 loading="lazy"
                 decoding="async"
                 fetchPriority={index === 0 ? "high" : "low"}
-                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 ${
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105 ${
                   service.id === "brakes" ? "object-[center_40%]" : ""
                 }`}
                 style={{ 
@@ -75,10 +75,10 @@ const ServicesSection = () => {
               
               {/* Content */}
               <div className="absolute inset-0 p-2 sm:p-3 md:p-4 flex flex-col justify-end">
-                <h3 className={`font-display font-bold text-foreground mb-0.5 ${index === 0 ? "text-base sm:text-xl md:text-2xl" : "text-xs sm:text-sm md:text-base"}`}>
+                <h3 className={`font-display font-bold text-white group-hover:text-white mb-0.5 ${index === 0 ? "text-base sm:text-xl md:text-2xl" : "text-xs sm:text-sm md:text-base"}`}>
                   {service.name}
                 </h3>
-                <p className="text-primary font-medium text-[10px] sm:text-xs">{service.price}</p>
+                <p className="text-primary group-hover:text-primary font-medium text-[10px] sm:text-xs">{service.price}</p>
               </div>
             </Link>
           ))}

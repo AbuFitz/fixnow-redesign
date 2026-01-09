@@ -84,7 +84,7 @@ For production with your brand:
 2. Add your Resend API key:
    ```env
    RESEND_API_KEY=re_your_actual_api_key_here
-   BUSINESS_EMAIL=fixnowmechanics@outlook.com
+   BUSINESS_EMAIL=support@fixnowmechanics.co.uk
    ```
 3. Save the file
 
@@ -102,7 +102,7 @@ For production with your brand:
    
    **Variable 2:**
    - Key: `BUSINESS_EMAIL`
-   - Value: `fixnowmechanics@outlook.com`
+   - Value: `support@fixnowmechanics.co.uk`
    - Environment: Select **Production**, **Preview**, **Development** (all three)
 
 5. Click **"Save"** for each
@@ -125,7 +125,7 @@ For production with your brand:
 4. Click Submit
 
 5. **Check 2 places:**
-   - **Your Outlook inbox** (fixnowmechanics@outlook.com) - should see business notification
+   - **Your Outlook inbox** (support@fixnowmechanics.co.uk) - should see business notification
    - **Your personal email** - should see customer auto-responder
 
 6. **Verify the emails contain:**
@@ -221,7 +221,7 @@ fixnow-redesign/
 │   └── full-service.ts          # Handles full service booking
 │
 ├── emails/                       # React Email Templates
-│   ├── BusinessNotification.tsx # Email to fixnowmechanics@outlook.com
+│   ├── BusinessNotification.tsx # Email to support@fixnowmechanics.co.uk
 │   └── CustomerAutoResponder.tsx # Confirmation to customer
 │
 ├── src/

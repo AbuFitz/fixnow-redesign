@@ -16,7 +16,7 @@ Follow these steps to get your FREE professional email system working:
 ## ✅ Step 3: Add API Key to .env.local (30 sec)
 ```env
 RESEND_API_KEY=re_your_actual_key_here
-BUSINESS_EMAIL=fixnowmechanics@outlook.com
+BUSINESS_EMAIL=support@fixnowmechanics.co.uk
 ```
 
 ## ✅ Step 4: Test Locally (2 min)
@@ -32,7 +32,7 @@ npm run dev
 2. Go to https://vercel.com/dashboard
 3. Settings → Environment Variables → Add:
    - Key: `RESEND_API_KEY` | Value: `re_your_key`
-   - Key: `BUSINESS_EMAIL` | Value: `fixnowmechanics@outlook.com`
+   - Key: `BUSINESS_EMAIL` | Value: `support@fixnowmechanics.co.uk`
 4. Redeploy the site
 
 ## ✅ Step 6: Verify Domain (15 min - IMPORTANT!)
@@ -67,7 +67,7 @@ from: 'FixNow Mechanics <noreply@resend.dev>',
 - [ ] Go to https://fixnowmechanics.co.uk/estimate
 - [ ] Submit test with your email
 - [ ] Verify 2 emails received:
-  - Business notification (fixnowmechanics@outlook.com)
+  - Business notification (support@fixnowmechanics.co.uk)
   - Customer confirmation (your email)
 
 ---
