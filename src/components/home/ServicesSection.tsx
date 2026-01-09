@@ -56,10 +56,15 @@ const ServicesSection = () => {
                 src={service.image}
                 alt={service.name}
                 loading="lazy"
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 ${
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 ${
                   service.id === "brakes" ? "object-[center_40%]" : ""
                 }`}
-                style={{ willChange: 'transform', filter: 'brightness(0.75)' }}
+                style={{ 
+                  willChange: 'transform', 
+                  filter: 'brightness(0.75)',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden'
+                }}
               />
               
               {/* Gradient overlay */}
