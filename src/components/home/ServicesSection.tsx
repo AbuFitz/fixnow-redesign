@@ -43,7 +43,7 @@ const ServicesSection = () => {
             <Link
               key={service.id}
               to="/estimate"
-              className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-transform duration-300 hover:scale-[1.02] ${
+              className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 hover:z-10 ${
                 index === 0 ? "col-span-2 row-span-2 aspect-square" : "col-span-1 aspect-square"
               }`}
             >

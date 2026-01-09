@@ -32,7 +32,7 @@ const DialogContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
   <DialogPortal>
-    <DialogOverlay />
+    <DialogOverlay className="lg:cursor-pointer" />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
@@ -41,10 +41,14 @@ const DialogContent = React.forwardRef<
       )}
       {...props}
     >
+      {/* Tap outside indicator - only visible on mobile */}
+      <div className="lg:hidden absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-background/95 backdrop-blur-sm rounded-full border border-border/60 shadow-lg animate-bounce">
+        <p className="text-xs text-muted-foreground font-medium whitespace-nowrap">Tap outside to close</p>
+      </div>
       {children}
-      {/* Close button - fixed at top on mobile, inside on desktop */}
-      <DialogPrimitive.Close className="fixed top-2 left-1/2 -translate-x-1/2 lg:absolute lg:top-4 lg:right-4 lg:left-auto lg:translate-x-0 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm border-2 border-border/60 lg:border-0 lg:bg-transparent flex items-center justify-center opacity-90 hover:opacity-100 hover:scale-110 lg:hover:scale-100 transition-all shadow-lg lg:shadow-none hover:shadow-xl lg:hover:shadow-none lg:rounded-sm lg:ring-offset-background lg:transition-opacity lg:hover:opacity-100 lg:focus:outline-none lg:focus:ring-2 lg:focus:ring-ring lg:focus:ring-offset-2 lg:disabled:pointer-events-none z-[100]">
-        <X className="h-5 w-5 lg:h-4 lg:w-4 text-foreground" />
+      {/* Close button - only visible on desktop */}
+      <DialogPrimitive.Close className="hidden lg:block absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+        <X className="h-4 w-4" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
