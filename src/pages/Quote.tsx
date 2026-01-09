@@ -107,7 +107,7 @@ const Quote = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    // Completely prevent Enter key from submitting form on steps 1-3
+    // Prevent Enter key from triggering form actions
     if (e.key === 'Enter') {
       const target = e.target as HTMLElement;
       
@@ -116,18 +116,27 @@ const Quote = () => {
         return;
       }
       
-      // Prevent form submission on steps 1-3
-      if (step < 4) {
+      // Prevent Enter key on date inputs completely
+      if (target.tagName === 'INPUT' && (target as HTMLInputElement).type === 'date') {
         e.preventDefault();
         e.stopPropagation();
-        nextStep();
         return;
       }
       
-      // On step 4, only allow if it's the submit button
-      if (step === 4 && target.tagName !== 'BUTTON') {
+      // On step 4, NEVER auto-advance - user must click submit button
+      if (step === 4) {
+        if (target.tagName !== 'BUTTON' || (target as HTMLButtonElement).type !== 'submit') {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        return;
+      }
+      
+      // Only advance on steps 1-3, and only if not clicking a button
+      if (target.tagName !== 'BUTTON') {
         e.preventDefault();
         e.stopPropagation();
+        nextStep();
       }
     }
   };
@@ -480,8 +489,8 @@ const Quote = () => {
                         value={formData.preferredDate}
                         onChange={handleInputChange}
                         min={new Date().toISOString().split('T')[0]}
-                        className="h-12 text-base w-full max-w-full [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:p-2"
-                        style={{ fontSize: '16px', width: '100%', maxWidth: '100%', colorScheme: 'dark' }}
+                        className="h-12 text-base w-full max-w-full"
+                        style={{ fontSize: '16px', width: '100%', maxWidth: '100%' }}
                       />
                     </div>
                     
