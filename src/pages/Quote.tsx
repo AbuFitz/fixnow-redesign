@@ -476,7 +476,7 @@ const Quote = () => {
                 <div className="bg-card rounded-xl p-4 border border-border">
                   <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-primary" />
-                    Additional Information
+                    Schedule & Details
                   </h2>
                   
                   <div className="space-y-4">

@@ -100,7 +100,6 @@ const InterimService = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    // Completely prevent Enter key from submitting form on steps 1-2
     if (e.key === 'Enter') {
       const target = e.target as HTMLElement;
       
@@ -109,18 +108,27 @@ const InterimService = () => {
         return;
       }
       
-      // Prevent form submission on steps 1-2
-      if (step < 3) {
+      // Block Enter on date inputs completely
+      if (target.tagName === 'INPUT' && (target as HTMLInputElement).type === 'date') {
         e.preventDefault();
         e.stopPropagation();
-        nextStep();
         return;
       }
       
-      // On step 3, only allow if it's the submit button
-      if (step === 3 && target.tagName !== 'BUTTON') {
+      // On step 3 (final step), NEVER auto-submit
+      if (step === 3) {
+        if (target.tagName !== 'BUTTON' || (target as HTMLButtonElement).type !== 'submit') {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        return;
+      }
+      
+      // On steps 1-2, allow advancing but not on buttons
+      if (target.tagName !== 'BUTTON') {
         e.preventDefault();
         e.stopPropagation();
+        nextStep();
       }
     }
   };
@@ -370,12 +378,12 @@ const InterimService = () => {
                 <div className="bg-card rounded-xl p-4 border border-border">
                   <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-primary" />
-                    When Would You Like Us?
+                    Schedule Your Service
                   </h2>
                   
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date</Label>
+                      <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
                       <Input 
                         id="preferredDate" 
                         name="preferredDate" 
@@ -383,6 +391,7 @@ const InterimService = () => {
                         value={formData.preferredDate}
                         onChange={handleInputChange}
                         className="h-11 text-base w-full"
+                        style={{ fontSize: '16px', width: '100%', maxWidth: '100%' }}
                       />
                     </div>
                     
