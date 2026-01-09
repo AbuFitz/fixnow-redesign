@@ -83,7 +83,7 @@ const CookieConsent = () => {
   // Mobile Design
   const MobileView = () => (
     <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 animate-slide-up-mobile">
-      <div className="bg-gradient-to-t from-card via-card to-card/95 backdrop-blur-xl border-t-2 border-primary/30 shadow-2xl">
+      <div className="bg-gradient-to-t from-card via-card to-card/95 backdrop-blur-xl">
         <div className="px-4 py-5">
           {/* Close button - properly centered */}
           <button
@@ -95,8 +95,8 @@ const CookieConsent = () => {
           </button>
 
           <div className="flex items-start gap-3 mb-4">
-            <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
-              <Cookie className="w-6 h-6 text-primary" />
+            <div className="text-3xl">
+              🍪
             </div>
             <div className="flex-1 pr-8">
               <h3 className="font-bold text-foreground text-base mb-1">Cookie Settings</h3>
@@ -113,7 +113,7 @@ const CookieConsent = () => {
             <div className="space-y-2">
               <button
                 onClick={acceptAll}
-                className="w-full px-4 py-3 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all active:scale-[0.98] shadow-lg shadow-primary/25"
+                className="w-full px-4 py-3 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all active:scale-[0.98]"
               >
                 Accept All
               </button>
@@ -195,7 +195,7 @@ const CookieConsent = () => {
   // Desktop Design - Left Side
   const DesktopView = () => (
     <div className="hidden lg:block fixed bottom-6 left-6 z-50 animate-slide-in-left">
-      <div className="bg-gradient-to-br from-card via-card to-card/95 backdrop-blur-xl border-2 border-primary/30 rounded-2xl shadow-2xl shadow-black/20 w-[420px]">
+      <div className="bg-gradient-to-br from-card via-card to-card/95 backdrop-blur-xl rounded-2xl w-[420px]">
         <div className="p-6">
           {/* Close button - properly centered */}
           <button
@@ -207,8 +207,8 @@ const CookieConsent = () => {
           </button>
 
           <div className="flex items-start gap-4 mb-5">
-            <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 shadow-sm">
-              <Cookie className="w-7 h-7 text-primary" />
+            <div className="text-4xl">
+              🍪
             </div>
             <div className="flex-1 pr-6">
               <h3 className="font-bold text-foreground text-xl mb-2">Cookie Preferences</h3>
@@ -222,7 +222,7 @@ const CookieConsent = () => {
             <div className="space-y-3">
               <button
                 onClick={acceptAll}
-                className="w-full px-5 py-3.5 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/25"
+                className="w-full px-5 py-3.5 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 Accept All Cookies
               </button>
