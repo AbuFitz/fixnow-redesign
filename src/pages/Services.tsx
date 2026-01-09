@@ -119,7 +119,7 @@ const Services = () => {
                 <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-base md:text-lg">
                   From £150
                 </div>
-                <div className="absolute top-4 left-4 bg-black text-[#FFD500] px-3 py-1.5 rounded-full font-semibold text-xs md:text-sm uppercase tracking-wider shadow-lg border-2 border-[#FFD500]">
+                <div className="absolute top-4 left-4 bg-white text-black px-3 py-1.5 rounded-full font-semibold text-xs md:text-sm uppercase tracking-wider shadow-lg border-2 border-black">
                   Most Popular
                 </div>
               </div>
