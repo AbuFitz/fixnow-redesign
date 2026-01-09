@@ -35,6 +35,13 @@ const Quote = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
+    
+    // Only submit on step 4
+    if (step !== 4) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
@@ -100,12 +107,27 @@ const Quote = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    // Only allow Enter to submit on step 4, and only if not in textarea
-    if (e.key === 'Enter' && step < 4) {
+    // Completely prevent Enter key from submitting form on steps 1-3
+    if (e.key === 'Enter') {
       const target = e.target as HTMLElement;
-      if (target.tagName !== 'TEXTAREA') {
+      
+      // Allow Enter in textareas
+      if (target.tagName === 'TEXTAREA') {
+        return;
+      }
+      
+      // Prevent form submission on steps 1-3
+      if (step < 4) {
         e.preventDefault();
+        e.stopPropagation();
         nextStep();
+        return;
+      }
+      
+      // On step 4, only allow if it's the submit button
+      if (step === 4 && target.tagName !== 'BUTTON') {
+        e.preventDefault();
+        e.stopPropagation();
       }
     }
   };
