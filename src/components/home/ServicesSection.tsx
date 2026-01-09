@@ -43,13 +43,9 @@ const ServicesSection = () => {
             <Link
               key={service.id}
               to="/services"
-              className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/15 hover:z-10 ${
+              className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-all duration-200 ease-out hover:shadow-lg hover:shadow-primary/10 hover:z-10 ${
                 index === 0 ? "col-span-2 row-span-2 aspect-square" : "col-span-1 aspect-square"
               }`}
-              style={{
-                transformOrigin: 'center center',
-                willChange: 'transform'
-              }}
             >
               {/* Image */}
               <img
@@ -58,15 +54,11 @@ const ServicesSection = () => {
                 loading="lazy"
                 decoding="async"
                 fetchPriority={index === 0 ? "high" : "low"}
-                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105 ${
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-110 ${
                   service.id === "brakes" ? "object-[center_40%]" : ""
                 }`}
                 style={{ 
-                  willChange: 'transform', 
-                  filter: 'brightness(0.75)',
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden',
-                  contentVisibility: 'auto'
+                  filter: 'brightness(0.75)'
                 }}
               />
               

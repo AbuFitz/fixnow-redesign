@@ -92,8 +92,8 @@ const HeroSection = () => {
             { value: "Same Day", label: "Call-outs Available" },
           ].map((stat) => (
             <div key={stat.label} className="relative text-center">
-              <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary mb-0.5 sm:mb-1 drop-shadow-sm">{stat.value}</div>
-              <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground/80">{stat.label}</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary mb-0.5 sm:mb-1 drop-shadow-sm text-center">{stat.value}</div>
+              <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground/80 text-center">{stat.label}</div>
             </div>
           ))}
         </div>

@@ -384,17 +384,15 @@ const InterimService = () => {
                   <div className="space-y-4">
                     <div className="w-full">
                       <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
-                      <div className="w-full max-w-full">
-                        <Input 
-                          id="preferredDate" 
-                          name="preferredDate" 
-                          type="date" 
-                          value={formData.preferredDate}
-                          onChange={handleInputChange}
-                          className="h-11 text-base w-full"
-                          style={{ fontSize: '16px', width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}
-                        />
-                      </div>
+                      <Input 
+                        id="preferredDate" 
+                        name="preferredDate" 
+                        type="date" 
+                        value={formData.preferredDate}
+                        onChange={handleInputChange}
+                        className="h-11 text-base w-full max-w-full"
+                        style={{ fontSize: '16px' }}
+                      />
                     </div>
                     
                     <div>

@@ -40,7 +40,7 @@ const WhatsAppWidget = () => {
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
         {/* Quick Message Options - Desktop */}
         {isOpen && (
-          <div className="hidden lg:block absolute bottom-20 right-0 min-w-[360px] max-w-[360px] bg-card/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden mb-2 animate-slide-up">
+          <div className="hidden lg:block absolute bottom-20 right-0 w-[min(360px,calc(100vw-2rem))] bg-card/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden mb-2 animate-slide-up">
             <div className="bg-[#25D366] p-4 flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shrink-0">
                 <MessageCircle className="w-6 h-6 text-[#25D366]" />
