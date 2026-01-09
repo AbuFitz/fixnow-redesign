@@ -1,5 +1,3 @@
-import { generateBusinessNotification, generateCustomerAutoResponder } from './emailTemplates';
-
 interface FormData {
   // Customer details
   name: string;
@@ -36,69 +34,38 @@ export const submitForm = async (
   formType: 'estimate' | 'interim' | 'full'
 ): Promise<SubmissionResponse> => {
   try {
-    // Get the appropriate access key based on form type
-    const accessKeys = {
-      estimate: import.meta.env.VITE_WEB3FORMS_ESTIMATE_KEY,
-      interim: import.meta.env.VITE_WEB3FORMS_INTERIM_KEY,
-      full: import.meta.env.VITE_WEB3FORMS_FULL_KEY,
+    // Determine the API endpoint based on form type
+    const apiEndpoints = {
+      estimate: '/api/estimate',
+      interim: '/api/interim-service',
+      full: '/api/full-service',
     };
 
-    const accessKey = accessKeys[formType];
-    
-    if (!accessKey) {
-      throw new Error('Form configuration error. Please contact support.');
-    }
+    const endpoint = apiEndpoints[formType];
 
-    // Prepare the submission data - send ALL fields to Web3Forms
+    // Prepare the submission data for our Vercel serverless function
     const submissionData = {
-      access_key: accessKey,
-      
-      // Customer details
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
       postcode: formData.postcode,
-      
-      // Vehicle details (use whichever field names are provided)
-      vehicle_make: formData.vehicleMake || formData.make || 'Not provided',
-      vehicle_model: formData.vehicleModel || formData.model || 'Not provided',
-      vehicle_year: formData.vehicleYear || formData.year || 'Not provided',
-      vehicle_registration: formData.vehicleReg || formData.reg || 'Not provided',
-      fuel_type: formData.fuelType || 'Not provided',
-      
-      // Service details
-      service_type: formData.serviceType || 'Not specified',
-      preferred_date: formData.preferredDate || 'No preference',
-      additional_message: formData.message || 'None',
-      
-      // Metadata
-      form_type: `${formType.charAt(0).toUpperCase() + formType.slice(1)} Form`,
-      submission_date: new Date().toLocaleString('en-GB', { 
-        dateStyle: 'full', 
-        timeStyle: 'short',
-        timeZone: 'Europe/London'
-      }),
-      
-      // Email configuration for Web3Forms
-      subject: `🚗 New ${formType.charAt(0).toUpperCase() + formType.slice(1)} Request from ${formData.name}`,
-      from_name: 'FixNow Mechanics Website',
-      replyto: formData.email,
-      
-      // Redirect after success (disable to handle in app)
-      redirect: false,
-      
-      // Honeypot for spam protection
-      botcheck: '',
+      serviceType: formData.serviceType,
+      vehicleMake: formData.vehicleMake || formData.make,
+      vehicleModel: formData.vehicleModel || formData.model,
+      vehicleYear: formData.vehicleYear || formData.year,
+      vehicleReg: formData.vehicleReg || formData.reg,
+      fuelType: formData.fuelType,
+      preferredDate: formData.preferredDate,
+      message: formData.message,
     };
 
-    // Submit to Web3Forms
-    const response = await fetch('https://api.web3forms.com/submit', {
+    // Submit to our API endpoint
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
       },
-      body: JSON.stringify(submissionData)
+      body: JSON.stringify(submissionData),
     });
 
     const result = await response.json();
@@ -106,7 +73,7 @@ export const submitForm = async (
     if (result.success) {
       return {
         success: true,
-        message: 'Thank you! We\'ve received your request and will get back to you within 1 hour.'
+        message: result.message || 'Thank you! We\'ve received your request and will contact you within 1 business day.',
       };
     } else {
       throw new Error(result.message || 'Submission failed');
@@ -116,7 +83,9 @@ export const submitForm = async (
     console.error('Form submission error:', error);
     return {
       success: false,
-      message: error instanceof Error ? error.message : 'Something went wrong. Please call us at 07354 915941.'
+      message: error instanceof Error 
+        ? error.message 
+        : 'Something went wrong. Please call us at 07354 915941.',
     };
   }
 };
