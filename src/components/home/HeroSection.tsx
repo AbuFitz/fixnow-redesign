@@ -88,7 +88,7 @@ const HeroSection = () => {
         <div className="mt-8 sm:mt-10 md:mt-12 grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
           {[
             { value: "7 Days", label: "Open Weekly" },
-            { value: "45 Mile", label: "Coverage Area" },
+            { value: "25 Mile", label: "Coverage Area" },
             { value: "Same Day", label: "Call-outs Available" },
           ].map((stat) => (
             <div key={stat.label} className="relative">

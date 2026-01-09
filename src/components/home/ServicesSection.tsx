@@ -43,18 +43,23 @@ const ServicesSection = () => {
             <Link
               key={service.id}
               to="/estimate"
-              className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 hover:z-10 ${
+              className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-all duration-700 ease-out hover:scale-[1.08] hover:shadow-2xl hover:shadow-primary/25 hover:z-10 ${
                 index === 0 ? "col-span-2 row-span-2 aspect-square" : "col-span-1 aspect-square"
               }`}
+              style={{
+                transformOrigin: 'center center',
+                willChange: 'transform'
+              }}
             >
               {/* Image */}
               <img
                 src={service.image}
                 alt={service.name}
                 loading="lazy"
-                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 ${
-                  service.id === "brakes" ? "object-[center_125%] scale-125" : ""
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 brightness-75 ${
+                  service.id === "brakes" ? "object-[center_40%]" : ""
                 }`}
+                style={{ willChange: 'transform' }}
               />
               
               {/* Gradient overlay */}

@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: "Do you cover my area?",
-    answer: "We are based in Hemel Hempstead and cover a 45-mile radius including St Albans, Watford, Luton, Stevenage, and surrounding areas. Locations further away may have a small travel supplement.",
+    answer: "We are based in Hemel Hempstead and cover approximately 25 miles including St Albans, Watford, Luton, Stevenage, and surrounding areas. Locations further away may have a small travel supplement.",
   },
   {
     question: "How do I pay?",

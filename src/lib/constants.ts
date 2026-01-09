@@ -7,7 +7,7 @@ export const BUSINESS_INFO = {
     weekday: "Mon-Sat: 7am - 10pm",
     weekend: "Sun: 8am - 8pm",
   },
-  coverage: "45-mile radius",
+  coverage: "25-mile coverage",
   whatsapp: "https://wa.me/447354915941",
 } as const;
 

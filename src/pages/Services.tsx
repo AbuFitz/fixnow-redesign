@@ -15,7 +15,7 @@ import { useState } from "react";
 const Services = () => {
   const placeholderImage = "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop";
   const interimServiceImage = "/generalrepairs.JPG";
-  const fullServiceImage = "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&auto=format&fit=crop";
+  const fullServiceImage = "/Full service.jpg";
 
   const allServices = [
     {
