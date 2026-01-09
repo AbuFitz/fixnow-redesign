@@ -7,6 +7,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO, SERVICES } from "@/lib/constants";
 import { isValidPostcodeFormat, isCoveredPostcode, getLocationForPostcode, formatPostcode } from "@/lib/postcodeUtils";
+import { submitForm } from "@/lib/formService";
+import { toast } from "sonner";
 
 type FormData = {
   service: string;
@@ -26,6 +28,7 @@ const Estimate = () => {
   const [step, setStep] = useState(1);
   const [postcodeError, setPostcodeError] = useState("");
   const [postcodeValid, setPostcodeValid] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     service: "",
     postcode: "",
@@ -89,36 +92,66 @@ const Estimate = () => {
   };
   
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
-
-  const handleSubmit = (e: React.FormEvent) => {
+async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Format the data for submission
-    const submissionData = {
-      ...formData,
-      location: getLocationForPostcode(formData.postcode),
-    };
-    
-    console.log("Form submission:", submissionData);
-    alert("Thanks! We've received your enquiry and will call you back shortly.");
-    
-    // Reset form
-    setFormData({
-      service: "",
-      postcode: "",
-      address: "",
-      vehicleMake: "",
-      vehicleModel: "",
-      vehicleYear: "",
-      vehicleReg: "",
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
-    setStep(1);
-    setPostcodeValid(false);
-    setPostcodeError("");
+    try {
+      // Submit to Web3Forms with branded emails
+      const result = await submitForm(
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          postcode: formData.postcode,
+          vehicleMake: formData.vehicleMake,
+          vehicleModel: formData.vehicleModel,
+          vehicleYear: formData.vehicleYear,
+          vehicleReg: formData.vehicleReg,
+          serviceType: formData.service,
+          message: `${formData.message}\n\nAddress: ${formData.address}\nLocation: ${getLocationForPostcode(formData.postcode)}`,
+        },
+        'estimate'
+      );
+      
+      if (result.success) {
+        toast.success("Request Received!", {
+          description: "We'll call you back shortly to discuss your quote.",
+          duration: 5000,
+        });
+        
+        // Reset form
+        setFormData({
+          service: "",
+          postcode: "",
+          address: "",
+          vehicleMake: "",
+          vehicleModel: "",
+          vehicleYear: "",
+          vehicleReg: "",
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        setStep(1);
+        setPostcodeValid(false);
+        setPostcodeError("");
+      } else {
+        toast.error("Submission Failed", {
+          description: result.message || "Please try again or call us directly.",
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error("Something went wrong", {
+        description: "Please try again or call us at " + BUSINESS_INFO.phone,
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const stepLabels = ["Service", "Location", "Vehicle", "Contact"];
@@ -400,10 +433,20 @@ const Estimate = () => {
                   <Button 
                     type="submit" 
                     size="lg"
-                    className="w-full rounded-full h-12 sm:h-14 text-base sm:text-lg font-semibold shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/35 hover:scale-[1.02] transition-all"
+                    disabled={isSubmitting}
+                    className="w-full rounded-full h-12 sm:h-14 text-base sm:text-lg font-semibold shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/35 hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send My Enquiry — We'll Call Back
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send My Enquiry — We'll Call Back
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </>
+                    )}
                   </Button>
                   
                   <div className="mt-3 sm:mt-4 p-3 sm:p-4 rounded-lg bg-primary/5 border border-primary/10">

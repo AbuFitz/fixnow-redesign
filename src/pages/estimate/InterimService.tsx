@@ -5,10 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Layout from "@/components/layout/Layout";
 import { BUSINESS_INFO } from "@/lib/constants";
+import { submitForm } from "@/lib/formService";
+import { toast } from "sonner";
 
 const InterimService = () => {
   const [step, setStep] = useState(1);
   const [attemptedNext, setAttemptedNext] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     make: "",
     model: "",
@@ -24,8 +27,62 @@ const InterimService = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Handle form submission with web3forms
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    
+    try {
+      const result = await submitForm(
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          postcode: formData.postcode,
+          vehicleMake: formData.make,
+          vehicleModel: formData.model,
+          vehicleYear: formData.year,
+          vehicleReg: formData.reg,
+          serviceType: "Interim Service - From £110",
+          preferredDate: formData.preferredDate,
+          message: formData.message,
+        },
+        'interim'
+      );
+      
+      if (result.success) {
+        toast.success("Booking Received!", {
+          description: "We'll confirm your interim service appointment shortly.",
+          duration: 5000,
+        });
+        
+        // Reset form
+        setFormData({
+          make: "",
+          model: "",
+          year: "",
+          reg: "",
+          name: "",
+          email: "",
+          phone: "",
+          postcode: "",
+          preferredDate: "",
+          message: "",
+        });
+        setStep(1);
+        setAttemptedNext(false);
+      } else {
+        toast.error("Submission Failed", {
+          description: result.message || "Please try again or call us directly.",
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error("Something went wrong", {
+        description: "Please try again or call us at " + BUSINESS_INFO.phone,
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -305,10 +362,20 @@ const InterimService = () => {
               ) : (
                 <Button
                   type="submit"
-                  className="flex-1 h-10 rounded-full text-sm"
+                  disabled={isSubmitting}
+                  className="flex-1 h-10 rounded-full text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Request Booking
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Request Booking
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </>
+                  )}
                 </Button>
               )}
             </div>
