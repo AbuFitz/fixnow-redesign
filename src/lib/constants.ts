@@ -4,8 +4,8 @@ export const BUSINESS_INFO = {
   email: "fixnowmechanics@outlook.com",
   address: "Hemel Hempstead, HP2 7DE",
   hours: {
-    weekday: "Mon-Sat: 7am - 10pm",
-    weekend: "Sun: 8am - 8pm",
+    weekday: "Mon-Fri: 7am - 10pm",
+    weekend: "Sat-Sun: 8am - 10pm",
   },
   coverage: "25-mile coverage",
   whatsapp: "https://wa.me/447354915941",
