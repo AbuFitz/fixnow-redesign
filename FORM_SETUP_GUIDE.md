@@ -10,7 +10,7 @@ After this setup, when a customer fills out ANY form on your website:
 
 ---
 
-## 📋 STEP-BY-STEP SETUP (30 minutes)
+## 📋 STEP-BY-STEP SETUP (20 minutes)
 
 ### **STEP 1: Create Web3Forms Account** ⏱️ 5 minutes
 
@@ -22,29 +22,23 @@ After this setup, when a customer fills out ANY form on your website:
 
 ---
 
-### **STEP 2: Create 4 Access Keys** ⏱️ 10 minutes
+### **STEP 2: Create 3 Access Keys** ⏱️ 10 minutes
 
-You need 4 separate forms for tracking:
+You need 3 separate forms for tracking:
 
-#### Form 1: General Quote
+#### Form 1: General Estimate/Quote (Main Form)
 1. In dashboard, click **"+ New Form"**
-2. Name it: `General Quote Form`
+2. Name it: `General Estimate Form`
 3. Copy the **Access Key** (looks like: `abc123-def456...`)
 4. Save it somewhere safe!
 
-#### Form 2: Quick Estimate  
-1. Click **"+ New Form"** again
-2. Name it: `Quick Estimate Form`
-3. Copy the **Access Key**
-4. Save it!
-
-#### Form 3: Interim Service
+#### Form 2: Interim Service
 1. Click **"+ New Form"**
 2. Name it: `Interim Service Booking`
 3. Copy the **Access Key**
 4. Save it!
 
-#### Form 4: Full Service
+#### Form 3: Full Service
 1. Click **"+ New Form"**
 2. Name it: `Full Service Booking`
 3. Copy the **Access Key**
@@ -60,16 +54,13 @@ You need 4 separate forms for tracking:
 ```env
 # Web3Forms Access Keys (from Step 2)
 
-# General Quote Form
-VITE_WEB3FORMS_QUOTE_KEY=paste_your_quote_key_here
-
-# Quick Estimate Form
+# General Estimate/Quote Form (main form at /estimate)
 VITE_WEB3FORMS_ESTIMATE_KEY=paste_your_estimate_key_here
 
-# Interim Service Booking  
+# Interim Service Booking (at /estimate/interim-service)
 VITE_WEB3FORMS_INTERIM_KEY=paste_your_interim_key_here
 
-# Full Service Booking
+# Full Service Booking (at /estimate/full-service)
 VITE_WEB3FORMS_FULL_KEY=paste_your_full_key_here
 
 # Your email where submissions go
@@ -83,7 +74,7 @@ VITE_BUSINESS_EMAIL=fixnowmechanics@outlook.com
 
 ### **STEP 4: Configure Web3Forms Settings** ⏱️ 10 minutes
 
-For **EACH of your 4 forms** in Web3Forms dashboard:
+For **EACH of your 3 forms** in Web3Forms dashboard:
 
 1. Click on the form name
 2. Go to **Settings** tab
@@ -109,7 +100,7 @@ For **EACH of your 4 forms** in Web3Forms dashboard:
 - **Honeypot:** ✅ Already enabled in code
 
 4. Click **Save Settings**
-5. Repeat for all 4 forms!
+5. Repeat for all 3 forms!
 
 ---
 
@@ -121,7 +112,6 @@ When you deploy to Vercel:
 2. Select your project
 3. Go to **Settings** → **Environment Variables**
 4. Add each variable:
-   - `VITE_WEB3FORMS_QUOTE_KEY` = your_key
    - `VITE_WEB3FORMS_ESTIMATE_KEY` = your_key
    - `VITE_WEB3FORMS_INTERIM_KEY` = your_key
    - `VITE_WEB3FORMS_FULL_KEY` = your_key
@@ -136,20 +126,16 @@ When you deploy to Vercel:
 
 ### Test Each Form:
 
-1. **Quote Form** (`/quote`):
+1. **Estimate Form** (`/estimate` - your QR code!):
    - Fill out with TEST data
    - Use your personal email
    - Submit
 
-2. **Estimate Form** (`/estimate`):
+2. **Interim Service** (`/estimate/interim-service`):
    - Fill out with TEST data
    - Submit
 
-3. **Interim Service** (`/estimate/interim-service`):
-   - Fill out with TEST data
-   - Submit
-
-4. **Full Service** (`/estimate/full-service`):
+3. **Full Service** (`/estimate/full-service`):
    - Fill out with TEST data
    - Submit
 

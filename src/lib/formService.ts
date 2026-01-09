@@ -22,12 +22,11 @@ interface SubmissionResponse {
 
 export const submitForm = async (
   formData: FormData,
-  formType: 'quote' | 'estimate' | 'interim' | 'full'
+  formType: 'estimate' | 'interim' | 'full'
 ): Promise<SubmissionResponse> => {
   try {
     // Get the appropriate access key based on form type
     const accessKeys = {
-      quote: import.meta.env.VITE_WEB3FORMS_QUOTE_KEY,
       estimate: import.meta.env.VITE_WEB3FORMS_ESTIMATE_KEY,
       interim: import.meta.env.VITE_WEB3FORMS_INTERIM_KEY,
       full: import.meta.env.VITE_WEB3FORMS_FULL_KEY,
