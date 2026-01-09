@@ -133,54 +133,33 @@ const FullService = () => {
           
           {/* Success Screen */}
           {showSuccess ? (
-            <div className="text-center py-12 animate-fade-in">
-              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-scale-in">
-                <Check className="w-8 h-8 text-white" />
-              </div>
-              
-              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Booking Received!
-              </h1>
-              
-              <p className="text-base text-muted-foreground mb-6">
-                We've received your full service booking request and will confirm your appointment shortly.
-              </p>
-              
-              <div className="bg-card rounded-xl p-6 border border-border mb-6 text-left">
-                <h2 className="font-semibold text-foreground mb-3 text-sm">What happens next?</h2>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">We'll review your booking and contact you within 1 business day</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">You'll receive a confirmation email shortly</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">Your preferred date helps us schedule, but we'll confirm the final time with you</p>
-                  </div>
+            <div className="py-12 md:py-16 flex items-center justify-center min-h-[60vh]">
+              <div className="bg-card rounded-2xl p-8 md:p-12 border border-border shadow-lg text-center max-w-2xl w-full">
+                <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Check className="w-10 h-10 text-green-500" />
                 </div>
-              </div>
-              
-              <div className="flex flex-col gap-3">
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-full"
-                >
-                  <Link to="/services">View Our Services</Link>
-                </Button>
-                <Button
-                  asChild
-                  className="rounded-full"
-                >
-                  <a href={`tel:${BUSINESS_INFO.phone}`}>
-                    <Phone className="w-4 h-4 mr-2" />
-                    Call Us Now
-                  </a>
-                </Button>
+                
+                <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  Booking Received!
+                </h1>
+                
+                <p className="text-base md:text-lg text-muted-foreground mb-8">
+                  We've received your full service booking and will confirm your appointment within 1 business day.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+                  <Button asChild className="w-full sm:w-auto rounded-full h-12 px-8">
+                    <Link to="/services">
+                      View Our Services
+                    </Link>
+                  </Button>
+                  
+                  <Button asChild variant="outline" className="w-full sm:w-auto rounded-full h-12 px-8">
+                    <a href={`tel:${BUSINESS_INFO.phone}`}>
+                      Call {BUSINESS_INFO.phone}
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           ) : (

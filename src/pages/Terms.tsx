@@ -111,8 +111,9 @@ const Terms = () => {
                   <p className="text-muted-foreground">
                     For any questions regarding these terms:
                   </p>
-                  <div className="mt-4 text-muted-foreground">
-                    <p>Email: <a href={`mailto:${BUSINESS_INFO.email}`} className="text-primary hover:underline">{BUSINESS_INFO.email}</a></p>
+                  <div className="mt-4 text-muted-foreground space-y-2">
+                    <p>General Enquiries: <a href={`mailto:${BUSINESS_INFO.email}`} className="text-primary hover:underline">{BUSINESS_INFO.email}</a></p>
+                    <p>Legal & Compliance: <a href="mailto:legal@fixnowmechanics.co.uk" className="text-primary hover:underline">legal@fixnowmechanics.co.uk</a></p>
                     <p>Phone: <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline">{BUSINESS_INFO.phone}</a></p>
                   </div>
                 </section>

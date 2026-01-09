@@ -29,7 +29,7 @@ const ServicesSection = () => {
               <span className="text-muted-foreground">At Your Location</span>
             </h2>
           </div>
-          <Button variant="outline" size="lg" asChild className="rounded-full border-border/50 bg-card/30 hover:bg-card/50 hover:text-foreground w-full sm:w-auto md:w-fit group">
+          <Button variant="outline" size="lg" asChild className="rounded-full border-border/50 bg-card/30 hover:bg-card/50 hover:border-border text-foreground hover:text-foreground w-full sm:w-auto md:w-fit group transition-colors">
             <Link to="/services">
               All services
               <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />

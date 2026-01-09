@@ -100,9 +100,14 @@ const Quote = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Only prevent Enter on input fields in steps 1-3
     if (e.key === 'Enter' && step < 4) {
-      e.preventDefault();
-      nextStep();
+      const target = e.target as HTMLElement;
+      // Don't prevent Enter in textareas
+      if (target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        nextStep();
+      }
     }
   };
 
@@ -138,10 +143,10 @@ const Quote = () => {
     return (
       <Layout>
         <section className="py-12 md:py-16 bg-background min-h-screen flex items-center justify-center">
-          <div className="container mx-auto px-4 max-w-2xl text-center">
-            <div className="bg-card rounded-2xl p-8 md:p-12 border border-border shadow-lg">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Check className="w-8 h-8 text-primary" />
+          <div className="container mx-auto px-4 max-w-2xl">
+            <div className="bg-card rounded-2xl p-8 md:p-12 border border-border shadow-lg text-center">
+              <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Check className="w-10 h-10 text-green-500" />
               </div>
               
               <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
@@ -152,19 +157,18 @@ const Quote = () => {
                 Thank you for your request. We'll review your details and get back to you within 1 business day with a personalized quote.
               </p>
               
-              <div className="space-y-4">
-                <Link to="/services">
-                  <Button className="w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+                <Button asChild className="w-full sm:w-auto rounded-full h-12 px-8">
+                  <Link to="/services">
                     View Our Services
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
                 
-                <p className="text-sm text-muted-foreground">
-                  Need immediate assistance?{" "}
-                  <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline font-medium">
+                <Button asChild variant="outline" className="w-full sm:w-auto rounded-full h-12 px-8">
+                  <a href={`tel:${BUSINESS_INFO.phone}`}>
                     Call {BUSINESS_INFO.phone}
                   </a>
-                </p>
+                </Button>
               </div>
             </div>
           </div>

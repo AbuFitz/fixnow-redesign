@@ -74,7 +74,7 @@ const HeroSection = () => {
               size="lg" 
               variant="outline" 
               asChild 
-              className="rounded-full h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 hover:border-primary/30 group w-full sm:w-auto"
+              className="rounded-full h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 hover:border-primary/30 text-white hover:text-white group w-full sm:w-auto"
             >
               <Link to="/services">
                 <Play className="w-4 h-4 mr-2 text-primary" />
