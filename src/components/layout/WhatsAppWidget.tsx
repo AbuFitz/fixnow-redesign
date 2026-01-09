@@ -40,39 +40,37 @@ const WhatsAppWidget = () => {
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
         {/* Quick Message Options - Desktop */}
         {isOpen && (
-          <div className="hidden lg:block absolute bottom-20 right-0 w-[min(360px,calc(100vw-2rem))] bg-card/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden mb-2 animate-slide-up">
-            <div className="bg-[#25D366] p-4 flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shrink-0">
-                <MessageCircle className="w-6 h-6 text-[#25D366]" />
+          <div className="hidden lg:block absolute bottom-16 right-0 w-80 max-w-[calc(100vw-2rem)] bg-card/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-border overflow-hidden mb-2 animate-slide-up">
+            <div className="bg-[#25D366] p-3 flex items-center gap-2">
+              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shrink-0">
+                <MessageCircle className="w-5 h-5 text-[#25D366]" />
               </div>
               <div className="min-w-0">
-                <h3 className="font-bold text-white text-sm">Chat with us</h3>
-                <p className="text-xs text-white/90">Typically replies instantly</p>
+                <h3 className="font-semibold text-white text-xs">Chat with us</h3>
+                <p className="text-[10px] text-white/90">Quick replies</p>
               </div>
             </div>
             
-            <div className="p-4 space-y-2 max-h-[500px] overflow-y-auto">
-              <p className="text-xs text-muted-foreground mb-3">Select a quick message or start a chat:</p>
+            <div className="p-3 space-y-2 max-h-[400px] overflow-y-auto">
               {quickMessages.map((msg, index) => (
                 <button
                   key={index}
                   onClick={() => handleMessageClick(msg.message)}
-                  className="w-full text-left p-3 rounded-xl bg-muted/50 hover:bg-muted border border-border hover:border-primary/50 transition-all group"
+                  className="w-full text-left p-2.5 rounded-lg bg-muted/50 hover:bg-muted border border-border hover:border-primary/30 transition-colors"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-sm font-medium text-foreground flex-1">{msg.title}</span>
-                    <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-0.5" />
+                    <span className="text-xs font-medium text-foreground flex-1">{msg.title}</span>
+                    <MessageCircle className="w-3 h-3 text-muted-foreground shrink-0 mt-0.5" />
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{msg.message}</p>
                 </button>
               ))}
               
               <button
                 onClick={() => handleMessageClick("Hi! I'd like to enquire about your services.")}
-                className="w-full mt-3 p-3 rounded-xl bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold text-sm transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
+                className="w-full mt-2 p-2.5 rounded-lg bg-[#25D366] hover:bg-[#20BA5A] text-white font-medium text-xs transition-colors flex items-center justify-center gap-2"
               >
-                <MessageCircle className="w-4 h-4" />
-                Start Custom Chat
+                <MessageCircle className="w-3 h-3" />
+                Start Chat
               </button>
             </div>
           </div>
@@ -80,79 +78,60 @@ const WhatsAppWidget = () => {
 
         {/* Quick Message Options - Mobile */}
         {isOpen && (
-          <div className="lg:hidden fixed inset-x-0 bottom-0 bg-card/98 backdrop-blur-xl rounded-t-3xl shadow-2xl border-t-2 border-border max-h-[80vh] overflow-hidden animate-slide-up-mobile">
-            <div className="bg-[#25D366] p-4 flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                <MessageCircle className="w-6 h-6 text-[#25D366]" />
+          <div className="lg:hidden fixed inset-x-4 bottom-16 bg-card/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-border max-h-[70vh] overflow-hidden animate-slide-up-mobile">
+            <div className="bg-[#25D366] p-3 flex items-center gap-2">
+              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                <MessageCircle className="w-5 h-5 text-[#25D366]" />
               </div>
               <div>
-                <h3 className="font-bold text-white">Chat with FixNow</h3>
-                <p className="text-xs text-white/90">Typically replies instantly</p>
+                <h3 className="font-semibold text-white text-sm">Chat with us</h3>
+                <p className="text-[10px] text-white/90">Quick replies</p>
               </div>
             </div>
             
-            <div className="p-4 space-y-2.5 max-h-[60vh] overflow-y-auto">
-              <p className="text-xs text-muted-foreground mb-3">Quick messages:</p>
+            <div className="p-3 space-y-2 max-h-[50vh] overflow-y-auto">
               {quickMessages.map((msg, index) => (
                 <button
                   key={index}
                   onClick={() => handleMessageClick(msg.message)}
-                  className="w-full text-left p-3.5 rounded-xl bg-muted/50 active:bg-muted border border-border active:scale-[0.98] transition-all"
+                  className="w-full text-left p-2.5 rounded-lg bg-muted/50 active:bg-muted border border-border transition-colors"
                 >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-semibold text-foreground">{msg.title}</span>
-                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{msg.message}</p>
+                  <span className="text-xs font-medium text-foreground block">{msg.title}</span>
                 </button>
               ))}
               
               <button
                 onClick={() => handleMessageClick("Hi! I'd like to enquire about your services.")}
-                className="w-full mt-4 p-4 rounded-xl bg-[#25D366] active:bg-[#20BA5A] text-white font-bold text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg"
+                className="w-full mt-2 p-3 rounded-lg bg-[#25D366] active:bg-[#20BA5A] text-white font-medium text-sm transition-colors flex items-center justify-center gap-2"
               >
-                <MessageCircle className="w-5 h-5" />
-                Start Custom Chat
+                <MessageCircle className="w-4 h-4" />
+                Start Chat
               </button>
             </div>
           </div>
         )}
 
-        {/* Main WhatsApp Button */}
+        {/* Main WhatsApp Button - Smaller and subtle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`relative w-14 h-14 md:w-16 md:h-16 bg-[#25D366] hover:bg-[#20BA5A] rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 active:scale-95 group ${
-            isOpen ? 'scale-95' : ''
+          className={`relative w-12 h-12 bg-[#25D366] hover:bg-[#20BA5A] rounded-full flex items-center justify-center shadow-lg transition-colors ${
+            isOpen ? 'bg-[#20BA5A]' : ''
           }`}
           aria-label="Chat on WhatsApp"
         >
           {isOpen ? (
-            <X className="w-7 h-7 md:w-8 md:h-8 text-white transition-transform group-hover:rotate-90" />
+            <X className="w-5 h-5 text-white" />
           ) : (
-            <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-white animate-pulse" />
-          )}
-          
-          {/* Notification dot */}
-          {!isOpen && (
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-background animate-pulse" />
+            <MessageCircle className="w-5 h-5 text-white" />
           )}
         </button>
-
-        {/* Tooltip - Desktop only */}
-        {!isOpen && (
-          <div className="hidden lg:block absolute bottom-full right-0 mb-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-            <div className="bg-foreground text-background text-xs font-medium px-3 py-2 rounded-lg shadow-lg">
-              Chat on WhatsApp
-            </div>
-          </div>
-        )}
       </div>
 
       <style>{`
         @keyframes slide-up {
           from { 
             opacity: 0;
-            transform: translateY(1rem);
+            transform: translateY(0.5rem);
           }
           to { 
             opacity: 1;
@@ -162,7 +141,7 @@ const WhatsAppWidget = () => {
         @keyframes slide-up-mobile {
           from { 
             opacity: 0;
-            transform: translateY(100%);
+            transform: translateY(1rem);
           }
           to { 
             opacity: 1;
@@ -170,10 +149,10 @@ const WhatsAppWidget = () => {
           }
         }
         .animate-slide-up {
-          animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          animation: slide-up 0.2s ease-out;
         }
         .animate-slide-up-mobile {
-          animation: slide-up-mobile 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          animation: slide-up-mobile 0.2s ease-out;
         }
       `}</style>
     </>
