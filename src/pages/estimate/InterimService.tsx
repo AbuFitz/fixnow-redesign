@@ -384,13 +384,13 @@ const InterimService = () => {
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
-                      <Input 
+                      <input 
                         id="preferredDate" 
                         name="preferredDate" 
                         type="date" 
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-12 text-base w-full rounded-md"
+                        className="h-12 text-base w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
                         style={{ fontSize: '16px' }}
                       />
                     </div>

@@ -5,19 +5,21 @@ import { getCustomerConfirmationHTML, getBusinessNotificationHTML } from './emai
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Set headers for all responses
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Content-Type', 'application/json');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ success: false, message: 'Method not allowed' });
 
   try {
-    const { name, email, phone, postcode, vehicleMake, vehicleModel, vehicleYear, vehicleReg, fuelType, preferredDate, message } = req.body;
+    const { name, email, phone, postcode, vehicleMake, vehicleModel, vehicleYear, vehicleReg, fuelType, preferredDate, message } = req.body || {};
 
     if (!name || !email || !phone || !postcode || !fuelType) {
-      return res.status(400).json({ success: false, message: 'Missing required fields' });
+      return res.status(400).json({ success: false, message: 'Please fill in all required fields' });
     }
 
     const price = fuelType === 'petrol' ? '£150' : '£180';
