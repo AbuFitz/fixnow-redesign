@@ -7,7 +7,7 @@ const services = [
   { id: "brakes", name: "Brakes", price: "From £55", image: "/brakes.jpg" },
   { id: "servicing", name: "Servicing", price: "From £110", image: "/servicing.jpeg" },
   { id: "general", name: "General Repairs", price: "Request Quote", image: "/generalrepairs.JPG" },
-  { id: "electrical", name: "Electrical", price: "From £100", image: "/electrical.jpg" },
+  { id: "electrical", name: "Electrical", price: "From £100", image: "/electrical.png" },
   { id: "suspension", name: "Suspension", price: "Request Quote", image: "/suspension.jpg" },
 ];
 

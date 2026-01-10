@@ -138,6 +138,8 @@ const InterimService = () => {
       case 1:
         return formData.reg;
       case 2:
+        return true;
+      case 3:
         return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
       default:
         return true;
@@ -299,8 +301,48 @@ const InterimService = () => {
               </div>
             )}
 
-            {/* Step 2: Contact */}
+            {/* Step 2: Booking */}
             {step === 2 && (
+              <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
+                <div className="bg-card rounded-xl p-4 border border-border">
+                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-primary" />
+                    Schedule Your Service
+                  </h2>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
+                      <Input 
+                        id="preferredDate" 
+                        name="preferredDate" 
+                        type="text"
+                        placeholder="e.g. 15/01/2026 or Next Monday"
+                        value={formData.preferredDate}
+                        onChange={handleInputChange}
+                        className="h-12 text-base w-full"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="message" className="text-sm mb-1.5">Additional Notes (Optional)</Label>
+                      <textarea 
+                        id="message" 
+                        name="message" 
+                        placeholder="Any special requirements..."
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={3}
+                        className="w-full px-3 py-3 text-base border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Step 3: Contact */}
+            {step === 3 && (
               <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
                 <div className="bg-card rounded-xl p-4 border border-border">
                   <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -375,46 +417,6 @@ const InterimService = () => {
                           className="h-11 text-base"
                         />
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Step 3: Booking */}
-            {step === 3 && (
-              <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
-                <div className="bg-card rounded-xl p-4 border border-border">
-                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-primary" />
-                    Schedule Your Service
-                  </h2>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
-                      <Input 
-                        id="preferredDate" 
-                        name="preferredDate" 
-                        type="text"
-                        placeholder="e.g. 15/01/2026 or Next Monday"
-                        value={formData.preferredDate}
-                        onChange={handleInputChange}
-                        className="h-12 text-base w-full"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="message" className="text-sm mb-1.5">Additional Notes (Optional)</Label>
-                      <textarea 
-                        id="message" 
-                        name="message" 
-                        placeholder="Any special requirements..."
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        rows={3}
-                        className="w-full px-3 py-3 text-base border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-                      />
                     </div>
                   </div>
                 </div>

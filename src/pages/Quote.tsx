@@ -291,6 +291,10 @@ const Quote = () => {
                         <option value="battery-standard">Battery Replacement (Standard) - £100</option>
                         <option value="battery-stopstart">Battery Replacement (Stop-Start) - £150</option>
                       </optgroup>
+                      <optgroup label="Suspension">
+                        <option value="suspension-check">Suspension Check - £45</option>
+                        <option value="suspension-repair">Suspension Repair - Request Quote</option>
+                      </optgroup>
                       <optgroup label="General Repairs">
                         <option value="general-repair">General Repairs - £45/hour</option>
                         <option value="other">Something Else</option>
@@ -399,8 +403,49 @@ const Quote = () => {
               </div>
             )}
 
-            {/* Step 3: Contact */}
+            {/* Step 3: Details */}
             {step === 3 && (
+              <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
+                <div className="bg-card rounded-xl p-4 border border-border">
+                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-primary" />
+                    Schedule & Details
+                  </h2>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
+                      <Input 
+                        id="preferredDate" 
+                        name="preferredDate" 
+                        type="text"
+                        placeholder="e.g. 15/01/2026 or Next Monday"
+                        value={formData.preferredDate}
+                        onChange={handleInputChange}
+                        className="h-12 text-base w-full"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="message" className="text-sm mb-1.5">Describe the Issue (Optional)</Label>
+                      <textarea 
+                        id="message" 
+                        name="message" 
+                        placeholder="Any symptoms, noises, or additional details..."
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={4}
+                        className="w-full px-3 py-3 text-base border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                        style={{ fontSize: '16px' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Step 4: Contact */}
+            {step === 4 && (
               <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
                 <div className="bg-card rounded-xl p-4 border border-border">
                   <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -480,47 +525,6 @@ const Quote = () => {
                           style={{ fontSize: '16px' }}
                         />
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Step 4: Details */}
-            {step === 4 && (
-              <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
-                <div className="bg-card rounded-xl p-4 border border-border">
-                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-primary" />
-                    Schedule & Details
-                  </h2>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
-                      <Input 
-                        id="preferredDate" 
-                        name="preferredDate" 
-                        type="text"
-                        placeholder="e.g. 15/01/2026 or Next Monday"
-                        value={formData.preferredDate}
-                        onChange={handleInputChange}
-                        className="h-12 text-base w-full"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="message" className="text-sm mb-1.5">Describe the Issue (Optional)</Label>
-                      <textarea 
-                        id="message" 
-                        name="message" 
-                        placeholder="Any symptoms, noises, or additional details..."
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        rows={4}
-                        className="w-full px-3 py-3 text-base border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-                        style={{ fontSize: '16px' }}
-                      />
                     </div>
                   </div>
                 </div>
