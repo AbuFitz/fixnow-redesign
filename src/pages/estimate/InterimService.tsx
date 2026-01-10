@@ -158,8 +158,8 @@ const InterimService = () => {
 
   return (
     <Layout>
-      <section className="py-6 md:py-8 bg-background min-h-screen overflow-x-hidden">
-        <div className="container mx-auto px-4 max-w-xl w-full">
+      <section className="py-8 md:py-12 bg-background min-h-screen overflow-x-hidden">
+        <div className="container mx-auto px-5 sm:px-6 max-w-2xl w-full">
           
           {/* Success Screen */}
           {showSuccess ? (
@@ -208,21 +208,21 @@ const InterimService = () => {
           ) : (
             <>
           {/* Header */}
-          <div className="text-center mb-4">
-            <h1 className="text-xl md:text-2xl font-bold text-foreground mb-1">
+          <div className="text-center mb-6">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
               Interim Service Booking
             </h1>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               From £110
             </p>
           </div>
 
           {/* Progress */}
-          <div className="mb-6 max-w-md mx-auto">
+          <div className="mb-8 max-w-md mx-auto">
             <div className="flex items-center justify-center gap-2 mb-2">
               {[1, 2, 3].map((s) => (
                 <div key={s} className="flex items-center">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all border-2 ${
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-base font-bold transition-all border-2 ${
                     s < step ? 'bg-primary text-primary-foreground border-primary' :
                     s === step ? 'bg-foreground text-background border-foreground' :
                     'bg-background text-muted-foreground border-border'
@@ -244,55 +244,57 @@ const InterimService = () => {
             {/* Step 1: Vehicle */}
             {step === 1 && (
               <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
-                <div className="bg-card rounded-xl p-4 border border-border">
-                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <Car className="w-4 h-4 text-primary" />
+                <div className="bg-card rounded-xl p-5 sm:p-6 border border-border">
+                  <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <Car className="w-5 h-5 text-primary" />
                     Vehicle Details
                   </h2>
                   
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="reg" className="text-sm mb-1.5 flex items-center gap-1">
-                        Registration Plate <span className="text-red-500">*</span>
+                      <Label htmlFor="reg" className="text-base mb-2 block">
+                        Registration Plate
                       </Label>
-                      <div className="relative">
-                        <div className="absolute left-0 top-0 bottom-0 w-10 bg-[#0C4DA2] rounded-l-md flex items-center justify-center">
-                          <div className="text-[#FFD500] font-bold text-xs">GB</div>
-                        </div>
-                        <Input 
-                          id="reg" 
-                          name="reg" 
-                          placeholder="AB12CDE" 
-                          value={formData.reg}
-                          onChange={handleInputChange}
-                          required 
-                          className="h-11 pl-12 pr-3 text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
-                          style={{ paddingLeft: '3rem', textAlign: 'left' }}
-                        />
-                      </div>
+                      <Input 
+                        id="reg" 
+                        name="reg" 
+                        placeholder="AB12 CDE" 
+                        value={formData.reg}
+                        onChange={handleInputChange}
+                        required 
+                        className={`h-14 px-4 text-base font-semibold tracking-wider uppercase transition-colors ${
+                          attemptedNext && !formData.reg ? 'border-red-500 border-2' : ''
+                        }`}
+                        style={{ fontSize: '16px' }}
+                      />
+                      {attemptedNext && !formData.reg && (
+                        <p className="text-sm text-red-500 mt-2">Registration plate is needed</p>
+                      )}
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="make" className="text-sm mb-1.5 text-muted-foreground">Make (Optional)</Label>
+                        <Label htmlFor="make" className="text-base mb-2 block text-muted-foreground">Make (Optional)</Label>
                         <Input 
                           id="make" 
                           name="make" 
                           placeholder="e.g. Ford" 
                           value={formData.make}
                           onChange={handleInputChange}
-                          className="h-11 text-base"
+                          className="h-14 text-base"
+                          style={{ fontSize: '16px' }}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="model" className="text-sm mb-1.5 text-muted-foreground">Model (Optional)</Label>
+                        <Label htmlFor="model" className="text-base mb-2 block text-muted-foreground">Model (Optional)</Label>
                         <Input 
                           id="model" 
                           name="model" 
                           placeholder="e.g. Focus" 
                           value={formData.model}
                           onChange={handleInputChange}
-                          className="h-11 text-base"
+                          className="h-14 text-base"
+                          style={{ fontSize: '16px' }}
                         />
                       </div>
                     </div>
@@ -304,15 +306,15 @@ const InterimService = () => {
             {/* Step 2: Booking */}
             {step === 2 && (
               <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
-                <div className="bg-card rounded-xl p-4 border border-border">
-                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-primary" />
+                <div className="bg-card rounded-xl p-5 sm:p-6 border border-border">
+                  <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-primary" />
                     Schedule Your Service
                   </h2>
                   
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
+                      <Label htmlFor="preferredDate" className="text-base mb-2 block">Preferred Date (Optional)</Label>
                       <Input 
                         id="preferredDate" 
                         name="preferredDate" 
@@ -320,12 +322,13 @@ const InterimService = () => {
                         placeholder="e.g. 15/01/2026 or Next Monday"
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-12 text-base w-full"
+                        className="h-14 text-base w-full"
+                        style={{ fontSize: '16px' }}
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="message" className="text-sm mb-1.5">Additional Notes (Optional)</Label>
+                      <Label htmlFor="message" className="text-base mb-2 block">Additional Notes (Optional)</Label>
                       <textarea 
                         id="message" 
                         name="message" 
@@ -333,7 +336,8 @@ const InterimService = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={3}
-                        className="w-full px-3 py-3 text-base border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                        className="w-full px-4 py-3 text-base border border-input bg-background rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                        style={{ fontSize: '16px' }}
                       />
                     </div>
                   </div>
@@ -344,15 +348,15 @@ const InterimService = () => {
             {/* Step 3: Contact */}
             {step === 3 && (
               <div className="space-y-4 animate-fade-in w-full max-w-full overflow-hidden">
-                <div className="bg-card rounded-xl p-4 border border-border">
-                  <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <User className="w-4 h-4 text-primary" />
+                <div className="bg-card rounded-xl p-5 sm:p-6 border border-border">
+                  <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <User className="w-5 h-5 text-primary" />
                     Your Details
                   </h2>
                   
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="name" className="text-sm mb-1.5">Full Name</Label>
+                      <Label htmlFor="name" className="text-base mb-2 block">Full Name</Label>
                       <Input 
                         id="name" 
                         name="name" 
@@ -360,12 +364,18 @@ const InterimService = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required 
-                        className="h-11 text-base"
+                        className={`h-14 text-base transition-colors ${
+                          attemptedNext && !formData.name ? 'border-red-500 border-2' : ''
+                        }`}
+                        style={{ fontSize: '16px' }}
                       />
+                      {attemptedNext && !formData.name && (
+                        <p className="text-sm text-red-500 mt-2">Name is needed</p>
+                      )}
                     </div>
                     
                     <div>
-                      <Label htmlFor="email" className="text-sm mb-1.5">Email</Label>
+                      <Label htmlFor="email" className="text-base mb-2 block">Email</Label>
                       <Input 
                         id="email" 
                         name="email" 
@@ -374,21 +384,22 @@ const InterimService = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required 
-                        className={`h-11 text-base transition-colors ${
+                        className={`h-14 text-base transition-colors ${
                           attemptedNext && (!formData.email || !isValidEmail(formData.email)) ? 'border-red-500 border-2' : ''
                         }`}
+                        style={{ fontSize: '16px' }}
                       />
                       {attemptedNext && !formData.email && (
-                        <p className="text-xs text-red-500 mt-1">Required</p>
+                        <p className="text-sm text-red-500 mt-2">Email is needed</p>
                       )}
                       {attemptedNext && formData.email && !isValidEmail(formData.email) && (
-                        <p className="text-xs text-red-500 mt-1">Invalid email</p>
+                        <p className="text-sm text-red-500 mt-2">Please enter a valid email</p>
                       )}
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="phone" className="text-sm mb-1.5">Phone</Label>
+                        <Label htmlFor="phone" className="text-base mb-2 block">Phone</Label>
                         <Input 
                           id="phone" 
                           name="phone" 
@@ -397,16 +408,17 @@ const InterimService = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           required 
-                          className={`h-11 text-base transition-colors ${
+                          className={`h-14 text-base transition-colors ${
                             attemptedNext && !formData.phone ? 'border-red-500 border-2' : ''
                           }`}
+                          style={{ fontSize: '16px' }}
                         />
                         {attemptedNext && !formData.phone && (
-                          <p className="text-xs text-red-500 mt-1">Required</p>
+                          <p className="text-sm text-red-500 mt-2">Phone is needed</p>
                         )}
                       </div>
                       <div>
-                        <Label htmlFor="postcode" className="text-sm mb-1.5">Postcode</Label>
+                        <Label htmlFor="postcode" className="text-base mb-2 block">Postcode</Label>
                         <Input 
                           id="postcode" 
                           name="postcode" 
@@ -414,8 +426,14 @@ const InterimService = () => {
                           value={formData.postcode}
                           onChange={handleInputChange}
                           required 
-                          className="h-11 text-base"
+                          className={`h-14 text-base transition-colors ${
+                            attemptedNext && !formData.postcode ? 'border-red-500 border-2' : ''
+                          }`}
+                          style={{ fontSize: '16px' }}
                         />
+                        {attemptedNext && !formData.postcode && (
+                          <p className="text-sm text-red-500 mt-2">Postcode is needed</p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -424,15 +442,15 @@ const InterimService = () => {
             )}
 
             {/* Navigation */}
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-4 pt-4">
               {step > 1 && (
                 <Button
                   type="button"
                   variant="outline"
                   onClick={prevStep}
-                  className="flex-1 h-10 rounded-full text-sm"
+                  className="flex-1 h-14 rounded-lg text-base px-8 w-full sm:w-auto"
                 >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  <ArrowLeft className="w-5 h-5 mr-2" />
                   Back
                 </Button>
               )}
@@ -445,29 +463,26 @@ const InterimService = () => {
                     e.stopPropagation();
                     nextStep();
                   }}
-                  disabled={!canProceed()}
-                  className={`${step === 1 ? 'w-full' : 'flex-1'} h-10 rounded-full text-sm transition-all ${
-                    !canProceed() ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
+                  className={`${step === 1 ? 'w-full' : 'flex-1'} h-14 rounded-lg text-base px-8 w-full sm:w-auto transition-all`}
                 >
                   Continue
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               ) : (
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 h-10 rounded-full text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 h-14 rounded-lg text-base px-8 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
                       Sending...
                     </>
                   ) : (
                     <>
                       Request Booking
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      <ArrowRight className="w-5 h-5 ml-2" />
                     </>
                   )}
                 </Button>
@@ -475,9 +490,9 @@ const InterimService = () => {
             </div>
 
             {/* Help */}
-            <p className="text-xs text-center text-muted-foreground pt-2">
+            <p className="text-sm text-center text-muted-foreground pt-4">
               Need help?{" "}
-              <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline">
+              <a href={`tel:${BUSINESS_INFO.phone}`} className="text-primary hover:underline font-medium">
                 Call {BUSINESS_INFO.phone}
               </a>
             </p>
