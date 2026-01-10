@@ -24,10 +24,12 @@ const getProfessionalCustomerEmail = (data: any) => `
       <td align="center" style="padding:40px 20px;">
         <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
           
-          <!-- Logo Header -->
+          <!-- Brand Header -->
           <tr>
-            <td align="center" style="padding:40px 20px 25px;">
-              <img src="https://www.fixnowmechanics.co.uk/logoemail.png" alt="FixNow Mechanics" style="display:block;width:100px;height:auto;max-width:100%;" width="100" />
+            <td align="center" style="padding:40px 20px 30px;background-color:#ffffff;">
+              <h1 style="margin:0;font-size:28px;font-weight:800;color:#FF6B35;font-family:'Arial Black', Arial, sans-serif;letter-spacing:-0.5px;">
+                FixNow <span style="color:#1a1a1a;">Mechanics</span>
+              </h1>
             </td>
           </tr>
 
