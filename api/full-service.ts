@@ -213,32 +213,36 @@ const getProfessionalBusinessEmail = (data: EmailData) => `
             </td>
           </tr>
 
-          ${data.vehicleMake !== 'Not provided' ? `
           <!-- Vehicle Info -->
           <tr>
             <td style="padding:0 30px 25px;">
               <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;">Vehicle Details</h3>
               <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
+                ${data.vehicleMake !== 'Not provided' && data.vehicleModel !== 'Not provided' ? `
                 <tr>
                   <td style="color:#666666;padding:6px 0;width:130px;">Make/Model:</td>
                   <td style="color:#1a1a1a;padding:6px 0;font-weight:600;">${data.vehicleMake} ${data.vehicleModel}</td>
                 </tr>
+                ` : ''}
+                ${data.vehicleYear !== 'Not provided' ? `
+                <tr>
+                  <td style="color:#666666;padding:6px 0;width:130px;">Year:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;font-weight:600;">${data.vehicleYear}</td>
+                </tr>
+                ` : ''}
                 ${data.vehicleReg !== 'Not provided' ? `
                 <tr>
                   <td style="color:#666666;padding:6px 0;">Registration:</td>
                   <td style="color:#1a1a1a;padding:6px 0;font-family:monospace;font-weight:600;">${data.vehicleReg}</td>
                 </tr>
                 ` : ''}
-                ${data.fuelType ? `
                 <tr>
                   <td style="color:#666666;padding:6px 0;">Fuel Type:</td>
                   <td style="color:#1a1a1a;padding:6px 0;font-weight:500;">${data.fuelType}</td>
                 </tr>
-                ` : ''}
               </table>
             </td>
           </tr>
-          ` : ''}
 
           <!-- Service Info -->
           <tr>

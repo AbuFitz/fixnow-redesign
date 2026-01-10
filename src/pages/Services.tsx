@@ -89,17 +89,17 @@ const Services = () => {
       </section>
 
       {/* All Services List */}
-      <section className="py-12 md:py-16">
+      <section className="py-10 md:py-12">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8 md:mb-10">
+            <div className="text-center mb-6 md:mb-8">
               <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
                 All <span className="text-primary">Services</span>
               </h2>
               <p className="text-sm md:text-base text-muted-foreground">Click for details and pricing</p>
             </div>
 
-            <div className="bg-card rounded-2xl md:rounded-3xl border border-border overflow-hidden">
+            <div className="bg-card rounded-xl md:rounded-2xl border border-border shadow-sm overflow-hidden">
               <div className="divide-y divide-border">
                 {allServices.map((service, i) => (
                   <Dialog key={i}>
@@ -168,7 +168,7 @@ const Services = () => {
       </section>
 
       {/* Service Packs */}
-      <section className="py-12 md:py-16 bg-muted/30">
+      <section className="py-10 md:py-12">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
             {/* Full Service */}

@@ -23,7 +23,7 @@ const Locations = () => {
       </section>
 
       {/* Locations Grid */}
-      <section className="pt-16 pb-16 md:pt-20 md:pb-20">
+      <section className="py-10 md:py-12">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {LOCATIONS.map((location) => (
@@ -66,7 +66,7 @@ const Locations = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 bg-primary relative overflow-hidden">
+      <section className="py-10 md:py-12 bg-primary relative overflow-hidden">
         {/* Accent patterns */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-background rounded-full blur-3xl" />
@@ -77,7 +77,7 @@ const Locations = () => {
             Don't see your area?
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-primary-foreground/90 mb-6 sm:mb-8 max-w-2xl mx-auto font-medium px-4">
-            We cover a wide area. Give us a call to check if we can come to you.
+            Give us a call to check if we can come to you.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Button size="lg" asChild className="group rounded-full h-12 sm:h-14 md:h-16 px-6 sm:px-8 md:px-10 text-base sm:text-lg font-semibold bg-background text-foreground hover:bg-background/90 hover:scale-[1.05] transition-all w-full sm:w-auto">

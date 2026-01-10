@@ -60,6 +60,7 @@ const FullService = () => {
       
       if (result.success) {
         setShowSuccess(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         
         // Reset form
         setFormData({
