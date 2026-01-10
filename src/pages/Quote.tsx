@@ -419,6 +419,8 @@ const Quote = () => {
                         id="email" 
                         name="email" 
                         type="email" 
+                        inputMode="email"
+                        autoComplete="email"
                         placeholder="you@email.com" 
                         value={formData.email}
                         onChange={handleInputChange}
@@ -443,6 +445,8 @@ const Quote = () => {
                           id="phone" 
                           name="phone" 
                           type="tel" 
+                          inputMode="tel"
+                          autoComplete="tel"
                           placeholder="07XXX XXXXXX" 
                           value={formData.phone}
                           onChange={handleInputChange}
@@ -456,6 +460,8 @@ const Quote = () => {
                         <Input 
                           id="postcode" 
                           name="postcode" 
+                          inputMode="text"
+                          autoComplete="postal-code"
                           placeholder="HP2 7DE" 
                           value={formData.postcode}
                           onChange={handleInputChange}
