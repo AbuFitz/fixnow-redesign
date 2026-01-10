@@ -498,15 +498,14 @@ const Quote = () => {
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
-                      <input 
+                      <Input 
                         id="preferredDate" 
                         name="preferredDate" 
-                        type="date" 
+                        type="text"
+                        placeholder="e.g. 15/01/2026 or Next Monday"
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        min={new Date().toISOString().split('T')[0]}
-                        className="h-12 text-base w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
-                        style={{ fontSize: '16px' }}
+                        className="h-12 text-base w-full"
                       />
                     </div>
                     

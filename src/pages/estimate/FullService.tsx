@@ -139,7 +139,7 @@ const FullService = () => {
   const canProceed = () => {
     switch (step) {
       case 1:
-        return formData.make && formData.model && formData.reg && formData.fuelType;
+        return formData.reg && formData.fuelType;
       case 2:
         return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
       default:
@@ -259,35 +259,10 @@ const FullService = () => {
                   </h2>
                   
                   <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <Label htmlFor="make" className="text-sm mb-1.5">Make</Label>
-                        <Input 
-                          id="make" 
-                          name="make" 
-                          placeholder="Ford" 
-                          value={formData.make}
-                          onChange={handleInputChange}
-                          required 
-                          className="h-11 text-base"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="model" className="text-sm mb-1.5">Model</Label>
-                        <Input 
-                          id="model" 
-                          name="model" 
-                          placeholder="Focus" 
-                          value={formData.model}
-                          onChange={handleInputChange}
-                          required 
-                          className="h-11 text-base"
-                        />
-                      </div>
-                    </div>
-                    
                     <div>
-                      <Label htmlFor="reg" className="text-sm mb-1.5">Registration Plate</Label>
+                      <Label htmlFor="reg" className="text-sm mb-1.5 flex items-center gap-1">
+                        Registration Plate <span className="text-red-500">*</span>
+                      </Label>
                       <div className="relative">
                         <div className="absolute left-0 top-0 bottom-0 w-10 bg-[#0C4DA2] rounded-l-md flex items-center justify-center">
                           <div className="text-[#FFD500] font-bold text-xs">GB</div>
@@ -305,8 +280,35 @@ const FullService = () => {
                       </div>
                     </div>
                     
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <Label htmlFor="make" className="text-sm mb-1.5 text-muted-foreground">Make (Optional)</Label>
+                        <Input 
+                          id="make" 
+                          name="make" 
+                          placeholder="e.g. Ford" 
+                          value={formData.make}
+                          onChange={handleInputChange}
+                          className="h-11 text-base"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="model" className="text-sm mb-1.5 text-muted-foreground">Model (Optional)</Label>
+                        <Input 
+                          id="model" 
+                          name="model" 
+                          placeholder="e.g. Focus" 
+                          value={formData.model}
+                          onChange={handleInputChange}
+                          className="h-11 text-base"
+                        />
+                      </div>
+                    </div>
+                    
                     <div>
-                      <Label htmlFor="fuelType" className="text-sm mb-1.5">Fuel Type</Label>
+                      <Label htmlFor="fuelType" className="text-sm mb-1.5 flex items-center gap-1">
+                        Fuel Type <span className="text-red-500">*</span>
+                      </Label>
                       <select
                         id="fuelType"
                         name="fuelType"
@@ -430,14 +432,14 @@ const FullService = () => {
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="preferredDate" className="text-sm mb-1.5">Preferred Date (Optional)</Label>
-                      <input 
+                      <Input 
                         id="preferredDate" 
                         name="preferredDate" 
-                        type="date" 
+                        type="text"
+                        placeholder="e.g. 15/01/2026 or Next Monday"
                         value={formData.preferredDate}
                         onChange={handleInputChange}
-                        className="h-12 text-base w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
-                        style={{ fontSize: '16px' }}
+                        className="h-12 text-base w-full"
                       />
                     </div>
                     
