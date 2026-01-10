@@ -65,10 +65,6 @@ const Quote = () => {
       
       if (result.success) {
         setShowSuccess(true);
-        toast.success("Request Received!", {
-          description: "We'll contact you within 1 business day.",
-          duration: 5000,
-        });
         
         // Reset form
         setFormData({
@@ -175,16 +171,16 @@ const Quote = () => {
         <section className="py-12 md:py-16 bg-background min-h-screen flex items-center justify-center">
           <div className="container mx-auto px-4 max-w-2xl">
             <div className="bg-card rounded-2xl p-8 md:p-12 border border-border shadow-lg text-center">
-              <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Check className="w-10 h-10 text-green-500" />
+              <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Check className="w-12 h-12 text-white stroke-[3]" />
               </div>
               
               <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Quote Request Received!
+                Booking Received!
               </h1>
               
               <p className="text-base md:text-lg text-muted-foreground mb-8">
-                Thank you for your request. We'll review your details and get back to you within 1 business day with a personalized quote.
+                We'll confirm your appointment shortly.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
