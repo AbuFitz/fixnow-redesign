@@ -146,7 +146,7 @@ const Quote = () => {
       case 1:
         return formData.serviceType;
       case 2:
-        return formData.make && formData.model && formData.fuelType;
+        return formData.reg && formData.fuelType;
       case 3:
         return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
       default:
@@ -319,37 +319,10 @@ const Quote = () => {
                   </h2>
                   
                   <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <Label htmlFor="make" className="text-sm mb-1.5">Make</Label>
-                        <Input 
-                          id="make" 
-                          name="make" 
-                          placeholder="Ford" 
-                          value={formData.make}
-                          onChange={handleInputChange}
-                          required 
-                          className="h-12 text-base"
-                          style={{ fontSize: '16px' }}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="model" className="text-sm mb-1.5">Model</Label>
-                        <Input 
-                          id="model" 
-                          name="model" 
-                          placeholder="Focus" 
-                          value={formData.model}
-                          onChange={handleInputChange}
-                          required 
-                          className="h-12 text-base"
-                          style={{ fontSize: '16px' }}
-                        />
-                      </div>
-                    </div>
-                    
                     <div>
-                      <Label htmlFor="reg" className="text-sm mb-1.5">Registration Plate</Label>
+                      <Label htmlFor="reg" className="text-sm mb-1.5 flex items-center gap-1">
+                        Registration Plate <span className="text-red-500">*</span>
+                      </Label>
                       <div className="relative">
                         <div className="absolute left-0 top-0 bottom-0 w-10 bg-[#0C4DA2] rounded-l-md flex items-center justify-center z-10">
                           <div className="text-[#FFD500] font-bold text-xs">GB</div>
@@ -360,9 +333,37 @@ const Quote = () => {
                           placeholder="AB12CDE" 
                           value={formData.reg}
                           onChange={handleInputChange}
+                          required
                           maxLength={8}
                           className="h-12 pl-12 pr-3 text-base font-bold tracking-wider uppercase bg-[#FFD500] text-black border-2 border-black placeholder:text-black/40"
                           style={{ paddingLeft: '3rem', textAlign: 'left', fontSize: '16px' }}
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <Label htmlFor="make" className="text-sm mb-1.5 text-muted-foreground">Make (Optional)</Label>
+                        <Input 
+                          id="make" 
+                          name="make" 
+                          placeholder="e.g. Ford" 
+                          value={formData.make}
+                          onChange={handleInputChange}
+                          className="h-12 text-base"
+                          style={{ fontSize: '16px' }}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="model" className="text-sm mb-1.5 text-muted-foreground">Model (Optional)</Label>
+                        <Input 
+                          id="model" 
+                          name="model" 
+                          placeholder="e.g. Focus" 
+                          value={formData.model}
+                          onChange={handleInputChange}
+                          className="h-12 text-base"
+                          style={{ fontSize: '16px' }}
                         />
                       </div>
                     </div>
