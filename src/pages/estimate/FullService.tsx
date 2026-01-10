@@ -141,7 +141,7 @@ const FullService = () => {
       case 1:
         return formData.reg && formData.fuelType;
       case 2:
-        return true;
+        return true; // Booking/Schedule step - all optional
       case 3:
         return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
       default:
@@ -327,7 +327,7 @@ const FullService = () => {
                           backgroundSize: '12px',
                         }}
                       >
-                        <option value="">--</option>
+                        <option value="">Select fuel type</option>
                         <option value="petrol">Petrol (£150)</option>
                         <option value="diesel">Diesel (£180)</option>
                       </select>

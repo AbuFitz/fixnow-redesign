@@ -148,6 +148,8 @@ const Quote = () => {
       case 2:
         return formData.reg && formData.fuelType;
       case 3:
+        return true; // Details/Schedule step - all optional
+      case 4:
         return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
       default:
         return true;
@@ -373,7 +375,9 @@ const Quote = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="fuelType" className="text-sm mb-1.5">Fuel Type</Label>
+                      <Label htmlFor="fuelType" className="text-sm mb-1.5 flex items-center gap-1">
+                        Fuel Type <span className="text-red-500">*</span>
+                      </Label>
                       <select
                         id="fuelType"
                         name="fuelType"
@@ -390,7 +394,7 @@ const Quote = () => {
                           backgroundSize: '12px',
                         }}
                       >
-                        <option value="">--</option>
+                        <option value="">Select fuel type</option>
                         <option value="petrol">Petrol</option>
                         <option value="diesel">Diesel</option>
                       </select>

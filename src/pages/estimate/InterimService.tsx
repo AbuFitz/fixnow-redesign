@@ -138,7 +138,7 @@ const InterimService = () => {
       case 1:
         return formData.reg;
       case 2:
-        return true;
+        return true; // Booking/Schedule step - all optional
       case 3:
         return formData.name && formData.email && isValidEmail(formData.email) && formData.phone && formData.postcode;
       default:
