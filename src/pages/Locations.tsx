@@ -8,15 +8,25 @@ const Locations = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-10 md:py-12 border-b border-border/50">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="relative py-12 md:py-16 border-b border-border/50 overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-5">
               <MapPin className="w-3.5 h-3.5 text-primary" />
               <span className="text-xs font-medium text-primary uppercase tracking-wider">25-Mile Coverage</span>
             </div>
-            <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Areas We Cover
+            <h1 className="font-display text-3xl md:text-5xl font-bold leading-tight">
+              <span className="text-foreground">Areas</span>{" "}
+              <span className="text-primary relative inline-block">
+                We Cover
+                <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 120 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 5.5C30 2.5 60 1 90 2.5C110 4 115 6 119 5.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity="0.5"/>
+                </svg>
+              </span>
             </h1>
           </div>
         </div>
