@@ -187,7 +187,7 @@ const Quote = () => {
               
               {/* Description */}
               <p className="text-base text-muted-foreground mb-6">
-                Thank you! We've received your quote request and will get back to you within 1 business day.
+                Request received! We'll review your details and contact you shortly by call, text, or email with your quote.
               </p>
               
               {/* Email Notice */}

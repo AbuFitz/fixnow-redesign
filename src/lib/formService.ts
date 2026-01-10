@@ -91,7 +91,7 @@ export const submitForm = async (
     if (result.success) {
       return {
         success: true,
-        message: result.message || 'Thank you! We\'ve received your request and will contact you within 1 business day.',
+        message: result.message || 'Request received! We\'ll contact you shortly by call, text, or email.',
       };
     } else {
       throw new Error(result.message || 'Submission failed. Please try again.');

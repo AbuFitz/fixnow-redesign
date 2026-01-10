@@ -18,7 +18,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Professional mobile mechanic services at your location.
+              Mobile Repairs. No Garages. No Stress.
             </p>
           </div>
 
@@ -126,7 +126,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Professional mobile mechanic services at your location.
+              Mobile Repairs. No Garages. No Stress.
             </p>
           </div>
 

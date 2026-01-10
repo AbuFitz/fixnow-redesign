@@ -179,7 +179,7 @@ const InterimService = () => {
                 
                 {/* Description */}
                 <p className="text-base text-muted-foreground mb-6">
-                  Thank you! We've received your interim service booking and will confirm your appointment within 1 business day.
+                  Request received! We'll review your booking and contact you shortly by call, text, or email to confirm your service appointment.
                 </p>
                 
                 {/* Email Notice */}
