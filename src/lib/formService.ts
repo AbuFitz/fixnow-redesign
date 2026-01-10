@@ -64,11 +64,29 @@ export const submitForm = async (
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify(submissionData),
     });
 
-    const result = await response.json();
+    // Check if response is actually JSON
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      console.error('Server returned non-JSON response:', await response.text());
+      throw new Error('Server error. Please try again or call us at 07354 915941.');
+    }
+
+    let result;
+    try {
+      result = await response.json();
+    } catch (parseError) {
+      console.error('Failed to parse response:', parseError);
+      throw new Error('Invalid response from server. Please call us at 07354 915941.');
+    }
+
+    if (!response.ok) {
+      throw new Error(result.message || `Server error (${response.status}). Please call us at 07354 915941.`);
+    }
 
     if (result.success) {
       return {
@@ -76,11 +94,20 @@ export const submitForm = async (
         message: result.message || 'Thank you! We\'ve received your request and will contact you within 1 business day.',
       };
     } else {
-      throw new Error(result.message || 'Submission failed');
+      throw new Error(result.message || 'Submission failed. Please try again.');
     }
 
   } catch (error) {
     console.error('Form submission error:', error);
+    
+    // Provide user-friendly error messages
+    if (error instanceof TypeError && error.message.includes('fetch')) {
+      return {
+        success: false,
+        message: 'Network error. Please check your connection and try again.',
+      };
+    }
+    
     return {
       success: false,
       message: error instanceof Error 

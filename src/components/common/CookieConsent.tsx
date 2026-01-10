@@ -82,8 +82,8 @@ const CookieConsent = () => {
 
   // Mobile Design
   const MobileView = () => (
-    <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 animate-slide-up-mobile">
-      <div className="bg-gradient-to-t from-card via-card to-card/95 backdrop-blur-xl">
+    <div className="lg:hidden fixed inset-x-0 bottom-0 z-40 animate-slide-up-mobile pointer-events-none">
+      <div className="bg-gradient-to-t from-card via-card to-card/95 backdrop-blur-xl pointer-events-auto">
         <div className="px-4 py-5">
           {/* Close button - properly centered */}
           <button
@@ -194,8 +194,8 @@ const CookieConsent = () => {
 
   // Desktop Design - Left Side
   const DesktopView = () => (
-    <div className="hidden lg:block fixed bottom-6 left-6 z-50 animate-slide-in-left">
-      <div className="bg-gradient-to-br from-card via-card to-card/95 backdrop-blur-xl rounded-2xl w-[420px]">
+    <div className="hidden lg:block fixed bottom-6 left-6 z-40 animate-slide-in-left pointer-events-none">
+      <div className="bg-gradient-to-br from-card via-card to-card/95 backdrop-blur-xl rounded-2xl w-[420px] pointer-events-auto">
         <div className="p-6">
           {/* Close button - properly centered */}
           <button
