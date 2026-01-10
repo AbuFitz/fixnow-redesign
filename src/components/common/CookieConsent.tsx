@@ -88,7 +88,7 @@ const CookieConsent = () => {
           {/* Close button - properly centered */}
           <button
             onClick={declineCookies}
-            className="absolute top-3 right-3 p-2 rounded-full hover:bg-muted/50 transition-all active:scale-95"
+            className="absolute top-3 right-3 p-2 rounded-full transition-opacity hover:opacity-70 flex items-center justify-center"
             aria-label="Close"
           >
             <X className="w-5 h-5 text-muted-foreground" />
@@ -200,7 +200,7 @@ const CookieConsent = () => {
           {/* Close button - properly centered */}
           <button
             onClick={declineCookies}
-            className="absolute top-4 right-4 p-1.5 rounded-lg hover:bg-muted/80 transition-all hover:scale-110"
+            className="absolute top-4 right-4 p-2 rounded-lg transition-opacity hover:opacity-70 flex items-center justify-center"
             aria-label="Close"
           >
             <X className="w-4 h-4 text-muted-foreground" />
