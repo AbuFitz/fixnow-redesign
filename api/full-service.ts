@@ -27,8 +27,8 @@ const getProfessionalCustomerEmail = (data: any) => `
           <!-- Brand Header -->
           <tr>
             <td align="center" style="padding:40px 20px 30px;background-color:#ffffff;">
-              <h1 style="margin:0;font-size:28px;font-weight:800;color:#FF6B35;font-family:'Arial Black', Arial, sans-serif;letter-spacing:-0.5px;">
-                FixNow <span style="color:#1a1a1a;">Mechanics</span>
+              <h1 style="margin:0;font-size:28px;font-weight:800;font-family:'Arial Black', Arial, sans-serif;letter-spacing:-0.5px;">
+                <span style="color:#1a1a1a;">Fix</span><span style="color:#FF6B35;">Now</span> <span style="color:#1a1a1a;">Mechanics</span>
               </h1>
             </td>
           </tr>
