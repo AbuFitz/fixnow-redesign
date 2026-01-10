@@ -42,7 +42,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Link
               key={service.id}
-              to="/services"
+              to="/estimate"
               className={`group relative rounded-lg sm:rounded-xl overflow-hidden transition-all duration-200 ease-out hover:shadow-lg hover:shadow-primary/10 hover:z-10 ${
                 index === 0 ? "col-span-2 row-span-2 aspect-square" : "col-span-1 aspect-square"
               }`}
