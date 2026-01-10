@@ -7,32 +7,36 @@ import { BUSINESS_INFO, LOCATIONS } from "@/lib/constants";
 const Locations = () => {
   return (
     <Layout>
-      {/* Hero with Map Background */}
-      <section className="relative py-12 md:py-18 bg-gradient-to-b from-card via-surface-elevated to-card overflow-hidden">
-        {/* Map background */}
-        <div className="absolute inset-0">
-          <img
-            src="/areas.png"
-            alt="Coverage area map"
-            className="w-full h-full object-cover grayscale opacity-50"
-            loading="lazy"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-card/20 via-card/40 to-card" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--primary)/0.06),_transparent_70%)]" />
-        
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
+      {/* Hero */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-background to-card/30">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
               <MapPin className="w-3.5 h-3.5 text-primary" />
               <span className="text-xs font-medium text-primary uppercase tracking-wider">{BUSINESS_INFO.coverage} Coverage</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Areas We Cover
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+              We Cover <span className="text-primary">Your Area</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-              Based in Hemel Hempstead, we cover Hertfordshire, Bedfordshire, Buckinghamshire, and North London.
+            <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl">
+              Based in Hemel Hempstead, providing mobile mechanic services across Hertfordshire, Bedfordshire, Buckinghamshire, and North London.
             </p>
+            
+            {/* Quick CTA */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/estimate">
+                <Button size="lg" className="w-full sm:w-auto">
+                  Get a Quote
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+              <a href={`tel:${BUSINESS_INFO.phone}`}>
+                <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                  <Phone className="mr-2 w-4 h-4" />
+                  {BUSINESS_INFO.phone}
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>

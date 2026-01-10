@@ -344,7 +344,7 @@ const Quote = () => {
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="reg" className="text-base mb-2 block">
-                        Registration Plate
+                        Registration Number
                       </Label>
                       <Input 
                         id="reg" 
@@ -360,7 +360,7 @@ const Quote = () => {
                         style={{ fontSize: '16px' }}
                       />
                       {attemptedNext && !formData.reg && (
-                        <p className="text-sm text-red-500 mt-2">Registration plate is needed</p>
+                        <p className="text-sm text-red-500 mt-2">Registration number is needed</p>
                       )}
                     </div>
                     

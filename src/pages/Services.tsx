@@ -73,31 +73,36 @@ const Services = () => {
 
   return (
     <Layout>
-      {/* Hero with Image */}
-      <section className="relative py-12 md:py-18 bg-gradient-to-b from-card via-surface-elevated to-card overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src={placeholderImage} 
-            alt="" 
-            loading="lazy"
-            className="w-full h-full object-cover grayscale opacity-50"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-card/20 via-card/40 to-card" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--primary)/0.06),_transparent_70%)]" />
-        
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
+      {/* Hero */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-background to-card/30">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
               <Wrench className="w-3.5 h-3.5 text-primary" />
               <span className="text-xs font-medium text-primary uppercase tracking-wider">Mobile Services</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Our <span className="text-primary">Services</span>
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Professional Mobile Mechanic <span className="text-primary">Services</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-              Professional mobile mechanic services at your location. From diagnostics to full servicing.
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
+              From quick diagnostics to complete servicing—all at your location. No garage needed.
             </p>
+            
+            {/* Quick Features */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border/50">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm font-medium text-foreground">Fixed prices</span>
+              </div>
+              <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border/50">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm font-medium text-foreground">Come to you</span>
+              </div>
+              <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border/50">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm font-medium text-foreground">Same day available</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

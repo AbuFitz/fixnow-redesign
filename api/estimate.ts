@@ -30,11 +30,11 @@ const getProfessionalCustomerEmail = (data: EmailData) => `
   <meta name="x-apple-disable-message-reformatting">
   <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
 </head>
-<body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background-color:#0b0f14;">
-  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#0b0f14;min-height:100vh;">
+<body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background-color:#000000;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#000000;min-height:100vh;">
     <tr>
       <td align="center" style="padding:0;">
-        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#0b0f14;">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#000000;">
           
           <!-- Header -->
           <tr>
@@ -47,7 +47,7 @@ const getProfessionalCustomerEmail = (data: EmailData) => `
           <!-- Title -->
           <tr>
             <td style="padding:40px 32px 24px;text-align:center;">
-              <h2 style="margin:0;font-size:24px;font-weight:700;color:#ffffff;">Request Received</h2>
+              <h2 style="margin:0;font-size:24px;font-weight:700;color:#ffffff;">🚗 Request Received</h2>
               <p style="margin:12px 0 0;font-size:15px;color:#8b92a0;line-height:1.6;">Your request has been logged and is now being reviewed by our team.</p>
             </td>
           </tr>
