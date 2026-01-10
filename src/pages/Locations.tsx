@@ -11,12 +11,11 @@ const Locations = () => {
       <section className="relative py-12 md:py-18 bg-gradient-to-b from-card via-surface-elevated to-card overflow-hidden">
         {/* Map background */}
         <div className="absolute inset-0">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d150000!2d-0.4!3d51.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk&disableDefaultUI=1&zoomControl=0&mapTypeControl=0&streetViewControl=0&fullscreenControl=0"
-            className="w-full h-full border-0 grayscale opacity-50"
+          <img
+            src="/areas.png"
+            alt="Coverage area map"
+            className="w-full h-full object-cover grayscale opacity-50"
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Coverage area map"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-card/20 via-card/40 to-card" />

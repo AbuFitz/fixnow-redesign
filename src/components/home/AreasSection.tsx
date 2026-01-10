@@ -7,12 +7,11 @@ const AreasSection = () => {
     <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20 bg-gradient-to-b from-card to-surface-elevated relative overflow-hidden">
       {/* Map Background - 30% visible */}
       <div className="absolute inset-0 opacity-30">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d200000!2d-0.4!3d51.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk&disableDefaultUI=1&zoomControl=0&mapTypeControl=0&streetViewControl=0&fullscreenControl=0"
-          className="w-full h-full border-0 grayscale"
+        <img
+          src="/areas.png"
+          alt="Coverage area map"
+          className="w-full h-full object-cover grayscale"
           loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Coverage area map"
         />
       </div>
       <div className="absolute inset-0 bg-card/40" />

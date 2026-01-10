@@ -166,7 +166,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-4 lg:pt-6 border-t border-border">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-xs sm:text-sm text-muted-foreground">
-            <p>© 2025 {BUSINESS_INFO.name}. All rights reserved.</p>
+            <p>© 2026 {BUSINESS_INFO.name}. All rights reserved.</p>
             <p className="text-xs">
               Serving {BUSINESS_INFO.coverage} of Hemel Hempstead
             </p>
