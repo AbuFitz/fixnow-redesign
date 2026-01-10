@@ -3,107 +3,155 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Professional AA/RAC-style email templates
+// Professional email templates - clean design, anti-spam optimized
 const getProfessionalCustomerEmail = (data: any) => `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your FixNow Mechanics booking</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Your FixNow Mechanics Service Booking</title>
+  <!--[if mso]>
+  <style type="text/css">
+    body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
+  </style>
+  <![endif]-->
 </head>
-<body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background-color:#f4f4f4;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:20px 0;">
+<body style="margin:0;padding:0;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;background-color:#e7e7e7;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#e7e7e7;">
     <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;">
+      <td align="center" style="padding:40px 20px;">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+          
+          <!-- Icon Section -->
           <tr>
-            <td style="background:linear-gradient(135deg,#FF6B35 0%,#FF8C5A 100%);padding:40px 30px;text-align:center;">
-              <h1 style="margin:0;color:#ffffff;font-size:32px;font-weight:700;letter-spacing:-0.5px;">FixNow Mechanics</h1>
-              <p style="margin:8px 0 0;color:#ffffff;font-size:14px;opacity:0.95;">Mobile Repairs. No Garages. No Stress.</p>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:30px 30px 20px;text-align:center;">
-              <div style="display:inline-block;background:#10b981;width:60px;height:60px;border-radius:50%;position:relative;">
-                <svg width="60" height="60" viewBox="0 0 60 60" style="position:absolute;top:0;left:0;">
-                  <circle cx="30" cy="30" r="28" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
-                  <path d="M20 30 L27 37 L42 22" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <td align="center" style="padding:50px 30px 30px;">
+              <div style="width:80px;height:80px;background-color:#17a2b8;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#ffffff"/>
                 </svg>
               </div>
-              <h2 style="margin:20px 0 10px;color:#1a1a1a;font-size:24px;font-weight:600;">Booking Received 🚗</h2>
-              <p style="margin:0;color:#666666;font-size:16px;line-height:1.5;">Thanks for booking with <strong>FixNow Mechanics</strong> — your service booking has been successfully received.</p>
             </td>
           </tr>
+
+          <!-- Heading -->
           <tr>
-            <td style="padding:0 30px 20px;">
-              <div style="background:#f8fafc;border-left:4px solid #FF6B35;padding:20px;border-radius:8px;">
-                <h3 style="margin:0 0 15px;color:#1a1a1a;font-size:16px;font-weight:600;">📋 Your Booking Details</h3>
-                <table width="100%" cellpadding="8" cellspacing="0" style="font-size:14px;">
+            <td align="center" style="padding:0 40px 20px;">
+              <h1 style="margin:0;font-size:28px;font-weight:700;color:#1a1a1a;line-height:1.3;">Service Booking Confirmed</h1>
+            </td>
+          </tr>
+
+          <!-- Description -->
+          <tr>
+            <td align="center" style="padding:0 40px 30px;">
+              <p style="margin:0;font-size:15px;color:#666666;line-height:1.6;">Thank you for contacting <strong style="color:#1a1a1a;">FixNow Mechanics</strong>. Your service booking has been successfully received and our team is now reviewing your submission.</p>
+            </td>
+          </tr>
+
+          <!-- Details Box -->
+          <tr>
+            <td style="padding:0 40px 30px;">
+              <div style="background:#f8f9fa;border:1px solid #e9ecef;border-radius:6px;padding:25px;">
+                <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;">Your Submission Details</h3>
+                <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
+                  ${data.vehicleMake !== 'Not provided' ? `
                   <tr>
-                    <td style="color:#666666;padding:6px 0;width:140px;"><strong>Vehicle:</strong></td>
-                    <td style="color:#1a1a1a;padding:6px 0;">${data.vehicleMake} ${data.vehicleModel}${data.vehicleReg ? ` (${data.vehicleReg})` : ''}</td>
+                    <td style="color:#666666;padding:4px 0;width:130px;">Vehicle:</td>
+                    <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.vehicleMake} ${data.vehicleModel}${data.vehicleReg !== 'Not provided' ? ` (${data.vehicleReg})` : ''}</td>
+                  </tr>
+                  ` : ''}
+                  <tr>
+                    <td style="color:#666666;padding:4px 0;">Service:</td>
+                    <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.serviceType}</td>
                   </tr>
                   <tr>
-                    <td style="color:#666666;padding:6px 0;"><strong>Service:</strong></td>
-                    <td style="color:#1a1a1a;padding:6px 0;">${data.serviceType}</td>
-                  </tr>
-                  <tr>
-                    <td style="color:#666666;padding:6px 0;"><strong>Postcode:</strong></td>
-                    <td style="color:#1a1a1a;padding:6px 0;">${data.postcode}</td>
+                    <td style="color:#666666;padding:4px 0;">Postcode:</td>
+                    <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.postcode}</td>
                   </tr>
                   ${data.preferredDate !== 'No preference' ? `
                   <tr>
-                    <td style="color:#666666;padding:6px 0;"><strong>Preferred date:</strong></td>
-                    <td style="color:#1a1a1a;padding:6px 0;">${data.preferredDate}</td>
+                    <td style="color:#666666;padding:4px 0;">Preferred date:</td>
+                    <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.preferredDate}</td>
                   </tr>
                   ` : ''}
                 </table>
               </div>
             </td>
           </tr>
+
+          <!-- What Happens Next -->
           <tr>
-            <td style="padding:0 30px 30px;">
-              <div style="background:#fff7ed;border:2px solid #FF6B35;border-radius:8px;padding:20px;">
-                <h3 style="margin:0 0 15px;color:#1a1a1a;font-size:16px;font-weight:600;">⏱️ What Happens Next</h3>
-                <p style="margin:0 0 10px;color:#1a1a1a;font-size:14px;line-height:1.6;">Our team will review your booking and contact you within <strong>1 business day</strong> to confirm the appointment.</p>
-                <ul style="margin:0;padding-left:20px;color:#1a1a1a;font-size:14px;line-height:1.8;">
-                  <li>✓ Appointment confirmation</li>
-                  <li>✓ Exact arrival time</li>
-                  <li>✓ Mechanic details</li>
-                  <li>✓ Payment information</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:0 30px 30px;">
-              <div style="border-top:1px solid #e5e7eb;padding-top:20px;text-align:center;">
-                <p style="margin:0 0 15px;color:#1a1a1a;font-size:14px;font-weight:600;">Need to speak to us?</p>
-                <table width="100%" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <td align="center">
-                      <a href="tel:07354915941" style="display:inline-block;background:#FF6B35;color:#ffffff;text-decoration:none;padding:12px 30px;border-radius:6px;font-size:16px;font-weight:600;margin:5px;">📞 07354 915941</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="center">
-                      <a href="mailto:support@fixnowmechanics.co.uk" style="color:#FF6B35;text-decoration:none;font-size:14px;">📧 support@fixnowmechanics.co.uk</a>
-                    </td>
-                  </tr>
+            <td style="padding:0 40px 30px;">
+              <div style="background:#fff3e6;border-left:4px solid #FF6B35;padding:20px;border-radius:4px;">
+                <h3 style="margin:0 0 12px;font-size:16px;font-weight:600;color:#1a1a1a;">What Happens Next</h3>
+                <p style="margin:0 0 12px;font-size:14px;color:#333333;line-height:1.6;">Our team will contact you within <strong>1 business day</strong> to confirm your appointment. You will shortly receive another email with:</p>
+                <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;color:#333333;line-height:1.8;">
+                  <tr><td style="padding:2px 0;">• Appointment confirmation</td></tr>
+                  <tr><td style="padding:2px 0;">• Exact arrival time</td></tr>
+                  <tr><td style="padding:2px 0;">• Mechanic details</td></tr>
+                  <tr><td style="padding:2px 0;">• Payment information</td></tr>
                 </table>
+                <p style="margin:12px 0 0;font-size:13px;color:#666666;font-style:italic;">We will confirm all details before your appointment.</p>
               </div>
             </td>
           </tr>
+
+          <!-- Call to Action -->
           <tr>
-            <td style="background:#1a1a1a;padding:30px;text-align:center;">
-              <p style="margin:0 0 10px;color:#ffffff;font-size:18px;font-weight:600;">FixNow Mechanics</p>
-              <p style="margin:0 0 15px;color:#999999;font-size:13px;">Mobile Repairs. No Garages. No Stress.</p>
-              <p style="margin:0;color:#999999;font-size:12px;line-height:1.6;">
-                <a href="https://www.fixnowmechanics.co.uk" style="color:#FF6B35;text-decoration:none;">www.fixnowmechanics.co.uk</a><br>
-                07354 915941 • support@fixnowmechanics.co.uk
+            <td align="center" style="padding:0 40px 40px;">
+              <table cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                  <td align="center" style="background-color:#17a2b8;border-radius:6px;">
+                    <a href="tel:07354915941" style="display:inline-block;padding:14px 40px;font-size:16px;color:#ffffff;text-decoration:none;font-weight:600;">Call Us: 07354 915941</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Contact Info -->
+          <tr>
+            <td align="center" style="padding:0 40px 30px;border-top:1px solid #e9ecef;padding-top:30px;">
+              <p style="margin:0 0 5px;font-size:14px;color:#666666;">If you have any questions, please email us at</p>
+              <p style="margin:0 0 15px;font-size:14px;">
+                <a href="mailto:support@fixnowmechanics.co.uk" style="color:#17a2b8;text-decoration:none;font-weight:500;">support@fixnowmechanics.co.uk</a>
               </p>
-              <p style="margin:15px 0 0;color:#666666;font-size:11px;font-style:italic;">This is an automated message — replies to this email are not monitored.</p>
+              <p style="margin:0;font-size:13px;color:#999999;">or visit our <a href="https://www.fixnowmechanics.co.uk/services" style="color:#17a2b8;text-decoration:none;">Services</a> page. You can also chat with a real person during our operating hours.</p>
+            </td>
+          </tr>
+
+          <!-- Footer Navigation -->
+          <tr>
+            <td align="center" style="padding:20px 40px;background-color:#f8f9fa;">
+              <table cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                  <td style="padding:0 10px;">
+                    <a href="https://www.fixnowmechanics.co.uk" style="font-size:13px;color:#666666;text-decoration:none;">Home</a>
+                  </td>
+                  <td style="padding:0 10px;color:#cccccc;">|</td>
+                  <td style="padding:0 10px;">
+                    <a href="https://www.fixnowmechanics.co.uk/services" style="font-size:13px;color:#666666;text-decoration:none;">Services</a>
+                  </td>
+                  <td style="padding:0 10px;color:#cccccc;">|</td>
+                  <td style="padding:0 10px;">
+                    <a href="https://www.fixnowmechanics.co.uk/locations" style="font-size:13px;color:#666666;text-decoration:none;">Locations</a>
+                  </td>
+                  <td style="padding:0 10px;color:#cccccc;">|</td>
+                  <td style="padding:0 10px;">
+                    <a href="https://www.fixnowmechanics.co.uk/quote" style="font-size:13px;color:#666666;text-decoration:none;">Get Quote</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Legal Footer -->
+          <tr>
+            <td align="center" style="padding:20px 40px 30px;background-color:#f8f9fa;">
+              <p style="margin:0 0 10px;font-size:12px;color:#999999;line-height:1.5;">You have received this email as a customer of <a href="https://www.fixnowmechanics.co.uk" style="color:#17a2b8;text-decoration:none;">fixnowmechanics.co.uk</a></p>
+              <p style="margin:0 0 15px;font-size:11px;color:#999999;">FixNow Mechanics • Mobile Repairs • 07354 915941</p>
+              <p style="margin:0;font-size:11px;color:#cccccc;">This is an automated confirmation email. Please do not reply directly to this message.</p>
             </td>
           </tr>
         </table>
@@ -120,84 +168,113 @@ const getProfessionalBusinessEmail = (data: any) => `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Service Booking</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>New Quote Request</title>
 </head>
-<body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background-color:#f4f4f4;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:20px 0;">
+<body style="margin:0;padding:0;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;background-color:#e7e7e7;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#e7e7e7;">
     <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      <td align="center" style="padding:40px 20px;">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+          
+          <!-- Header -->
           <tr>
-            <td style="background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);padding:25px 30px;">
-              <h2 style="margin:0;color:#FF6B35;font-size:24px;font-weight:700;">🔔 New Full Service Booking</h2>
-              <p style="margin:5px 0 0;color:#cccccc;font-size:14px;">Action Required: Review and Confirm</p>
+            <td style="background-color:#1a1a1a;padding:25px 30px;">
+              <h2 style="margin:0;color:#FF6B35;font-size:22px;font-weight:700;">New Quote Request</h2>
+              <p style="margin:5px 0 0;color:#cccccc;font-size:13px;">Action Required: Review and Respond</p>
             </td>
           </tr>
+          
+          <!-- Priority Alert -->
           <tr>
-            <td style="padding:30px;">
-              <div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;margin-bottom:25px;border-radius:4px;">
-                <p style="margin:0;color:#92400e;font-size:14px;font-weight:600;">⚡ Priority: Respond within 1 business day</p>
+            <td style="padding:20px 30px 0;">
+              <div style="background:#fff3cd;border-left:4px solid:#ffc107;padding:12px 15px;border-radius:4px;">
+                <p style="margin:0;color:#856404;font-size:13px;font-weight:600;">Priority: Respond within 1 business day</p>
               </div>
-              <h3 style="margin:0 0 15px;color:#1a1a1a;font-size:18px;font-weight:600;border-bottom:2px solid #FF6B35;padding-bottom:10px;">👤 Customer Information</h3>
-              <table width="100%" cellpadding="8" cellspacing="0" style="margin-bottom:25px;">
+            </td>
+          </tr>
+
+          <!-- Customer Info -->
+          <tr>
+            <td style="padding:25px 30px 5px;">
+              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;border-bottom:2px solid #FF6B35;padding-bottom:8px;">Customer Information</h3>
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;width:140px;"><strong>Name:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;">${data.name}</td>
+                  <td style="color:#666666;padding:4px 0;width:120px;">Name:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.name}</td>
                 </tr>
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;"><strong>Email:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;"><a href="mailto:${data.email}" style="color:#FF6B35;text-decoration:none;">${data.email}</a></td>
+                  <td style="color:#666666;padding:4px 0;">Email:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;"><a href="mailto:${data.email}" style="color:#17a2b8;text-decoration:none;font-weight:500;">${data.email}</a></td>
                 </tr>
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;"><strong>Phone:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;"><a href="tel:${data.phone}" style="color:#FF6B35;text-decoration:none;">${data.phone}</a></td>
+                  <td style="color:#666666;padding:4px 0;">Phone:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;"><a href="tel:${data.phone}" style="color:#17a2b8;text-decoration:none;font-weight:500;">${data.phone}</a></td>
                 </tr>
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;"><strong>Postcode:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;font-weight:600;">${data.postcode}</td>
+                  <td style="color:#666666;padding:4px 0;">Postcode:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;font-weight:600;">${data.postcode}</td>
                 </tr>
               </table>
-              <h3 style="margin:0 0 15px;color:#1a1a1a;font-size:18px;font-weight:600;border-bottom:2px solid #FF6B35;padding-bottom:10px;">🚗 Vehicle Details</h3>
-              <table width="100%" cellpadding="8" cellspacing="0" style="margin-bottom:25px;">
+            </td>
+          </tr>
+
+          ${data.vehicleMake !== 'Not provided' ? `
+          <!-- Vehicle Info -->
+          <tr>
+            <td style="padding:20px 30px 5px;">
+              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;border-bottom:2px solid #FF6B35;padding-bottom:8px;">Vehicle Details</h3>
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;width:140px;"><strong>Make/Model:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;font-weight:600;">${data.vehicleMake} ${data.vehicleModel}</td>
+                  <td style="color:#666666;padding:4px 0;width:120px;">Make/Model:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;font-weight:600;">${data.vehicleMake} ${data.vehicleModel}</td>
                 </tr>
-                ${data.vehicleReg ? `
+                ${data.vehicleReg !== 'Not provided' ? `
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;"><strong>Registration:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;font-family:monospace;font-weight:600;">${data.vehicleReg}</td>
+                  <td style="color:#666666;padding:4px 0;">Registration:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;font-family:monospace;font-weight:600;">${data.vehicleReg}</td>
                 </tr>
                 ` : ''}
                 ${data.fuelType ? `
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;"><strong>Fuel Type:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;">${data.fuelType}</td>
+                  <td style="color:#666666;padding:4px 0;">Fuel Type:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.fuelType}</td>
                 </tr>
                 ` : ''}
               </table>
-              <h3 style="margin:0 0 15px;color:#1a1a1a;font-size:18px;font-weight:600;border-bottom:2px solid #FF6B35;padding-bottom:10px;">🔧 Service Details</h3>
-              <table width="100%" cellpadding="8" cellspacing="0" style="margin-bottom:25px;">
+            </td>
+          </tr>
+          ` : ''}
+
+          <!-- Service Info -->
+          <tr>
+            <td style="padding:20px 30px 25px;">
+              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;border-bottom:2px solid #FF6B35;padding-bottom:8px;">Service Request</h3>
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;width:140px;"><strong>Service:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;font-weight:600;">${data.serviceType}</td>
+                  <td style="color:#666666;padding:4px 0;width:120px;">Service Type:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;font-weight:600;">${data.serviceType}</td>
                 </tr>
                 ${data.preferredDate !== 'No preference' ? `
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;"><strong>Preferred Date:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;">${data.preferredDate}</td>
+                  <td style="color:#666666;padding:4px 0;">Preferred Date:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.preferredDate}</td>
                 </tr>
                 ` : ''}
                 ${data.message !== 'None' ? `
                 <tr>
-                  <td style="color:#666666;font-size:14px;padding:8px 0;vertical-align:top;"><strong>Message:</strong></td>
-                  <td style="color:#1a1a1a;font-size:14px;padding:8px 0;line-height:1.6;">${data.message}</td>
+                  <td style="color:#666666;padding:4px 0;vertical-align:top;">Message:</td>
+                  <td style="color:#1a1a1a;padding:4px 0;line-height:1.6;">${data.message}</td>
                 </tr>
                 ` : ''}
               </table>
-              <div style="background:#f3f4f6;padding:15px;border-radius:6px;text-align:center;margin-top:30px;">
-                <p style="margin:0;color:#666666;font-size:12px;">📅 Submitted: ${data.submissionDate || new Date().toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Europe/London' })}</p>
-              </div>
+            </td>
+          </tr>
+
+          <!-- Timestamp -->
+          <tr>
+            <td align="center" style="padding:15px 30px 25px;background-color:#f8f9fa;border-top:1px solid #e9ecef;">
+              <p style="margin:0;color:#999999;font-size:12px;">Submitted: ${data.submissionDate || new Date().toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Europe/London' })}</p>
             </td>
           </tr>
         </table>
@@ -207,6 +284,7 @@ const getProfessionalBusinessEmail = (data: any) => `
 </body>
 </html>
 `;
+
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Set headers for all responses
@@ -253,18 +331,31 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       submissionDate
     };
 
+    // Send business notification
     await resend.emails.send({
       from: 'FixNow Mechanics <noreply@fixnowmechanics.co.uk>',
+      replyTo: email,
       to: process.env.BUSINESS_EMAIL || 'support@fixnowmechanics.co.uk',
-      subject: `🔔 New Full Service Booking from ${name}`,
+      subject: `New Full Service Booking from ${name}`,
       html: getProfessionalBusinessEmail(emailData),
+      headers: {
+        'X-Priority': '1',
+        'X-MSMail-Priority': 'High',
+        'Importance': 'high'
+      }
     });
 
+    // Send customer confirmation
     await resend.emails.send({
       from: 'FixNow Mechanics <noreply@fixnowmechanics.co.uk>',
+      replyTo: 'support@fixnowmechanics.co.uk',
       to: email,
-      subject: `Your FixNow Mechanics service booking has been received 🚗`,
+      subject: `Your FixNow Mechanics service booking has been received`,
       html: getProfessionalCustomerEmail(emailData),
+      headers: {
+        'List-Unsubscribe': '<mailto:support@fixnowmechanics.co.uk?subject=unsubscribe>',
+        'X-Entity-Ref-ID': `full-${Date.now()}`
+      }
     });
 
     return res.status(200).json({ success: true, message: 'Service booking submitted successfully' });
