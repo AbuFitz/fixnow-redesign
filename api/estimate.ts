@@ -28,7 +28,7 @@ const getProfessionalCustomerEmail = (data: any) => `
           <tr>
             <td align="center" style="padding:40px 20px 30px;background-color:#ffffff;">
               <h1 style="margin:0;font-size:28px;font-weight:800;font-family:'Arial Black', Arial, sans-serif;letter-spacing:-0.5px;">
-                <span style="color:#1a1a1a;">Fix</span><span style="color:#FF6B35;">Now</span> <span style="color:#1a1a1a;">Mechanics</span>
+                <span style="color:#1a1a1a;">Fix</span><span style="color:#FECF00;">Now</span> <span style="color:#1a1a1a;">Mechanics</span>
               </h1>
             </td>
           </tr>
@@ -43,7 +43,7 @@ const getProfessionalCustomerEmail = (data: any) => `
           <!-- Description -->
           <tr>
             <td align="center" style="padding:0 20px 25px;">
-              <p style="margin:0;font-size:15px;color:#666666;line-height:1.6;">Thank you for contacting <strong style="color:#FF6B35;">FixNow Mechanics</strong>. Your quote request has been successfully received and our team is now reviewing your submission.</p>
+              <p style="margin:0;font-size:15px;color:#666666;line-height:1.6;">Thank you for contacting <strong style="color:#FECF00;">FixNow Mechanics</strong>. Your quote request has been successfully received and our team is now reviewing your submission.</p>
             </td>
           </tr>
 
@@ -80,31 +80,17 @@ const getProfessionalCustomerEmail = (data: any) => `
 
           <!-- What Happens Next -->
           <tr>
-            <td style="padding:0 20px 25px;">
-              <div style="background:#fff3e6;border-left:4px solid #FF6B35;padding:18px;border-radius:6px;">
-                <h3 style="margin:0 0 12px;font-size:16px;font-weight:600;color:#1a1a1a;">What Happens Next</h3>
-                <p style="margin:0 0 12px;font-size:14px;color:#333333;line-height:1.6;">Our team is now preparing your <strong>fixed price quote</strong>. You will shortly receive another email with:</p>
-                <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;color:#333333;line-height:1.8;">
-                  <tr><td style="padding:2px 0;">• Your exact price</td></tr>
-                  <tr><td style="padding:2px 0;">• Parts required (if applicable)</td></tr>
-                  <tr><td style="padding:2px 0;">• Available appointment times</td></tr>
-                  <tr><td style="padding:2px 0;">• Instructions to approve and book</td></tr>
+            <td style="padding:0 20px 30px;">
+              <div style="background:#fff3e6;border-left:4px solid #FECF00;padding:20px;border-radius:6px;">
+                <h3 style="margin:0 0 15px;font-size:17px;font-weight:600;color:#1a1a1a;">What Happens Next</h3>
+                <p style="margin:0 0 15px;font-size:14px;color:#333333;line-height:1.7;">Our team will review your request and prepare a <strong style="color:#1a1a1a;">fixed price quote</strong> tailored to your vehicle and requirements.</p>
+                <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;color:#333333;line-height:1.9;">
+                  <tr><td style="padding:3px 0;">✓ Detailed price breakdown</td></tr>
+                  <tr><td style="padding:3px 0;">✓ Parts required (if applicable)</td></tr>
+                  <tr><td style="padding:3px 0;">✓ Available appointment times</td></tr>
                 </table>
-                <p style="margin:12px 0 0;font-size:13px;color:#666666;font-style:italic;">Nothing will be charged unless you approve the quote.</p>
+                <p style="margin:15px 0 0;font-size:13px;color:#666666;">We'll contact you within 1 business day via email or phone.</p>
               </div>
-            </td>
-          </tr>
-
-          <!-- Call to Action -->
-          <tr>
-            <td align="center" style="padding:0 20px 30px;">
-              <table cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                  <td align="center" style="background-color:#FF6B35;border-radius:8px;">
-                    <a href="tel:07354915941" style="display:inline-block;padding:14px 32px;font-size:16px;color:#ffffff;text-decoration:none;font-weight:600;">Call Us: 07354 915941</a>
-                  </td>
-                </tr>
-              </table>
             </td>
           </tr>
 
@@ -113,9 +99,9 @@ const getProfessionalCustomerEmail = (data: any) => `
             <td align="center" style="padding:0 20px 25px;border-top:1px solid #e9ecef;padding-top:25px;">
               <p style="margin:0 0 5px;font-size:14px;color:#666666;">If you have any questions, please email us at</p>
               <p style="margin:0 0 15px;font-size:14px;">
-                <a href="mailto:support@fixnowmechanics.co.uk" style="color:#FF6B35;text-decoration:none;font-weight:500;">support@fixnowmechanics.co.uk</a>
+                <a href="mailto:support@fixnowmechanics.co.uk" style="color:#FECF00;text-decoration:none;font-weight:500;">support@fixnowmechanics.co.uk</a>
               </p>
-              <p style="margin:0;font-size:13px;color:#999999;">or visit our <a href="https://www.fixnowmechanics.co.uk/services" style="color:#FF6B35;text-decoration:none;">Services</a> page. You can also chat with a real person during our operating hours.</p>
+              <p style="margin:0;font-size:13px;color:#999999;">or visit our <a href="https://www.fixnowmechanics.co.uk/services" style="color:#FECF00;text-decoration:none;">Services</a> page. You can also chat with a real person during our operating hours.</p>
             </td>
           </tr>
 
@@ -125,19 +111,11 @@ const getProfessionalCustomerEmail = (data: any) => `
               <table cellpadding="0" cellspacing="0" role="presentation">
                 <tr>
                   <td style="padding:0 10px;">
-                    <a href="https://www.fixnowmechanics.co.uk" style="font-size:13px;color:#666666;text-decoration:none;">Home</a>
-                  </td>
-                  <td style="padding:0 10px;color:#cccccc;">|</td>
-                  <td style="padding:0 10px;">
                     <a href="https://www.fixnowmechanics.co.uk/services" style="font-size:13px;color:#666666;text-decoration:none;">Services</a>
                   </td>
                   <td style="padding:0 10px;color:#cccccc;">|</td>
                   <td style="padding:0 10px;">
                     <a href="https://www.fixnowmechanics.co.uk/locations" style="font-size:13px;color:#666666;text-decoration:none;">Locations</a>
-                  </td>
-                  <td style="padding:0 10px;color:#cccccc;">|</td>
-                  <td style="padding:0 10px;">
-                    <a href="https://www.fixnowmechanics.co.uk/quote" style="font-size:13px;color:#666666;text-decoration:none;">Get Quote</a>
                   </td>
                 </tr>
               </table>
@@ -173,45 +151,36 @@ const getProfessionalBusinessEmail = (data: any) => `
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#e7e7e7;">
     <tr>
       <td align="center" style="padding:40px 20px;">
-        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+        <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#ffffff;border:1px solid #e0e0e0;">
           
           <!-- Header -->
           <tr>
-            <td style="background-color:#1a1a1a;padding:25px 30px;">
-              <h2 style="margin:0;color:#FF6B35;font-size:22px;font-weight:700;">New Quote Request</h2>
-              <p style="margin:5px 0 0;color:#cccccc;font-size:13px;">Action Required: Review and Respond</p>
-            </td>
-          </tr>
-          
-          <!-- Priority Alert -->
-          <tr>
-            <td style="padding:20px 30px 0;">
-              <div style="background:#fff3cd;border-left:4px solid:#ffc107;padding:12px 15px;border-radius:4px;">
-                <p style="margin:0;color:#856404;font-size:13px;font-weight:600;">Priority: Respond within 1 business day</p>
-              </div>
+            <td style="background-color:#ffffff;padding:30px;border-bottom:3px solid #FECF00;">
+              <h2 style="margin:0;color:#FECF00;font-size:24px;font-weight:700;">New Quote Request</h2>
+              <p style="margin:8px 0 0;color:#666666;font-size:14px;">Action Required: Review and Respond</p>
             </td>
           </tr>
 
           <!-- Customer Info -->
           <tr>
-            <td style="padding:25px 30px 5px;">
-              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;border-bottom:2px solid #FF6B35;padding-bottom:8px;">Customer Information</h3>
+            <td style="padding:25px 30px;">
+              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;">Customer Information</h3>
               <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
                 <tr>
-                  <td style="color:#666666;padding:4px 0;width:120px;">Name:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.name}</td>
+                  <td style="color:#666666;padding:6px 0;width:130px;">Name:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;font-weight:500;">${data.name}</td>
                 </tr>
                 <tr>
-                  <td style="color:#666666;padding:4px 0;">Email:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;"><a href="mailto:${data.email}" style="color:#FF6B35;text-decoration:none;font-weight:500;">${data.email}</a></td>
+                  <td style="color:#666666;padding:6px 0;">Email:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;"><a href="mailto:${data.email}" style="color:#1a1a1a;text-decoration:underline;">${data.email}</a></td>
                 </tr>
                 <tr>
-                  <td style="color:#666666;padding:4px 0;">Phone:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;"><a href="tel:${data.phone}" style="color:#FF6B35;text-decoration:none;font-weight:500;">${data.phone}</a></td>
+                  <td style="color:#666666;padding:6px 0;">Phone:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;"><a href="tel:${data.phone}" style="color:#1a1a1a;text-decoration:underline;">${data.phone}</a></td>
                 </tr>
                 <tr>
-                  <td style="color:#666666;padding:4px 0;">Postcode:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;font-weight:600;">${data.postcode}</td>
+                  <td style="color:#666666;padding:6px 0;">Postcode:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;font-weight:600;">${data.postcode}</td>
                 </tr>
               </table>
             </td>
@@ -220,23 +189,23 @@ const getProfessionalBusinessEmail = (data: any) => `
           ${data.vehicleMake !== 'Not provided' ? `
           <!-- Vehicle Info -->
           <tr>
-            <td style="padding:20px 30px 5px;">
-              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;border-bottom:2px solid #FF6B35;padding-bottom:8px;">Vehicle Details</h3>
+            <td style="padding:0 30px 25px;">
+              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;">Vehicle Details</h3>
               <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
                 <tr>
-                  <td style="color:#666666;padding:4px 0;width:120px;">Make/Model:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;font-weight:600;">${data.vehicleMake} ${data.vehicleModel}</td>
+                  <td style="color:#666666;padding:6px 0;width:130px;">Make/Model:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;font-weight:600;">${data.vehicleMake} ${data.vehicleModel}</td>
                 </tr>
                 ${data.vehicleReg !== 'Not provided' ? `
                 <tr>
-                  <td style="color:#666666;padding:4px 0;">Registration:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;font-family:monospace;font-weight:600;">${data.vehicleReg}</td>
+                  <td style="color:#666666;padding:6px 0;">Registration:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;font-family:monospace;font-weight:600;">${data.vehicleReg}</td>
                 </tr>
                 ` : ''}
                 ${data.fuelType ? `
                 <tr>
-                  <td style="color:#666666;padding:4px 0;">Fuel Type:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;font-weight:500;">${data.fuelType}</td>
+                  <td style="color:#666666;padding:6px 0;">Fuel Type:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;font-weight:500;">${data.fuelType}</td>
                 </tr>
                 ` : ''}
               </table>
@@ -246,12 +215,12 @@ const getProfessionalBusinessEmail = (data: any) => `
 
           <!-- Service Info -->
           <tr>
-            <td style="padding:20px 30px 25px;">
-              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;border-bottom:2px solid #FF6B35;padding-bottom:8px;">Service Request</h3>
+            <td style="padding:0 30px 30px;">
+              <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;">Service Request</h3>
               <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
                 <tr>
-                  <td style="color:#666666;padding:4px 0;width:120px;">Service Type:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;font-weight:600;">${data.serviceType}</td>
+                  <td style="color:#666666;padding:6px 0;width:130px;">Service Type:</td>
+                  <td style="color:#1a1a1a;padding:6px 0;font-weight:600;">${data.serviceType}</td>
                 </tr>
                 ${data.preferredDate !== 'No preference' ? `
                 <tr>

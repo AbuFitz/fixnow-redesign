@@ -191,24 +191,24 @@ const FullService = () => {
                 </p>
                 
                 {/* Email Notice */}
-                <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-8">
-                  <p className="text-sm text-foreground">
-                    <strong>Check your email</strong> - A confirmation has been sent. If you don't see it, please check your junk/spam folder.
-                  </p>
-                </div>
+              <div className="bg-zinc-800 dark:bg-zinc-900 rounded-lg p-4 mb-8">
+                <p className="text-sm text-white font-medium">
+                  <strong className="text-white">Check your email</strong> - A confirmation has been sent. If you don't see it, please check your junk/spam folder.
+                </p>
+              </div>
                 
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Button asChild className="rounded-full h-11 px-8">
-                    <Link to="/services">
-                      View Services
-                    </Link>
-                  </Button>
-                  
-                  <Button asChild variant="outline" className="rounded-full h-11 px-8">
                     <a href={`tel:${BUSINESS_INFO.phone}`}>
                       Call {BUSINESS_INFO.phone}
                     </a>
+                  </Button>
+                  
+                  <Button asChild variant="outline" className="rounded-full h-11 px-8">
+                    <Link to="/services">
+                      View Services
+                    </Link>
                   </Button>
                 </div>
               </div>
