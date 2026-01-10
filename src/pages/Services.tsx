@@ -74,32 +74,101 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative py-12 md:py-16 border-b border-border/50 overflow-hidden">
-        {/* Decorative background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
+      <section className="py-8 md:py-10 border-b border-border/50">
+        <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border/50 mb-3">
               <Wrench className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-medium text-primary uppercase tracking-wider">Mobile Services</span>
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Mobile Services</span>
             </div>
-            <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-tight">
-              Vehicle Services,{" "}
-              <span className="text-primary relative inline-block">
-                Delivered to You
-                <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 5.5C40 2.5 80 1 120 2.5C160 4 180 6 199 5.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity="0.5"/>
-                </svg>
-              </span>
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+              Our Services
             </h1>
           </div>
         </div>
       </section>
 
+      {/* All Services List */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8 md:mb-10">
+              <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
+                All <span className="text-primary">Services</span>
+              </h2>
+              <p className="text-sm md:text-base text-muted-foreground">Click for details and pricing</p>
+            </div>
+
+            <div className="bg-card rounded-2xl md:rounded-3xl border border-border overflow-hidden">
+              <div className="divide-y divide-border">
+                {allServices.map((service, i) => (
+                  <Dialog key={i}>
+                    <DialogTrigger asChild>
+                      <button className="w-full px-4 md:px-6 py-3 md:py-4 hover:bg-primary/5 transition-colors text-left group">
+                        <div className="flex items-center justify-between gap-3 md:gap-4">
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm md:text-base font-medium text-foreground truncate">{service.name}</div>
+                          </div>
+                          <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+                            <div className="text-sm md:text-base font-bold text-primary whitespace-nowrap">{service.price}</div>
+                            <Info className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                          </div>
+                        </div>
+                      </button>
+                    </DialogTrigger>
+                    
+                    <DialogContent className="w-[90vw] sm:w-full max-w-[600px] md:max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-2xl md:rounded-3xl p-0">
+                      <div className="p-4 md:p-6 lg:p-8 overflow-x-hidden w-full">
+                        <DialogHeader className="mb-4 md:mb-6 text-center">
+                          <DialogTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-2 break-words">{service.name}</DialogTitle>
+                          <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary break-words">{service.price}</div>
+                        </DialogHeader>
+                        
+                        <div className="space-y-4 md:space-y-6 overflow-x-hidden">
+                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-center break-words">{service.description}</p>
+                          
+                          {service.note && (
+                            <div className="p-3 md:p-4 bg-muted/50 rounded-xl md:rounded-2xl border border-border text-center">
+                              <p className="text-xs md:text-sm text-foreground font-medium break-words">{service.note}</p>
+                            </div>
+                          )}
+                          
+                          <div>
+                            <p className="text-xs md:text-sm font-semibold text-foreground mb-3 md:mb-4 flex items-center justify-center gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-primary" />
+                              What's Included
+                            </p>
+                            <div className="space-y-2 md:space-y-3">
+                              {service.includes.map((item, idx) => (
+                                <div key={idx} className="flex items-start gap-2 md:gap-3 text-sm md:text-base text-foreground">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 md:mt-2.5 flex-shrink-0" />
+                                  <span className="leading-relaxed text-left break-words flex-1">{item}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          <div className="pt-4 md:pt-6">
+                            <Button asChild className="w-full rounded-full h-11 md:h-12 font-semibold text-sm md:text-base">
+                              <Link to="/estimate">
+                                Get Quote
+                                <ArrowRight className="w-4 h-4 ml-2" />
+                              </Link>
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Service Packs */}
-      <section className="pt-16 pb-12 md:pt-20 md:pb-16">
+      <section className="py-12 md:py-16 bg-muted/30">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
             {/* Full Service */}
@@ -202,85 +271,6 @@ const Services = () => {
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* All Services List */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
-                All <span className="text-primary">Services</span>
-              </h2>
-              <p className="text-sm md:text-base text-muted-foreground">Click for details and pricing</p>
-            </div>
-
-            <div className="bg-card rounded-2xl md:rounded-3xl border border-border overflow-hidden">
-              <div className="divide-y divide-border">
-                {allServices.map((service, i) => (
-                  <Dialog key={i}>
-                    <DialogTrigger asChild>
-                      <button className="w-full px-4 md:px-6 py-3 md:py-4 hover:bg-primary/5 transition-colors text-left group">
-                        <div className="flex items-center justify-between gap-3 md:gap-4">
-                          <div className="flex-1 min-w-0">
-                            <div className="text-sm md:text-base font-medium text-foreground truncate">{service.name}</div>
-                          </div>
-                          <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-                            <div className="text-sm md:text-base font-bold text-primary whitespace-nowrap">{service.price}</div>
-                            <Info className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-                          </div>
-                        </div>
-                      </button>
-                    </DialogTrigger>
-                    
-                    <DialogContent className="w-[90vw] sm:w-full max-w-[600px] md:max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-2xl md:rounded-3xl p-0">
-                      <div className="p-4 md:p-6 lg:p-8 overflow-x-hidden w-full">
-                        <DialogHeader className="mb-4 md:mb-6 text-center">
-                          <DialogTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-2 break-words">{service.name}</DialogTitle>
-                          <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary break-words">{service.price}</div>
-                        </DialogHeader>
-                        
-                        <div className="space-y-4 md:space-y-6 overflow-x-hidden">
-                          <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-center break-words">{service.description}</p>
-                          
-                          {service.note && (
-                            <div className="p-3 md:p-4 bg-muted/50 rounded-xl md:rounded-2xl border border-border text-center">
-                              <p className="text-xs md:text-sm text-foreground font-medium break-words">{service.note}</p>
-                            </div>
-                          )}
-                          
-                          <div>
-                            <p className="text-xs md:text-sm font-semibold text-foreground mb-3 md:mb-4 flex items-center justify-center gap-2">
-                              <CheckCircle2 className="w-4 h-4 text-primary" />
-                              What's Included
-                            </p>
-                            <div className="space-y-2 md:space-y-3">
-                              {service.includes.map((item, idx) => (
-                                <div key={idx} className="flex items-start gap-2 md:gap-3 text-sm md:text-base text-foreground">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 md:mt-2.5 flex-shrink-0" />
-                                  <span className="leading-relaxed text-left break-words flex-1">{item}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                          
-                          <div className="pt-4 md:pt-6">
-                            <Button asChild className="w-full rounded-full h-11 md:h-12 font-semibold text-sm md:text-base">
-                              <Link to="/estimate">
-                                Get Quote
-                                <ArrowRight className="w-4 h-4 ml-2" />
-                              </Link>
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                ))}
               </div>
             </div>
           </div>
