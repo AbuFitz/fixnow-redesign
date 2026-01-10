@@ -60,10 +60,6 @@ const FullService = () => {
       
       if (result.success) {
         setShowSuccess(true);
-        toast.success("Booking Received!", {
-          description: "We'll confirm your full service appointment shortly.",
-          duration: 5000,
-        });
         
         // Reset form
         setFormData({
@@ -175,30 +171,131 @@ const FullService = () => {
           
           {/* Success Screen */}
           {showSuccess ? (
-            <div className="py-12 md:py-16 flex items-center justify-center min-h-[60vh]">
-              <div className="bg-card rounded-2xl p-8 md:p-12 border border-border shadow-lg text-center max-w-2xl w-full">
-                <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Check className="w-10 h-10 text-green-500" />
+            <div className="max-w-3xl mx-auto">
+              <div className="bg-card rounded-2xl p-6 md:p-10 border border-border shadow-sm">
+                {/* Success Icon */}
+                <div className="flex items-center justify-center mb-6">
+                  <div className="w-20 h-20 bg-[#FF6B35] rounded-full flex items-center justify-center">
+                    <Check className="w-10 h-10 text-white stroke-[3]" />
+                  </div>
                 </div>
                 
-                <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  Booking Received!
+                {/* Heading */}
+                <h1 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
+                  Booking Received
                 </h1>
                 
-                <p className="text-base md:text-lg text-muted-foreground mb-8">
-                  We've received your full service booking and will confirm your appointment within 1 business day.
+                {/* Description */}
+                <p className="text-center text-base text-muted-foreground mb-6">
+                  Your FixNow Mechanics full service booking has been successfully submitted. A member of our team is now reviewing your details.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-                  <Button asChild className="w-full sm:w-auto rounded-full h-12 px-8">
+                {/* Request Details */}
+                <div className="bg-secondary/30 rounded-lg p-5 mb-6">
+                  <h2 className="font-semibold text-lg mb-3 text-foreground">Your Request</h2>
+                  <div className="space-y-2 text-sm">
+                    {formData.make && formData.model && (
+                      <div className="flex">
+                        <span className="text-muted-foreground min-w-[100px]">Vehicle:</span>
+                        <span className="font-medium text-foreground">
+                          {formData.make} {formData.model} {formData.year && `(${formData.year})`}
+                        </span>
+                      </div>
+                    )}
+                    {formData.fuelType && (
+                      <div className="flex">
+                        <span className="text-muted-foreground min-w-[100px]">Fuel Type:</span>
+                        <span className="font-medium text-foreground">{formData.fuelType}</span>
+                      </div>
+                    )}
+                    <div className="flex">
+                      <span className="text-muted-foreground min-w-[100px]">Service:</span>
+                      <span className="font-medium text-foreground">Full Service - {price}</span>
+                    </div>
+                    {formData.postcode && (
+                      <div className="flex">
+                        <span className="text-muted-foreground min-w-[100px]">Postcode:</span>
+                        <span className="font-medium text-foreground">{formData.postcode}</span>
+                      </div>
+                    )}
+                    {formData.preferredDate && (
+                      <div className="flex">
+                        <span className="text-muted-foreground min-w-[100px]">Preferred time:</span>
+                        <span className="font-medium text-foreground">{formData.preferredDate}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                
+                {/* What Happens Next */}
+                <div className="bg-[#FFF3E6] dark:bg-[#3d2a1a] rounded-lg p-5 mb-6 border-l-4 border-[#FF6B35]">
+                  <h2 className="font-semibold text-lg mb-3 text-foreground">What Happens Next</h2>
+                  <div className="space-y-2 text-sm text-foreground/90">
+                    <p>✓ We confirm your appointment time</p>
+                    <p>✓ We'll arrive at the agreed time</p>
+                    <p>✓ Our mechanic will introduce themselves</p>
+                    <p>✓ We complete the full service with 50-point inspection</p>
+                    <p>✓ You pay only after the job is done</p>
+                  </div>
+                  <p className="text-xs text-muted-foreground italic mt-3">
+                    Nothing is charged until the service is complete.
+                  </p>
+                </div>
+                
+                {/* When Will I Receive */}
+                <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-5 mb-6">
+                  <h2 className="font-semibold text-base mb-2 text-blue-900 dark:text-blue-200">
+                    When Will I Receive Confirmation?
+                  </h2>
+                  <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
+                    Most bookings are confirmed within <strong>15 to 60 minutes</strong> during working hours.
+                  </p>
+                  <p className="text-sm text-blue-800 dark:text-blue-300">
+                    <strong>Check your email</strong> for the next update. If you don't see it, please check your junk/spam folder.
+                  </p>
+                </div>
+                
+                {/* Need Urgent Help */}
+                <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-5 mb-6">
+                  <h2 className="font-semibold text-base mb-2 text-red-900 dark:text-red-200">
+                    Need Urgent Help?
+                  </h2>
+                  <p className="text-sm text-red-800 dark:text-red-300 mb-3">
+                    If your vehicle will not start, is blocking a road, or is unsafe to drive, please call us on
+                  </p>
+                  <a 
+                    href={`tel:${BUSINESS_INFO.phone}`}
+                    className="inline-block font-bold text-lg text-[#FF6B35] hover:text-[#FF6B35]/80 transition-colors"
+                  >
+                    {BUSINESS_INFO.phone}
+                  </a>
+                </div>
+                
+                {/* Pricing */}
+                <div className="bg-secondary/20 rounded-lg p-5 mb-6">
+                  <h2 className="font-semibold text-base mb-2 text-foreground">Pricing</h2>
+                  <p className="text-sm text-muted-foreground">
+                    Fixed price of {price} includes all filters, fluids, comprehensive 50-point inspection, and service book stamp. Payment after completion.
+                  </p>
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button asChild className="rounded-full h-11 px-6 bg-[#FF6B35] hover:bg-[#FF6B35]/90">
                     <Link to="/services">
                       View Our Services
                     </Link>
                   </Button>
                   
-                  <Button asChild variant="outline" className="w-full sm:w-auto rounded-full h-12 px-8">
+                  <Button asChild variant="outline" className="rounded-full h-11 px-6 border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35]/10">
                     <a href={`tel:${BUSINESS_INFO.phone}`}>
                       Call {BUSINESS_INFO.phone}
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : (
                     </a>
                   </Button>
                 </div>

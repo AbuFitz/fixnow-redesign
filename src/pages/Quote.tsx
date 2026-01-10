@@ -168,29 +168,120 @@ const Quote = () => {
   if (showSuccess) {
     return (
       <Layout>
-        <section className="py-12 md:py-16 bg-background min-h-screen flex items-center justify-center">
-          <div className="container mx-auto px-4 max-w-2xl">
-            <div className="bg-card rounded-2xl p-8 md:p-12 border border-border shadow-lg text-center">
-              <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Check className="w-12 h-12 text-white stroke-[3]" />
+        <section className="py-8 md:py-12 bg-background min-h-screen">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <div className="bg-card rounded-2xl p-6 md:p-10 border border-border shadow-sm">
+              {/* Success Icon */}
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-20 h-20 bg-[#FF6B35] rounded-full flex items-center justify-center">
+                  <Check className="w-10 h-10 text-white stroke-[3]" />
+                </div>
               </div>
               
-              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Booking Received!
+              {/* Heading */}
+              <h1 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
+                Request Received
               </h1>
               
-              <p className="text-base md:text-lg text-muted-foreground mb-8">
-                We'll confirm your appointment shortly.
+              {/* Description */}
+              <p className="text-center text-base text-muted-foreground mb-6">
+                Your FixNow Mechanics quote request has been successfully submitted. A member of our team is now reviewing your details.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-                <Button asChild className="w-full sm:w-auto rounded-full h-12 px-8">
+              {/* Request Details */}
+              <div className="bg-secondary/30 rounded-lg p-5 mb-6">
+                <h2 className="font-semibold text-lg mb-3 text-foreground">Your Request</h2>
+                <div className="space-y-2 text-sm">
+                  {formData.make && formData.model && (
+                    <div className="flex">
+                      <span className="text-muted-foreground min-w-[100px]">Vehicle:</span>
+                      <span className="font-medium text-foreground">
+                        {formData.make} {formData.model} {formData.year && `(${formData.year})`}
+                      </span>
+                    </div>
+                  )}
+                  {formData.service && (
+                    <div className="flex">
+                      <span className="text-muted-foreground min-w-[100px]">Service:</span>
+                      <span className="font-medium text-foreground">{formData.service}</span>
+                    </div>
+                  )}
+                  {formData.postcode && (
+                    <div className="flex">
+                      <span className="text-muted-foreground min-w-[100px]">Postcode:</span>
+                      <span className="font-medium text-foreground">{formData.postcode}</span>
+                    </div>
+                  )}
+                  {formData.preferredDate && (
+                    <div className="flex">
+                      <span className="text-muted-foreground min-w-[100px]">Preferred time:</span>
+                      <span className="font-medium text-foreground">{formData.preferredDate}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              {/* What Happens Next */}
+              <div className="bg-[#FFF3E6] dark:bg-[#3d2a1a] rounded-lg p-5 mb-6 border-l-4 border-[#FF6B35]">
+                <h2 className="font-semibold text-lg mb-3 text-foreground">What Happens Next</h2>
+                <div className="space-y-2 text-sm text-foreground/90">
+                  <p>✓ We review your vehicle and the issue you reported</p>
+                  <p>✓ We check what parts and labour are required</p>
+                  <p>✓ We prepare your fixed price quote</p>
+                  <p>✓ We email you the full breakdown</p>
+                  <p>✓ You approve the quote and we book the job</p>
+                </div>
+                <p className="text-xs text-muted-foreground italic mt-3">
+                  Nothing is booked or charged until you approve the quote.
+                </p>
+              </div>
+              
+              {/* When Will I Receive */}
+              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-5 mb-6">
+                <h2 className="font-semibold text-base mb-2 text-blue-900 dark:text-blue-200">
+                  When Will I Receive My Quote?
+                </h2>
+                <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
+                  Most quotes are sent within <strong>15 to 60 minutes</strong> during working hours.
+                </p>
+                <p className="text-sm text-blue-800 dark:text-blue-300">
+                  <strong>Check your email</strong> for the next update. If you don't see it, please check your junk/spam folder.
+                </p>
+              </div>
+              
+              {/* Need Urgent Help */}
+              <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-5 mb-6">
+                <h2 className="font-semibold text-base mb-2 text-red-900 dark:text-red-200">
+                  Need Urgent Help?
+                </h2>
+                <p className="text-sm text-red-800 dark:text-red-300 mb-3">
+                  If your vehicle will not start, is blocking a road, or is unsafe to drive, please call us on
+                </p>
+                <a 
+                  href={`tel:${BUSINESS_INFO.phone}`}
+                  className="inline-block font-bold text-lg text-[#FF6B35] hover:text-[#FF6B35]/80 transition-colors"
+                >
+                  {BUSINESS_INFO.phone}
+                </a>
+              </div>
+              
+              {/* Pricing */}
+              <div className="bg-secondary/20 rounded-lg p-5 mb-6">
+                <h2 className="font-semibold text-base mb-2 text-foreground">Pricing</h2>
+                <p className="text-sm text-muted-foreground">
+                  You will see the full price before anything is booked, including labour, parts if required, and any call-out charges.
+                </p>
+              </div>
+              
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button asChild className="rounded-full h-11 px-6 bg-[#FF6B35] hover:bg-[#FF6B35]/90">
                   <Link to="/services">
                     View Our Services
                   </Link>
                 </Button>
                 
-                <Button asChild variant="outline" className="w-full sm:w-auto rounded-full h-12 px-8">
+                <Button asChild variant="outline" className="rounded-full h-11 px-6 border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35]/10">
                   <a href={`tel:${BUSINESS_INFO.phone}`}>
                     Call {BUSINESS_INFO.phone}
                   </a>

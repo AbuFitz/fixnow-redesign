@@ -24,35 +24,31 @@ const getProfessionalCustomerEmail = (data: any) => `
       <td align="center" style="padding:40px 20px;">
         <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
           
-          <!-- Icon Section -->
+          <!-- Logo Header -->
           <tr>
-            <td align="center" style="padding:50px 30px 30px;">
-              <div style="width:80px;height:80px;background-color:#17a2b8;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#ffffff"/>
-                </svg>
-              </div>
+            <td align="center" style="padding:40px 20px 25px;">
+              <img src="https://www.fixnowmechanics.co.uk/logoemail.png" alt="FixNow Mechanics" style="display:block;width:100px;height:auto;max-width:100%;" width="100" />
             </td>
           </tr>
 
           <!-- Heading -->
           <tr>
-            <td align="center" style="padding:0 40px 20px;">
-              <h1 style="margin:0;font-size:28px;font-weight:700;color:#1a1a1a;line-height:1.3;">Quote Request Confirmed</h1>
+            <td align="center" style="padding:0 20px 15px;">
+              <h1 style="margin:0;font-size:26px;font-weight:700;color:#1a1a1a;line-height:1.3;">Quote Request Confirmed</h1>
             </td>
           </tr>
 
           <!-- Description -->
           <tr>
-            <td align="center" style="padding:0 40px 30px;">
-              <p style="margin:0;font-size:15px;color:#666666;line-height:1.6;">Thank you for contacting <strong style="color:#1a1a1a;">FixNow Mechanics</strong>. Your quote request has been successfully received and our team is now reviewing your submission.</p>
+            <td align="center" style="padding:0 20px 25px;">
+              <p style="margin:0;font-size:15px;color:#666666;line-height:1.6;">Thank you for contacting <strong style="color:#FF6B35;">FixNow Mechanics</strong>. Your quote request has been successfully received and our team is now reviewing your submission.</p>
             </td>
           </tr>
 
           <!-- Details Box -->
           <tr>
-            <td style="padding:0 40px 30px;">
-              <div style="background:#f8f9fa;border:1px solid #e9ecef;border-radius:6px;padding:25px;">
+            <td style="padding:0 20px 25px;">
+              <div style="background:#f8f9fa;border:1px solid #e9ecef;border-radius:8px;padding:20px;">
                 <h3 style="margin:0 0 15px;font-size:16px;font-weight:600;color:#1a1a1a;">Your Submission Details</h3>
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;line-height:1.8;">
                   ${data.vehicleMake !== 'Not provided' ? `
@@ -82,8 +78,8 @@ const getProfessionalCustomerEmail = (data: any) => `
 
           <!-- What Happens Next -->
           <tr>
-            <td style="padding:0 40px 30px;">
-              <div style="background:#fff3e6;border-left:4px solid #FF6B35;padding:20px;border-radius:4px;">
+            <td style="padding:0 20px 25px;">
+              <div style="background:#fff3e6;border-left:4px solid #FF6B35;padding:18px;border-radius:6px;">
                 <h3 style="margin:0 0 12px;font-size:16px;font-weight:600;color:#1a1a1a;">What Happens Next</h3>
                 <p style="margin:0 0 12px;font-size:14px;color:#333333;line-height:1.6;">Our team is now preparing your <strong>fixed price quote</strong>. You will shortly receive another email with:</p>
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:14px;color:#333333;line-height:1.8;">
@@ -99,11 +95,11 @@ const getProfessionalCustomerEmail = (data: any) => `
 
           <!-- Call to Action -->
           <tr>
-            <td align="center" style="padding:0 40px 40px;">
+            <td align="center" style="padding:0 20px 30px;">
               <table cellpadding="0" cellspacing="0" role="presentation">
                 <tr>
-                  <td align="center" style="background-color:#17a2b8;border-radius:6px;">
-                    <a href="tel:07354915941" style="display:inline-block;padding:14px 40px;font-size:16px;color:#ffffff;text-decoration:none;font-weight:600;">Call Us: 07354 915941</a>
+                  <td align="center" style="background-color:#FF6B35;border-radius:8px;">
+                    <a href="tel:07354915941" style="display:inline-block;padding:14px 32px;font-size:16px;color:#ffffff;text-decoration:none;font-weight:600;">Call Us: 07354 915941</a>
                   </td>
                 </tr>
               </table>
@@ -112,12 +108,12 @@ const getProfessionalCustomerEmail = (data: any) => `
 
           <!-- Contact Info -->
           <tr>
-            <td align="center" style="padding:0 40px 30px;border-top:1px solid #e9ecef;padding-top:30px;">
+            <td align="center" style="padding:0 20px 25px;border-top:1px solid #e9ecef;padding-top:25px;">
               <p style="margin:0 0 5px;font-size:14px;color:#666666;">If you have any questions, please email us at</p>
               <p style="margin:0 0 15px;font-size:14px;">
-                <a href="mailto:support@fixnowmechanics.co.uk" style="color:#17a2b8;text-decoration:none;font-weight:500;">support@fixnowmechanics.co.uk</a>
+                <a href="mailto:support@fixnowmechanics.co.uk" style="color:#FF6B35;text-decoration:none;font-weight:500;">support@fixnowmechanics.co.uk</a>
               </p>
-              <p style="margin:0;font-size:13px;color:#999999;">or visit our <a href="https://www.fixnowmechanics.co.uk/services" style="color:#17a2b8;text-decoration:none;">Services</a> page. You can also chat with a real person during our operating hours.</p>
+              <p style="margin:0;font-size:13px;color:#999999;">or visit our <a href="https://www.fixnowmechanics.co.uk/services" style="color:#FF6B35;text-decoration:none;">Services</a> page. You can also chat with a real person during our operating hours.</p>
             </td>
           </tr>
 
@@ -205,11 +201,11 @@ const getProfessionalBusinessEmail = (data: any) => `
                 </tr>
                 <tr>
                   <td style="color:#666666;padding:4px 0;">Email:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;"><a href="mailto:${data.email}" style="color:#17a2b8;text-decoration:none;font-weight:500;">${data.email}</a></td>
+                  <td style="color:#1a1a1a;padding:4px 0;"><a href="mailto:${data.email}" style="color:#FF6B35;text-decoration:none;font-weight:500;">${data.email}</a></td>
                 </tr>
                 <tr>
                   <td style="color:#666666;padding:4px 0;">Phone:</td>
-                  <td style="color:#1a1a1a;padding:4px 0;"><a href="tel:${data.phone}" style="color:#17a2b8;text-decoration:none;font-weight:500;">${data.phone}</a></td>
+                  <td style="color:#1a1a1a;padding:4px 0;"><a href="tel:${data.phone}" style="color:#FF6B35;text-decoration:none;font-weight:500;">${data.phone}</a></td>
                 </tr>
                 <tr>
                   <td style="color:#666666;padding:4px 0;">Postcode:</td>
