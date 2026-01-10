@@ -47,7 +47,7 @@ const getProfessionalCustomerEmail = (data: EmailData) => `
           <!-- Title -->
           <tr>
             <td style="padding:40px 32px 24px;text-align:center;">
-              <h2 style="margin:0;font-size:24px;font-weight:700;color:#ffffff;">🚗 Request Received</h2>
+              <h2 style="margin:0;font-size:24px;font-weight:700;color:#ffffff;">Request Received</h2>
               <p style="margin:12px 0 0;font-size:15px;color:#8b92a0;line-height:1.6;">Your request has been logged and is now being reviewed by our team.</p>
             </td>
           </tr>
@@ -112,7 +112,7 @@ const getProfessionalCustomerEmail = (data: EmailData) => `
                       <tr><td style="padding:8px 0;font-size:14px;color:#d1d5db;line-height:1.6;"><strong style="color:#ffffff;">4.</strong> You approve the quote</td></tr>
                       <tr><td style="padding:8px 0;font-size:14px;color:#d1d5db;line-height:1.6;"><strong style="color:#ffffff;">5.</strong> We book the job and dispatch a mechanic</td></tr>
                     </table>
-                    <p style="margin:16px 0 0;padding:12px;background-color:#0b0f14;border-radius:6px;font-size:13px;color:#8b92a0;line-height:1.5;"><strong style="color:#FECF00;">Important:</strong> Nothing is booked and nothing is charged until you approve the quote.</p>
+                    <p style="margin:16px 0 0;padding:16px;background-color:#FECF00;border-radius:8px;font-size:14px;color:#000000;line-height:1.6;font-weight:500;"><strong style="color:#000000;font-weight:700;">Important:</strong> Nothing is booked and nothing is charged until you approve the quote.</p>
                   </td>
                 </tr>
               </table>
@@ -342,7 +342,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       from: 'FixNow Mechanics <noreply@fixnowmechanics.co.uk>',
       replyTo: 'support@fixnowmechanics.co.uk',
       to: email,
-      subject: `Your FixNow Mechanics quote request has been received`,
+      subject: `🚗 Your FixNow Mechanics quote request has been received`,
       html: getProfessionalCustomerEmail(emailData),
       headers: {
         'List-Unsubscribe': '<mailto:support@fixnowmechanics.co.uk?subject=unsubscribe>',

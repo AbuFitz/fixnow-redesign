@@ -8,35 +8,16 @@ const Locations = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-background to-card/30">
+      <section className="py-10 md:py-12 border-b border-border/50">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
               <MapPin className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-medium text-primary uppercase tracking-wider">{BUSINESS_INFO.coverage} Coverage</span>
+              <span className="text-xs font-medium text-primary uppercase tracking-wider">25-Mile Coverage</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-              We Cover <span className="text-primary">Your Area</span>
+            <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Areas We Cover
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl">
-              Based in Hemel Hempstead, providing mobile mechanic services across Hertfordshire, Bedfordshire, Buckinghamshire, and North London.
-            </p>
-            
-            {/* Quick CTA */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/estimate">
-                <Button size="lg" className="w-full sm:w-auto">
-                  Get a Quote
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-              <a href={`tel:${BUSINESS_INFO.phone}`}>
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                  <Phone className="mr-2 w-4 h-4" />
-                  {BUSINESS_INFO.phone}
-                </Button>
-              </a>
-            </div>
           </div>
         </div>
       </section>

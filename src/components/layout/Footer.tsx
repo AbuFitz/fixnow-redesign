@@ -1,39 +1,37 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, Clock } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { BUSINESS_INFO, LOCATIONS } from "@/lib/constants";
 
 const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        {/* Desktop Layout */}
-        <div className="hidden md:grid md:grid-cols-4 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <Link to="/" className="inline-block mb-3">
-              <span className="font-display font-bold text-xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-10">
+          
+          {/* Brand & Description */}
+          <div className="lg:col-span-1">
+            <Link to="/" className="inline-block mb-4">
+              <span className="font-display font-bold text-2xl">
                 <span className="text-foreground">Fix</span>
                 <span className="text-primary">Now</span>
-                <span className="text-foreground"> Mechanics</span>
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
               Mobile Repairs. No Garages. No Stress.
+            </p>
+            <p className="text-muted-foreground text-sm">
+              Professional mobile mechanic services across {BUSINESS_INFO.coverage} of Hemel Hempstead.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Services */}
           <div>
-            <h4 className="font-semibold text-foreground mb-3">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
+            <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider mb-4">Services</h4>
+            <ul className="space-y-2.5 text-sm">
               <li>
                 <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/locations" className="text-muted-foreground hover:text-primary transition-colors">
-                  Coverage Areas
+                  View All Services
                 </Link>
               </li>
               <li>
@@ -42,28 +40,33 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/services#interim-service" className="text-muted-foreground hover:text-primary transition-colors">
+                  Interim Service
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#full-service" className="text-muted-foreground hover:text-primary transition-colors">
+                  Full Service
+                </Link>
+              </li>
+              <li>
                 <Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">
                   FAQ
-                </Link>
-              </li>
-              <li>
-                <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">
-                  Terms of Service
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Service Areas */}
+          {/* Coverage */}
           <div>
-            <h4 className="font-semibold text-foreground mb-3">Service Areas</h4>
-            <ul className="space-y-2 text-sm">
-              {LOCATIONS.slice(0, 5).map((location) => (
+            <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider mb-4">Coverage</h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link to="/locations" className="text-muted-foreground hover:text-primary transition-colors">
+                  All Areas
+                </Link>
+              </li>
+              {LOCATIONS.slice(0, 4).map((location) => (
                 <li key={location.slug}>
                   <Link
                     to={`/locations/${location.slug}`}
@@ -73,103 +76,56 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link to="/locations" className="text-primary hover:text-primary/80 transition-colors font-medium">
-                  View All →
-                </Link>
-              </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-foreground mb-3">Contact</h4>
+            <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider mb-4">Contact</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href={`tel:${BUSINESS_INFO.phone}`}
-                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                  className="flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors group"
                 >
-                  <Phone className="w-4 h-4" />
-                  {BUSINESS_INFO.phone}
+                  <Phone className="w-4 h-4 text-primary" />
+                  <span>{BUSINESS_INFO.phone}</span>
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${BUSINESS_INFO.email}`}
-                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                  className="flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors group"
                 >
-                  <Mail className="w-4 h-4" />
-                  {BUSINESS_INFO.email}
+                  <Mail className="w-4 h-4 text-primary" />
+                  <span className="break-all">{BUSINESS_INFO.email}</span>
                 </a>
               </li>
-              <li className="flex items-start gap-2 text-muted-foreground pt-2">
-                <Clock className="w-4 h-4 mt-0.5" />
-                <div className="text-xs">
-                  <p>{BUSINESS_INFO.hours.weekday}</p>
-                  <p>{BUSINESS_INFO.hours.weekend}</p>
+              <li>
+                <div className="flex items-start gap-2.5 text-muted-foreground">
+                  <MapPin className="w-4 h-4 text-primary mt-0.5" />
+                  <span>Hemel Hempstead & surrounding areas</span>
                 </div>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="md:hidden space-y-6 mb-8">
-          {/* Brand */}
-          <div>
-            <Link to="/" className="inline-block mb-3">
-              <span className="font-display font-bold text-lg">
-                <span className="text-foreground">Fix</span>
-                <span className="text-primary">Now</span>
-                <span className="text-foreground"> Mechanics</span>
-              </span>
-            </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Mobile Repairs. No Garages. No Stress.
-            </p>
-          </div>
-
-          {/* Contact */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-foreground text-sm mb-2">Contact</h4>
-            <a
-              href={`tel:${BUSINESS_INFO.phone}`}
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
-            >
-              <Phone className="w-4 h-4 text-primary" />
-              <span>{BUSINESS_INFO.phone}</span>
-            </a>
-            <a
-              href={`mailto:${BUSINESS_INFO.email}`}
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
-            >
-              <Mail className="w-4 h-4 text-primary" />
-              <span>{BUSINESS_INFO.email}</span>
-            </a>
-          </div>
-
-          {/* Links */}
-          <div>
-            <h4 className="font-semibold text-foreground text-sm mb-3">Quick Links</h4>
-            <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-              <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link>
-              <Link to="/locations" className="text-muted-foreground hover:text-primary transition-colors">Areas</Link>
-              <Link to="/estimate" className="text-muted-foreground hover:text-primary transition-colors">Quote</Link>
-              <Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link>
-              <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy</Link>
-              <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">Terms</Link>
-            </nav>
-          </div>
-        </div>
-
         {/* Bottom Bar */}
-        <div className="pt-4 lg:pt-6 border-t border-border">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-xs sm:text-sm text-muted-foreground">
-            <p>© 2026 {BUSINESS_INFO.name}. All rights reserved.</p>
-            <p className="text-xs">
-              Serving {BUSINESS_INFO.coverage} of Hemel Hempstead
+        <div className="pt-8 border-t border-border">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-muted-foreground">
+              © 2026 {BUSINESS_INFO.name}. All rights reserved.
             </p>
+            <div className="flex items-center gap-4 text-xs">
+              <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              <span className="text-border">•</span>
+              <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>

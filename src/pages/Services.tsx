@@ -74,35 +74,16 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-background to-card/30">
+      <section className="py-10 md:py-12 border-b border-border/50">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4">
               <Wrench className="w-3.5 h-3.5 text-primary" />
               <span className="text-xs font-medium text-primary uppercase tracking-wider">Mobile Services</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Professional Mobile Mechanic <span className="text-primary">Services</span>
+            <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Vehicle Services, Delivered to You
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
-              From quick diagnostics to complete servicing—all at your location. No garage needed.
-            </p>
-            
-            {/* Quick Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border/50">
-                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-sm font-medium text-foreground">Fixed prices</span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border/50">
-                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-sm font-medium text-foreground">Come to you</span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border/50">
-                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-sm font-medium text-foreground">Same day available</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
