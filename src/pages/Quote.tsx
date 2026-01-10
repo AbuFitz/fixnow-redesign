@@ -170,10 +170,10 @@ const Quote = () => {
       <Layout>
         <section className="py-8 md:py-12 bg-background min-h-screen">
           <div className="container mx-auto px-4 max-w-3xl">
-            <div className="bg-card rounded-2xl p-6 md:p-10 border border-border shadow-sm">
+            <div className="bg-card rounded-xl p-6 md:p-10 border border-border">
               {/* Success Icon */}
               <div className="flex items-center justify-center mb-6">
-                <div className="w-20 h-20 bg-[#FF6B35] rounded-full flex items-center justify-center">
+                <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center">
                   <Check className="w-10 h-10 text-white stroke-[3]" />
                 </div>
               </div>
@@ -189,7 +189,7 @@ const Quote = () => {
               </p>
               
               {/* Request Details */}
-              <div className="bg-secondary/30 rounded-lg p-5 mb-6">
+              <div className="bg-muted/50 rounded-lg p-5 mb-6 border border-border">
                 <h2 className="font-semibold text-lg mb-3 text-foreground">Your Request</h2>
                 <div className="space-y-2 text-sm">
                   {formData.make && formData.model && (
@@ -222,7 +222,7 @@ const Quote = () => {
               </div>
               
               {/* What Happens Next */}
-              <div className="bg-[#FFF3E6] dark:bg-[#3d2a1a] rounded-lg p-5 mb-6 border-l-4 border-[#FF6B35]">
+              <div className="bg-muted/30 rounded-lg p-5 mb-6 border-l-4 border-primary">
                 <h2 className="font-semibold text-lg mb-3 text-foreground">What Happens Next</h2>
                 <div className="space-y-2 text-sm text-foreground/90">
                   <p>✓ We review your vehicle and the issue you reported</p>
@@ -237,8 +237,8 @@ const Quote = () => {
               </div>
               
               {/* When Will I Receive */}
-              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-5 mb-6">
-                <h2 className="font-semibold text-base mb-2 text-blue-900 dark:text-blue-200">
+              <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-5 mb-6">
+                <h2 className="font-semibold text-base mb-2 text-foreground">
                   When Will I Receive My Quote?
                 </h2>
                 <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
@@ -250,23 +250,23 @@ const Quote = () => {
               </div>
               
               {/* Need Urgent Help */}
-              <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-5 mb-6">
-                <h2 className="font-semibold text-base mb-2 text-red-900 dark:text-red-200">
+              <div className="bg-muted/50 border border-border rounded-lg p-5 mb-6">
+                <h2 className="font-semibold text-base mb-2 text-foreground">
                   Need Urgent Help?
                 </h2>
-                <p className="text-sm text-red-800 dark:text-red-300 mb-3">
+                <p className="text-sm text-muted-foreground mb-3">
                   If your vehicle will not start, is blocking a road, or is unsafe to drive, please call us on
                 </p>
                 <a 
                   href={`tel:${BUSINESS_INFO.phone}`}
-                  className="inline-block font-bold text-lg text-[#FF6B35] hover:text-[#FF6B35]/80 transition-colors"
+                  className="inline-block font-bold text-lg text-primary hover:underline"
                 >
                   {BUSINESS_INFO.phone}
                 </a>
               </div>
               
               {/* Pricing */}
-              <div className="bg-secondary/20 rounded-lg p-5 mb-6">
+              <div className="bg-muted/30 rounded-lg p-5 mb-6 border border-border">
                 <h2 className="font-semibold text-base mb-2 text-foreground">Pricing</h2>
                 <p className="text-sm text-muted-foreground">
                   You will see the full price before anything is booked, including labour, parts if required, and any call-out charges.
@@ -275,13 +275,13 @@ const Quote = () => {
               
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button asChild className="rounded-full h-11 px-6 bg-[#FF6B35] hover:bg-[#FF6B35]/90">
+                <Button asChild className="rounded-full h-11 px-6">
                   <Link to="/services">
                     View Our Services
                   </Link>
                 </Button>
                 
-                <Button asChild variant="outline" className="rounded-full h-11 px-6 border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35]/10">
+                <Button asChild variant="outline" className="rounded-full h-11 px-6">
                   <a href={`tel:${BUSINESS_INFO.phone}`}>
                     Call {BUSINESS_INFO.phone}
                   </a>
