@@ -4,7 +4,22 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Professional email templates - clean design, anti-spam optimized
-const getProfessionalCustomerEmail = (data: any) => `
+interface EmailData {
+  name: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  serviceType: string;
+  vehicleMake: string;
+  vehicleModel: string;
+  vehicleYear: string;
+  vehicleReg: string;
+  preferredDate: string;
+  message: string;
+  submissionDate?: string;
+}
+
+const getProfessionalCustomerEmail = (data: EmailData) => `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,7 +153,7 @@ const getProfessionalCustomerEmail = (data: any) => `
 </html>
 `;
 
-const getProfessionalBusinessEmail = (data: any) => `
+const getProfessionalBusinessEmail = (data: EmailData) => `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -199,12 +214,6 @@ const getProfessionalBusinessEmail = (data: any) => `
                 <tr>
                   <td style="color:#666666;padding:6px 0;">Registration:</td>
                   <td style="color:#1a1a1a;padding:6px 0;font-family:monospace;font-weight:600;">${data.vehicleReg}</td>
-                </tr>
-                ` : ''}
-                ${data.fuelType ? `
-                <tr>
-                  <td style="color:#666666;padding:6px 0;">Fuel Type:</td>
-                  <td style="color:#1a1a1a;padding:6px 0;font-weight:500;">${data.fuelType}</td>
                 </tr>
                 ` : ''}
               </table>
